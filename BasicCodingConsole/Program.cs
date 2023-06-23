@@ -10,10 +10,11 @@ using Serilog;
 using System.Diagnostics;
 
 #region ***** Configuration *****
+Debug.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
 var builder = new ConfigurationBuilder();
 builder.SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", false, true)
-    //.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
 
@@ -30,14 +31,6 @@ var host = Host.CreateDefaultBuilder()
         services.AddLogging();
         services.Configure<UserInformation>(builder.Build().GetSection("UserInformation"));
         services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
-        if (context.HostingEnvironment.IsDevelopment())
-        {
-            Debug.WriteLine("IsDevelopment = true");
-        }
-        else if (context.HostingEnvironment.IsProduction())
-        {
-            Debug.WriteLine("IsProduction = true");
-        }
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<IMainViewModel, MainViewModel>();
         services.AddTransient<IAppSettingProvider, AppSettingProvider>();

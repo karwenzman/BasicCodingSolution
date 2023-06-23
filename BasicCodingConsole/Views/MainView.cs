@@ -17,7 +17,7 @@ internal class MainView : ViewBase, IMainView
     };
     private readonly string[]? _menu =
     {
-        "A - Show Content of File <appsettings.json>",
+        "A - Show Application Settings",
         "",
         "",
     };
