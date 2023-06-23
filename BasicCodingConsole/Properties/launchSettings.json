@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BasicCodingConsole": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
