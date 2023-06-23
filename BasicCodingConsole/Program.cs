@@ -6,13 +6,15 @@ using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Serilog;
+using System.Diagnostics;
 
 #region ***** Configuration *****
 var builder = new ConfigurationBuilder();
 builder.SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", false, true)
-    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+    //.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
 
@@ -27,6 +29,16 @@ var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
+        services.Configure<UserInformation>(builder.Build().GetSection("UserInformation"));
+        services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
+        if (context.HostingEnvironment.IsDevelopment())
+        {
+            Debug.WriteLine("IsDevelopment = true");
+        }
+        else if (context.HostingEnvironment.IsProduction())
+        {
+            Debug.WriteLine("IsProduction = true");
+        }
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<IMainViewModel, MainViewModel>();
         services.AddTransient<IAppSettingProvider, AppSettingProvider>();

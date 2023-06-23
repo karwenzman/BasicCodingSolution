@@ -39,8 +39,27 @@ public class AppSettingProvider : IAppSettingProvider
     {
         Debug.WriteLine($"Passing <{nameof(Get)}> in <{nameof(AppSettingProvider)}>.");
 
-        _appSetting.ApplicationSetting.Language = _configuration.GetValue<string>("ApplicationSetting:Language")!;
-        _appSetting.ApplicationSetting.LastLogin = _configuration.GetValue<string>("ApplicationSetting:LastLogin")!;
+        //_appSetting.ApplicationInformation.Language = _configuration.GetValue<string>("ApplicationInformation:Language")!;
+        //_appSetting.ApplicationInformation.LastLogin = _configuration.GetValue<string>("ApplicationInformation:LastLogin")!;
+
+        if (_configuration.GetSection("UserInformation").Get<UserInformation>() == null)
+        {
+            _appSetting.UserInformation = new UserInformation();
+        }
+        else
+        {
+            _appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>();
+        }
+
+        if (_configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>() == null)
+        {
+            _appSetting.ApplicationInformation = new ApplicationInformation();
+        }
+        else
+        {
+            _appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>();
+        }
+
 
         return _appSetting;
     }

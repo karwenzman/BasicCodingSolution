@@ -11,12 +11,12 @@ public class MainViewModel : IMainViewModel
     #region ***** Field *****
     private readonly ILogger<MainViewModel> _logger;
     private readonly IConfiguration _configuration;
-    private readonly IAppSettingProvider _appSettingsProvider;
+    private readonly IAppSettingProvider _appSettingProvider;
     #endregion
 
     #region ***** Property *****
     public string DefaultMessage { get; set; } = "";
-    public string ClassName { get; set; } = "MainViewModel";
+    public string ClassName { get; set; } = "MainViewModel (default value)";
     public AppSetting AppSetting { get; set; }
     #endregion
 
@@ -27,12 +27,11 @@ public class MainViewModel : IMainViewModel
 
         _logger = logger;
         _configuration = configuration; // brauche ich wohl nicht, wenn ich alles über AppsettingsProvider lade
-        _appSettingsProvider = appSettingsProvider;
+        _appSettingProvider = appSettingsProvider;
 
-        AppSetting = _appSettingsProvider.Get();
+        AppSetting = _appSettingProvider.Get();
     }
     #endregion
-
 
     #region ***** Interface Member (IMainViewModel) *****
     /// <summary>
@@ -43,7 +42,7 @@ public class MainViewModel : IMainViewModel
     public MainViewModel Get()
     {
         Debug.WriteLine($"Passing <{nameof(Get)}> in <{nameof(MainViewModel)}>.");
-        AppSetting = _appSettingsProvider.Get();
+        AppSetting = _appSettingProvider.Get();
         return this;
     }
     #endregion

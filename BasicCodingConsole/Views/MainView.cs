@@ -89,7 +89,7 @@ internal class MainView : ViewBase, IMainView
     }
     #endregion
 
-    #region ***** Private Method (Handling User Imput) *****
+    #region ***** Private Method (Handling User Input) *****
     /// <summary>
     /// This method starts the logic behind this menu item.
     /// </summary>
@@ -106,8 +106,19 @@ internal class MainView : ViewBase, IMainView
 
         Console.WriteLine($"MainView - Default   : {_configuration.GetConnectionString("Default")}");
         Console.WriteLine($"MainView - ClassName : {MainViewModel.ClassName}");
-        Console.WriteLine($"MainView - Language  : {MainViewModel.AppSetting.ApplicationSetting.Language}");
-        Console.WriteLine($"MainView - LastLogin : {MainViewModel.AppSetting.ApplicationSetting.LastLogin}");
+
+        Console.WriteLine($"\nInformation about user <{MainViewModel.AppSetting.UserInformation.NickName}>");
+        Console.WriteLine($"\tName  : " +
+            $"{MainViewModel.AppSetting.UserInformation.Person.FirstName} " +
+            $"{MainViewModel.AppSetting.UserInformation.Person.LastName}");
+        Console.WriteLine($"\tGender: " +
+            $"{MainViewModel.AppSetting.UserInformation.Person.Gender}");
+        Console.WriteLine($"\tID    : " +
+            $"{MainViewModel.AppSetting.UserInformation.Person.Id,4:0000}");
+
+        Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
+        Console.WriteLine($"\tMainView - Language  : {MainViewModel.AppSetting.ApplicationInformation.Language}");
+        Console.WriteLine($"\tMainView - LastLogin : {MainViewModel.AppSetting.ApplicationInformation.LastLogin}");
 
         #region ***** Testing to write a file *****
         //Console.WriteLine("Creating a json file");

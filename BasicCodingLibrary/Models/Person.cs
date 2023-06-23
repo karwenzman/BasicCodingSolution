@@ -11,18 +11,18 @@ public class Person
     /// <summary>
     /// The person's unique ID.
     /// </summary>
-    public int Id { get; set; } = 1;
+    public int Id { get; set; } = 0;
     /// <summary>
     /// The person's first name.
     /// </summary>
-    public string FirstName { get; set; } = "Thorsten";
+    public string FirstName { get; set; } = "default";
     /// <summary>
     /// The person's last name.
     /// </summary>
-    public string LastName { get; set; } = "Jenning";
+    public string LastName { get; set; } = "default";
     /// <summary>
     /// The person's gender.
     /// </summary>
-    public Gender Gender { get; set; } = Gender.male;
+    public Gender Gender { get; set; } = Gender.unknown;
     #endregion
 }

@@ -6,7 +6,7 @@
 public class AppSetting
 {
     #region ***** Property *****
-    public UserSetting UserSetting { get; set; } = new UserSetting();
-    public ApplicationSetting ApplicationSetting { get; set; } = new ApplicationSetting();
+    public UserInformation UserInformation { get; set; } = new UserInformation();
+    public ApplicationInformation ApplicationInformation { get; set; } = new ApplicationInformation();
     #endregion
 }

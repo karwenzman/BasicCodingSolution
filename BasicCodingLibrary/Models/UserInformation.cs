@@ -3,10 +3,10 @@
 /// <summary>
 /// This class is providing a section of the <b>appsettings.json</b> file.
 /// </summary>
-public class ApplicationSetting
+public class UserInformation
 {
     #region ***** Property *****
-    public string LastLogin { get; set; } = "default";
-    public string Language { get; set; } = "default";
+    public string NickName { get; set; } = "default";
+    public Person Person { get; set; } = new Person();
     #endregion
 }
