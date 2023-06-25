@@ -104,8 +104,8 @@ internal class MainView : ViewBase, IMainView
     {
         MainViewModel = _mainViewModel.Get();
 
-        Console.WriteLine($"MainView - Default   : {_configuration.GetConnectionString("Default")}");
-        Console.WriteLine($"MainView - ClassName : {MainViewModel.ClassName}");
+        Console.WriteLine($"TestProperty - Default  : {_configuration.GetConnectionString("Default")}");
+        Console.WriteLine($"TestProperty - ClassName: {MainViewModel.ClassName}");
 
         Console.WriteLine($"\nInformation about user <{MainViewModel.AppSetting.UserInformation.NickName}>");
         Console.WriteLine($"\tName  : " +
@@ -117,8 +117,11 @@ internal class MainView : ViewBase, IMainView
             $"{MainViewModel.AppSetting.UserInformation.Person.Id,4:0000}");
 
         Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
-        Console.WriteLine($"\tMainView - Language  : {MainViewModel.AppSetting.ApplicationInformation.Language}");
-        Console.WriteLine($"\tMainView - LastLogin : {MainViewModel.AppSetting.ApplicationInformation.LastLogin}");
+        Console.WriteLine($"\tLanguage : {MainViewModel.AppSetting.ApplicationInformation.Language}");
+        Console.WriteLine($"\tLastLogin: {MainViewModel.AppSetting.ApplicationInformation.LastLogin}");
+
+        Console.WriteLine($"\nInformation about command line arguments");
+        Console.WriteLine($"\tArguments: {MainViewModel.AppSetting.CommandLineArgument}");
 
         #region ***** Testing to write a file *****
         //Console.WriteLine("Creating a json file");

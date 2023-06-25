@@ -8,5 +8,6 @@ public class AppSetting
     #region ***** Property *****
     public UserInformation UserInformation { get; set; } = new UserInformation();
     public ApplicationInformation ApplicationInformation { get; set; } = new ApplicationInformation();
+    public string CommandLineArgument { get; set; } = "default";
     #endregion
 }

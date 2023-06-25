@@ -2,6 +2,7 @@
   "profiles": {
     "BasicCodingConsole": {
       "commandName": "Project",
+      "commandLineArgs": "--CommandLineArgument CommandLineStringIsPassedOnByLauchSettingsJson",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

@@ -10,7 +10,6 @@ using Serilog;
 using System.Diagnostics;
 
 #region ***** Configuration *****
-Debug.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
 var builder = new ConfigurationBuilder();
 builder.SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", false, true)
@@ -24,7 +23,6 @@ Log.Logger = new LoggerConfiguration()
     //.WriteTo.Console()  // activate to send the logging to the console
     .WriteTo.File("LogFiles/apploggings.txt") // activate to send the logging to a file
     .CreateLogger();
-
 var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
     {
@@ -46,10 +44,15 @@ var services = scope.ServiceProvider;
 try
 {
     Log.Logger.Information("***** Run Application *****");
-    foreach (var item in args)
-    {
-        Log.Logger.Information($"Application Args: {item}");
-    }
+    Debug.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
+    Debug.WriteLine($"CommandLine GetValue: {builder.Build().GetValue<string>("CommandLineArgument")}");
+    Console.WriteLine($"CommandLine GetValue: {builder.Build().GetValue<string>("CommandLineArgument")}");
+    Console.ReadLine();
+    //foreach (var item in args)
+    //{
+    //    Log.Logger.Information($"Application Args: {item}");
+    //    Debug.WriteLine($"CommandLine Args: {item}");
+    //}
     services.GetService<IMainView>()!
         .Run(args);
 }

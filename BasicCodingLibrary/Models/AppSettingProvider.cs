@@ -42,6 +42,8 @@ public class AppSettingProvider : IAppSettingProvider
         //_appSetting.ApplicationInformation.Language = _configuration.GetValue<string>("ApplicationInformation:Language")!;
         //_appSetting.ApplicationInformation.LastLogin = _configuration.GetValue<string>("ApplicationInformation:LastLogin")!;
 
+        _appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument");
+
         if (_configuration.GetSection("UserInformation").Get<UserInformation>() == null)
         {
             _appSetting.UserInformation = new UserInformation();
