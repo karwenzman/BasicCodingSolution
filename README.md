@@ -1,8 +1,8 @@
 # BasicCodingSolution
-VisualStudio 2022
-Net 7.0
-ConsoleApp
-WpfApp (not startet, yet)
+VisualStudio 2022  
+Net 7.0  
+ConsoleApp  
+WpfApp (not startet, yet)  
 
 ## Purpose
 This app is meant to be a trainig application. While attending online courses, studying textbooks and performing research in stack-overflow, I do need a place to put all things together. A place where I can apply information from different sources to a simple console application.
