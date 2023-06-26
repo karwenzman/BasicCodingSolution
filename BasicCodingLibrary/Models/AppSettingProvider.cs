@@ -42,26 +42,46 @@ public class AppSettingProvider : IAppSettingProvider
         //_appSetting.ApplicationInformation.Language = _configuration.GetValue<string>("ApplicationInformation:Language")!;
         //_appSetting.ApplicationInformation.LastLogin = _configuration.GetValue<string>("ApplicationInformation:LastLogin")!;
 
-        _appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument");
-
-        if (_configuration.GetSection("UserInformation").Get<UserInformation>() == null)
+        if (_configuration.GetValue<string>("CommandLineArgument") == null | _configuration.GetValue<string>("CommandLineArgument") == string.Empty)
         {
-            _appSetting.UserInformation = new UserInformation();
+            _appSetting.CommandLineArgument = "CommandLineArgumentIsNullOrEmpty";
         }
         else
         {
-            _appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>();
+            _appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
+        }
+
+        if (_configuration.GetSection("UserInformation").Get<UserInformation>() == null)
+        {
+            _appSetting.UserInformation = new UserInformation
+            {
+                NickName = "none - UserInformationIsNullOrEmpty",
+                Person = new Person
+                {
+                    FirstName = "none - UserInformationIsNullOrEmpty",
+                    LastName = "none - UserInformationIsNullOrEmpty",
+                    Gender = 0,
+                    Id = 0,
+                }
+            };
+        }
+        else
+        {
+            _appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
         }
 
         if (_configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>() == null)
         {
-            _appSetting.ApplicationInformation = new ApplicationInformation();
+            _appSetting.ApplicationInformation = new ApplicationInformation
+            {
+                Language = "none - ApplicationInformationIsNullOrEmpty",
+                LastLogin = "none - ApplicationInformationIsNullOrEmpty",
+            };
         }
         else
         {
-            _appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>();
+            _appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
         }
-
 
         return _appSetting;
     }

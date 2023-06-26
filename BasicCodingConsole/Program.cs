@@ -44,15 +44,16 @@ var services = scope.ServiceProvider;
 try
 {
     Log.Logger.Information("***** Run Application *****");
-    Debug.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
-    Debug.WriteLine($"CommandLine GetValue: {builder.Build().GetValue<string>("CommandLineArgument")}");
-    Console.WriteLine($"CommandLine GetValue: {builder.Build().GetValue<string>("CommandLineArgument")}");
+    Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
+    Console.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
+    Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
+    Console.WriteLine($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
+    foreach (var item in args)
+    {
+        Log.Logger.Information($"Args: {item}");
+        Console.WriteLine($"Args: {item}");
+    }
     Console.ReadLine();
-    //foreach (var item in args)
-    //{
-    //    Log.Logger.Information($"Application Args: {item}");
-    //    Debug.WriteLine($"CommandLine Args: {item}");
-    //}
     services.GetService<IMainView>()!
         .Run(args);
 }
