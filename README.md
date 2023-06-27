@@ -15,3 +15,6 @@ You can expect a lot of documentation, try and error and strange attempts to sol
 
 ## Invitation
 Fell free to post issues or to comment on them. Make sure to do this in a respectful manner, always.
+
+## Goal => configure appsettings
+After finishing the course [AppsettingsFromStartToFinish](https://www.iamtimcorey.com/courses/dotnet-core-appsettings-from-start-to-finish/) I am trying to transfer the knowledge to a simple console application. 
