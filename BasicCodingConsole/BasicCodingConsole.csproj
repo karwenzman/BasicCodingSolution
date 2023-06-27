@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="ConsoleMessages\" />
   </ItemGroup>
   
 </Project>
