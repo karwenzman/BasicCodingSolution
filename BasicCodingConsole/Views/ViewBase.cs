@@ -196,7 +196,6 @@ public class ViewBase
     {
         bool isResize = false;
         frameHeight = Console.WindowHeight;
-        //frameWidth = Console.WindowWidth - 1; // when published the behaviour is different to debug mode
         frameWidth = Console.WindowWidth; // when published the behaviour is different to debug mode
 
         if (frameHeight < frameHeightMinimum)
@@ -207,7 +206,7 @@ public class ViewBase
 
         if (frameWidth < frameWidthMinimum)
         {
-            frameWidth = frameWidthMinimum - 1;
+            frameWidth = frameWidthMinimum;
             isResize = true;
         }
 
@@ -215,7 +214,7 @@ public class ViewBase
         {
             if (isResize)
             {
-                Console.SetWindowSize(frameWidth + 1, frameHeight);
+                Console.SetWindowSize(frameWidth, frameHeight);
             }
         }
         catch (Exception e)

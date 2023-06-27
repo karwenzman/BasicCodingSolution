@@ -1,5 +1,4 @@
-﻿using BasicCodingConsole.Interfaces;
-using BasicCodingConsole.Views;
+﻿using BasicCodingConsole.Views.MainView;
 using BasicCodingLibrary.Interfaces;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.ViewModels;

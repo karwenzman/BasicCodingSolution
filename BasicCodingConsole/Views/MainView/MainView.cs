@@ -1,14 +1,13 @@
-﻿using BasicCodingConsole.Interfaces;
-using BasicCodingLibrary.Interfaces;
+﻿using BasicCodingLibrary.Interfaces;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Diagnostics;
 
-namespace BasicCodingConsole.Views;
+namespace BasicCodingConsole.Views.MainView;
 
-internal class MainView : ViewBase, IMainView
+public class MainView : ViewBase, IMainView
 {
     #region ***** UI *****
     private readonly string[]? _caption =
