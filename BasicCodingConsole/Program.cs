@@ -1,4 +1,5 @@
-﻿using BasicCodingConsole.Views.MainView;
+﻿using BasicCodingConsole.ConsoleMessages;
+using BasicCodingConsole.Views.MainView;
 using BasicCodingLibrary.Interfaces;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.ViewModels;
@@ -31,6 +32,7 @@ var host = Host.CreateDefaultBuilder()
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<IMainViewModel, MainViewModel>();
         services.AddTransient<IAppSettingProvider, AppSettingProvider>();
+        services.AddTransient<IMainViewMessage, MainViewMessage>();
     })
     .UseSerilog()
     .Build();

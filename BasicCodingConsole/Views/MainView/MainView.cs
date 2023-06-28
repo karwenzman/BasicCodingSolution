@@ -1,4 +1,5 @@
-﻿using BasicCodingLibrary.Interfaces;
+﻿using BasicCodingConsole.ConsoleMessages;
+using BasicCodingLibrary.Interfaces;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -30,6 +31,7 @@ public class MainView : ViewBase, IMainView
     private readonly ILogger<MainView> _logger;
     private readonly IConfiguration _configuration;
     private readonly IMainViewModel _mainViewModel;
+    private readonly IMainViewMessage _consoleMessage;
     #endregion
 
     #region ***** Property *****
@@ -37,13 +39,18 @@ public class MainView : ViewBase, IMainView
     #endregion
 
     #region ***** Constructor *****
-    public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel)
+    public MainView(
+        ILogger<MainView> logger, 
+        IConfiguration configuration, 
+        IMainViewModel mainViewModel,
+        IMainViewMessage consoleMessage)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(MainView)}>.");
 
         _logger = logger;
         _configuration = configuration;
         _mainViewModel = mainViewModel;
+        _consoleMessage = consoleMessage;
 
         MainViewModel = _mainViewModel.Get();
     }
@@ -53,8 +60,11 @@ public class MainView : ViewBase, IMainView
     public void Run(string[] args)
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
-
+        _consoleMessage.StartingApp();
+        _consoleMessage.LeavingScreen();
+        _consoleMessage.LeavingApp();
         _logger.LogInformation("* Load: {view}", nameof(MainView));
+
         DrawHeader(_caption, _menu, _status);
 
         try
