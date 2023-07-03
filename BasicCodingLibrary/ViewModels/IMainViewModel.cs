@@ -1,12 +1,16 @@
-﻿using BasicCodingLibrary.ViewModels;
+﻿using BasicCodingLibrary.Models;
 
-namespace BasicCodingLibrary.Interfaces;
+namespace BasicCodingLibrary.ViewModels;
 
 /// <summary>
 /// This interface is providing the access to the class <see cref="AppSettings"/>.
 /// </summary>
 public interface IMainViewModel
 {
+    string DefaultMessage { get; set; }
+    string ClassName { get; set; }
+    AppSetting AppSetting { get; set; }
+
     /// <summary>
     /// This method is getting the current values of <see cref="MainViewModel"/>.
     /// <para>

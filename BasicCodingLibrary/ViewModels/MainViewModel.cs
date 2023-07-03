@@ -1,5 +1,4 @@
-﻿using BasicCodingLibrary.Interfaces;
-using BasicCodingLibrary.Models;
+﻿using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -17,7 +16,7 @@ public class MainViewModel : IMainViewModel
     #region ***** Property *****
     public string DefaultMessage { get; set; } = "";
     public string ClassName { get; set; } = "MainViewModel (default value)";
-    public AppSetting AppSetting { get; set; }
+    public AppSetting AppSetting { get; set; } = new AppSetting();
     #endregion
 
     #region ***** Constructor *****
@@ -29,7 +28,7 @@ public class MainViewModel : IMainViewModel
         _configuration = configuration; // brauche ich wohl nicht, wenn ich alles über AppsettingsProvider lade
         _appSettingProvider = appSettingsProvider;
 
-        AppSetting = _appSettingProvider.Get();
+        //AppSetting = _appSettingProvider.Get();
     }
     #endregion
 

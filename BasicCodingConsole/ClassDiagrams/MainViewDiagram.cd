@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="BasicCodingConsole.Views.MainView.IMainView">
+    <Position X="3.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Views\MainView\IMainView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleMessages.IStartMessage">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\IStartMessage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleMessages.IEndMessage">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\IEndMessage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleMessages.IExceptionMessage">
+    <Position X="6.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\IExceptionMessage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleMessages.IMessage">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IStartMessage" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="1.25" Y="1.796" />
+        <Point X="1.25" Y="2.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\IMessage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleMessages.IConsoleMessage">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IMessage" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.188" Y="4.006" />
+        <Point X="1.188" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\IConsoleMessage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.Views.IView">
+    <Position X="3.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.Views.IConsoleView">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IConsoleView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.Views.IMenu">
+    <Position X="6.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IMenu.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.Views.IConsoleMenu">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAABAAAAAgAAAAAAAAAAAAAAAAAAABIAQ=</HashCode>
+      <FileName>Views\IConsoleMenu.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

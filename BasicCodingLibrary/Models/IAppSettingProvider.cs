@@ -1,6 +1,4 @@
-﻿using BasicCodingLibrary.Models;
-
-namespace BasicCodingLibrary.Interfaces;
+﻿namespace BasicCodingLibrary.Models;
 
 /// <summary>
 /// This interface is providing the access to the class <see cref="AppSetting"/>.

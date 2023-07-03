@@ -1,13 +1,12 @@
 ﻿using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.MainView;
-using BasicCodingLibrary.Interfaces;
+using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using System.Diagnostics;
 
 #region ***** Configuration *****
 var builder = new ConfigurationBuilder();
@@ -31,8 +30,10 @@ var host = Host.CreateDefaultBuilder()
         services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<IMainViewModel, MainViewModel>();
-        services.AddTransient<IAppSettingProvider, AppSettingProvider>();
         services.AddTransient<IMainViewMessage, MainViewMessage>();
+        services.AddTransient<IAppSettingProvider, AppSettingProvider>();
+        services.AddTransient<ISettingView, SettingView>();
+        services.AddTransient<ISettingViewModel, SettingViewModel>();
     })
     .UseSerilog()
     .Build();

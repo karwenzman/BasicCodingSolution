@@ -1,7 +1,6 @@
-﻿namespace BasicCodingConsole.ConsoleMessages
-{
-    public interface IConsoleMessage : IMessage
-    {
+﻿namespace BasicCodingConsole.ConsoleMessages;
 
-    }
+public interface IConsoleMessage : IMessage
+{
+
 }

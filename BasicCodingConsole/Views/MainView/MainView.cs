@@ -1,7 +1,9 @@
 ﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingLibrary.Interfaces;
+using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Diagnostics;
@@ -18,6 +20,8 @@ public class MainView : ViewBase, IMainView
     private readonly string[]? _menu =
     {
         "A - Show Application Settings",
+        "B - Run FibonacciApp",
+        "C - Run SettingView",
         "",
         "",
     };
@@ -32,18 +36,14 @@ public class MainView : ViewBase, IMainView
     private readonly IConfiguration _configuration;
     private readonly IMainViewModel _mainViewModel;
     private readonly IMainViewMessage _consoleMessage;
+    private readonly IHost _hostProvider;
     #endregion
 
     #region ***** Property *****
-    public MainViewModel MainViewModel { get; set; }
     #endregion
 
     #region ***** Constructor *****
-    public MainView(
-        ILogger<MainView> logger, 
-        IConfiguration configuration, 
-        IMainViewModel mainViewModel,
-        IMainViewMessage consoleMessage)
+    public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel, IMainViewMessage consoleMessage, IHost hostProvider)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(MainView)}>.");
 
@@ -51,8 +51,7 @@ public class MainView : ViewBase, IMainView
         _configuration = configuration;
         _mainViewModel = mainViewModel;
         _consoleMessage = consoleMessage;
-
-        MainViewModel = _mainViewModel.Get();
+        _hostProvider = hostProvider;
     }
     #endregion
 
@@ -60,9 +59,9 @@ public class MainView : ViewBase, IMainView
     public void Run(string[] args)
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
-        _consoleMessage.StartingApp();
-        _consoleMessage.LeavingScreen();
-        _consoleMessage.LeavingApp();
+        _consoleMessage.StartingAppMessage();
+        _consoleMessage.EndingViewMessage();
+        _consoleMessage.EndingAppMessage();
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
         DrawHeader(_caption, _menu, _status);
@@ -80,6 +79,16 @@ public class MainView : ViewBase, IMainView
                     case ConsoleKey.A:
                         CheckWindowSize();
                         Action_A();
+                        DrawHeader(_caption, _menu, _status);
+                        break;
+                    case ConsoleKey.B:
+                        CheckWindowSize();
+                        Action_B();
+                        DrawHeader(_caption, _menu, _status);
+                        break;
+                    case ConsoleKey.C:
+                        CheckWindowSize();
+                        Action_C();
                         DrawHeader(_caption, _menu, _status);
                         break;
                     default:
@@ -106,31 +115,76 @@ public class MainView : ViewBase, IMainView
     {
         DrawContent();
     }
+
+    /// <summary>
+    /// This method starts the logic behind this menu item.
+    /// </summary>
+    private void Action_B()
+    {
+        // basics are working; improving needed
+        string processName = @"C:\Users\jenni\source\repos\MathSolutions\FibonacciApp\bin\Debug\net7.0\FibonacciApp.exe";
+        string processArgs = "";
+        //string processArgs = "--CommandLineArgument CommandLineStringIsPassedOnByBasicCodingConsole";
+
+        // get current console state
+        ConsoleColor foregroundColor = Console.ForegroundColor;
+        ConsoleColor backgroundColor = Console.BackgroundColor;
+
+        ProcessStartInfo startinfo = new ProcessStartInfo(processName, processArgs);
+
+        // Sync
+        startinfo.UseShellExecute = false;
+        Process p = Process.Start(startinfo)!;
+        p.WaitForExit();
+
+        // Async
+        //startinfo.UseShellExecute = true;
+        //var task = Process.Start(startinfo)!.WaitForExitAsync();
+        //if (task.IsCompleted)
+        //{
+        //    task.Dispose(); // closing the window is not stopping the task, so this is needed!
+        //}
+
+        // set saved console state
+        Console.ForegroundColor = foregroundColor;
+        Console.BackgroundColor = backgroundColor;
+
+    }
+
+    /// <summary>
+    /// This method starts the logic behind this menu item.
+    /// </summary>
+    private void Action_C()
+    {
+        using var scope = _hostProvider.Services.CreateScope();
+        var services = scope.ServiceProvider;
+        services.GetService<ISettingView>()!.Run();
+    }
     #endregion
 
     #region ***** Private Method *****
     private void DrawContent()
     {
-        MainViewModel = _mainViewModel.Get();
+        _mainViewModel.Get(); // reloadOnChange? would it make this call unneccessary?
 
         Console.WriteLine($"TestProperty - Default  : {_configuration.GetConnectionString("Default")}");
-        Console.WriteLine($"TestProperty - ClassName: {MainViewModel.ClassName}");
+        Console.WriteLine($"TestProperty - ClassName: {_mainViewModel.ClassName}");
 
-        Console.WriteLine($"\nInformation about user <{MainViewModel.AppSetting.UserInformation.NickName}>");
+        Console.WriteLine($"\nInformation about user <{_mainViewModel.AppSetting.UserInformation.NickName}>");
         Console.WriteLine($"\tName  : " +
-            $"{MainViewModel.AppSetting.UserInformation.Person.FirstName} " +
-            $"{MainViewModel.AppSetting.UserInformation.Person.LastName}");
+            $"{_mainViewModel.AppSetting.UserInformation.Person.FirstName} " +
+            $"{_mainViewModel.AppSetting.UserInformation.Person.LastName}");
         Console.WriteLine($"\tGender: " +
-            $"{MainViewModel.AppSetting.UserInformation.Person.Gender}");
+            $"{_mainViewModel.AppSetting.UserInformation.Person.Gender}");
         Console.WriteLine($"\tID    : " +
-            $"{MainViewModel.AppSetting.UserInformation.Person.Id,4:0000}");
+            $"{_mainViewModel.AppSetting.UserInformation.Person.Id,4:0000}");
 
         Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
-        Console.WriteLine($"\tLanguage : {MainViewModel.AppSetting.ApplicationInformation.Language}");
-        Console.WriteLine($"\tLastLogin: {MainViewModel.AppSetting.ApplicationInformation.LastLogin}");
+        Console.WriteLine($"\tLanguage : {_mainViewModel.AppSetting.ApplicationInformation.Language}");
+        Console.WriteLine($"\tLastLogin: {_mainViewModel.AppSetting.ApplicationInformation.LastLogin}");
 
         Console.WriteLine($"\nInformation about command line arguments");
-        Console.WriteLine($"\tArguments: {MainViewModel.AppSetting.CommandLineArgument}");
+        Console.WriteLine($"\tArguments: {_mainViewModel.AppSetting.CommandLineArgument}");
 
         #region ***** Testing to write a file *****
         //Console.WriteLine("Creating a json file");

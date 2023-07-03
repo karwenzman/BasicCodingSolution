@@ -1,5 +1,4 @@
-﻿using BasicCodingLibrary.Interfaces;
-using BasicCodingLibrary.ViewModels;
+﻿using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
