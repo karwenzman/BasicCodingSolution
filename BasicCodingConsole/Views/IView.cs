@@ -2,6 +2,5 @@
 
 public interface IView
 {
-    void ClearView();
-    void ShowView();
+    void Run();
 }

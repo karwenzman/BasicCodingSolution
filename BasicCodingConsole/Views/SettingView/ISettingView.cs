@@ -1,6 +1,7 @@
-﻿namespace BasicCodingConsole.Views.SettingView;
+﻿using BasicCodingConsole.ConsoleMessages;
 
-public interface ISettingView : IConsoleView, IConsoleMenu
+namespace BasicCodingConsole.Views.SettingView;
+
+public interface ISettingView : IConsoleView, IConsoleMenu, IConsoleMessage
 {
-    void Run();
 }

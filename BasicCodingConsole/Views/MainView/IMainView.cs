@@ -1,6 +1,8 @@
-﻿namespace BasicCodingConsole.Views.MainView;
+﻿using BasicCodingConsole.ConsoleMessages;
 
-public interface IMainView
+namespace BasicCodingConsole.Views.MainView;
+
+public interface IMainView : IConsoleMessage
 {
     void Run(string[] args);
 }

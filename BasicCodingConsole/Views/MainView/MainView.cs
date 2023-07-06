@@ -35,35 +35,36 @@ public class MainView : ViewBase, IMainView
     private readonly ILogger<MainView> _logger;
     private readonly IConfiguration _configuration;
     private readonly IMainViewModel _mainViewModel;
-    private readonly IMainViewMessage _consoleMessage;
     private readonly IHost _hostProvider;
     #endregion
 
     #region ***** Property *****
+    public IMessage StartMessage => new StartingApp(nameof(MainView));
+    public IMessage EndMessage => new EndingApp(nameof(MainView));
     #endregion
 
     #region ***** Constructor *****
-    public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel, IMainViewMessage consoleMessage, IHost hostProvider)
+    public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel, IHost hostProvider)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(MainView)}>.");
 
         _logger = logger;
         _configuration = configuration;
         _mainViewModel = mainViewModel;
-        _consoleMessage = consoleMessage;
         _hostProvider = hostProvider;
     }
+
+
     #endregion
 
     #region ***** Interface Member (IMainView) *****
     public void Run(string[] args)
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
-        _consoleMessage.StartingAppMessage();
-        _consoleMessage.EndingViewMessage();
-        _consoleMessage.EndingAppMessage();
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
+        StartMessage.Message();
+        EndMessage.Message();
         DrawHeader(_caption, _menu, _status);
 
         try

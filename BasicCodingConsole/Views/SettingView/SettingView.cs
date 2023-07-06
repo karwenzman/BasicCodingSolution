@@ -1,4 +1,5 @@
-﻿using BasicCodingLibrary.ViewModels;
+﻿using BasicCodingConsole.ConsoleMessages;
+using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -13,6 +14,11 @@ public class SettingView : ISettingView
     private readonly ISettingViewModel _settingViewModel;
     #endregion
 
+    #region ***** Property *****
+    public IMessage StartMessage => new StartingView(nameof(SettingView));
+    public IMessage EndMessage => new EndingView(nameof(SettingView));
+    #endregion
+
     #region ***** Constructor *****
     public SettingView(ILogger<SettingView> logger, IConfiguration configuration, ISettingViewModel settingViewModel)
     {
@@ -21,6 +27,7 @@ public class SettingView : ISettingView
         _logger = logger;
         _configuration = configuration;
         _settingViewModel = settingViewModel;
+
     }
     #endregion
 
@@ -28,11 +35,6 @@ public class SettingView : ISettingView
     public string[]? CaptionItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string[]? MenuItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string[]? StatusItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    public void ArgumentExceptionMessage(Exception e)
-    {
-        throw new NotImplementedException();
-    }
 
     public void CaptureUserInput()
     {
@@ -49,29 +51,12 @@ public class SettingView : ISettingView
         Console.Clear();
     }
 
-    public void EndingAppMessage()
-    {
-        Console.WriteLine("\nPress ENTER to leave the app...");
-        Console.ReadLine();
-    }
-
-    public void EndingViewMessage()
-    {
-        Console.WriteLine("\nPress ENTER to continue...");
-        Console.ReadLine();
-    }
-
-    public void OverflowExceptionMessage(Exception e)
-    {
-        throw new NotImplementedException();
-    }
-
     public void Run()
     {
         ClearView();
-        StartingViewMessage();
+        StartMessage.Message();
         ShowView();
-        EndingViewMessage();
+        EndMessage.Message();
     }
 
     public void ShowMenu()
@@ -84,23 +69,5 @@ public class SettingView : ISettingView
         Console.WriteLine("This is individual text by karwenzman!");
     }
 
-    public void StartingAppMessage()
-    {
-        string message = $"You have started the app: {nameof(SettingView)}";
-        Console.WriteLine(message);
-        Console.WriteLine("=".PadLeft(message.Length, '='));
-    }
-
-    public void StartingViewMessage()
-    {
-        string message = $"You have started the view: {nameof(SettingView)}";
-        Console.WriteLine(message);
-        Console.WriteLine("=".PadLeft(message.Length, '='));
-    }
-
-    public void UnhandledExceptionMessage(Exception e)
-    {
-        throw new NotImplementedException();
-    }
     #endregion
 }

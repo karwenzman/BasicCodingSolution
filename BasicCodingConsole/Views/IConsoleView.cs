@@ -2,6 +2,8 @@
 
 namespace BasicCodingConsole.Views;
 
-public interface IConsoleView : IView, IConsoleMessage
+public interface IConsoleView : IView
 {
+    void ClearView();
+    void ShowView();
 }

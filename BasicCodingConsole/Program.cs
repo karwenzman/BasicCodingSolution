@@ -1,5 +1,4 @@
-﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.Views.MainView;
+﻿using BasicCodingConsole.Views.MainView;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.ViewModels;
@@ -30,7 +29,6 @@ var host = Host.CreateDefaultBuilder()
         services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<IMainViewModel, MainViewModel>();
-        services.AddTransient<IMainViewMessage, MainViewMessage>();
         services.AddTransient<IAppSettingProvider, AppSettingProvider>();
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<ISettingViewModel, SettingViewModel>();

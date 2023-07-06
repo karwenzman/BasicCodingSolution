@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.ConsoleMessages;
 
-public class MainViewMessage : IMainViewMessage
+public class MainViewMessage
 {
     public MainViewMessage()
     {
