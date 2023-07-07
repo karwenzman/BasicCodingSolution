@@ -1,4 +1,4 @@
-﻿namespace BasicCodingConsole.Views;
+﻿namespace BasicCodingConsole.ConsoleMenus;
 
 public interface IMenu
 {

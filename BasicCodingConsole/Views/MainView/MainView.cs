@@ -39,8 +39,8 @@ public class MainView : ViewBase, IMainView
     #endregion
 
     #region ***** Property *****
-    public IMessage StartMessage => new StartingApp(nameof(MainView));
-    public IMessage EndMessage => new EndingApp(nameof(MainView));
+    public IMessaging StartMessage => new StartingApp(nameof(MainView));
+    public IMessaging EndMessage => new EndingApp(nameof(MainView));
     #endregion
 
     #region ***** Constructor *****
@@ -63,8 +63,8 @@ public class MainView : ViewBase, IMainView
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
-        StartMessage.Message();
-        EndMessage.Message();
+        StartMessage.Show();
+        EndMessage.Show();
         DrawHeader(_caption, _menu, _status);
 
         try

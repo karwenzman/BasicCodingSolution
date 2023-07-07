@@ -1,4 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleMessages;
+using BasicCodingConsole.ConsoleViews;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -15,8 +16,9 @@ public class SettingView : ISettingView
     #endregion
 
     #region ***** Property *****
-    public IMessage StartMessage => new StartingView(nameof(SettingView));
-    public IMessage EndMessage => new EndingView(nameof(SettingView));
+    public IMessaging StartMessage => new StartingView(nameof(SettingView));
+    public IMessaging EndMessage => new EndingView(nameof(SettingView));
+    public IView Display => new View();
     #endregion
 
     #region ***** Constructor *****
@@ -27,47 +29,28 @@ public class SettingView : ISettingView
         _logger = logger;
         _configuration = configuration;
         _settingViewModel = settingViewModel;
-
     }
     #endregion
 
     #region ***** Interface Member (ISettingView) *****
-    public string[]? CaptionItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string[]? MenuItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string[]? StatusItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    public void CaptureUserInput()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void ClearMenu()
-    {
-        Console.Clear();
-    }
-
-    public void ClearView()
-    {
-        Console.Clear();
-    }
-
     public void Run()
     {
-        ClearView();
-        StartMessage.Message();
-        ShowView();
-        EndMessage.Message();
+        Display.Clear();
+        Display.Resize(0, 0);
+        StartMessage.Show();
+        ShowContent();
+        EndMessage.Show();
     }
+    #endregion
 
-    public void ShowMenu()
+    #region ***** Private Member *****
+    private void ShowContent()
     {
-        throw new NotImplementedException();
-    }
+        string message = "This is individual text by karwenzman!";
+        Console.WriteLine(message);
+        _logger.LogInformation(message);
 
-    public void ShowView()
-    {
-        Console.WriteLine("This is individual text by karwenzman!");
+        Console.WriteLine($"\nConnectionString (key = Default): {_configuration.GetConnectionString("Default")}");
     }
-
     #endregion
 }

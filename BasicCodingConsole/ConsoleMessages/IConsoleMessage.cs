@@ -2,6 +2,6 @@
 
 public interface IConsoleMessage
 {
-    IMessage StartMessage { get; }
-    IMessage EndMessage { get; }
+    IMessaging StartMessage { get; }
+    IMessaging EndMessage { get; }
 }

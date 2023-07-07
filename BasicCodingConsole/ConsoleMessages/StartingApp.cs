@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class StartingApp : IMessage
+public class StartingApp : IMessaging
 {
     public string CallingClass { get; }
 
@@ -9,7 +9,7 @@ public class StartingApp : IMessage
         CallingClass = callingClass;
     }
 
-    public void Message()
+    public void Show()
     {
         string message = $"You have started the app: {CallingClass}";
         Console.WriteLine(message);

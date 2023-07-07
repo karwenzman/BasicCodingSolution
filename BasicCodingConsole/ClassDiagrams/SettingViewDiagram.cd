@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BasicCodingConsole.Views.SettingView.SettingView">
-    <Position X="0.5" Y="11.5" Width="2.25" />
+    <Position X="12.75" Y="3.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAQAAABAAAQAgAAAAIAQAACAAAAEAEAABIAY=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAQAAIASAACAAAAEAAAAAAAI=</HashCode>
       <FileName>Views\SettingView\SettingView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -11,7 +11,7 @@
   <Class Name="BasicCodingConsole.ConsoleMessages.EndingApp">
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\EndingApp.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -19,7 +19,7 @@
   <Class Name="BasicCodingConsole.ConsoleMessages.EndingView">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\EndingView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -27,7 +27,7 @@
   <Class Name="BasicCodingConsole.ConsoleMessages.StartingApp">
     <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\StartingApp.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -35,58 +35,112 @@
   <Class Name="BasicCodingConsole.ConsoleMessages.StartingView">
     <Position X="4.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\StartingView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="BasicCodingConsole.Views.IView">
-    <Position X="3.75" Y="7" Width="1.5" />
+  <Class Name="BasicCodingConsole.ConsoleViews.ClearingView">
+    <Position X="6.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
-      <FileName>Views\IView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ConsoleViews\ClearingView.cs</FileName>
     </TypeIdentifier>
-  </Interface>
-  <Interface Name="BasicCodingConsole.Views.IMenu">
-    <Position X="6.75" Y="7" Width="1.5" />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleViews.ResizingView">
+    <Position X="6.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
-      <FileName>Views\IMenu.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ConsoleViews\ResizingView.cs</FileName>
     </TypeIdentifier>
-  </Interface>
-  <Interface Name="BasicCodingConsole.Views.IConsoleMenu">
-    <Position X="6.75" Y="8.75" Width="1.5" />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleViews.View">
+    <Position X="2.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Views\IConsoleMenu.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
+      <FileName>ConsoleViews\View.cs</FileName>
     </TypeIdentifier>
-  </Interface>
-  <Interface Name="BasicCodingConsole.Views.IConsoleView">
-    <Position X="3.75" Y="8.75" Width="1.5" />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleViews.ClearingApp">
+    <Position X="4.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
-      <FileName>Views\IConsoleView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ConsoleViews\ClearingApp.cs</FileName>
     </TypeIdentifier>
-  </Interface>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleViews.ResizingApp">
+    <Position X="4.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ConsoleViews\ResizingApp.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="BasicCodingConsole.Views.SettingView.ISettingView">
-    <Position X="3.75" Y="11.5" Width="1.5" />
+    <Position X="10.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\SettingView\ISettingView.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMessages.IConsoleMessage">
-    <Position X="0.5" Y="8.75" Width="1.5" />
+    <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\IConsoleMessage.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BasicCodingConsole.ConsoleMessages.IMessage">
+  <Interface Name="BasicCodingConsole.ConsoleMessages.IMessaging">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\IMessage.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\IMessaging.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleViews.IView">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <InheritanceLine Type="BasicCodingConsole.ConsoleViews.IClearing" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="3.5" />
+        <Point X="1.25" Y="3.5" />
+        <Point X="1.25" Y="6.25" />
+      </Path>
+    </InheritanceLine>
+    <InheritanceLine Type="BasicCodingConsole.ConsoleViews.IResizing" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="4.938" />
+        <Point X="1.25" Y="4.938" />
+        <Point X="1.25" Y="6.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleViews\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleViews.IConsoleView">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ConsoleViews\IConsoleView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleViews.IClearing">
+    <Position X="2.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ConsoleViews\IClearing.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleViews.IResizing">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ConsoleViews\IResizing.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

@@ -1,7 +1,7 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public interface IMessage
+public interface IMessaging
 {
     string CallingClass { get; }
-    void Message();
+    void Show();
 }

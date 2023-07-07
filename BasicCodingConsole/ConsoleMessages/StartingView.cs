@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class StartingView : IMessage
+public class StartingView : IMessaging
 {
     public string CallingClass { get; }
 
@@ -9,7 +9,7 @@ public class StartingView : IMessage
         CallingClass = callingClass;
     }
 
-    public void Message()
+    public void Show()
     {
         string message = $"You have started the view: {CallingClass}";
         Console.WriteLine(message);

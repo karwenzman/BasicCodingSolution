@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class EndingView : IMessage
+public class EndingView : IMessaging
 {
     public string CallingClass { get; }
 
@@ -9,7 +9,7 @@ public class EndingView : IMessage
         CallingClass = callingClass;
     }
 
-    public void Message()
+    public void Show()
     {
         Console.WriteLine($"\nYou are going to leave the view: {CallingClass}. Press ENTER to continue...");
         Console.ReadLine();
