@@ -71,6 +71,17 @@ public class MainView : ViewBase, IMainView
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
         StartMessage.Show();
+        if (args.Length > 0)
+        {
+            foreach (var arg in args)
+            {
+                Console.WriteLine($"args: {arg}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No args provided.");
+        }
         EndMessage.Show();
         DrawHeader(_caption, _menu, _status);
 
@@ -96,7 +107,7 @@ public class MainView : ViewBase, IMainView
                         break;
                     case ConsoleKey.C:
                         CheckWindowSize();
-                        Action_C();
+                        Action_C(args);
                         DrawHeader(_caption, _menu, _status);
                         break;
                     default:
@@ -162,11 +173,12 @@ public class MainView : ViewBase, IMainView
     /// <summary>
     /// This method starts the logic behind this menu item.
     /// </summary>
-    private void Action_C()
+    private void Action_C(string[] args)
     {
         using var scope = _hostProvider.Services.CreateScope();
         var services = scope.ServiceProvider;
         services.GetService<ISettingView>()!.Run();
+        //services.GetService<ISettingView>()!.Run(args);
     }
     #endregion
 

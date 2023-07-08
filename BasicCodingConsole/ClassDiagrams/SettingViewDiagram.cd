@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BasicCodingConsole.Views.SettingView.SettingView">
-    <Position X="12.75" Y="3.25" Width="2.25" />
+    <Position X="12.75" Y="4.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAAQAAIASAACAAAAEAAAAAAAI=</HashCode>
       <FileName>Views\SettingView\SettingView.cs</FileName>
@@ -81,14 +81,28 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="BasicCodingConsole.Views.SettingView.ISettingView">
-    <Position X="10.5" Y="3.25" Width="1.5" />
+    <Position X="10.75" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IConsoleMessage" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.75" Y="3.125" />
+        <Point X="11.5" Y="3.125" />
+        <Point X="11.5" Y="4.5" />
+      </Path>
+    </InheritanceLine>
+    <InheritanceLine Type="BasicCodingConsole.ConsoleViews.IConsoleView" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.75" Y="1.312" />
+        <Point X="11.5" Y="1.312" />
+        <Point X="11.5" Y="4.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\SettingView\ISettingView.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMessages.IConsoleMessage">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Position X="12.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\IConsoleMessage.cs</FileName>

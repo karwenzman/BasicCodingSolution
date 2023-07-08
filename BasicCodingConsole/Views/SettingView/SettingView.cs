@@ -35,13 +35,7 @@ public class SettingView : ISettingView
     #region ***** Interface Member (ISettingView) *****
     public void Run()
     {
-        //string[] args = Array.Empty<string>();
         Run(Array.Empty<string>());
-        //Display.Clear();
-        //Display.Resize(0, 0);
-        //StartMessage.Show();
-        //ShowContent();
-        //EndMessage.Show();
     }
 
     public void Run(string[] args)
@@ -49,6 +43,17 @@ public class SettingView : ISettingView
         Display.Clear();
         Display.Resize(0, 0);
         StartMessage.Show();
+        if (args.Length > 0)
+        {
+            foreach (var arg in args)
+            {
+                Console.WriteLine($"args: {arg}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No args provided.");
+        }
         ShowContent();
         EndMessage.Show();
     }
