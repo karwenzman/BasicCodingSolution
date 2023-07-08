@@ -1,5 +1,5 @@
 ﻿namespace BasicCodingConsole.ConsoleViews;
 
-public interface IView : IClearing, IResizing
+public interface IViewing : IClearing, IResizing
 {
 }

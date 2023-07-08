@@ -54,8 +54,10 @@ try
         Console.WriteLine($"Args: {item}");
     }
     Console.ReadLine();
+    //services.GetService<IMainView>()!
+    //    .Run();
     services.GetService<IMainView>()!
-        .Run(args);
+    .Run(args);
 }
 catch (Exception e)
 {

@@ -56,11 +56,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleViews.View">
+  <Class Name="BasicCodingConsole.ConsoleViews.Viewing">
     <Position X="2.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
-      <FileName>ConsoleViews\View.cs</FileName>
+      <FileName>ConsoleViews\Viewing.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -101,7 +101,7 @@
       <FileName>ConsoleMessages\IMessaging.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BasicCodingConsole.ConsoleViews.IView">
+  <Interface Name="BasicCodingConsole.ConsoleViews.IViewing">
     <Position X="0.5" Y="6.25" Width="1.5" />
     <InheritanceLine Type="BasicCodingConsole.ConsoleViews.IClearing" FixedFromPoint="true" FixedToPoint="true">
       <Path>
@@ -119,7 +119,7 @@
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleViews\IView.cs</FileName>
+      <FileName>ConsoleViews\IViewing.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleViews.IConsoleView">

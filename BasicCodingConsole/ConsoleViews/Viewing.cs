@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleViews;
 
-public class View : IView
+public class Viewing : IViewing
 {
     public void Clear()
     {

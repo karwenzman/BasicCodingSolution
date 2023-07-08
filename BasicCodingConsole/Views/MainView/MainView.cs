@@ -1,4 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleMessages;
+using BasicCodingConsole.ConsoleViews;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +42,8 @@ public class MainView : ViewBase, IMainView
     #region ***** Property *****
     public IMessaging StartMessage => new StartingApp(nameof(MainView));
     public IMessaging EndMessage => new EndingApp(nameof(MainView));
+    public IViewing Display => new Viewing();
+
     #endregion
 
     #region ***** Constructor *****
@@ -58,6 +61,10 @@ public class MainView : ViewBase, IMainView
     #endregion
 
     #region ***** Interface Member (IMainView) *****
+    public void Run()
+    {
+        Run(Array.Empty<string>());
+    }
     public void Run(string[] args)
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");

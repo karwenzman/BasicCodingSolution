@@ -2,6 +2,7 @@
 
 public interface IConsoleView
 {
-    IView Display { get; }
+    IViewing Display { get; }
     void Run();
+    void Run(string[] args);
 }

@@ -18,7 +18,7 @@ public class SettingView : ISettingView
     #region ***** Property *****
     public IMessaging StartMessage => new StartingView(nameof(SettingView));
     public IMessaging EndMessage => new EndingView(nameof(SettingView));
-    public IView Display => new View();
+    public IViewing Display => new Viewing();
     #endregion
 
     #region ***** Constructor *****
@@ -34,6 +34,17 @@ public class SettingView : ISettingView
 
     #region ***** Interface Member (ISettingView) *****
     public void Run()
+    {
+        //string[] args = Array.Empty<string>();
+        Run(Array.Empty<string>());
+        //Display.Clear();
+        //Display.Resize(0, 0);
+        //StartMessage.Show();
+        //ShowContent();
+        //EndMessage.Show();
+    }
+
+    public void Run(string[] args)
     {
         Display.Clear();
         Display.Resize(0, 0);
