@@ -14,5 +14,8 @@ public class StartingApp : IMessaging
         string message = $"You have started the app: {CallingClass}";
         Console.WriteLine(message);
         Console.WriteLine("=".PadLeft(message.Length, '='));
+        Console.WriteLine($"\nPress ENTER to continue...");
+        Console.ReadLine();
+        Console.Clear();
     }
 }

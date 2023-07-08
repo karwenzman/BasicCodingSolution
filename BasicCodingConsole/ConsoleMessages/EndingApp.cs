@@ -13,5 +13,6 @@ public class EndingApp : IMessaging
     {
         Console.WriteLine($"\nYou are going to leave the app: {CallingClass}. Press ENTER to end the app...");
         Console.ReadLine();
+        Console.Clear();
     }
 }

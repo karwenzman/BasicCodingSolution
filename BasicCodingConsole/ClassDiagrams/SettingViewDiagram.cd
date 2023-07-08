@@ -80,6 +80,14 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="BasicCodingConsole.ConsoleMessages.ContinueMessage">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\ContinueMessage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="BasicCodingConsole.Views.SettingView.ISettingView">
     <Position X="10.75" Y="4.5" Width="1.5" />
     <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IConsoleMessage" FixedFromPoint="true" FixedToPoint="true">

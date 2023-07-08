@@ -13,5 +13,6 @@ public class EndingView : IMessaging
     {
         Console.WriteLine($"\nYou are going to leave the view: {CallingClass}. Press ENTER to continue...");
         Console.ReadLine();
+        Console.Clear();
     }
 }

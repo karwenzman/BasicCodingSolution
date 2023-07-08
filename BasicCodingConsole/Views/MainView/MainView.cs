@@ -42,6 +42,7 @@ public class MainView : ViewBase, IMainView
     #region ***** Property *****
     public IMessaging StartMessage => new StartingApp(nameof(MainView));
     public IMessaging EndMessage => new EndingApp(nameof(MainView));
+    public IMessaging ContinueMessage => new ContinueMessage();
     public IViewing Display => new Viewing();
 
     #endregion
@@ -56,8 +57,6 @@ public class MainView : ViewBase, IMainView
         _mainViewModel = mainViewModel;
         _hostProvider = hostProvider;
     }
-
-
     #endregion
 
     #region ***** Interface Member (IMainView) *****
@@ -70,19 +69,9 @@ public class MainView : ViewBase, IMainView
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
+        Display.Clear();
         StartMessage.Show();
-        if (args.Length > 0)
-        {
-            foreach (var arg in args)
-            {
-                Console.WriteLine($"args: {arg}");
-            }
-        }
-        else
-        {
-            Console.WriteLine("No args provided.");
-        }
-        EndMessage.Show();
+
         DrawHeader(_caption, _menu, _status);
 
         try
@@ -119,10 +108,9 @@ public class MainView : ViewBase, IMainView
         catch (Exception e)
         {
             Log.Logger.Error("Unexpected Exception!", e);
-            Console.WriteLine("Unexpected Exception!");
-            Console.WriteLine(e);
-            DrawFooter();
         }
+
+        EndMessage.Show();
     }
     #endregion
 
@@ -133,6 +121,7 @@ public class MainView : ViewBase, IMainView
     private void Action_A()
     {
         DrawContent();
+        ContinueMessage.Show();
     }
 
     /// <summary>
@@ -222,8 +211,6 @@ public class MainView : ViewBase, IMainView
         //}
         //Console.WriteLine(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "TestFile.json")));
         #endregion
-
-        DrawFooter();
     }
     #endregion
 }

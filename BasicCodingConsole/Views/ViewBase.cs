@@ -73,21 +73,6 @@ public class ViewBase
         Console.WriteLine($"Width  - Console:{Console.WindowWidth,3} | Frame:{frameWidth,3}");
     }
 
-    /// <summary>
-    /// This method is drawing the final message at the end of the console output.
-    /// The message's look is depending on the provided argument.
-    /// <para>
-    /// If no argument is provided the output is
-    /// <b>***** Press ENTER To Continue *****</b>
-    /// </para>
-    /// </summary>
-    /// <param name="message">Content used to draw the closing message. This is an optional argument.</param>
-    public void DrawFooter(string message = "Press ENTER To Continue")
-    {
-        Console.WriteLine($"\n***** {message} *****");
-        Console.ReadLine();
-    }
-
     public void CheckWindowSize()
     {
         Console.Clear();
