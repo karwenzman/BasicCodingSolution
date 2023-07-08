@@ -123,7 +123,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleViews.IConsoleView">
-    <Position X="12.75" Y="0.5" Width="1.5" />
+    <Position X="12.75" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>ConsoleViews\IConsoleView.cs</FileName>
