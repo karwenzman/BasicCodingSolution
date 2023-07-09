@@ -43,7 +43,7 @@ public class MainView : ViewBase, IMainView
     public IMessaging StartMessage => new StartingApp(nameof(MainView));
     public IMessaging EndMessage => new EndingApp(nameof(MainView));
     public IMessaging ContinueMessage => new ContinueMessage();
-    public IViewing Display => new Viewing();
+    public IDisplay Display => new DisplayView();
 
     #endregion
 

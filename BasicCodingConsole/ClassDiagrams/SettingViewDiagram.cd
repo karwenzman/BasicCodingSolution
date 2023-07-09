@@ -56,11 +56,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleViews.Viewing">
-    <Position X="2.5" Y="6.25" Width="1.5" />
+  <Class Name="BasicCodingConsole.ConsoleViews.DisplayView">
+    <Position X="4.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
-      <FileName>ConsoleViews\Viewing.cs</FileName>
+      <FileName>ConsoleViews\DisplayView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -88,19 +88,20 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="BasicCodingConsole.ConsoleViews.DisplayApp">
+    <Position X="2.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
+      <FileName>ConsoleViews\DisplayApp.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="BasicCodingConsole.Views.SettingView.ISettingView">
     <Position X="10.75" Y="4.5" Width="1.5" />
     <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IConsoleMessage" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="12.75" Y="3.125" />
         <Point X="11.5" Y="3.125" />
-        <Point X="11.5" Y="4.5" />
-      </Path>
-    </InheritanceLine>
-    <InheritanceLine Type="BasicCodingConsole.ConsoleViews.IConsoleView" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="12.75" Y="1.312" />
-        <Point X="11.5" Y="1.312" />
         <Point X="11.5" Y="4.5" />
       </Path>
     </InheritanceLine>
@@ -123,7 +124,7 @@
       <FileName>ConsoleMessages\IMessaging.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BasicCodingConsole.ConsoleViews.IViewing">
+  <Interface Name="BasicCodingConsole.ConsoleViews.IDisplay">
     <Position X="0.5" Y="6.25" Width="1.5" />
     <InheritanceLine Type="BasicCodingConsole.ConsoleViews.IClearing" FixedFromPoint="true" FixedToPoint="true">
       <Path>
@@ -141,14 +142,14 @@
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleViews\IViewing.cs</FileName>
+      <FileName>ConsoleViews\IDisplay.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BasicCodingConsole.ConsoleViews.IConsoleView">
+  <Interface Name="BasicCodingConsole.ConsoleViews.IConsoleDisplay">
     <Position X="12.75" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAI=</HashCode>
-      <FileName>ConsoleViews\IConsoleView.cs</FileName>
+      <FileName>ConsoleViews\IConsoleDisplay.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleViews.IClearing">

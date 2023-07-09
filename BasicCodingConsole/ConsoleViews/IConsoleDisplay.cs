@@ -1,8 +1,8 @@
 ﻿namespace BasicCodingConsole.ConsoleViews;
 
-public interface IConsoleView
+public interface IConsoleDisplay
 {
-    IViewing Display { get; }
+    IDisplay Display { get; }
     void Run();
     void Run(string[] args);
 }

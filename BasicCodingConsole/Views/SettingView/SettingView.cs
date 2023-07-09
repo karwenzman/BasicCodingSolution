@@ -18,7 +18,7 @@ public class SettingView : ISettingView
     #region ***** Property *****
     public IMessaging StartMessage => new StartingView(nameof(SettingView));
     public IMessaging EndMessage => new EndingView(nameof(SettingView));
-    public IViewing Display => new Viewing();
+    public IDisplay Display => new DisplayView();
     #endregion
 
     #region ***** Constructor *****
