@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Versioning;
 
-namespace BasicCodingConsole.ConsoleViews;
+namespace BasicCodingConsole.ConsoleDisplays;
 
 [SupportedOSPlatform("windows")]
 public class ResizingView : IResizing

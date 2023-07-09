@@ -1,5 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.ConsoleViews;
+using BasicCodingConsole.ConsoleDisplays;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +43,7 @@ public class MainView : ViewBase, IMainView
     public IMessaging StartMessage => new StartingApp(nameof(MainView));
     public IMessaging EndMessage => new EndingApp(nameof(MainView));
     public IMessaging ContinueMessage => new ContinueMessage();
-    public IDisplay Display => new DisplayView();
+    public IDisplay Display => new DisplayApp();
 
     #endregion
 

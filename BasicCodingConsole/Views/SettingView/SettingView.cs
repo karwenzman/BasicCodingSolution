@@ -1,5 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.ConsoleViews;
+using BasicCodingConsole.ConsoleDisplays;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;

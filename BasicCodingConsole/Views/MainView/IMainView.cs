@@ -1,9 +1,9 @@
-﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.ConsoleViews;
+﻿using BasicCodingConsole.ConsoleDisplays;
+using BasicCodingConsole.ConsoleMessages;
 
 namespace BasicCodingConsole.Views.MainView;
 
-public interface IMainView : IConsoleMessage, IConsoleDisplay
+public interface IMainView : IConsoleMessage, IConsoleDisplay, IConsoleRun
 {
 
 }

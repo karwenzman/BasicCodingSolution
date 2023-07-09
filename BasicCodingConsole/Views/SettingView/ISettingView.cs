@@ -1,8 +1,8 @@
-﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.ConsoleViews;
+﻿using BasicCodingConsole.ConsoleDisplays;
+using BasicCodingConsole.ConsoleMessages;
 
 namespace BasicCodingConsole.Views.SettingView;
 
-public interface ISettingView : IConsoleMessage, IConsoleDisplay
+public interface ISettingView : IConsoleMessage, IConsoleDisplay, IConsoleRun
 {
 }

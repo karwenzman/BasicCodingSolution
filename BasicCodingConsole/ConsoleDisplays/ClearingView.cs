@@ -1,4 +1,4 @@
-﻿namespace BasicCodingConsole.ConsoleViews;
+﻿namespace BasicCodingConsole.ConsoleDisplays;
 
 public class ClearingView : IClearing
 {
