@@ -105,6 +105,13 @@
         <Point X="11.5" Y="4.5" />
       </Path>
     </InheritanceLine>
+    <InheritanceLine Type="BasicCodingConsole.ConsoleViews.IConsoleDisplay" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.75" Y="1.188" />
+        <Point X="11.5" Y="1.188" />
+        <Point X="11.5" Y="4.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\SettingView\ISettingView.cs</FileName>
