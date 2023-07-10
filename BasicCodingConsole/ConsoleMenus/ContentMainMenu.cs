@@ -2,7 +2,22 @@
 
 public class ContentMainMenu : IMenuContent
 {
-    public string[]? CaptionItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string[]? MenuItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string[]? StatusItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string[]? CaptionItems { get; } =
+    {
+        "Main",
+    };
+
+    public string[]? MenuItems { get; } =
+    {
+        "A - Show Application Settings",
+        "B - Run FibonacciApp",
+        "C - Run SettingView",
+        "",
+        "",
+    };
+
+    public string[]? StatusItems { get; } =
+    {
+        "Select a menu item or press ESC to exit.",
+    };
 }

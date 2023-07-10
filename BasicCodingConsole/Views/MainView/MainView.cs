@@ -14,25 +14,6 @@ namespace BasicCodingConsole.Views.MainView;
 
 public class MainView : ViewBase, IMainView
 {
-    #region ***** UI *****
-    private readonly string[]? _caption =
-    {
-        "Main",
-    };
-    private readonly string[]? _menu =
-    {
-        "A - Show Application Settings",
-        "B - Run FibonacciApp",
-        "C - Run SettingView",
-        "",
-        "",
-    };
-    private readonly string[]? _status =
-    {
-        "Select a menu item or press ESC to exit.",
-    };
-    #endregion
-
     private readonly ILogger<MainView> _logger;
     private readonly IConfiguration _configuration;
     private readonly IMainViewModel _mainViewModel;
@@ -60,7 +41,7 @@ public class MainView : ViewBase, IMainView
         Display.Clear();
         Display.Resize(0, 0);
 
-        DrawHeader(_caption, _menu, _status);
+        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
 
         try
         {
@@ -75,17 +56,17 @@ public class MainView : ViewBase, IMainView
                     case ConsoleKey.A:
                         CheckWindowSize();
                         Action_A();
-                        DrawHeader(_caption, _menu, _status);
+                        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
                         break;
                     case ConsoleKey.B:
                         CheckWindowSize();
                         Action_B();
-                        DrawHeader(_caption, _menu, _status);
+                        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
                         break;
                     case ConsoleKey.C:
                         CheckWindowSize();
                         Action_C(args);
-                        DrawHeader(_caption, _menu, _status);
+                        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
                         break;
                     default:
                         Console.Beep();

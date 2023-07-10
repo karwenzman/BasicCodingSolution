@@ -1,31 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BasicCodingConsole.ConsoleMenus.MenuMain">
+  <Class Name="BasicCodingConsole.ConsoleMenus.MainMenu">
     <Position X="8.25" Y="2.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABIAQ=</HashCode>
-      <FileName>ConsoleMenus\MenuMain.cs</FileName>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABIAQ=</HashCode>
+      <FileName>ConsoleMenus\MainMenu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleMenus.ContentMainMenu">
+    <Position X="3.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>ConsoleMenus\ContentMainMenu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleMenus.ContentSettingMenu">
+    <Position X="3.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>ConsoleMenus\ContentSettingMenu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleMenus.SettingMenu">
+    <Position X="8.25" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABIAQ=</HashCode>
+      <FileName>ConsoleMenus\SettingMenu.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="BasicCodingConsole.ConsoleMenus.IMenu">
     <Position X="8.25" Y="0.5" Width="1.75" />
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMenus.IMenuContent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="0.5" />
+        <Point X="4" Y="0.125" />
+        <Point X="9.125" Y="0.125" />
+        <Point X="9.125" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMenus.IMenuBehavior" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="0.5" />
+        <Point X="1.25" Y="0.125" />
+        <Point X="9.125" Y="0.125" />
+        <Point X="9.125" Y="0.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMenus\IMenu.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BasicCodingConsole.ConsoleMenus.IConsoleMenu">
+  <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuBehavior">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABIAQ=</HashCode>
-      <FileName>ConsoleMenus\IConsoleMenu.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>ConsoleMenus\IMenuBehavior.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuContent">
-    <Position X="3" Y="1.5" Width="1.5" />
+    <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
       <FileName>ConsoleMenus\IMenuContent.cs</FileName>
     </TypeIdentifier>
   </Interface>

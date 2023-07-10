@@ -1,14 +1,14 @@
 ﻿namespace BasicCodingConsole.ConsoleMenus;
 
-public class MainMenu : IMenu
+public class SettingMenu : IMenu
 {
     public string[]? CaptionItems { get; }
     public string[]? MenuItems { get; }
     public string[]? StatusItems { get; }
 
-    public MainMenu()
+    public SettingMenu()
     {
-        IMenuContent content = new ContentMainMenu();
+        IMenuContent content = new ContentSettingMenu();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
