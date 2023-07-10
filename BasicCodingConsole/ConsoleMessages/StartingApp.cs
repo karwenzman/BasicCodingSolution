@@ -1,21 +1,11 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class StartingApp : IMessaging
+public class StartingApp : IStarting
 {
-    public string CallingClass { get; }
-
-    public StartingApp(string callingClass)
+    public void Start()
     {
-        CallingClass = callingClass;
-    }
-
-    public void Show()
-    {
-        string message = $"You have started the app: {CallingClass}";
+        string message = $"You have started the app.";
         Console.WriteLine(message);
         Console.WriteLine("=".PadLeft(message.Length, '='));
-        Console.WriteLine($"\nPress ENTER to continue...");
-        Console.ReadLine();
-        Console.Clear();
     }
 }

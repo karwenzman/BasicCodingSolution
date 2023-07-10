@@ -3,6 +3,10 @@ using BasicCodingConsole.ConsoleMessages;
 
 namespace BasicCodingConsole.Views.SettingView;
 
-public interface ISettingView : IConsoleMessage, IConsoleDisplay, IConsoleRun
+public interface ISettingView
 {
+    IMessageView Message { get; }
+    IDisplay Display { get; }
+    void Run();
+    void Run(string[] args);
 }

@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-#region ***** Configuration *****
 var builder = new ConfigurationBuilder();
 builder.SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", false, true)
@@ -18,8 +17,7 @@ builder.SetBasePath(Directory.GetCurrentDirectory())
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Build())
     .Enrich.FromLogContext()
-    //.WriteTo.Console()  // activate to send the logging to the console
-    .WriteTo.File("LogFiles/apploggings.txt") // activate to send the logging to a file
+    .WriteTo.File("LogFiles/apploggings.txt")
     .CreateLogger();
 var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
@@ -36,24 +34,16 @@ var host = Host.CreateDefaultBuilder()
     .UseSerilog()
     .Build();
 
+//ShowEnvironmentValues(args, builder); // for testing only
+
 var scope = host.Services.CreateScope();
 var services = scope.ServiceProvider;
-#endregion
 
-#region ***** Run *****
 try
 {
     Log.Logger.Information("***** Run Application *****");
     Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
-    Console.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
     Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
-    Console.WriteLine($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
-    foreach (var item in args)
-    {
-        Log.Logger.Information($"Args: {item}");
-        Console.WriteLine($"Args: {item}");
-    }
-    Console.ReadLine();
     services.GetService<IMainView>()!
     .Run(args);
 }
@@ -75,4 +65,25 @@ finally
     Console.ReadLine();
 #endif
 }
-#endregion
+
+
+
+static void ShowEnvironmentValues(string[] args, ConfigurationBuilder builder)
+{
+    Console.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
+    Console.WriteLine($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
+
+    if (args.Length > 0)
+    {
+        foreach (var item in args)
+        {
+            Log.Logger.Information($"Args: {item}");
+            Console.WriteLine($"Args: {item}");
+        }
+    }
+    else
+    {
+        Console.WriteLine("No Args provided.");
+    }
+    Console.ReadLine();
+}

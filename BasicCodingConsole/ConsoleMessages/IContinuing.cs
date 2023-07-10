@@ -1,5 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public interface IMainViewMessage
+public interface IContinuing
 {
+    void Continue();
 }

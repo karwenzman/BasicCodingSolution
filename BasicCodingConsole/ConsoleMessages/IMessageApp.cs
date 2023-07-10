@@ -1,5 +1,5 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public interface IMainViewMessage
+public interface IMessageApp : IEnding, IStarting
 {
 }

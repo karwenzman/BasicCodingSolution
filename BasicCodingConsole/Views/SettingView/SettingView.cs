@@ -1,5 +1,5 @@
-﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.ConsoleDisplays;
+﻿using BasicCodingConsole.ConsoleDisplays;
+using BasicCodingConsole.ConsoleMessages;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -9,19 +9,13 @@ namespace BasicCodingConsole.Views.SettingView;
 
 public class SettingView : ISettingView
 {
-    #region ***** Field *****
     private readonly ILogger<SettingView> _logger;
     private readonly IConfiguration _configuration;
     private readonly ISettingViewModel _settingViewModel;
-    #endregion
 
-    #region ***** Property *****
-    public IMessaging StartMessage => new StartingView(nameof(SettingView));
-    public IMessaging EndMessage => new EndingView(nameof(SettingView));
+    public IMessageView Message => new MessageView();
     public IDisplay Display => new DisplayView();
-    #endregion
 
-    #region ***** Constructor *****
     public SettingView(ILogger<SettingView> logger, IConfiguration configuration, ISettingViewModel settingViewModel)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(SettingView)}>.");
@@ -30,9 +24,7 @@ public class SettingView : ISettingView
         _configuration = configuration;
         _settingViewModel = settingViewModel;
     }
-    #endregion
 
-    #region ***** Interface Member (ISettingView) *****
     public void Run()
     {
         Run(Array.Empty<string>());
@@ -40,24 +32,13 @@ public class SettingView : ISettingView
 
     public void Run(string[] args)
     {
+        Message.Start();
         Display.Clear();
         Display.Resize(0, 0);
-        StartMessage.Show();
-        if (args.Length > 0)
-        {
-            foreach (var arg in args)
-            {
-                Console.WriteLine($"args: {arg}");
-            }
-        }
-        else
-        {
-            Console.WriteLine("No args provided.");
-        }
         ShowContent();
-        EndMessage.Show();
+        Message.Continue();
+        Message.End();
     }
-    #endregion
 
     #region ***** Private Member *****
     private void ShowContent()
@@ -65,7 +46,6 @@ public class SettingView : ISettingView
         string message = "This is individual text by karwenzman!";
         Console.WriteLine(message);
         _logger.LogInformation(message);
-
         Console.WriteLine($"\nConnectionString (key = Default): {_configuration.GetConnectionString("Default")}");
     }
     #endregion

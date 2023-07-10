@@ -1,5 +1,5 @@
-﻿using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.ConsoleDisplays;
+﻿using BasicCodingConsole.ConsoleDisplays;
+using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
@@ -32,45 +32,31 @@ public class MainView : ViewBase, IMainView
     };
     #endregion
 
-    #region ***** Field *****
     private readonly ILogger<MainView> _logger;
     private readonly IConfiguration _configuration;
     private readonly IMainViewModel _mainViewModel;
     private readonly IHost _hostProvider;
-    #endregion
 
-    #region ***** Property *****
-    public IMessaging StartMessage => new StartingApp(nameof(MainView));
-    public IMessaging EndMessage => new EndingApp(nameof(MainView));
-    public IMessaging ContinueMessage => new ContinueMessage();
+    public IMessageApp Message => new MessageApp();
     public IDisplay Display => new DisplayApp();
 
-    #endregion
-
-    #region ***** Constructor *****
     public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel, IHost hostProvider)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(MainView)}>.");
-
         _logger = logger;
         _configuration = configuration;
         _mainViewModel = mainViewModel;
         _hostProvider = hostProvider;
     }
-    #endregion
 
-    #region ***** Interface Member (IMainView) *****
-    public void Run()
-    {
-        Run(Array.Empty<string>());
-    }
     public void Run(string[] args)
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
+        Message.Start();
         Display.Clear();
-        StartMessage.Show();
+        Display.Resize(0, 0);
 
         DrawHeader(_caption, _menu, _status);
 
@@ -110,9 +96,8 @@ public class MainView : ViewBase, IMainView
             Log.Logger.Error("Unexpected Exception!", e);
         }
 
-        EndMessage.Show();
+        Message.End();
     }
-    #endregion
 
     #region ***** Private Method (Handling User Input) *****
     /// <summary>
@@ -121,7 +106,6 @@ public class MainView : ViewBase, IMainView
     private void Action_A()
     {
         DrawContent();
-        ContinueMessage.Show();
     }
 
     /// <summary>
