@@ -1,8 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMenus;
 
-public interface IMenu
+public interface IMenu : IMenuBehavior, IMenuContent
 {
-    void CaptureUserInput();
-    void ClearMenu();
-    void ShowMenu();
+
 }

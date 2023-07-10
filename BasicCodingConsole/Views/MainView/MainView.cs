@@ -1,4 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleDisplays;
+using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.ViewModels;
@@ -37,6 +38,7 @@ public class MainView : ViewBase, IMainView
     private readonly IMainViewModel _mainViewModel;
     private readonly IHost _hostProvider;
 
+    public IMenu Menu => new MainMenu();
     public IMessageApp Message => new MessageApp();
     public IDisplay Display => new DisplayApp();
 
