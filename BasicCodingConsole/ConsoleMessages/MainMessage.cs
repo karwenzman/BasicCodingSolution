@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class MessageView : IMessageView
+public class MainMessage : IMessage
 {
     public void Continue()
     {
@@ -10,13 +10,13 @@ public class MessageView : IMessageView
 
     public void End()
     {
-        IEnding ending = new EndingView();
+        IEnding ending = new EndingApp();
         ending.End();
     }
 
     public void Start()
     {
-        IStarting starting = new StartingView();
+        IStarting starting = new StartingApp();
         starting.Start();
     }
 }

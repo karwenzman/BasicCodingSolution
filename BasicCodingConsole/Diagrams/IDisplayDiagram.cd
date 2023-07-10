@@ -32,19 +32,19 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleDisplays.DisplayApp">
+  <Class Name="BasicCodingConsole.ConsoleDisplays.MainDisplay">
     <Position X="5.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
-      <FileName>ConsoleDisplays\DisplayApp.cs</FileName>
+      <FileName>ConsoleDisplays\MainDisplay.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleDisplays.DisplayView">
+  <Class Name="BasicCodingConsole.ConsoleDisplays.SettingDisplay">
     <Position X="5.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
-      <FileName>ConsoleDisplays\DisplayView.cs</FileName>
+      <FileName>ConsoleDisplays\SettingDisplay.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>

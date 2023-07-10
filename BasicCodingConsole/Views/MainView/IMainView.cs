@@ -7,7 +7,7 @@ namespace BasicCodingConsole.Views.MainView;
 public interface IMainView
 {
     IMenu Menu { get; }
-    IMessageApp Message { get; }
+    IMessage Message { get; }
     IDisplay Display { get; }
     void Run(string[] args);
 }

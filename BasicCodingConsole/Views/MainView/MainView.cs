@@ -20,8 +20,8 @@ public class MainView : ViewBase, IMainView
     private readonly IHost _hostProvider;
 
     public IMenu Menu => new MainMenu();
-    public IMessageApp Message => new MessageApp();
-    public IDisplay Display => new DisplayApp();
+    public IMessage Message => new MainMessage();
+    public IDisplay Display => new MainDisplay();
 
     public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel, IHost hostProvider)
     {
@@ -56,6 +56,7 @@ public class MainView : ViewBase, IMainView
                     case ConsoleKey.A:
                         CheckWindowSize();
                         Action_A();
+                        Message.Continue();
                         DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
                         break;
                     case ConsoleKey.B:

@@ -40,19 +40,19 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleMessages.MessageApp">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+  <Class Name="BasicCodingConsole.ConsoleMessages.MainMessage">
+    <Position X="7.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\MessageApp.cs</FileName>
+      <HashCode>AAIACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMessages\MainMessage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleMessages.MessageView">
-    <Position X="9.25" Y="2.5" Width="1.5" />
+  <Class Name="BasicCodingConsole.ConsoleMessages.SettingMessage">
+    <Position X="7.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\MessageView.cs</FileName>
+      <FileName>ConsoleMessages\SettingMessage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -77,16 +77,8 @@
       <FileName>ConsoleMessages\IContinuing.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BasicCodingConsole.ConsoleMessages.IMessageApp">
+  <Interface Name="BasicCodingConsole.ConsoleMessages.IMessage">
     <Position X="7.25" Y="0.5" Width="1.5" />
-    <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IEnding" FixedToPoint="true">
-      <Path>
-        <Point X="3.25" Y="0.5" />
-        <Point X="3.25" Y="0.125" />
-        <Point X="8" Y="0.125" />
-        <Point X="8" Y="0.5" />
-      </Path>
-    </InheritanceLine>
     <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IStarting" FixedToPoint="true">
       <Path>
         <Point X="5.25" Y="0.5" />
@@ -95,16 +87,25 @@
         <Point X="8" Y="0.5" />
       </Path>
     </InheritanceLine>
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IEnding" FixedToPoint="true">
+      <Path>
+        <Point X="3.25" Y="0.5" />
+        <Point X="3.25" Y="0.125" />
+        <Point X="8" Y="0.125" />
+        <Point X="8" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IContinuing" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="0.5" />
+        <Point X="1.25" Y="0.125" />
+        <Point X="8" Y="0.125" />
+        <Point X="8" Y="0.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\IMessageApp.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="BasicCodingConsole.ConsoleMessages.IMessageView">
-    <Position X="7.25" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\IMessageView.cs</FileName>
+      <FileName>ConsoleMessages\IMessage.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
