@@ -7,7 +7,6 @@ namespace BasicCodingLibrary.Models;
 /// </summary>
 public class Person
 {
-    #region ***** Property *****
     /// <summary>
     /// The person's unique ID.
     /// </summary>
@@ -24,5 +23,4 @@ public class Person
     /// The person's gender.
     /// </summary>
     public Gender Gender { get; set; } = Gender.unknown;
-    #endregion
 }

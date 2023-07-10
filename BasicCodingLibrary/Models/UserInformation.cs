@@ -5,8 +5,6 @@
 /// </summary>
 public class UserInformation
 {
-    #region ***** Property *****
     public string NickName { get; set; } = "default";
     public Person Person { get; set; } = new Person();
-    #endregion
 }

@@ -98,6 +98,22 @@
   </Class>
   <Interface Name="BasicCodingConsole.Views.SettingView.ISettingView">
     <Position X="11.5" Y="3" Width="1.5" />
+    <InheritanceLine Type="BasicCodingConsole.ConsoleMessages.IConsoleMessage" ManuallyRouted="true">
+      <Path>
+        <Point X="12.25" Y="1.796" />
+        <Point X="12.25" Y="2.367" />
+        <Point X="12.25" Y="2.367" />
+        <Point X="12.25" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <InheritanceLine Type="BasicCodingConsole.ConsoleDisplays.IConsoleRun" ManuallyRouted="true">
+      <Path>
+        <Point X="15.875" Y="1.603" />
+        <Point X="15.875" Y="2.375" />
+        <Point X="12.25" Y="2.375" />
+        <Point X="12.25" Y="3" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\SettingView\ISettingView.cs</FileName>
@@ -132,7 +148,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleDisplays.IConsoleDisplay">
-    <Position X="11.5" Y="0.5" Width="1.5" />
+    <Position X="13.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleDisplays\IConsoleDisplay.cs</FileName>
@@ -146,7 +162,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMessages.IConsoleMessage">
-    <Position X="13.25" Y="0.5" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\IConsoleMessage.cs</FileName>

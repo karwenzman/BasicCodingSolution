@@ -5,8 +5,6 @@
 /// </summary>
 public class ApplicationInformation
 {
-    #region ***** Property *****
     public string LastLogin { get; set; } = "default";
     public string Language { get; set; } = "default";
-    #endregion
 }
