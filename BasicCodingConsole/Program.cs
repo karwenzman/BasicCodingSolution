@@ -58,13 +58,14 @@ catch (Exception e)
 finally
 {
     Log.Logger.Information("***** End Application *****");
+}
 
 #if DEBUG
     Console.Clear();
     Console.WriteLine($"\n***** End Of Debug Mode - Press ENTER To Close The Window *****");
     Console.ReadLine();
 #endif
-}
+
 
 
 
