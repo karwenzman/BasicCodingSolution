@@ -14,9 +14,26 @@ public class SettingView : ViewBase, ISettingView
     private readonly IConfiguration _configuration;
     private readonly ISettingViewModel _settingViewModel;
 
+    /// <summary>
+    /// This property is providing the menu's content written to the console.
+    /// <para></para>
+    /// The content is implemented in file <see cref="ContentSettingMenu"/>.
+    /// </summary>
     public IMenu Menu => new SettingMenu();
+    /// <summary>
+    /// This property is providing standard messages written to the console.
+    /// <para></para>
+    /// The content is implemented in the files <see cref="StartingView"/>,
+    /// <see cref="EndingView"/> and <see cref="ContinueMessage"/>
+    /// </summary>
     public IMessage Message => new SettingMessage();
-    public IDisplay Display => new ConsoleDisplays.SettingDisplay();
+    /// <summary>
+    /// This property is providing standard method used to manipulate the console.
+    /// <para></para>
+    /// The method's behavior is implemented in the files <see cref="ClearingView"/> and
+    /// <see cref="ResizingView"/>.
+    /// </summary>
+    public IDisplay Display => new SettingDisplay();
 
     public SettingView(ILogger<SettingView> logger, IConfiguration configuration, ISettingViewModel settingViewModel)
     {
@@ -24,48 +41,24 @@ public class SettingView : ViewBase, ISettingView
 
         _logger = logger;
         _configuration = configuration;
-        _settingViewModel = settingViewModel;
+        _settingViewModel = settingViewModel; // to do
     }
 
     public void Run()
     {
-        Run(Array.Empty<string>());
-    }
+        Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(SettingView)}>.");
+        _logger.LogInformation("* Load: {view}", nameof(SettingView));
 
-    public void Run(string[] args)
-    {
-        // these methods are now available through all this "interfacing"
-        // for each view a individual content and behaviour can be set without touching the main logic here
-        // to visualize the differences between MainView and SettingView the text written to console
-        // is "app" (in MainView)
-        // is "view" (in SettingView)
-        // the method's behavior can be altered in e.g. EndingView, StartingView, 
-        //Message.Continue();
-        //Message.End();
-        //Message.Start();
-        // the method's behavior can be altered in e.g. ClearingView, ResizingView, 
-        //Display.Clear();
-        //Display.Resize(0, 0);
-        // the properties content can be altered in e.g. ContentSettingMenu, 
-        //var menuItems = Menu.MenuItems;
-        //var statusItems = Menu.StatusItems;
-        //var captionItems = Menu.CaptionItems;
-        // the method's behavior can be altered in e.g. BehaviorSettingMenu, 
-        //Menu.ShowMenu();
-
-        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems); // to do 
-        ShowContent(); // to do 
-
+        Message.Start();
+        WriteMenu(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
+        WriteContent(); // to do 
         Message.End();
     }
 
-    #region ***** Private Member *****
-    private void ShowContent()
+    private void WriteContent()
     {
         string message = "This is individual text by karwenzman!";
         Console.WriteLine(message);
-        _logger.LogInformation(message);
         Console.WriteLine($"\nConnectionString (key = Default): {_configuration.GetConnectionString("Default")}");
     }
-    #endregion
 }

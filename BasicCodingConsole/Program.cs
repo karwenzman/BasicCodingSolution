@@ -45,7 +45,7 @@ try
     Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
     Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
     services.GetService<IMainView>()!
-    .Run(args);
+    .Run();
 }
 catch (Exception e)
 {

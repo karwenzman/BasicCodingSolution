@@ -10,5 +10,4 @@ public interface ISettingView
     IMessage Message { get; }
     IDisplay Display { get; }
     void Run();
-    void Run(string[] args);
 }

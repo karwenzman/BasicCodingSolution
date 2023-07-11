@@ -19,8 +19,25 @@ public class MainView : ViewBase, IMainView
     private readonly IMainViewModel _mainViewModel;
     private readonly IHost _hostProvider;
 
+    /// <summary>
+    /// This property is providing the menu's content written to the console.
+    /// <para></para>
+    /// The content is implemented in file <see cref="ContentMainMenu"/>.
+    /// </summary>
     public IMenu Menu => new MainMenu();
+    /// <summary>
+    /// This property is providing standard messages written to the console.
+    /// <para></para>
+    /// The content is implemented in the files <see cref="StartingApp"/>,
+    /// <see cref="EndingApp"/> and <see cref="ContinueMessage"/>
+    /// </summary>
     public IMessage Message => new MainMessage();
+    /// <summary>
+    /// This property is providing standard method used to manipulate the console.
+    /// <para></para>
+    /// The method's behavior is implemented in the files <see cref="ClearingApp"/> and
+    /// <see cref="ResizingApp"/>.
+    /// </summary>
     public IDisplay Display => new MainDisplay();
 
     public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel, IHost hostProvider)
@@ -32,22 +49,21 @@ public class MainView : ViewBase, IMainView
         _hostProvider = hostProvider;
     }
 
-    public void Run(string[] args)
+    public void Run()
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
         Message.Start();
-        Display.Clear();
-        Display.Resize(0, 0);
-
-        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
 
         try
         {
             bool exitApp = false;
             do
             {
+                CheckWindowSize();
+                WriteMenu(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
+
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.Escape:
@@ -56,24 +72,20 @@ public class MainView : ViewBase, IMainView
                     case ConsoleKey.A:
                         CheckWindowSize();
                         Action_A();
-                        Message.Continue();
-                        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
                         break;
                     case ConsoleKey.B:
                         CheckWindowSize();
                         Action_B();
-                        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
                         break;
                     case ConsoleKey.C:
                         CheckWindowSize();
-                        Action_C(args);
-                        DrawHeader(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
+                        Action_C();
                         break;
                     default:
                         Console.Beep();
                         break;
                 }
-            } while (!exitApp);
+            } while (exitApp == false);
         }
         catch (Exception e)
         {
@@ -83,13 +95,14 @@ public class MainView : ViewBase, IMainView
         Message.End();
     }
 
-    #region ***** Private Method (Handling User Input) *****
     /// <summary>
     /// This method starts the logic behind this menu item.
     /// </summary>
     private void Action_A()
     {
-        DrawContent();
+        Display.Clear();
+        WriteContent(); // to do
+        Message.Continue();
     }
 
     /// <summary>
@@ -130,17 +143,14 @@ public class MainView : ViewBase, IMainView
     /// <summary>
     /// This method starts the logic behind this menu item.
     /// </summary>
-    private void Action_C(string[] args)
+    private void Action_C()
     {
         using var scope = _hostProvider.Services.CreateScope();
         var services = scope.ServiceProvider;
         services.GetService<ISettingView>()!.Run();
-        //services.GetService<ISettingView>()!.Run(args);
     }
-    #endregion
 
-    #region ***** Private Method *****
-    private void DrawContent()
+    private void WriteContent()
     {
         _mainViewModel.Get(); // reloadOnChange? would it make this call unneccessary?
 
@@ -180,5 +190,4 @@ public class MainView : ViewBase, IMainView
         //Console.WriteLine(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "TestFile.json")));
         #endregion
     }
-    #endregion
 }

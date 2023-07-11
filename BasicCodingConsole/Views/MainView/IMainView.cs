@@ -9,5 +9,5 @@ public interface IMainView
     IMenu Menu { get; }
     IMessage Message { get; }
     IDisplay Display { get; }
-    void Run(string[] args);
+    void Run();
 }

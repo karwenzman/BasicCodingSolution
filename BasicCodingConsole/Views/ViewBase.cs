@@ -2,7 +2,6 @@
 
 public class ViewBase
 {
-    #region ***** Const *****
     /// <summary>
     /// This property stores the height's minimum value of the menu's frame.
     /// </summary>
@@ -11,9 +10,7 @@ public class ViewBase
     /// This property stores the width's minimum value of the menu's frame.
     /// </summary>
     internal const int frameWidthMinimum = 80;
-    #endregion
 
-    #region ***** Field *****
     /// <summary>
     /// This property stores the messages to be written into the caption section.
     /// </summary>
@@ -38,18 +35,16 @@ public class ViewBase
     /// This property stores the width of the menu's frame.
     /// </summary>
     public int frameWidth;
-    #endregion
 
-    #region ***** Protected Member *****
     /// <summary>
-    /// This method is drawing the complete menu.
+    /// This method is writing the complete menu.
     /// The menu's look is depending on the provided arguments.
     /// </summary>
-    /// <param name="caption">The header of the menu.</param>
-    /// <param name="menu">The body of the menu.</param>
-    /// <param name="status">The footer of the menu.</param>
+    /// <param name="caption">The menu's header.</param>
+    /// <param name="menu">The menu's body.</param>
+    /// <param name="status">The menu's footer.</param>
     /// <param name="frame">Character used to draw the frame. This is an optional argument.</param>
-    protected void DrawHeader(string[]? caption, string[]? menu, string[]? status, char frame = '*')
+    protected void WriteMenu(string[]? caption, string[]? menu, string[]? status, char frame = '*')
     {
         captionMessages = caption;
         menuMessages = menu;
@@ -57,30 +52,37 @@ public class ViewBase
         frameCharacter = frame;
 
         CheckWindowSize();
-        Console.CursorVisible = false;
+        Console.Clear();
+        //Console.CursorVisible = false;
 
         GetFrameWidth();
         if (caption != null | menu != null | status != null)
         {
-            DrawHorizontalFrame();
+            WriteHorizontalFrame();
         }
-        DrawCaptionMessages();
-        DrawMenuMessages();
-        DrawStatusMessage();
+        WriteCaptionMessages();
+        WriteMenuMessages();
+        WriteStatusMessage();
 
-        // TODO:
+        // TODO: sometimes the width is one character to wide;
+        // is this depending on debug, production or on the kind of distribution?
         //Console.WriteLine($"Height - Console:{Console.WindowHeight,3} | Frame:{frameHeight,3}");
         //Console.WriteLine($"Width  - Console:{Console.WindowWidth,3} | Frame:{frameWidth,3}");
     }
 
+    /// <summary>
+    /// This method is checking, if the console needs to be resized.
+    /// <para></para>
+    /// Resize may be necessary, if the user has manually altered the console size below
+    /// a defined value that is stored in <see cref="frameHeightMinimum"/> and
+    /// <see cref="frameWidthMinimum"/>.
+    /// </summary>
     public void CheckWindowSize()
     {
-        Console.Clear();
+        //Console.Clear();
         GetFrameWidth();
     }
-    #endregion
 
-    #region ***** Private Member *****
     /// <summary>
     /// This method is drawing the content of the caption section.
     /// <para>
@@ -88,7 +90,7 @@ public class ViewBase
     /// If the property is <see href="Null"/>, there is no output on the screen.
     /// </para>
     /// </summary>
-    private void DrawCaptionMessages()
+    private void WriteCaptionMessages()
     {
         if (captionMessages == null)
         {
@@ -104,7 +106,7 @@ public class ViewBase
             Console.WriteLine(message);
         }
 
-        DrawHorizontalFrame();
+        WriteHorizontalFrame();
     }
 
     /// <summary>
@@ -114,7 +116,7 @@ public class ViewBase
     /// If the property is <see href="Null"/>, there is no output on the screen.
     /// </para>
     /// </summary>
-    private void DrawMenuMessages()
+    private void WriteMenuMessages()
     {
         if (menuMessages == null)
         {
@@ -131,7 +133,7 @@ public class ViewBase
 
         }
 
-        DrawHorizontalFrame();
+        WriteHorizontalFrame();
     }
 
     /// <summary>
@@ -141,7 +143,7 @@ public class ViewBase
     /// If the property is <see href="Null"/>, there is no output on the screen.
     /// </para>
     /// </summary>
-    private void DrawStatusMessage()
+    private void WriteStatusMessage()
     {
         if (statusMessages == null)
         {
@@ -157,7 +159,7 @@ public class ViewBase
             Console.WriteLine(message);
         }
 
-        DrawHorizontalFrame();
+        WriteHorizontalFrame();
     }
 
     /// <summary>
@@ -167,16 +169,15 @@ public class ViewBase
     /// and <see cref="frameWidth"/> the appearence will be adapted.
     /// </para>
     /// </summary>
-    private void DrawHorizontalFrame()
+    private void WriteHorizontalFrame()
     {
         Console.WriteLine(frameCharacter.ToString().PadLeft(frameWidth, frameCharacter));
     }
 
     /// <summary>
-    /// This method is evaluating the menu width
-    /// by inspecting <see cref="menuMessages"/> members.
+    /// This method is checking <see cref="Console.WindowHeight"/> and <see cref="Console.WindowWidth"/>
+    /// and altering the menu's appearance accordingly.
     /// </summary>
-    /// <returns></returns>
     private void GetFrameWidth()
     {
         bool isResize = false;
@@ -199,6 +200,8 @@ public class ViewBase
         {
             if (isResize)
             {
+                // how can I make this available on all OS? not only windows?
+                Console.Clear();
                 Console.SetWindowSize(frameWidth, frameHeight);
             }
         }
@@ -210,5 +213,4 @@ public class ViewBase
             Console.ReadLine();
         }
     }
-    #endregion
 }
