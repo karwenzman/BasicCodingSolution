@@ -50,7 +50,7 @@ public class SettingView : ViewBase, ISettingView
         _logger.LogInformation("* Load: {view}", nameof(SettingView));
 
         Message.Start();
-        WriteMenu(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
+        WriteMenu(Menu);
         WriteContent(); // to do 
         Message.End();
     }

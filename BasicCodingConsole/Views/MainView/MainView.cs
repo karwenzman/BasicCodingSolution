@@ -61,24 +61,24 @@ public class MainView : ViewBase, IMainView
             bool exitApp = false;
             do
             {
-                CheckWindowSize();
-                WriteMenu(Menu.CaptionItems, Menu.MenuItems, Menu.StatusItems);
+                WriteMenu(Menu);
 
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.Escape:
+                        ResizeConsoleIfNeededAndClearIt();
                         exitApp = true;
                         break;
                     case ConsoleKey.A:
-                        CheckWindowSize();
+                        ResizeConsoleIfNeededAndClearIt();
                         Action_A();
                         break;
                     case ConsoleKey.B:
-                        CheckWindowSize();
+                        ResizeConsoleIfNeededAndClearIt();
                         Action_B();
                         break;
                     case ConsoleKey.C:
-                        CheckWindowSize();
+                        ResizeConsoleIfNeededAndClearIt();
                         Action_C();
                         break;
                     default:

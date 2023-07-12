@@ -1,68 +1,46 @@
-﻿namespace BasicCodingConsole.Views;
+﻿using BasicCodingConsole.ConsoleMenus;
+using System.Runtime.InteropServices;
+using System.Text;
 
-public class ViewBase
+namespace BasicCodingConsole.Views;
+
+public abstract class ViewBase
 {
     /// <summary>
-    /// This property stores the height's minimum value of the menu's frame.
+    /// This const stores the height's minimum value of the menu's frame.
     /// </summary>
     internal const int frameHeightMinimum = 20;
     /// <summary>
-    /// This property stores the width's minimum value of the menu's frame.
+    /// This const stores the width's minimum value of the menu's frame.
     /// </summary>
     internal const int frameWidthMinimum = 80;
-
     /// <summary>
-    /// This property stores the messages to be written into the caption section.
+    /// This const stores the padding character needed to write the menu items.
     /// </summary>
-    public string[]? captionMessages;
-    /// <summary>
-    /// This property stores the messages to be written into the menu section.
-    /// </summary>
-    public string[]? menuMessages;
-    /// <summary>
-    /// This property stores the messages to be written into the status section.
-    /// </summary>
-    public string[]? statusMessages;
-    /// <summary>
-    /// This property stores the character used for writing the menu's frame.
-    /// </summary>
-    public char frameCharacter;
-    /// <summary>
-    /// This property stores the height of the menu's frame.
-    /// </summary>
-    public int frameHeight;
-    /// <summary>
-    /// This property stores the width of the menu's frame.
-    /// </summary>
-    public int frameWidth;
+    internal const char framePadding = ' ';
 
     /// <summary>
     /// This method is writing the complete menu.
     /// The menu's look is depending on the provided arguments.
+    /// <para></para>
+    /// Before writing the menu 
+    /// <br></br>- a check of the console's size is performed
+    /// <br></br>- the console is cleared
     /// </summary>
-    /// <param name="caption">The menu's header.</param>
-    /// <param name="menu">The menu's body.</param>
-    /// <param name="status">The menu's footer.</param>
-    /// <param name="frame">Character used to draw the frame. This is an optional argument.</param>
-    protected void WriteMenu(string[]? caption, string[]? menu, string[]? status, char frame = '*')
+    /// <param name="menu">The menu's content.</param>
+    /// <param name="frameCharacter">Character used to draw the frame. This is an optional argument.</param>
+    protected void WriteMenu(IMenu menu, char frameCharacter = '*')
     {
-        captionMessages = caption;
-        menuMessages = menu;
-        statusMessages = status;
-        frameCharacter = frame;
+        ResizeConsoleIfNeededAndClearIt();
 
-        CheckWindowSize();
-        Console.Clear();
-        //Console.CursorVisible = false;
-
-        GetFrameWidth();
-        if (caption != null | menu != null | status != null)
+        if (menu.CaptionItems != null || menu.MenuItems != null || menu.StatusItems != null)
         {
             WriteHorizontalFrame();
         }
-        WriteCaptionMessages();
-        WriteMenuMessages();
-        WriteStatusMessage();
+
+        WriteItems(menu.CaptionItems, frameCharacter);
+        WriteItems(menu.MenuItems, frameCharacter);
+        WriteItems(menu.StatusItems, frameCharacter);
 
         // TODO: sometimes the width is one character to wide;
         // is this depending on debug, production or on the kind of distribution?
@@ -72,145 +50,88 @@ public class ViewBase
 
     /// <summary>
     /// This method is checking, if the console needs to be resized.
+    /// If true, the console is resized to the minimum size it should have.
+    /// Finally the console is cleared.
+    /// <br></br>
+    /// Currently resizing is supported for WindowsOS, only.
     /// <para></para>
     /// Resize may be necessary, if the user has manually altered the console size below
     /// a defined value that is stored in <see cref="frameHeightMinimum"/> and
     /// <see cref="frameWidthMinimum"/>.
     /// </summary>
-    public void CheckWindowSize()
+    protected void ResizeConsoleIfNeededAndClearIt()
     {
-        //Console.Clear();
-        GetFrameWidth();
-    }
-
-    /// <summary>
-    /// This method is drawing the content of the caption section.
-    /// <para>
-    /// Depending on the property <see cref="captionMessages"/> the content is drawn on screen.
-    /// If the property is <see href="Null"/>, there is no output on the screen.
-    /// </para>
-    /// </summary>
-    private void WriteCaptionMessages()
-    {
-        if (captionMessages == null)
+        if (IsViewResizingNeeded())
         {
-            return;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Console.SetWindowSize(frameWidthMinimum, frameHeightMinimum);
+            }
+            else
+            {
+                // TODO: how can I make this available on all OS? not only windows?
+                Console.WriteLine("Sorry, resizing is not implemented for your OS.");
+            }
         }
-
-        for (int i = 0; i < captionMessages.Length; i++)
-        {
-            string message = Convert.ToString(frameCharacter).PadRight(2);
-            message += captionMessages[i].PadRight(frameWidth - 4);
-            message += Convert.ToString(frameCharacter).PadLeft(2);
-
-            Console.WriteLine(message);
-        }
-
-        WriteHorizontalFrame();
-    }
-
-    /// <summary>
-    /// This method is drawing the content of the menu section.
-    /// <para>
-    /// Depending on the property <see cref="menuMessages"/> the content is drawn on screen.
-    /// If the property is <see href="Null"/>, there is no output on the screen.
-    /// </para>
-    /// </summary>
-    private void WriteMenuMessages()
-    {
-        if (menuMessages == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < menuMessages.Length; i++)
-        {
-            string message = Convert.ToString(frameCharacter).PadRight(2);
-            message += menuMessages[i].PadRight(frameWidth - 4);
-            message += Convert.ToString(frameCharacter).PadLeft(2);
-
-            Console.WriteLine(message);
-
-        }
-
-        WriteHorizontalFrame();
-    }
-
-    /// <summary>
-    /// This method is drawing the content of the status section.
-    /// <para>
-    /// Depending on the property <see cref="statusMessages"/> the content is drawn on screen.
-    /// If the property is <see href="Null"/>, there is no output on the screen.
-    /// </para>
-    /// </summary>
-    private void WriteStatusMessage()
-    {
-        if (statusMessages == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < statusMessages.Length; i++)
-        {
-            string message = Convert.ToString(frameCharacter).PadRight(2);
-            message += statusMessages[i].PadRight(frameWidth - 4);
-            message += Convert.ToString(frameCharacter).PadLeft(2);
-
-            Console.WriteLine(message);
-        }
-
-        WriteHorizontalFrame();
+        Console.Clear();
     }
 
     /// <summary>
     /// This method is drawing a single horizontal frame.
-    /// <para>
-    /// Depending on the properties <see cref="frameCharacter"/>
-    /// and <see cref="frameWidth"/> the appearence will be adapted.
-    /// </para>
     /// </summary>
-    private void WriteHorizontalFrame()
+    /// <param name="frameCharacter">Setting the frame's appearance.</param>
+    private void WriteHorizontalFrame(char frameCharacter = '*')
     {
-        Console.WriteLine(frameCharacter.ToString().PadLeft(frameWidth, frameCharacter));
+        Console.WriteLine("".PadLeft(Console.WindowWidth, frameCharacter));
     }
 
     /// <summary>
-    /// This method is checking <see cref="Console.WindowHeight"/> and <see cref="Console.WindowWidth"/>
-    /// and altering the menu's appearance accordingly.
+    /// This method is checking if the current console is size below a defined value 
+    /// that is stored in <see cref="frameHeightMinimum"/> and <see cref="frameWidthMinimum"/>.
     /// </summary>
-    private void GetFrameWidth()
+    /// <returns>True, if resize is necessary.</returns>
+    private bool IsViewResizingNeeded()
     {
         bool isResize = false;
-        frameHeight = Console.WindowHeight;
-        frameWidth = Console.WindowWidth; // when published the behaviour is different to debug mode
-
-        if (frameHeight < frameHeightMinimum)
+        if (Console.WindowHeight < frameHeightMinimum)
         {
-            frameHeight = frameHeightMinimum;
             isResize = true;
         }
 
-        if (frameWidth < frameWidthMinimum)
+        if (Console.WindowWidth < frameWidthMinimum)
         {
-            frameWidth = frameWidthMinimum;
             isResize = true;
         }
+        return isResize;
+    }
 
-        try
+    /// <summary>
+    /// This method is writing the items appending the menu.
+    /// <para></para>
+    /// If there are items to be written to the console,
+    /// then a horizontal frame will be appended.
+    /// </summary>
+    /// <param name="items"></param>
+    /// <param name="frameCharacter"></param>
+    private void WriteItems(string[]? items, char frameCharacter = '*')
+    {
+        if (items == null)
         {
-            if (isResize)
-            {
-                // how can I make this available on all OS? not only windows?
-                Console.Clear();
-                Console.SetWindowSize(frameWidth, frameHeight);
-            }
+            return;
         }
-        catch (Exception e)
+
+        StringBuilder sb = new StringBuilder();
+        foreach (var message in items)
         {
-            Console.Clear();
-            Console.WriteLine(e.ToString());
-            Console.WriteLine("An exception was raised! Press ENTER to continue.");
-            Console.ReadLine();
+            sb.Append(frameCharacter)
+              .Append(framePadding)
+              .Append(message.PadRight(Console.WindowWidth - 4))
+              .Append(framePadding)
+              .Append(frameCharacter)
+              .AppendLine();
         }
+        Console.Write(sb);
+
+        WriteHorizontalFrame();
     }
 }
