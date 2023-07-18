@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using BasicCodingLibrary.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
-namespace BasicCodingLibrary.Models;
+namespace BasicCodingLibrary.Providers;
 
 /// <summary>
 /// This class is providing services for instances of <see cref="AppSettingModel"/>.
@@ -40,7 +41,7 @@ public class AppSettingProvider : IAppSettingProvider
         //appSetting.ApplicationInformation.LastLogin = _configuration.GetValue<string>("ApplicationInformation:LastLogin")!;
 
         appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
-        appSetting.ConnectinString = _configuration.GetConnectionString("Default");
+        appSetting.ConnectionString = _configuration.GetConnectionString("Default");
         appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
         appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
 

@@ -1,4 +1,4 @@
-﻿namespace BasicCodingLibrary.Models;
+﻿namespace BasicCodingLibrary.Features;
 
 public static class Fibonacci
 {
@@ -23,7 +23,7 @@ public static class Fibonacci
     /// <exception cref="OverflowException"></exception>
     public static int F(int n)
     {
-        return Fibonacci.FibonacciIteration(n);
+        return FibonacciIteration(n);
     }
 
     /// <summary>

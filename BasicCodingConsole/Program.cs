@@ -1,6 +1,7 @@
 ﻿using BasicCodingConsole.Views.MainView;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
+using BasicCodingLibrary.Providers;
 using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

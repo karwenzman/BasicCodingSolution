@@ -1,4 +1,4 @@
-﻿namespace BasicCodingLibrary.Models;
+﻿namespace BasicCodingLibrary.Features;
 
 public static class Factorial
 {

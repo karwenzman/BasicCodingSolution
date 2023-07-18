@@ -3,6 +3,7 @@ using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
+using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -175,7 +176,7 @@ public class MainView : ViewBase, IMainView
         Console.WriteLine($"\nInformation about command line arguments");
         Console.WriteLine($"\tArguments: {AppSetting.CommandLineArgument}");
         Console.WriteLine($"\nInformation about connection strings");
-        Console.WriteLine($"\tDefault: {AppSetting.ConnectinString}");
+        Console.WriteLine($"\tDefault: {AppSetting.ConnectionString}");
 
         #region ***** Testing to write a file *****
         //Console.WriteLine("Creating a json file");

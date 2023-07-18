@@ -1,4 +1,6 @@
-﻿namespace BasicCodingLibrary.Models;
+﻿using BasicCodingLibrary.Models;
+
+namespace BasicCodingLibrary.Providers;
 
 /// <summary>
 /// This interface is providing the access to the class <see cref="AppSettingModel"/>.
