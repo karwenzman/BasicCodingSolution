@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BasicCodingLibrary.Models.AppSettingModel">
+    <Position X="3" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAA=</HashCode>
+      <FileName>Models\AppSettingModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicCodingLibrary.Models.Person">
+    <Position X="7.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicCodingLibrary.Models.UserInformation">
+    <Position X="5.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicCodingLibrary.Models.ApplicationInformation">
+    <Position X="5.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACACAACAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ApplicationInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicCodingLibrary.Providers.AppSettingProvider">
+    <Position X="0.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAIAAAAACAAAEAAAAAAAA=</HashCode>
+      <FileName>Providers\AppSettingProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BasicCodingLibrary.Providers.IAppSettingProvider">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Providers\IAppSettingProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

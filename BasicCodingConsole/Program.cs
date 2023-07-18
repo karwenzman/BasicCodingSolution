@@ -39,9 +39,9 @@ using var host = Host.CreateDefaultBuilder()
 
 using var scope = host.Services.CreateScope();
 var services = scope.ServiceProvider;
-var configurations = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-ShowEnvironmentValues(args, builder, configurations); // for testing only
+//var configurations = scope.ServiceProvider.GetRequiredService<IConfiguration>(); // for testing only
+//ShowEnvironmentValues(args, builder, configurations); // for testing only
 
 try
 {
