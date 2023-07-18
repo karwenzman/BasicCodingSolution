@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-var builder = new ConfigurationBuilder();
-builder.SetBasePath(Directory.GetCurrentDirectory())
+var builder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", false, true)
     .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", true)
     .AddEnvironmentVariables()
@@ -19,7 +19,8 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .WriteTo.File("LogFiles/apploggings.txt")
     .CreateLogger();
-var host = Host.CreateDefaultBuilder()
+
+using var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
@@ -34,18 +35,19 @@ var host = Host.CreateDefaultBuilder()
     .UseSerilog()
     .Build();
 
-//ShowEnvironmentValues(args, builder); // for testing only
 
-var scope = host.Services.CreateScope();
+using var scope = host.Services.CreateScope();
 var services = scope.ServiceProvider;
+var configurations = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+
+ShowEnvironmentValues(args, builder, configurations); // for testing only
 
 try
 {
     Log.Logger.Information("***** Run Application *****");
     Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
     Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
-    services.GetService<IMainView>()!
-    .Run();
+    services.GetRequiredService<IMainView>().Run();
 }
 catch (Exception e)
 {
@@ -61,19 +63,21 @@ finally
 }
 
 #if DEBUG
-    Console.Clear();
-    Console.WriteLine($"\n***** End Of Debug Mode - Press ENTER To Close The Window *****");
-    Console.ReadLine();
+Console.Clear();
+Console.WriteLine($"\n***** End Of Debug Mode - Press ENTER To Close The Window *****");
+Console.ReadLine();
 #endif
 
 
 
 
-static void ShowEnvironmentValues(string[] args, ConfigurationBuilder builder)
+static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, IConfiguration configuration)
 {
+    // other values
     Console.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
     Console.WriteLine($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
 
+    // args
     if (args.Length > 0)
     {
         foreach (var item in args)
@@ -86,5 +90,49 @@ static void ShowEnvironmentValues(string[] args, ConfigurationBuilder builder)
     {
         Console.WriteLine("No Args provided.");
     }
+
+    // appSetting
+    var appSetting = new AppSetting();
+    if (configuration.GetSection("UserInformation").Get<UserInformation>() == null)
+    {
+        appSetting.UserInformation = new UserInformation
+        {
+            NickName = "none - UserInformationIsNullOrEmpty",
+            Person = new Person
+            {
+                FirstName = "none - UserInformationIsNullOrEmpty",
+                LastName = "none - UserInformationIsNullOrEmpty",
+                Gender = 0,
+                Id = 0,
+            }
+        };
+    }
+    else
+    {
+        appSetting.UserInformation = configuration.GetSection("UserInformation").Get<UserInformation>()!;
+    }
+
+    if (configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>() == null)
+    {
+        appSetting.ApplicationInformation = new ApplicationInformation
+        {
+            Language = "none - ApplicationInformationIsNullOrEmpty",
+            LastLogin = "none - ApplicationInformationIsNullOrEmpty",
+            ConsoleHeightMaximum = 0,
+            ConsoleWidthMaximum = 0,
+            ConsoleHeightMinimum = 0,
+            ConsoleWidthMinimum = 0,
+        };
+    }
+    else
+    {
+        appSetting.ApplicationInformation = configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
+    }
+
+    Console.WriteLine($"MaxHeight: {appSetting.ApplicationInformation.ConsoleHeightMaximum}");
+    Console.WriteLine($"MinHeight: {appSetting.ApplicationInformation.ConsoleHeightMinimum}");
+    Console.WriteLine($"MaxWidth : {appSetting.ApplicationInformation.ConsoleWidthMaximum}");
+    Console.WriteLine($"MinWidth : {appSetting.ApplicationInformation.ConsoleWidthMinimum}");
+
     Console.ReadLine();
 }

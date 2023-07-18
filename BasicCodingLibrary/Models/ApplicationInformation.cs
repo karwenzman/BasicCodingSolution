@@ -7,4 +7,8 @@ public class ApplicationInformation
 {
     public string LastLogin { get; set; } = "default";
     public string Language { get; set; } = "default";
+    public int ConsoleHeightMaximum { get; set; }
+    public int ConsoleHeightMinimum { get; set; }
+    public int ConsoleWidthMaximum { get; set; }
+    public int ConsoleWidthMinimum { get; set; }
 }
