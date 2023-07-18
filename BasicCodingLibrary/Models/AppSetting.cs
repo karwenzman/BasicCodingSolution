@@ -3,9 +3,10 @@
 /// <summary>
 /// This class is providing members to access the <b>appsettings.json</b> file.
 /// </summary>
-public class AppSetting
+public class AppSettingModel
 {
     public UserInformation UserInformation { get; set; } = new UserInformation();
     public ApplicationInformation ApplicationInformation { get; set; } = new ApplicationInformation();
     public string CommandLineArgument { get; set; } = "default";
+    public string ConnectinString { get; set; } = "default";
 }

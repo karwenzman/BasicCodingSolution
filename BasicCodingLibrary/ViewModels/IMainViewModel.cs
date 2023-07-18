@@ -9,7 +9,7 @@ public interface IMainViewModel
 {
     string DefaultMessage { get; set; }
     string ClassName { get; set; }
-    AppSetting AppSetting { get; set; }
+    AppSettingModel AppSetting { get; set; }
 
     /// <summary>
     /// This method is getting the current values of <see cref="MainViewModel"/>.

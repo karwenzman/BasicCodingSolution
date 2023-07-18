@@ -92,7 +92,7 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
     }
 
     // appSetting
-    var appSetting = new AppSetting();
+    var appSetting = new AppSettingModel();
     if (configuration.GetSection("UserInformation").Get<UserInformation>() == null)
     {
         appSetting.UserInformation = new UserInformation

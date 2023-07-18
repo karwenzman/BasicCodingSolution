@@ -1,5 +1,4 @@
-﻿using BasicCodingLibrary.ViewModels;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
@@ -7,82 +6,93 @@ using System.Diagnostics;
 namespace BasicCodingLibrary.Models;
 
 /// <summary>
-/// This class is providing services for instances of <see cref="AppSetting"/>.
+/// This class is providing services for instances of <see cref="AppSettingModel"/>.
 /// </summary>
 public class AppSettingProvider : IAppSettingProvider
 {
-    #region ***** Field *****
-    private readonly AppSetting _appSetting;
-    private readonly ILogger<MainViewModel> _logger;
     private readonly IConfiguration _configuration;
-    #endregion
+    private readonly ILogger<AppSettingProvider> _logger;
+    /// <summary>
+    /// This field is used to return the fetched data from configuration.
+    /// </summary>
+    private readonly AppSettingModel appSetting;
 
-    #region ***** Constructor *****
-    public AppSettingProvider(ILogger<MainViewModel> logger, IConfiguration configuration, IOptionsSnapshot<AppSetting> optionsSnapshot)
+    public AppSettingProvider(IConfiguration configuration, ILogger<AppSettingProvider> logger, IOptionsSnapshot<AppSettingModel> optionsSnapshot)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(AppSettingProvider)}>.");
-
-        _logger = logger;
         _configuration = configuration;
-        _appSetting = optionsSnapshot.Value;
-    }
-    #endregion
+        _logger = logger;
 
-    #region ***** Interface Member (IAppSettingsProvider) *****
+        appSetting = optionsSnapshot.Value;
+    }
+
     /// <summary>
-    /// This method is getting the current values of <see cref="AppSetting"/>.
+    /// This method is getting the current values of <see cref="AppSettingModel"/>.
     /// A new snapshot of the file 'appsettings.json' is created.
     /// </summary>
-    /// <returns>An instance of class <see cref="AppSetting"/>.</returns>
-    public AppSetting Get()
+    /// <returns>An instance of class <see cref="AppSettingModel"/>.</returns>
+    public AppSettingModel Get()
     {
         Debug.WriteLine($"Passing <{nameof(Get)}> in <{nameof(AppSettingProvider)}>.");
 
-        //_appSetting.ApplicationInformation.Language = _configuration.GetValue<string>("ApplicationInformation:Language")!;
-        //_appSetting.ApplicationInformation.LastLogin = _configuration.GetValue<string>("ApplicationInformation:LastLogin")!;
+        // alternative syntax to access configuration files
+        //appSetting.ApplicationInformation.Language = _configuration.GetValue<string>("ApplicationInformation:Language")!;
+        //appSetting.ApplicationInformation.LastLogin = _configuration.GetValue<string>("ApplicationInformation:LastLogin")!;
 
-        if (_configuration.GetValue<string>("CommandLineArgument") == null | _configuration.GetValue<string>("CommandLineArgument") == string.Empty)
-        {
-            _appSetting.CommandLineArgument = "CommandLineArgumentIsNullOrEmpty";
-        }
-        else
-        {
-            _appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
-        }
+        appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
+        appSetting.ConnectinString = _configuration.GetConnectionString("Default");
+        appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
+        appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
 
-        if (_configuration.GetSection("UserInformation").Get<UserInformation>() == null)
-        {
-            _appSetting.UserInformation = new UserInformation
-            {
-                NickName = "none - UserInformationIsNullOrEmpty",
-                Person = new Person
-                {
-                    FirstName = "none - UserInformationIsNullOrEmpty",
-                    LastName = "none - UserInformationIsNullOrEmpty",
-                    Gender = 0,
-                    Id = 0,
-                }
-            };
-        }
-        else
-        {
-            _appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
-        }
+        // GetSection() will never return null
+        //if (_configuration.GetValue<string>("CommandLineArgument") == null || _configuration.GetValue<string>("CommandLineArgument") == string.Empty)
+        //{
+        //    _logger.LogWarning("CommandLineArgumentIsNullOrEmpty");
+        //    appSetting.CommandLineArgument = "none - CommandLineArgumentIsNullOrEmpty";
+        //}
+        //else
+        //{
+        //    appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
+        //}
 
-        if (_configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>() == null)
-        {
-            _appSetting.ApplicationInformation = new ApplicationInformation
-            {
-                Language = "none - ApplicationInformationIsNullOrEmpty",
-                LastLogin = "none - ApplicationInformationIsNullOrEmpty",
-            };
-        }
-        else
-        {
-            _appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
-        }
+        //if (_configuration.GetSection("UserInformation").Get<UserInformation>() == null)
+        //{
+        //    _logger.LogWarning("UserInformationIsNullOrEmpty");
+        //    appSetting.UserInformation = new UserInformation
+        //    {
+        //        NickName = "none - UserInformationIsNullOrEmpty",
+        //        Person = new Person
+        //        {
+        //            FirstName = "none - UserInformationIsNullOrEmpty",
+        //            LastName = "none - UserInformationIsNullOrEmpty",
+        //            Gender = 0,
+        //            Id = 0,
+        //        }
+        //    };
+        //}
+        //else
+        //{
+        //    appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
+        //}
 
-        return _appSetting;
+        //if (_configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>() == null)
+        //{
+        //    _logger.LogWarning("ApplicationInformationIsNullOrEmpty");
+        //    appSetting.ApplicationInformation = new ApplicationInformation
+        //    {
+        //        Language = "none - ApplicationInformationIsNullOrEmpty",
+        //        LastLogin = "none - ApplicationInformationIsNullOrEmpty",
+        //        ConsoleHeightMaximum = 0,
+        //        ConsoleWidthMaximum = 0,
+        //        ConsoleHeightMinimum = 0,
+        //        ConsoleWidthMinimum = 0,
+        //    };
+        //}
+        //else
+        //{
+        //    appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
+        //}
+
+        return appSetting;
     }
-    #endregion
 }

@@ -4,5 +4,5 @@ namespace BasicCodingLibrary.ViewModels;
 
 public interface ISettingViewModel
 {
-    public AppSetting AppSetting { get; set; }
+    public AppSettingModel AppSetting { get; set; }
 }

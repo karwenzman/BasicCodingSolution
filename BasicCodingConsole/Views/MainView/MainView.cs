@@ -2,7 +2,7 @@
 using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.SettingView;
-using BasicCodingLibrary.ViewModels;
+using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,10 +14,10 @@ namespace BasicCodingConsole.Views.MainView;
 
 public class MainView : ViewBase, IMainView
 {
-    private readonly ILogger<MainView> _logger;
+    private readonly IAppSettingProvider _appSettingProvider;
     private readonly IConfiguration _configuration;
-    private readonly IMainViewModel _mainViewModel;
     private readonly IHost _hostProvider;
+    private readonly ILogger<MainView> _logger;
 
     /// <summary>
     /// This property is providing the menu's content written to the console.
@@ -39,21 +39,25 @@ public class MainView : ViewBase, IMainView
     /// <see cref="ResizingApp"/>.
     /// </summary>
     public IDisplay Display => new MainDisplay();
+    /// <summary>
+    /// This property is providing the information collected from configuration.
+    /// </summary>
+    public AppSettingModel AppSetting { get; set; } = new AppSettingModel();
 
-    public MainView(ILogger<MainView> logger, IConfiguration configuration, IMainViewModel mainViewModel, IHost hostProvider)
+    public MainView(IAppSettingProvider appSettingProvider, IConfiguration configuration, IHost hostProvider, ILogger<MainView> logger)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(MainView)}>.");
-        _logger = logger;
+        _appSettingProvider = appSettingProvider;
         _configuration = configuration;
-        _mainViewModel = mainViewModel;
         _hostProvider = hostProvider;
+        _logger = logger;
     }
 
     public void Run()
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(MainView));
-
+        AppSetting = _appSettingProvider.Get();
         Message.Start();
 
         try
@@ -147,31 +151,31 @@ public class MainView : ViewBase, IMainView
     {
         using var scope = _hostProvider.Services.CreateScope();
         var services = scope.ServiceProvider;
-        services.GetService<ISettingView>()!.Run();
+        services.GetRequiredService<ISettingView>().Run();
     }
 
     private void WriteContent()
     {
-        _mainViewModel.Get(); // reloadOnChange? would it make this call unneccessary?
-
-        Console.WriteLine($"TestProperty - Default  : {_configuration.GetConnectionString("Default")}");
-        Console.WriteLine($"TestProperty - ClassName: {_mainViewModel.ClassName}");
-
-        Console.WriteLine($"\nInformation about user <{_mainViewModel.AppSetting.UserInformation.NickName}>");
+        Console.WriteLine($"\nInformation about user <{AppSetting.UserInformation.NickName}>");
         Console.WriteLine($"\tName  : " +
-            $"{_mainViewModel.AppSetting.UserInformation.Person.FirstName} " +
-            $"{_mainViewModel.AppSetting.UserInformation.Person.LastName}");
+            $"{AppSetting.UserInformation.Person.FirstName} " +
+            $"{AppSetting.UserInformation.Person.LastName}");
         Console.WriteLine($"\tGender: " +
-            $"{_mainViewModel.AppSetting.UserInformation.Person.Gender}");
+            $"{AppSetting.UserInformation.Person.Gender}");
         Console.WriteLine($"\tID    : " +
-            $"{_mainViewModel.AppSetting.UserInformation.Person.Id,4:0000}");
+            $"{AppSetting.UserInformation.Person.Id,4:0000}");
 
         Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
-        Console.WriteLine($"\tLanguage : {_mainViewModel.AppSetting.ApplicationInformation.Language}");
-        Console.WriteLine($"\tLastLogin: {_mainViewModel.AppSetting.ApplicationInformation.LastLogin}");
-
+        Console.WriteLine($"\tLanguage : {AppSetting.ApplicationInformation.Language}");
+        Console.WriteLine($"\tLastLogin: {AppSetting.ApplicationInformation.LastLogin}");
+        Console.WriteLine($"\tMaxHeight: {AppSetting.ApplicationInformation.ConsoleHeightMaximum}");
+        Console.WriteLine($"\tMinHeight: {AppSetting.ApplicationInformation.ConsoleHeightMinimum}");
+        Console.WriteLine($"\tMaxWidth : {AppSetting.ApplicationInformation.ConsoleWidthMaximum}");
+        Console.WriteLine($"\tMinWidth : {AppSetting.ApplicationInformation.ConsoleWidthMinimum}");
         Console.WriteLine($"\nInformation about command line arguments");
-        Console.WriteLine($"\tArguments: {_mainViewModel.AppSetting.CommandLineArgument}");
+        Console.WriteLine($"\tArguments: {AppSetting.CommandLineArgument}");
+        Console.WriteLine($"\nInformation about connection strings");
+        Console.WriteLine($"\tDefault: {AppSetting.ConnectinString}");
 
         #region ***** Testing to write a file *****
         //Console.WriteLine("Creating a json file");

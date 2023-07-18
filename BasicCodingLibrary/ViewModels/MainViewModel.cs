@@ -16,7 +16,7 @@ public class MainViewModel : IMainViewModel
     #region ***** Property *****
     public string DefaultMessage { get; set; } = "";
     public string ClassName { get; set; } = "MainViewModel (default value)";
-    public AppSetting AppSetting { get; set; } = new AppSetting();
+    public AppSettingModel AppSetting { get; set; } = new AppSettingModel();
     #endregion
 
     #region ***** Constructor *****
