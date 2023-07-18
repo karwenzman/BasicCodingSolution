@@ -1,8 +1,8 @@
 ﻿using BasicCodingConsole.ConsoleDisplays;
 using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingLibrary.ViewModels;
-using Microsoft.Extensions.Configuration;
+using BasicCodingLibrary.Models;
+using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
@@ -10,9 +10,8 @@ namespace BasicCodingConsole.Views.SettingView;
 
 public class SettingView : ViewBase, ISettingView
 {
+    private readonly IAppSettingProvider _appSettingProvider;
     private readonly ILogger<SettingView> _logger;
-    private readonly IConfiguration _configuration;
-    private readonly ISettingViewModel _settingViewModel;
 
     /// <summary>
     /// This property is providing the menu's content written to the console.
@@ -34,14 +33,18 @@ public class SettingView : ViewBase, ISettingView
     /// <see cref="ResizingView"/>.
     /// </summary>
     public IDisplay Display => new SettingDisplay();
+    /// <summary>
+    /// This property is providing the information collected from configuration.
+    /// </summary>
+    public AppSettingModel AppSetting { get; set; } = new AppSettingModel();
 
-    public SettingView(ILogger<SettingView> logger, IConfiguration configuration, ISettingViewModel settingViewModel)
+    public SettingView(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(SettingView)}>.");
-
+        _appSettingProvider = appSettingProvider;
         _logger = logger;
-        _configuration = configuration;
-        _settingViewModel = settingViewModel; // to do
+
+        AppSetting = new AppSettingModel();
     }
 
     public void Run()
@@ -49,16 +52,38 @@ public class SettingView : ViewBase, ISettingView
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(SettingView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(SettingView));
 
+        AppSetting = _appSettingProvider.Get();
+
         Message.Start();
         WriteMenu(Menu);
-        WriteContent(); // to do 
+        WriteContent();
         Message.End();
     }
 
+    /// <summary>
+    /// This method is writing the members of <see cref="AppSetting"/> to a console.
+    /// </summary>
     private void WriteContent()
     {
-        string message = "This is individual text by karwenzman!";
-        Console.WriteLine(message);
-        Console.WriteLine($"\nConnectionString (key = Default): {_configuration.GetConnectionString("Default")}");
+        Console.WriteLine($"\nInformation about user <{AppSetting.UserInformation.NickName}>");
+        Console.WriteLine($"\tName  : " +
+            $"{AppSetting.UserInformation.Person.FirstName} " +
+            $"{AppSetting.UserInformation.Person.LastName}");
+        Console.WriteLine($"\tGender: " +
+            $"{AppSetting.UserInformation.Person.Gender}");
+        Console.WriteLine($"\tID    : " +
+            $"{AppSetting.UserInformation.Person.Id,4:0000}");
+
+        Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
+        Console.WriteLine($"\tLanguage : {AppSetting.ApplicationInformation.Language}");
+        Console.WriteLine($"\tLastLogin: {AppSetting.ApplicationInformation.LastLogin}");
+        Console.WriteLine($"\tMaxHeight: {AppSetting.ApplicationInformation.ConsoleHeightMaximum}");
+        Console.WriteLine($"\tMinHeight: {AppSetting.ApplicationInformation.ConsoleHeightMinimum}");
+        Console.WriteLine($"\tMaxWidth : {AppSetting.ApplicationInformation.ConsoleWidthMaximum}");
+        Console.WriteLine($"\tMinWidth : {AppSetting.ApplicationInformation.ConsoleWidthMinimum}");
+        Console.WriteLine($"\nInformation about command line arguments");
+        Console.WriteLine($"\tArguments: {AppSetting.CommandLineArgument}");
+        Console.WriteLine($"\nInformation about connection strings");
+        Console.WriteLine($"\tDefault: {AppSetting.ConnectionString}");
     }
 }

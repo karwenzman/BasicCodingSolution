@@ -9,7 +9,7 @@ public class ContentMainMenu : IMenuContent
 
     public string[]? MenuItems { get; } =
     {
-        "A - Show Application Settings",
+        "A - no function, yet",
         "B - Run FibonacciApp",
         "C - Run SettingView",
         "",

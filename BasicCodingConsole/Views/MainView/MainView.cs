@@ -58,6 +58,7 @@ public class MainView : ViewBase, IMainView
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(MainView));
+
         AppSetting = _appSettingProvider.Get();
         Message.Start();
 
@@ -157,27 +158,7 @@ public class MainView : ViewBase, IMainView
 
     private void WriteContent()
     {
-        Console.WriteLine($"\nInformation about user <{AppSetting.UserInformation.NickName}>");
-        Console.WriteLine($"\tName  : " +
-            $"{AppSetting.UserInformation.Person.FirstName} " +
-            $"{AppSetting.UserInformation.Person.LastName}");
-        Console.WriteLine($"\tGender: " +
-            $"{AppSetting.UserInformation.Person.Gender}");
-        Console.WriteLine($"\tID    : " +
-            $"{AppSetting.UserInformation.Person.Id,4:0000}");
-
-        Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
-        Console.WriteLine($"\tLanguage : {AppSetting.ApplicationInformation.Language}");
-        Console.WriteLine($"\tLastLogin: {AppSetting.ApplicationInformation.LastLogin}");
-        Console.WriteLine($"\tMaxHeight: {AppSetting.ApplicationInformation.ConsoleHeightMaximum}");
-        Console.WriteLine($"\tMinHeight: {AppSetting.ApplicationInformation.ConsoleHeightMinimum}");
-        Console.WriteLine($"\tMaxWidth : {AppSetting.ApplicationInformation.ConsoleWidthMaximum}");
-        Console.WriteLine($"\tMinWidth : {AppSetting.ApplicationInformation.ConsoleWidthMinimum}");
-        Console.WriteLine($"\nInformation about command line arguments");
-        Console.WriteLine($"\tArguments: {AppSetting.CommandLineArgument}");
-        Console.WriteLine($"\nInformation about connection strings");
-        Console.WriteLine($"\tDefault: {AppSetting.ConnectionString}");
-
+        Console.WriteLine($"\nNo content, yet");
         #region ***** Testing to write a file *****
         //Console.WriteLine("Creating a json file");
         //try
