@@ -72,19 +72,19 @@ public class MainView : ViewBase, IMainView
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.Escape:
-                        ResizeConsoleIfNeededAndClearIt();
+                        ResizeConsoleIfNeededAndClearIt(Menu);
                         exitApp = true;
                         break;
                     case ConsoleKey.A:
-                        ResizeConsoleIfNeededAndClearIt();
+                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_A();
                         break;
                     case ConsoleKey.B:
-                        ResizeConsoleIfNeededAndClearIt();
+                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_B();
                         break;
                     case ConsoleKey.C:
-                        ResizeConsoleIfNeededAndClearIt();
+                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_C();
                         break;
                     default:

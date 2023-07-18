@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BasicCodingConsole.ConsoleMenus.MainMenu">
-    <Position X="6" Y="2.25" Width="1.75" />
+    <Position X="6" Y="2.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABIAQ=</HashCode>
+      <HashCode>AAAAAACAAAAAABAAgAACACAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
       <FileName>ConsoleMenus\MainMenu.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -25,10 +25,18 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BasicCodingConsole.ConsoleMenus.SettingMenu">
-    <Position X="6" Y="4.75" Width="1.75" />
+    <Position X="6" Y="5.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABIAQ=</HashCode>
+      <HashCode>AAAAAACAAAAAABAAgAACACAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
       <FileName>ConsoleMenus\SettingMenu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.ConsoleMenus.BehaviorAllConsole">
+    <Position X="0.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMenus\BehaviorAllConsole.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -36,8 +44,8 @@
     <Position X="6" Y="0.5" Width="1.75" />
     <InheritanceLine Type="BasicCodingConsole.ConsoleMenus.IMenuBehavior" FixedToPoint="true">
       <Path>
-        <Point X="1.25" Y="0.5" />
-        <Point X="1.25" Y="0.125" />
+        <Point X="1.5" Y="0.5" />
+        <Point X="1.5" Y="0.125" />
         <Point X="6.875" Y="0.125" />
         <Point X="6.875" Y="0.5" />
       </Path>
@@ -56,9 +64,9 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuBehavior">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMenus\IMenuBehavior.cs</FileName>
     </TypeIdentifier>
   </Interface>

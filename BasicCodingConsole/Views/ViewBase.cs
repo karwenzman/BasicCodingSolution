@@ -7,14 +7,6 @@ namespace BasicCodingConsole.Views;
 public abstract class ViewBase
 {
     /// <summary>
-    /// This const stores the height's minimum value of the menu's frame.
-    /// </summary>
-    internal const int frameHeightMinimum = 20;
-    /// <summary>
-    /// This const stores the width's minimum value of the menu's frame.
-    /// </summary>
-    internal const int frameWidthMinimum = 80;
-    /// <summary>
     /// This const stores the padding character needed to write the menu items.
     /// </summary>
     internal const char framePadding = ' ';
@@ -31,7 +23,7 @@ public abstract class ViewBase
     /// <param name="frameCharacter">Character used to draw the frame. This is an optional argument.</param>
     protected void WriteMenu(IMenu menu, char frameCharacter = '*')
     {
-        ResizeConsoleIfNeededAndClearIt();
+        ResizeConsoleIfNeededAndClearIt(menu);
 
         if (menu.CaptionItems != null || menu.MenuItems != null || menu.StatusItems != null)
         {
@@ -44,8 +36,9 @@ public abstract class ViewBase
 
         // TODO: sometimes the width is one character to wide;
         // is this depending on debug, production or on the kind of distribution?
-        //Console.WriteLine($"Height - Console:{Console.WindowHeight,3} | Frame:{frameHeight,3}");
-        //Console.WriteLine($"Width  - Console:{Console.WindowWidth,3} | Frame:{frameWidth,3}");
+        // if resizing to full screen, the app is minimizing the console, but the screen stays in full screen
+        Console.WriteLine($"Height - Console:{Console.WindowHeight,3}");
+        Console.WriteLine($"Width  - Console:{Console.WindowWidth,3}");
     }
 
     /// <summary>
@@ -59,21 +52,35 @@ public abstract class ViewBase
     /// a defined value that is stored in <see cref="frameHeightMinimum"/> and
     /// <see cref="frameWidthMinimum"/>.
     /// </summary>
-    protected void ResizeConsoleIfNeededAndClearIt()
+    protected void ResizeConsoleIfNeededAndClearIt(IMenu menu)
     {
-        if (IsViewResizingNeeded())
+        if (IsConsoleSizeSmallerThenMinimum(menu))
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                Console.SetWindowSize(frameWidthMinimum, frameHeightMinimum);
-            }
-            else
-            {
-                // TODO: how can I make this available on all OS? not only windows?
-                Console.WriteLine("Sorry, resizing is not implemented for your OS.");
-            }
+            ResizeConsole(menu.ConsoleWidthMinimum, menu.ConsoleHeightMinimum);
+        }
+        else if (IsConsoleSizeBiggerThenMaximum(menu))
+        {
+            ResizeConsole(menu.ConsoleWidthMaximum, menu.ConsoleHeightMaximum);
         }
         Console.Clear();
+    }
+
+    /// <summary>
+    /// This method is actually performing the resizing of the console.
+    /// </summary>
+    /// <param name="consoleWidth"></param>
+    /// <param name="consoleHeight"></param>
+    private void ResizeConsole(int consoleWidth, int consoleHeight)
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            Console.SetWindowSize(consoleWidth, consoleHeight);
+        }
+        else
+        {
+            // TODO: how can I make this available on all OS? not only windows?
+            Console.WriteLine("Sorry, resizing is not implemented for your OS.");
+        }
     }
 
     /// <summary>
@@ -86,19 +93,39 @@ public abstract class ViewBase
     }
 
     /// <summary>
-    /// This method is checking if the current console is size below a defined value 
-    /// that is stored in <see cref="frameHeightMinimum"/> and <see cref="frameWidthMinimum"/>.
+    /// This method is checking if the current console is smaller then a defined value 
+    /// that is stored in <see cref="IMenuBehavior.ConsoleHeightMinimum"/> and <see cref="IMenuBehavior.ConsoleWidthMinimum"/>.
     /// </summary>
     /// <returns>True, if resize is necessary.</returns>
-    private bool IsViewResizingNeeded()
+    private bool IsConsoleSizeSmallerThenMinimum(IMenu menu)
     {
         bool isResize = false;
-        if (Console.WindowHeight < frameHeightMinimum)
+        if (Console.WindowHeight < menu.ConsoleHeightMinimum)
         {
             isResize = true;
         }
 
-        if (Console.WindowWidth < frameWidthMinimum)
+        if (Console.WindowWidth < menu.ConsoleWidthMinimum)
+        {
+            isResize = true;
+        }
+        return isResize;
+    }
+
+    /// <summary>
+    /// This method is checking if the current console is size bigger then a defined value 
+    /// that is stored in <see cref="IMenuBehavior.ConsoleHeightMaximum"/> and <see cref="IMenuBehavior.ConsoleWidthMaximum"/>.
+    /// </summary>
+    /// <returns>True, if resize is necessary.</returns>
+    private bool IsConsoleSizeBiggerThenMaximum(IMenu menu)
+    {
+        bool isResize = false;
+        if (Console.WindowHeight > menu.ConsoleHeightMaximum)
+        {
+            isResize = true;
+        }
+
+        if (Console.WindowWidth > menu.ConsoleWidthMaximum)
         {
             isResize = true;
         }
