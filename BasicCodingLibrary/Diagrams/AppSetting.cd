@@ -28,18 +28,19 @@
       <FileName>Models\ApplicationInformation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BasicCodingLibrary.Providers.AppSettingProvider">
-    <Position X="0.5" Y="2.25" Width="1.75" />
+  <Class Name="BasicCodingLibrary.Providers.AppSettingProviderWithGet">
+    <Position X="0.5" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAIAAAAACAAAEAAAAAAAA=</HashCode>
-      <FileName>Providers\AppSettingProvider.cs</FileName>
+      <HashCode>AAAAAAAAUAAAAABAAAAAAAAAAAAAAACAACEAAAAAQAA=</HashCode>
+      <FileName>Providers\AppSettingProviderWithGet.cs</FileName>
+      <NewMemberFileName>Providers\AppSettingProvider.cs</NewMemberFileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="BasicCodingLibrary.Providers.IAppSettingProvider">
     <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAUAAAAABAAAAAAAAAAAAAAAAAACAAAAAAQAA=</HashCode>
       <FileName>Providers\IAppSettingProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>

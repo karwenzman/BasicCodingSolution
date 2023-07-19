@@ -1,5 +1,6 @@
 ﻿using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
 namespace BasicCodingLibrary.Providers;
@@ -7,29 +8,27 @@ namespace BasicCodingLibrary.Providers;
 /// <summary>
 /// This class is providing services for instances of <see cref="AppSettingModel"/>.
 /// </summary>
-public class AppSettingProvider : IAppSettingProvider
+public class AppSettingProviderWithGet : IAppSettingProvider
 {
     private readonly IConfiguration _configuration;
-
     /// <summary>
     /// This field is used to return the fetched data from configuration.
     /// </summary>
-    private readonly AppSettingModel appSetting = new AppSettingModel();
+    private readonly AppSettingModel appSetting;
 
-    // the following properties are implemented due to testing
-    // of AppSettingProviderWithConstructorInjection
-    // and both classes do implement the same interface (for DI)
+    public AppSettingProviderWithGet(IConfiguration configuration, IOptionsSnapshot<AppSettingModel> optionsSnapshot)
+    {
+        Debug.WriteLine($"Passing <Constructor> in <{nameof(AppSettingProviderWithGet)}>.");
+        _configuration = configuration;
+
+        // does this make any difference?
+        appSetting = optionsSnapshot.Value;
+    }
+
     public UserInformation UserInformation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public ApplicationInformation ApplicationInformation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string CommandLineArgument { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-
-    public AppSettingProvider(IConfiguration configuration)
-    {
-        Debug.WriteLine($"Passing <Constructor> in <{nameof(AppSettingProvider)}>.");
-        _configuration = configuration;
-    }
 
     /// <summary>
     /// This method is getting the current values of <see cref="AppSettingModel"/>.

@@ -33,10 +33,7 @@ public class SettingView : ViewBase, ISettingView
     /// <see cref="ResizingView"/>.
     /// </summary>
     public IDisplay Display => new SettingDisplay();
-    /// <summary>
-    /// This property is providing the information collected from configuration.
-    /// </summary>
-    public AppSettingModel AppSetting { get; set; } = new AppSettingModel();
+    public AppSettingModel AppSetting { get; set; }
 
     public SettingView(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
     {
@@ -44,15 +41,13 @@ public class SettingView : ViewBase, ISettingView
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
-        AppSetting = new AppSettingModel();
+        AppSetting = _appSettingProvider.Get();
     }
 
     public void Run()
     {
         Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(SettingView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(SettingView));
-
-        AppSetting = _appSettingProvider.Get();
 
         Message.Start();
         WriteMenu(Menu);
