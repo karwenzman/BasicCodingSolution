@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace BasicCodingConsole.ConsoleMenus;
+﻿namespace BasicCodingConsole.ConsoleMenus;
 
 public class MainMenu : IMenu
 {
@@ -13,8 +11,6 @@ public class MainMenu : IMenu
     public int ConsoleWidthMinimum { get; set; }
     public MainMenu()
     {
-        Debug.WriteLine($"Passing <Constructor> in <{nameof(MainMenu)}>.");
-
         IMenuContent content = new ContentMainMenu();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;

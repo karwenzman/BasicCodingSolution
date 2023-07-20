@@ -1,5 +1,6 @@
 ﻿using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
 namespace BasicCodingLibrary.Providers;
@@ -10,25 +11,18 @@ namespace BasicCodingLibrary.Providers;
 public class AppSettingProvider : IAppSettingProvider
 {
     private readonly IConfiguration _configuration;
-
     /// <summary>
     /// This field is used to return the fetched data from configuration.
     /// </summary>
-    private readonly AppSettingModel appSetting = new AppSettingModel();
+    private readonly AppSettingModel appSetting;
 
-    // the following properties are implemented due to testing
-    // of AppSettingProviderWithConstructorInjection
-    // and both classes do implement the same interface (for DI)
-    public UserInformation UserInformation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public ApplicationInformation ApplicationInformation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string CommandLineArgument { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-
-    public AppSettingProvider(IConfiguration configuration)
+    public AppSettingProvider(IConfiguration configuration, IOptionsSnapshot<AppSettingModel> optionsSnapshot)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(AppSettingProvider)}>.");
         _configuration = configuration;
+
+        // does this make any difference?
+        appSetting = optionsSnapshot.Value;
     }
 
     /// <summary>
@@ -41,7 +35,7 @@ public class AppSettingProvider : IAppSettingProvider
         Debug.WriteLine($"Passing <{nameof(Get)}> in <{nameof(AppSettingProvider)}>.");
 
         appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
-        appSetting.ConnectionString = _configuration.GetConnectionString("Default")!;
+        appSetting.ConnectionString = _configuration.GetConnectionString("Default");
         appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
         appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
 

@@ -2,6 +2,7 @@
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.Providers;
+using BasicCodingLibrary.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,10 +28,10 @@ using var host = Host.CreateDefaultBuilder()
         services.Configure<UserInformation>(builder.Build().GetSection("UserInformation"));
         services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
         services.AddTransient<IMainView, MainView>();
-        services.AddTransient<ISettingView, SettingViewWithConstructorInjection>();
-        services.AddTransient<IAppSettingProvider, AppSettingProviderWithConstructorInjection>();
-        //services.AddTransient<ISettingView, SettingView>();
-        //services.AddTransient<IAppSettingProvider, AppSettingProvider>();
+        services.AddTransient<IMainViewModel, MainViewModel>();
+        services.AddTransient<IAppSettingProvider, AppSettingProvider>();
+        services.AddTransient<ISettingView, SettingView>();
+        services.AddTransient<ISettingViewModel, SettingViewModel>();
     })
     .UseSerilog()
     .Build();

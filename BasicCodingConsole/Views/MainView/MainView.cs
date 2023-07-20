@@ -4,6 +4,7 @@ using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.Providers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -15,6 +16,7 @@ namespace BasicCodingConsole.Views.MainView;
 public class MainView : ViewBase, IMainView
 {
     private readonly IAppSettingProvider _appSettingProvider;
+    private readonly IConfiguration _configuration;
     private readonly IHost _hostProvider;
     private readonly ILogger<MainView> _logger;
 
@@ -23,37 +25,33 @@ public class MainView : ViewBase, IMainView
     /// <para></para>
     /// The content is implemented in file <see cref="ContentMainMenu"/>.
     /// </summary>
-    public IMenu Menu { get; set; }
+    public IMenu Menu => new MainMenu();
     /// <summary>
     /// This property is providing standard messages written to the console.
     /// <para></para>
     /// The content is implemented in the files <see cref="StartingApp"/>,
     /// <see cref="EndingApp"/> and <see cref="ContinueMessage"/>
     /// </summary>
-    public IMessage Message { get; set; }
+    public IMessage Message => new MainMessage();
     /// <summary>
     /// This property is providing standard method used to manipulate the console.
     /// <para></para>
     /// The method's behavior is implemented in the files <see cref="ClearingApp"/> and
     /// <see cref="ResizingApp"/>.
     /// </summary>
-    public IDisplay Display { get; set; }
+    public IDisplay Display => new MainDisplay();
     /// <summary>
     /// This property is providing the information collected from configuration.
     /// </summary>
-    public AppSettingModel AppSetting { get; set; }
+    public AppSettingModel AppSetting { get; set; } = new AppSettingModel();
 
-    public MainView(IAppSettingProvider appSettingProvider, IHost hostProvider, ILogger<MainView> logger)
+    public MainView(IAppSettingProvider appSettingProvider, IConfiguration configuration, IHost hostProvider, ILogger<MainView> logger)
     {
         Debug.WriteLine($"Passing <Constructor> in <{nameof(MainView)}>.");
         _appSettingProvider = appSettingProvider;
+        _configuration = configuration;
         _hostProvider = hostProvider;
         _logger = logger;
-
-        AppSetting = new AppSettingModel();
-        Display = new MainDisplay();
-        Menu = new MainMenu();
-        Message = new MainMessage();
     }
 
     public void Run()
@@ -62,32 +60,6 @@ public class MainView : ViewBase, IMainView
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
         AppSetting = _appSettingProvider.Get();
-        if (AppSetting.ApplicationInformation.ConsoleHeightMaximum > 0)
-        {
-            Menu.ConsoleHeightMaximum = AppSetting.ApplicationInformation.ConsoleHeightMaximum;
-        }
-        if (AppSetting.ApplicationInformation.ConsoleWidthMaximum > 0)
-        {
-            Menu.ConsoleWidthMaximum = AppSetting.ApplicationInformation.ConsoleWidthMaximum;
-        }
-        if (AppSetting.ApplicationInformation.ConsoleHeightMinimum > 0)
-        {
-            Menu.ConsoleHeightMinimum = AppSetting.ApplicationInformation.ConsoleHeightMinimum;
-        }
-        if (AppSetting.ApplicationInformation.ConsoleWidthMinimum > 0)
-        {
-            Menu.ConsoleWidthMinimum = AppSetting.ApplicationInformation.ConsoleWidthMinimum;
-        }
-
-        Console.WriteLine($"Heigth Max: {AppSetting.ApplicationInformation.ConsoleHeightMaximum}");
-        Console.WriteLine($"Width  Max: {AppSetting.ApplicationInformation.ConsoleWidthMaximum}");
-        Console.WriteLine($"Heigth Min: {AppSetting.ApplicationInformation.ConsoleHeightMinimum}");
-        Console.WriteLine($"Width  Min: {AppSetting.ApplicationInformation.ConsoleWidthMinimum}");
-        Console.WriteLine($"");
-        Console.WriteLine($"Heigth Max: {Menu.ConsoleHeightMaximum}");
-        Console.WriteLine($"Width  Max: {Menu.ConsoleWidthMaximum}");
-        Console.WriteLine($"Heigth Min: {Menu.ConsoleHeightMinimum}");
-        Console.WriteLine($"Width  Min: {Menu.ConsoleWidthMinimum}");
         Message.Start();
 
         try
