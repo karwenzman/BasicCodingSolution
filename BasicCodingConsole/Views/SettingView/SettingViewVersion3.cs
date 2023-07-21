@@ -4,11 +4,10 @@ using BasicCodingConsole.ConsoleMessages;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 
 namespace BasicCodingConsole.Views.SettingView;
 
-public class SettingView : ViewBase, ISettingView
+public class SettingViewVersion3 : ViewBase, ISettingViewVersion3
 {
     private readonly IAppSettingProvider _appSettingProvider;
     private readonly ILogger<SettingView> _logger;
@@ -36,23 +35,21 @@ public class SettingView : ViewBase, ISettingView
     /// <summary>
     /// This property is providing the information collected from configuration.
     /// </summary>
-    public AppSettingModel AppSetting { get; set; } = new AppSettingModel();
+    public AppSettingModel AppSettingModel { get; set; } = new AppSettingModel();
 
-    public SettingView(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
+    public SettingViewVersion3(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
     {
-        Debug.WriteLine($"Passing <Constructor> in <{nameof(SettingView)}>.");
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
-        AppSetting = new AppSettingModel();
+        AppSettingModel = new AppSettingModel();
     }
 
     public void Run()
     {
-        Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(SettingView)}>.");
         _logger.LogInformation("* Load: {view}", nameof(SettingView));
 
-        AppSetting = _appSettingProvider.Get();
+        AppSettingModel = _appSettingProvider.Get();
 
         Message.Start(false, true);
         WriteMenu(Menu);
@@ -61,29 +58,29 @@ public class SettingView : ViewBase, ISettingView
     }
 
     /// <summary>
-    /// This method is writing the members of <see cref="AppSetting"/> to a console.
+    /// This method is writing the members of <see cref="AppSettingModel"/> to a console.
     /// </summary>
     private void WriteContent()
     {
-        Console.WriteLine($"\nInformation about user <{AppSetting.UserInformation.NickName}>");
+        Console.WriteLine($"\nInformation about user <{AppSettingModel.UserInformation.NickName}>");
         Console.WriteLine($"\tName  : " +
-            $"{AppSetting.UserInformation.Person.FirstName} " +
-            $"{AppSetting.UserInformation.Person.LastName}");
+            $"{AppSettingModel.UserInformation.Person.FirstName} " +
+            $"{AppSettingModel.UserInformation.Person.LastName}");
         Console.WriteLine($"\tGender: " +
-            $"{AppSetting.UserInformation.Person.Gender}");
+            $"{AppSettingModel.UserInformation.Person.Gender}");
         Console.WriteLine($"\tID    : " +
-            $"{AppSetting.UserInformation.Person.Id,4:0000}");
+            $"{AppSettingModel.UserInformation.Person.Id,4:0000}");
 
         Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
-        Console.WriteLine($"\tLanguage : {AppSetting.ApplicationInformation.Language}");
-        Console.WriteLine($"\tLastLogin: {AppSetting.ApplicationInformation.LastLogin}");
-        Console.WriteLine($"\tMaxHeight: {AppSetting.ApplicationInformation.ConsoleHeightMaximum}");
-        Console.WriteLine($"\tMinHeight: {AppSetting.ApplicationInformation.ConsoleHeightMinimum}");
-        Console.WriteLine($"\tMaxWidth : {AppSetting.ApplicationInformation.ConsoleWidthMaximum}");
-        Console.WriteLine($"\tMinWidth : {AppSetting.ApplicationInformation.ConsoleWidthMinimum}");
+        Console.WriteLine($"\tLanguage : {AppSettingModel.ApplicationInformation.Language}");
+        Console.WriteLine($"\tLastLogin: {AppSettingModel.ApplicationInformation.LastLogin}");
+        Console.WriteLine($"\tMaxHeight: {AppSettingModel.ApplicationInformation.ConsoleHeightMaximum}");
+        Console.WriteLine($"\tMinHeight: {AppSettingModel.ApplicationInformation.ConsoleHeightMinimum}");
+        Console.WriteLine($"\tMaxWidth : {AppSettingModel.ApplicationInformation.ConsoleWidthMaximum}");
+        Console.WriteLine($"\tMinWidth : {AppSettingModel.ApplicationInformation.ConsoleWidthMinimum}");
         Console.WriteLine($"\nInformation about command line arguments");
-        Console.WriteLine($"\tArguments: {AppSetting.CommandLineArgument}");
+        Console.WriteLine($"\tArguments: {AppSettingModel.CommandLineArgument}");
         Console.WriteLine($"\nInformation about connection strings");
-        Console.WriteLine($"\tDefault: {AppSetting.ConnectionString}");
+        Console.WriteLine($"\tDefault: {AppSettingModel.ConnectionString}");
     }
 }

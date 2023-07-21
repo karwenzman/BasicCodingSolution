@@ -87,6 +87,14 @@ public class MainView : ViewBase, IMainView
                         ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_C();
                         break;
+                    case ConsoleKey.D:
+                        ResizeConsoleIfNeededAndClearIt(Menu);
+                        Action_D();
+                        break;
+                    case ConsoleKey.E:
+                        ResizeConsoleIfNeededAndClearIt(Menu);
+                        Action_E();
+                        break;
                     default:
                         Console.Beep();
                         break;
@@ -154,6 +162,26 @@ public class MainView : ViewBase, IMainView
         using var scope = _hostProvider.Services.CreateScope();
         var services = scope.ServiceProvider;
         services.GetRequiredService<ISettingView>().Run();
+    }
+
+    /// <summary>
+    /// This method starts the logic behind this menu item.
+    /// </summary>
+    private void Action_D()
+    {
+        using var scope = _hostProvider.Services.CreateScope();
+        var services = scope.ServiceProvider;
+        services.GetRequiredService<ISettingViewVersion2>().Run();
+    }
+
+    /// <summary>
+    /// This method starts the logic behind this menu item.
+    /// </summary>
+    private void Action_E()
+    {
+        using var scope = _hostProvider.Services.CreateScope();
+        var services = scope.ServiceProvider;
+        services.GetRequiredService<ISettingViewVersion3>().Run();
     }
 
     private void WriteContent()

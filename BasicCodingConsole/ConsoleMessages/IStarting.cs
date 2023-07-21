@@ -6,5 +6,5 @@ public interface IStarting
     /// Writing a standard message to the console and awaiting user input.
     /// Then, clearing the console.
     /// </summary>
-    void Start();
+    void Start(bool showMessage = true, bool clearScreen = true);
 }

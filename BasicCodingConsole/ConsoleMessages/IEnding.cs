@@ -6,5 +6,5 @@ public interface IEnding
     /// Writing a standard message to the console and awaiting user input.
     /// Then, clearing the console.
     /// </summary>
-    void End();
+    void End(bool showMessage = true, bool clearScreen = true);
 }

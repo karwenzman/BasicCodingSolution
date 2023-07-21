@@ -2,10 +2,17 @@
 
 public class EndingApp : IEnding
 {
-    public void End()
+    public void End(bool showMessage = true, bool clearScreen = true)
     {
-        Console.WriteLine($"\nYou are going to leave the app. Press ENTER to end the app...");
-        Console.ReadLine();
-        Console.Clear();
+        if (showMessage)
+        {
+            Console.WriteLine($"\nYou are going to leave the app. Press ENTER to end the app...");
+            Console.ReadLine();
+        }
+
+        if (clearScreen)
+        {
+            Console.Clear();
+        }
     }
 }

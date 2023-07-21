@@ -35,7 +35,7 @@ public class AppSettingProvider : IAppSettingProvider
         Debug.WriteLine($"Passing <{nameof(Get)}> in <{nameof(AppSettingProvider)}>.");
 
         appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
-        appSetting.ConnectionString = _configuration.GetConnectionString("Default");
+        appSetting.ConnectionString = _configuration.GetConnectionString("Default")!;
         appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
         appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
 

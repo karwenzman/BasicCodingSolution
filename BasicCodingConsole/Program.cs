@@ -29,9 +29,14 @@ using var host = Host.CreateDefaultBuilder()
         services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<IMainViewModel, MainViewModel>();
-        services.AddTransient<IAppSettingProvider, AppSettingProvider>();
         services.AddTransient<ISettingView, SettingView>();
+        services.AddTransient<ISettingViewVersion2, SettingViewVersion2>();
+        services.AddTransient<ISettingViewVersion3, SettingViewVersion3>();
         services.AddTransient<ISettingViewModel, SettingViewModel>();
+        services.AddTransient<IAppSettingProvider, AppSettingProvider>();
+        services.AddTransient<IAppSettingProviderVersion2, AppSettingProviderVersion2>();
+        services.AddTransient<IAppSettingProviderVersion3, AppSettingProviderVersion3>();
+
     })
     .UseSerilog()
     .Build();

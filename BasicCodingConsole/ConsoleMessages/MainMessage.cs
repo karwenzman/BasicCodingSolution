@@ -8,15 +8,15 @@ public class MainMessage : IMessage
         continuing.Continue();
     }
 
-    public void End()
+    public void End(bool showMessage = true, bool clearScreen = true)
     {
         IEnding ending = new EndingApp();
-        ending.End();
+        ending.End(showMessage, clearScreen);
     }
 
-    public void Start()
+    public void Start(bool showMessage = true, bool clearScreen = true)
     {
         IStarting starting = new StartingApp();
-        starting.Start();
+        starting.Start(showMessage, clearScreen);
     }
 }

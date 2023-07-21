@@ -2,10 +2,17 @@
 
 public class EndingView : IEnding
 {
-    public void End()
+    public void End(bool showMessage = true, bool clearScreen = true)
     {
-        Console.WriteLine($"\nYou have reached the end of this view. Press ENTER to continue...");
-        Console.ReadLine();
-        Console.Clear();
+        if (showMessage)
+        {
+            Console.WriteLine($"\nYou have reached the end of this view. Press ENTER to continue...");
+            Console.ReadLine();
+        }
+
+        if (clearScreen)
+        {
+            Console.Clear();
+        }
     }
 }

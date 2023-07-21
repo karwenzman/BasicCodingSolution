@@ -2,14 +2,20 @@
 
 public class StartingView : IStarting
 {
-    public void Start()
+    public void Start(bool showMessage = true, bool clearScreen = true)
     {
-        string message = $"You are going to start the view.";
-        Console.WriteLine(message);
-        Console.WriteLine("=".PadLeft(message.Length, '='));
+        if (showMessage)
+        {
+            string message = $"You are going to start the view.";
+            Console.WriteLine(message);
+            Console.WriteLine("=".PadLeft(message.Length, '='));
+            Console.WriteLine($"\nPress ENTER to continue...");
+            Console.ReadLine();
+        }
 
-        Console.WriteLine($"\nPress ENTER to continue...");
-        Console.ReadLine();
-        Console.Clear();
+        if (clearScreen)
+        {
+            Console.Clear();
+        }
     }
 }
