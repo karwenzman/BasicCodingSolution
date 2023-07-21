@@ -1,24 +1,21 @@
 ﻿namespace BasicCodingLibrary.Models;
 
-/// <summary>
-/// This class is providing members to access the <b>appsettings.json</b> file.
-/// </summary>
-public class AppSettingModel : IAppSettingModel
+public interface IAppSettingModel
 {
     /// <summary>
     /// This property is providing user information received from configuration.
     /// </summary>
-    public UserInformation UserInformation { get; set; } = new UserInformation();
+    public UserInformation UserInformation { get; set; }
     /// <summary>
     /// This property is providing application information received from configuration.
     /// </summary>
-    public ApplicationInformation ApplicationInformation { get; set; } = new ApplicationInformation();
+    public ApplicationInformation ApplicationInformation { get; set; }
     /// <summary>
     /// This property is providing the command line arguments received from configuration.
     /// </summary>
-    public string CommandLineArgument { get; set; } = "default";
+    public string CommandLineArgument { get; set; }
     /// <summary>
     /// This property is providing the connection string received from configuration.
     /// </summary>
-    public string ConnectionString { get; set; } = "default";
+    public string ConnectionString { get; set; }
 }

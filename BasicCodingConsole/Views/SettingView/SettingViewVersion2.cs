@@ -9,13 +9,13 @@ namespace BasicCodingConsole.Views.SettingView;
 
 public class SettingViewVersion2 : ViewBase, ISettingViewVersion2
 {
-    private readonly IAppSettingProvider _appSettingProvider;
+    private readonly IAppSettingProviderVersion2 _appSettingProvider;
     private readonly ILogger<SettingView> _logger;
 
     /// <summary>
     /// This property is providing the information collected from configuration.
     /// </summary>
-    public AppSettingModel AppSettingModel { get; set; }
+    public IAppSettingModel AppSettingModel { get; set; }
     /// <summary>
     /// This property is providing standard method used to manipulate the console.
     /// <para></para>
@@ -37,9 +37,14 @@ public class SettingViewVersion2 : ViewBase, ISettingViewVersion2
     /// </summary>
     public IMessage Message { get; set; }
 
-
-    public SettingViewVersion2(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
+    public SettingViewVersion2(IAppSettingProviderVersion2 appSettingProvider, ILogger<SettingView> logger)
     {
+        // in this version2 there is:
+        // - IAppSettingProvider replaced by IAppSettingProviderVersion2
+        // - property just have plain getter and setter
+        // - _appSettingProvider.Get() is used to feed the property AppSettingModel
+        // - the interface ISettingViewVersion2 is including a member of type IAppSettingModel
+
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
@@ -55,10 +60,10 @@ public class SettingViewVersion2 : ViewBase, ISettingViewVersion2
     {
         AppSettingModel = _appSettingProvider.Get();
 
-        Message.Start(false, true);
+        Message.Start(showMessage: false, clearScreen: true);
         WriteMenu(Menu);
         WriteContent();
-        Message.End(true, true);
+        Message.End(showMessage: true, clearScreen: true);
     }
 
     /// <summary>

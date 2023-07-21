@@ -39,22 +39,24 @@ public class SettingViewVersion3 : ViewBase, ISettingViewVersion3
 
     public SettingViewVersion3(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
     {
+        // in this version3 there is:
+
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
         AppSettingModel = new AppSettingModel();
+
+        _logger.LogInformation("* Load: {view}", nameof(SettingViewVersion3));
     }
 
     public void Run()
     {
-        _logger.LogInformation("* Load: {view}", nameof(SettingView));
-
         AppSettingModel = _appSettingProvider.Get();
 
-        Message.Start(false, true);
+        Message.Start(showMessage: false, clearScreen: true);
         WriteMenu(Menu);
         WriteContent();
-        Message.End();
+        Message.End(showMessage: true, clearScreen: true);
     }
 
     /// <summary>

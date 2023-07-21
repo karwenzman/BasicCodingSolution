@@ -40,24 +40,23 @@ public class SettingView : ViewBase, ISettingView
 
     public SettingView(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
     {
-        Debug.WriteLine($"Passing <Constructor> in <{nameof(SettingView)}>.");
+        // this is version1 - no clean up 
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
         AppSetting = new AppSettingModel();
+
+        _logger.LogInformation("* Load: {view}", nameof(SettingView));
     }
 
     public void Run()
     {
-        Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(SettingView)}>.");
-        _logger.LogInformation("* Load: {view}", nameof(SettingView));
-
         AppSetting = _appSettingProvider.Get();
 
-        Message.Start(false, true);
+        Message.Start(showMessage: false, clearScreen: true);
         WriteMenu(Menu);
         WriteContent();
-        Message.End();
+        Message.End(showMessage: true, clearScreen: true);
     }
 
     /// <summary>
