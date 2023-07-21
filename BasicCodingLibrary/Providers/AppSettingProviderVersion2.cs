@@ -21,12 +21,13 @@ public class AppSettingProviderVersion2 : IAppSettingProviderVersion2
     /// <returns>An instance of class <see cref="AppSettingModel"/> is returned.</returns>
     public AppSettingModel Get()
     {
-        AppSettingModel output = new AppSettingModel();
-
-        output.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
-        output.ConnectionString = _configuration.GetConnectionString("Default")!;
-        output.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
-        output.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
+        AppSettingModel output = new()
+        {
+            CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!,
+            ConnectionString = _configuration.GetConnectionString("Default")!,
+            ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!,
+            UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!
+        };
 
         return output;
     }
