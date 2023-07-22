@@ -8,8 +8,19 @@ namespace BasicCodingLibrary.Providers;
 public interface IAppSettingProviderVersion3
 {
     /// <summary>
-    /// This method is getting the current values from the configuration files.
+    /// This property is providing user information received from configuration.
     /// </summary>
-    /// <returns>An instance of class <see cref="AppSettingModel"/> is returned.</returns>
-    AppSettingModel Get();
+    public UserInformation UserInformation { get; set; }
+    /// <summary>
+    /// This property is providing application information received from configuration.
+    /// </summary>
+    public ApplicationInformation ApplicationInformation { get; set; }
+    /// <summary>
+    /// This property is providing the command line arguments received from configuration.
+    /// </summary>
+    public string CommandLineArgument { get; set; }
+    /// <summary>
+    /// This property is providing the connection string received from configuration.
+    /// </summary>
+    public string ConnectionString { get; set; }
 }

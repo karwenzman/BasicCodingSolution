@@ -9,9 +9,13 @@ namespace BasicCodingConsole.Views.SettingView;
 
 public class SettingViewVersion3 : ViewBase, ISettingViewVersion3
 {
-    private readonly IAppSettingProvider _appSettingProvider;
+    private readonly IAppSettingProviderVersion3 _appSettingProvider;
     private readonly ILogger<SettingView> _logger;
 
+    /// <summary>
+    /// This property is providing the information collected from configuration.
+    /// </summary>
+    public IAppSettingModel AppSettingModel { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
@@ -32,27 +36,32 @@ public class SettingViewVersion3 : ViewBase, ISettingViewVersion3
     /// <see cref="ResizingView"/>.
     /// </summary>
     public IDisplay Display => new SettingDisplay();
-    /// <summary>
-    /// This property is providing the information collected from configuration.
-    /// </summary>
-    public AppSettingModel AppSettingModel { get; set; } = new AppSettingModel();
 
-    public SettingViewVersion3(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
+    public SettingViewVersion3(IAppSettingProviderVersion3 appSettingProvider, ILogger<SettingView> logger)
     {
         // in this version3 there is:
+        // - IAppSettingProvider replaced by IAppSettingProviderVersion3
+        // - property AppSetting just has plain getter and setter
+        // - the other properties only the a get, that is creating a new object each time the getter is called
+        // - _appSettingProvider is used to feed the property AppSettingModel in the constructor
+        // - the interface ISettingViewVersion2 is including a member of type IAppSettingModel
 
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
-        AppSettingModel = new AppSettingModel();
+        AppSettingModel = new AppSettingModel
+        {
+            ApplicationInformation = _appSettingProvider.ApplicationInformation,
+            UserInformation = _appSettingProvider.UserInformation,
+            CommandLineArgument = _appSettingProvider.CommandLineArgument,
+            ConnectionString = _appSettingProvider.ConnectionString
+        };
 
         _logger.LogInformation("* Load: {view}", nameof(SettingViewVersion3));
     }
 
     public void Run()
     {
-        AppSettingModel = _appSettingProvider.Get();
-
         Message.Start(showMessage: false, clearScreen: true);
         WriteMenu(Menu);
         WriteContent();
