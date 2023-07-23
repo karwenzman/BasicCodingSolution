@@ -60,7 +60,7 @@ public class MainView : ViewBase, IMainView
         _logger.LogInformation("* Load: {view}", nameof(MainView));
 
         AppSetting = _appSettingProvider.Get();
-        Message.Start();
+        Message.Start(showMessage: false, clearScreen: true);
 
         try
         {
@@ -106,7 +106,7 @@ public class MainView : ViewBase, IMainView
             Log.Logger.Error("Unexpected Exception!", e);
         }
 
-        Message.End();
+        Message.End(showMessage: true, clearScreen: true);
     }
 
     /// <summary>
