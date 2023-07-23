@@ -2,12 +2,12 @@
 
 public class ContentSettingMenu : IMenuContent
 {
-    public string[]? CaptionItems { get; } =
+    public string[]? CaptionItems { get; set; } =
     {
         "Main/Setting",
     };
 
-    public string[]? MenuItems { get; } = null;
+    public string[]? MenuItems { get; set; } = null;
 
-    public string[]? StatusItems { get; } = null;
+    public string[]? StatusItems { get; set; } = null;
 }

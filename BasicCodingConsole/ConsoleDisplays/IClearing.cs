@@ -1,5 +1,8 @@
 ﻿namespace BasicCodingConsole.ConsoleDisplays;
 
+/// <summary>
+/// This interface is providing members to clear a console.
+/// </summary>
 public interface IClearing
 {
     /// <summary>

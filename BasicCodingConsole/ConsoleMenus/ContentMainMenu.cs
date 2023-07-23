@@ -2,12 +2,12 @@
 
 public class ContentMainMenu : IMenuContent
 {
-    public string[]? CaptionItems { get; } =
+    public string[]? CaptionItems { get; set; } =
     {
         "Main",
     };
 
-    public string[]? MenuItems { get; } =
+    public string[]? MenuItems { get; set; } =
     {
         "A - no function, yet                         | D - Open SettingViewVersion2",
         "B - Run FibonacciApp                         | E - Open SettingViewVersion3",
@@ -16,7 +16,7 @@ public class ContentMainMenu : IMenuContent
         "",
     };
 
-    public string[]? StatusItems { get; } =
+    public string[]? StatusItems { get; set; } =
     {
         "Select a menu item or press ESC to exit.",
     };

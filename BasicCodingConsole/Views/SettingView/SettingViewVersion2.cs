@@ -56,6 +56,10 @@ public class SettingViewVersion2 : ViewBase, ISettingViewVersion2
         _logger.LogInformation("* Load: {view}", nameof(SettingViewVersion2));
     }
 
+    /// <summary>
+    /// This method is getting the current configuration and writing it to a console.
+    /// It is public and can be accessed via the dependency injection system.
+    /// </summary>
     public void Run()
     {
         AppSettingModel = _appSettingProvider.Get();

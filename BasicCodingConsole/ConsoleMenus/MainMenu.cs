@@ -2,9 +2,9 @@
 
 public class MainMenu : IMenu
 {
-    public string[]? CaptionItems { get; }
-    public string[]? MenuItems { get; }
-    public string[]? StatusItems { get; }
+    public string[]? CaptionItems { get; set; }
+    public string[]? MenuItems { get; set; }
+    public string[]? StatusItems { get; set; }
     public int ConsoleHeightMaximum { get; set; }
     public int ConsoleHeightMinimum { get; set; }
     public int ConsoleWidthMaximum { get; set; }
@@ -16,7 +16,7 @@ public class MainMenu : IMenu
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new BehaviorAllMenu();
+        IMenuBehavior behavior = new BehaviorMainMenu();
         ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
         ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
         ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;

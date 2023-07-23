@@ -2,10 +2,10 @@
 
 public class SettingMessage : IMessage
 {
-    public void Continue()
+    public void Continue(bool showMessage = true, bool clearScreen = true)
     {
         IContinuing continuing = new ContinueMessage();
-        continuing.Continue();
+        continuing.Continue(showMessage, clearScreen);
     }
 
     public void End(bool showMessage = true, bool clearScreen = true)

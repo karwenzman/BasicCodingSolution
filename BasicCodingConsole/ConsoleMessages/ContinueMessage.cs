@@ -2,9 +2,17 @@
 
 public class ContinueMessage : IContinuing
 {
-    public void Continue()
+    public void Continue(bool showMessage = true, bool clearScreen = false)
     {
-        Console.WriteLine($"\nPress ENTER to continue...");
-        Console.ReadLine();
+        if (showMessage)
+        {
+            Console.WriteLine($"\nPress ENTER to continue...");
+            Console.ReadLine();
+        }
+
+        if (clearScreen)
+        {
+            Console.Clear();
+        }
     }
 }

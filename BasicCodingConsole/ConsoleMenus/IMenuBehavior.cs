@@ -1,5 +1,8 @@
 ﻿namespace BasicCodingConsole.ConsoleMenus;
 
+/// <summary>
+/// This interface is providing members to setup the menu's behavior.
+/// </summary>
 public interface IMenuBehavior
 {
     /// <summary>

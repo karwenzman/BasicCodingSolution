@@ -3,7 +3,7 @@
 namespace BasicCodingLibrary.Providers;
 
 /// <summary>
-/// This interface is providing the access to the class <see cref="AppSettingModel"/>.
+/// This interface is providing members to access the class <see cref="AppSettingModel"/>.
 /// </summary>
 public interface IAppSettingProviderVersion2
 {

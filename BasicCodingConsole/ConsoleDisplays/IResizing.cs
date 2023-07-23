@@ -1,5 +1,8 @@
 ﻿namespace BasicCodingConsole.ConsoleDisplays;
 
+/// <summary>
+/// This interface is providing members to resize a console.
+/// </summary>
 public interface IResizing
 {
     /// <summary>
