@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMenus;
 
-public class BehaviorAllConsole : IMenuBehavior
+public class BehaviorAllMenu : IMenuBehavior
 {
     public int ConsoleHeightMaximum { get; set; } = 40;
     public int ConsoleHeightMinimum { get; set; } = 20;

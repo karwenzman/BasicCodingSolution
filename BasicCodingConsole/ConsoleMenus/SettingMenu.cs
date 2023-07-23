@@ -16,7 +16,7 @@ public class SettingMenu : IMenu
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new BehaviorAllConsole();
+        IMenuBehavior behavior = new BehaviorAllMenu();
         ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
         ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
         ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;
