@@ -49,6 +49,8 @@ public class SettingViewVersion2 : ViewBase, ISettingViewVersion2
         _logger = logger;
 
         AppSettingModel = new AppSettingModel();
+        AppSettingModel = _appSettingProvider.Get();
+
         Display = new SettingDisplay();
         Menu = new SettingMenu();
         Message = new SettingMessage();
@@ -62,8 +64,6 @@ public class SettingViewVersion2 : ViewBase, ISettingViewVersion2
     /// </summary>
     public void Run()
     {
-        AppSettingModel = _appSettingProvider.Get();
-
         Message.Start(showMessage: false, clearScreen: true);
         WriteMenu(Menu);
         WriteContent();

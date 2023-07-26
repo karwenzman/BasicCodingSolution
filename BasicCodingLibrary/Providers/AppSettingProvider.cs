@@ -11,34 +11,26 @@ namespace BasicCodingLibrary.Providers;
 public class AppSettingProvider : IAppSettingProvider
 {
     private readonly IConfiguration _configuration;
-    /// <summary>
-    /// This field is used to return the fetched data from configuration.
-    /// </summary>
-    private readonly AppSettingModel appSetting;
 
-    public AppSettingProvider(IConfiguration configuration, IOptionsSnapshot<AppSettingModel> optionsSnapshot)
+    public AppSettingProvider(IConfiguration configuration)
     {
-        Debug.WriteLine($"Passing <Constructor> in <{nameof(AppSettingProvider)}>.");
         _configuration = configuration;
-
-        // does this make any difference?
-        appSetting = optionsSnapshot.Value;
     }
 
     /// <summary>
-    /// This method is getting the current values of <see cref="AppSettingModel"/>.
-    /// A new snapshot of the file 'appsettings.json' is created.
+    /// This method is getting the current values from the configuration files.
     /// </summary>
-    /// <returns>An instance of class <see cref="AppSettingModel"/>.</returns>
+    /// <returns>An instance of class <see cref="AppSettingModel"/> is returned.</returns>
     public AppSettingModel Get()
     {
-        Debug.WriteLine($"Passing <{nameof(Get)}> in <{nameof(AppSettingProvider)}>.");
+        AppSettingModel output = new()
+        {
+            CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!,
+            ConnectionString = _configuration.GetConnectionString("Default")!,
+            ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!,
+            UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!
+        };
 
-        appSetting.CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!;
-        appSetting.ConnectionString = _configuration.GetConnectionString("Default")!;
-        appSetting.ApplicationInformation = _configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
-        appSetting.UserInformation = _configuration.GetSection("UserInformation").Get<UserInformation>()!;
-
-        return appSetting;
+        return output;
     }
 }
