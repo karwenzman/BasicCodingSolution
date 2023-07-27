@@ -76,23 +76,18 @@ public class MainView : ViewBase, IMainView
                         exitApp = true;
                         break;
                     case ConsoleKey.A:
-                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_A();
                         break;
                     case ConsoleKey.B:
-                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_B();
                         break;
                     case ConsoleKey.C:
-                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_C();
                         break;
                     case ConsoleKey.D:
-                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_D();
                         break;
                     case ConsoleKey.E:
-                        ResizeConsoleIfNeededAndClearIt(Menu);
                         Action_E();
                         break;
                     default:

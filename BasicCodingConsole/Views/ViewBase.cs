@@ -36,7 +36,6 @@ public abstract class ViewBase
 
         // TODO: sometimes the width is one character to wide;
         // is this depending on debug, production or on the kind of distribution?
-        // if resizing to full screen, the app is minimizing the console, but the screen stays in full screen
         Console.WriteLine($"ConsoleHeight:{Console.WindowHeight,3}");
         Console.WriteLine($"ConsoleWidth :{Console.WindowWidth,3}");
     }
@@ -104,8 +103,7 @@ public abstract class ViewBase
         {
             isResize = true;
         }
-
-        if (Console.WindowWidth < menu.ConsoleWidthMinimum)
+        else if (Console.WindowWidth < menu.ConsoleWidthMinimum)
         {
             isResize = true;
         }
@@ -124,8 +122,7 @@ public abstract class ViewBase
         {
             isResize = true;
         }
-
-        if (Console.WindowWidth > menu.ConsoleWidthMaximum)
+        else if (Console.WindowWidth > menu.ConsoleWidthMaximum)
         {
             isResize = true;
         }
