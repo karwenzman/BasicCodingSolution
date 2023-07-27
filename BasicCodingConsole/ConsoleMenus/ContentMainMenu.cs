@@ -9,8 +9,8 @@ public class ContentMainMenu : IMenuContent
 
     public string[]? MenuItems { get; set; } =
     {
-        "A - no function, yet                         | D - Open SettingViewVersion2",
-        "B - Run FibonacciApp                         | E - Open SettingViewVersion3",
+        "A - no function, yet                         | D - no function, yet",
+        "B - Run FibonacciApp                         | E - no function, yet",
         "C - Open SettingView",
         "",
         "",

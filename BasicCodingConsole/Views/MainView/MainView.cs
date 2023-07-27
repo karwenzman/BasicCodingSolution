@@ -2,8 +2,6 @@
 using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.SettingView;
-using BasicCodingLibrary.Models;
-using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,51 +13,46 @@ namespace BasicCodingConsole.Views.MainView;
 
 public class MainView : ViewBase, IMainView
 {
-    private readonly IAppSettingProvider _appSettingProvider;
     private readonly IConfiguration _configuration;
     private readonly IHost _hostProvider;
     private readonly ILogger<MainView> _logger;
 
     /// <summary>
+    /// This property is providing standard method used to manipulate the console.
+    /// <para></para>
+    /// The method's behavior is implemented in the files <see cref="ClearingView"/> and
+    /// <see cref="ResizingView"/>.
+    /// </summary>
+    public IDisplay Display { get; set; }
+    /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
     /// The content is implemented in file <see cref="ContentMainMenu"/>.
     /// </summary>
-    public IMenu Menu => new MainMenu();
+    public IMenu Menu { get; set; }
     /// <summary>
     /// This property is providing standard messages written to the console.
     /// <para></para>
-    /// The content is implemented in the files <see cref="StartingApp"/>,
-    /// <see cref="EndingApp"/> and <see cref="ContinueMessage"/>
+    /// The content is implemented in the files <see cref="StartingView"/>,
+    /// <see cref="EndingView"/> and <see cref="ContinueMessage"/>
     /// </summary>
-    public IMessage Message => new MainMessage();
-    /// <summary>
-    /// This property is providing standard method used to manipulate the console.
-    /// <para></para>
-    /// The method's behavior is implemented in the files <see cref="ClearingApp"/> and
-    /// <see cref="ResizingApp"/>.
-    /// </summary>
-    public IDisplay Display => new MainDisplay();
-    /// <summary>
-    /// This property is providing the information collected from configuration.
-    /// </summary>
-    public AppSettingModel AppSetting { get; set; } = new AppSettingModel();
+    public IMessage Message { get; set; }
 
-    public MainView(IAppSettingProvider appSettingProvider, IConfiguration configuration, IHost hostProvider, ILogger<MainView> logger)
+    public MainView(IConfiguration configuration, IHost hostProvider, ILogger<MainView> logger)
     {
-        Debug.WriteLine($"Passing <Constructor> in <{nameof(MainView)}>.");
-        _appSettingProvider = appSettingProvider;
         _configuration = configuration;
-        _hostProvider = hostProvider;
+        _hostProvider = hostProvider; // rework here; not using the services somewhere in code
         _logger = logger;
+
+        Display = new MainDisplay();
+        Menu = new MainMenu();
+        Message = new MainMessage();
+
+        _logger.LogInformation("* Load: {view}", nameof(MainView));
     }
 
     public void Run()
     {
-        Debug.WriteLine($"Passing <{nameof(Run)}> in <{nameof(MainView)}>.");
-        _logger.LogInformation("* Load: {view}", nameof(MainView));
-
-        AppSetting = _appSettingProvider.Get();
         Message.Start(showMessage: false, clearScreen: true);
 
         try
