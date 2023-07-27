@@ -10,7 +10,7 @@ using Serilog;
 
 var builder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", false, true)
+    .AddJsonFile("appsettings.json",optional: false,  reloadOnChange: true)
     .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);

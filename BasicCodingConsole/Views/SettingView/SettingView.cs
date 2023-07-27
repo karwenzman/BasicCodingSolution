@@ -4,7 +4,6 @@ using BasicCodingConsole.ConsoleMessages;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 
 namespace BasicCodingConsole.Views.SettingView;
 
@@ -62,7 +61,7 @@ public class SettingView : ViewBase, ISettingView
     }
 
     /// <summary>
-    /// This method is writing the members of <see cref="AppSetting"/> to a console.
+    /// This method is writing the members of <see cref="AppSettingModel"/> to a console.
     /// </summary>
     private void WriteContent()
     {

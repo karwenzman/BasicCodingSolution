@@ -1,7 +1,5 @@
 ﻿using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using System.Diagnostics;
 
 namespace BasicCodingLibrary.Providers;
 
