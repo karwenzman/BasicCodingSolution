@@ -10,7 +10,7 @@ using Serilog;
 
 var builder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json",optional: false,  reloadOnChange: true)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
@@ -30,13 +30,8 @@ using var host = Host.CreateDefaultBuilder()
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<IMainViewModel, MainViewModel>();
         services.AddTransient<ISettingView, SettingView>();
-        services.AddTransient<ISettingViewVersion2, SettingViewVersion2>();
-        services.AddTransient<ISettingViewVersion3, SettingViewVersion3>();
         services.AddTransient<ISettingViewModel, SettingViewModel>();
         services.AddTransient<IAppSettingProvider, AppSettingProvider>();
-        services.AddTransient<IAppSettingProviderVersion2, AppSettingProviderVersion2>();
-        services.AddTransient<IAppSettingProviderVersion3, AppSettingProviderVersion3>();
-
     })
     .UseSerilog()
     .Build();

@@ -164,9 +164,9 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     private void Action_D()
     {
-        using var scope = _hostProvider.Services.CreateScope();
-        var services = scope.ServiceProvider;
-        services.GetRequiredService<ISettingViewVersion2>().Run();
+        Display.Clear();
+        WriteContent(); // to do
+        Message.Continue();
     }
 
     /// <summary>
@@ -174,9 +174,9 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     private void Action_E()
     {
-        using var scope = _hostProvider.Services.CreateScope();
-        var services = scope.ServiceProvider;
-        services.GetRequiredService<ISettingViewVersion3>().Run();
+        Display.Clear();
+        WriteContent(); // to do
+        Message.Continue();
     }
 
     private void WriteContent()
