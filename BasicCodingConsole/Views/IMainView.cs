@@ -2,7 +2,7 @@
 using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 
-namespace BasicCodingConsole.Views.MainView;
+namespace BasicCodingConsole.Views;
 
 public interface IMainView
 {

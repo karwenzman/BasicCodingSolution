@@ -1,6 +1,7 @@
-﻿using BasicCodingLibrary.Models;
+﻿using BasicCodingConsole.ConsoleMenus;
+using BasicCodingLibrary.Models;
 
-namespace BasicCodingConsole.ConsoleMenus;
+namespace BasicCodingConsole.Views.SettingView;
 
 public class SettingMenu : IMenu
 {

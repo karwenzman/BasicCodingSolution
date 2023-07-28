@@ -3,7 +3,7 @@ using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingLibrary.Models;
 
-namespace BasicCodingConsole.Views.SettingView;
+namespace BasicCodingConsole.Views;
 
 public interface ISettingView
 {

@@ -1,4 +1,6 @@
-﻿namespace BasicCodingConsole.ConsoleMenus;
+﻿using BasicCodingConsole.ConsoleMenus;
+
+namespace BasicCodingConsole.Views.MainView;
 
 public class ContentMainMenu : IMenuContent
 {

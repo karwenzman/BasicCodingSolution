@@ -1,7 +1,6 @@
 ﻿using BasicCodingConsole.ConsoleDisplays;
 using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.Views.SettingView;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -103,7 +102,7 @@ public class MainView : ViewBase, IMainView
     private void Action_A()
     {
         Display.Clear();
-        WriteContent(); // to do
+        Console.WriteLine($"\nNo content, yet");
         Message.Continue();
     }
 
@@ -158,7 +157,7 @@ public class MainView : ViewBase, IMainView
     private void Action_D()
     {
         Display.Clear();
-        WriteContent(); // to do
+        Console.WriteLine($"\nNo content, yet");
         Message.Continue();
     }
 
@@ -168,28 +167,7 @@ public class MainView : ViewBase, IMainView
     private void Action_E()
     {
         Display.Clear();
-        WriteContent(); // to do
-        Message.Continue();
-    }
-
-    private void WriteContent()
-    {
         Console.WriteLine($"\nNo content, yet");
-        #region ***** Testing to write a file *****
-        //Console.WriteLine("Creating a json file");
-        //try
-        //{
-        //    var options = new JsonSerializerOptions { WriteIndented = true };
-        //    var jsonString = JsonSerializer.Serialize(new AppSettings(), options);
-        //    //var jsonString = JsonSerializer.Serialize(new { AppSettings = new AppSettings() }, options);
-        //    File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "TestFile.json"), jsonString);
-        //}
-        //catch (Exception e)
-        //{
-        //    Debug.WriteLine($"Exception!");
-        //    Debug.WriteLine(e.ToString());
-        //}
-        //Console.WriteLine(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "TestFile.json")));
-        #endregion
+        Message.Continue();
     }
 }
