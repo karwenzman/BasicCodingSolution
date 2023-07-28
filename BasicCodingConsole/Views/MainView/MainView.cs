@@ -13,8 +13,8 @@ namespace BasicCodingConsole.Views.MainView;
 public class MainView : ViewBase, IMainView
 {
     private readonly IConfiguration _configuration;
-    private readonly IHost _hostProvider;
     private readonly ILogger<MainView> _logger;
+    private readonly ISettingView _settingView;
 
     /// <summary>
     /// This property is providing standard method used to manipulate the console.
@@ -37,11 +37,11 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public MainView(IConfiguration configuration, IHost hostProvider, ILogger<MainView> logger)
+    public MainView(IConfiguration configuration, ILogger<MainView> logger, ISettingView settingView)
     {
         _configuration = configuration;
-        _hostProvider = hostProvider; // rework here; not using the services somewhere in code
         _logger = logger;
+        _settingView = settingView;
 
         Display = new MainDisplay();
         Menu = new MainMenu();
@@ -146,9 +146,7 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     private void Action_C()
     {
-        using var scope = _hostProvider.Services.CreateScope();
-        var services = scope.ServiceProvider;
-        services.GetRequiredService<ISettingView>().Run();
+        _settingView.Run();
     }
 
     /// <summary>
