@@ -2,7 +2,7 @@
 
 namespace PaperDelieveryLibrary.Models;
 
-public interface IPaperDelieveryFulfillment
+public interface IPaperDeliveryFulfillment
 {
     IPaperDeliveryContract Contract { get; set; }
     IPaperDeliveryContractor Contractor { get; set; }

@@ -2,7 +2,7 @@
 
 namespace PaperDelieveryLibrary.Models;
 
-public class PaperDelieveryFulfillment : IPaperDelieveryFulfillment
+public class PaperDeliveryFulfillment : IPaperDeliveryFulfillment
 {
     public IPaperDeliveryContract Contract { get; set; } = new PaperDeliveryContract();
     public IPaperDeliveryContractor Contractor { get; set; } = new PaperDeliveryContractor();
