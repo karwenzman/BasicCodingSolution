@@ -1,6 +1,6 @@
 ﻿using BasicCodingLibrary.Enums;
 
-namespace BasicCodingLibrary.Models;
+namespace PaperDelieveryLibrary.Models;
 
 public class PaperDeliveryContractor : IPaperDeliveryContractor
 {

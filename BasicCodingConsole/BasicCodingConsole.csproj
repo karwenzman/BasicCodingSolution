@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BasicCodingLibrary\BasicCodingLibrary.csproj" />
+    <ProjectReference Include="..\PaperDelieveryLibrary\PaperDelieveryLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
