@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicCodingLibrary", "Basic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicCodingWpf", "BasicCodingWpf\BasicCodingWpf.csproj", "{E4219134-DC6A-4C99-B534-BA3B6A91C807}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicCodingTest", "BasicCodingTest\BasicCodingTest.csproj", "{E9B9BCC7-559E-4E12-8EA3-0A9F47D9A246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicCodingTest", "BasicCodingTest\BasicCodingTest.csproj", "{E9B9BCC7-559E-4E12-8EA3-0A9F47D9A246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperDelieveryLibrary", "PaperDelieveryLibrary\PaperDelieveryLibrary.csproj", "{69870BD0-D5DA-4A50-AAD6-F988EDC357F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E9B9BCC7-559E-4E12-8EA3-0A9F47D9A246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9B9BCC7-559E-4E12-8EA3-0A9F47D9A246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9B9BCC7-559E-4E12-8EA3-0A9F47D9A246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69870BD0-D5DA-4A50-AAD6-F988EDC357F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69870BD0-D5DA-4A50-AAD6-F988EDC357F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69870BD0-D5DA-4A50-AAD6-F988EDC357F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69870BD0-D5DA-4A50-AAD6-F988EDC357F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
