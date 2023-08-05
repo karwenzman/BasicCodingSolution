@@ -2,7 +2,7 @@
 
 namespace PaperDelieveryLibrary.Providers;
 
-public class PaperDelieveryProvider
+public class PaperDeliveryProvider
 {
     public List<PaperDeliveryContract> GetContractList()
     {
@@ -47,9 +47,9 @@ public class PaperDelieveryProvider
         PaperDeliveryContractor output = new PaperDeliveryContractor();
         return output;
     }
-    public PaperDelieveryFulfillment GetFulfillment()
+    public PaperDeliveryFulfillment GetFulfillment()
     {
-        PaperDelieveryFulfillment output = new PaperDelieveryFulfillment();
+        PaperDeliveryFulfillment output = new PaperDeliveryFulfillment();
 
         return output;
     }
