@@ -16,7 +16,7 @@ public class PaperDeliveryProvider
                 Region = "02166",
                 Route = "KA09",
                 Site = "809",
-                StandardizedWorkingHours = new TimeOnly(00, 01, 58),
+                StandardizedWorkingHours = new TimeOnly(01, 58, 00),
             },
             new PaperDeliveryContract
             {
@@ -26,7 +26,7 @@ public class PaperDeliveryProvider
                 Region = "02166",
                 Route = "KA09",
                 Site = "809",
-                StandardizedWorkingHours = new TimeOnly(00, 01, 58),
+                StandardizedWorkingHours = new TimeOnly(01, 58, 00),
             },
             new PaperDeliveryContract
             {
@@ -36,7 +36,7 @@ public class PaperDeliveryProvider
                 Region = "02166",
                 Route = "KA09",
                 Site = "809",
-                StandardizedWorkingHours = new TimeOnly(00, 01, 25),
+                StandardizedWorkingHours = new TimeOnly(01, 25, 00),
             }
         };
 

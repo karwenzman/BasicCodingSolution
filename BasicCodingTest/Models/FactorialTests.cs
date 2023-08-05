@@ -1,15 +1,9 @@
 ﻿using BasicCodingLibrary.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicCodingTest.Models;
 
 public class FactorialTests
 {
-    #region ***** Field *****
     private static IEnumerable<int[]> SourceProvider()
     {
         yield return new[] { 0, 1 };
@@ -20,9 +14,7 @@ public class FactorialTests
         yield return new[] { 5, 120 };
         yield return new[] { 10, 3628800 };
     }
-    #endregion
 
-    #region ***** Test *****
     [SetUp]
     public void Setup()
     {
@@ -100,6 +92,4 @@ public class FactorialTests
         Assert.That(resultFactorial, Is.EqualTo(expectedFactorial));
         #endregion
     }
-    #endregion
-
 }

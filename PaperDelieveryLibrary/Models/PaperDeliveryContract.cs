@@ -13,8 +13,10 @@ public class PaperDeliveryContract : IPaperDeliveryContract
     {
         get
         {
-            double output = HourlyWageRate * StandardizedWorkingHours.Hour;
-            output += HourlyWageRate * StandardizedWorkingHours.Minute;
+            var resultWageHour = HourlyWageRate * StandardizedWorkingHours.Hour;
+            var resultWageMinute = HourlyWageRate * StandardizedWorkingHours.Minute * 1 / 60;
+            var resultWageSecond = HourlyWageRate * StandardizedWorkingHours.Second * 1 / 3600;
+            var output = resultWageHour + resultWageMinute + resultWageSecond;
             return output;
         }
     }
