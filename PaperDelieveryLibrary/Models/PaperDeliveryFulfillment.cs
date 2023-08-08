@@ -1,6 +1,6 @@
 ﻿using BasicCodingLibrary.Enums;
 
-namespace PaperDelieveryLibrary.Models;
+namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryFulfillment : IPaperDeliveryFulfillment
 {

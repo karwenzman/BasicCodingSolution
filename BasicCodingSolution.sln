@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicCodingWpf", "BasicCodi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicCodingTest", "BasicCodingTest\BasicCodingTest.csproj", "{E9B9BCC7-559E-4E12-8EA3-0A9F47D9A246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperDelieveryLibrary", "PaperDelieveryLibrary\PaperDelieveryLibrary.csproj", "{69870BD0-D5DA-4A50-AAD6-F988EDC357F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaperDeliveryLibrary", "PaperDelieveryLibrary\PaperDeliveryLibrary.csproj", "{69870BD0-D5DA-4A50-AAD6-F988EDC357F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

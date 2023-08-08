@@ -1,4 +1,4 @@
-﻿namespace PaperDelieveryLibrary.Models;
+﻿namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryContract : IPaperDeliveryContract
 {

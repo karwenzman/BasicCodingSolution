@@ -1,10 +1,45 @@
-﻿using PaperDelieveryLibrary.Models;
+﻿using PaperDeliveryLibrary.Models;
 
-namespace PaperDelieveryLibrary.Providers;
+namespace PaperDeliveryLibrary.Providers;
 
 public class PaperDeliveryProvider
 {
+    /// <summary>
+    /// This method returns a list that is hard coded.
+    /// It is for testing reasons only.
+    /// </summary>
+    /// <returns></returns>
     public List<PaperDeliveryContract> GetContractList()
+    {
+        return ReadFromContractList();
+    }
+    /// <summary>
+    /// This method returns a list loaded from a csv-file.
+    /// </summary>
+    /// <param name="fileName">The complete path and file name with extension.</param>
+    /// <returns></returns>
+    public List<PaperDeliveryContract> GetContractList(string fileName)
+    {
+        return ReadFromContractFile(fileName);
+    }
+    public PaperDeliveryContractor GetContractorList()
+    {
+        PaperDeliveryContractor output = new PaperDeliveryContractor();
+
+        return output;
+    }
+    public PaperDeliveryFulfillment GetFulfillmentList()
+    {
+        PaperDeliveryFulfillment output = new PaperDeliveryFulfillment();
+
+        return output;
+    }
+
+    /// <summary>
+    /// This method is providing a hard coded list for testing.
+    /// </summary>
+    /// <returns></returns>
+    private List<PaperDeliveryContract> ReadFromContractList()
     {
         List<PaperDeliveryContract> output = new()
         {
@@ -42,14 +77,14 @@ public class PaperDeliveryProvider
 
         return output;
     }
-    public PaperDeliveryContractor GetContractor()
+    /// <summary>
+    /// This method is actually reading the content from a csv-file.
+    /// </summary>
+    /// <param name="fileName">The complete path and file name with extension.</param>
+    /// <returns></returns>
+    private List<PaperDeliveryContract> ReadFromContractFile(string fileName)
     {
-        PaperDeliveryContractor output = new PaperDeliveryContractor();
-        return output;
-    }
-    public PaperDeliveryFulfillment GetFulfillment()
-    {
-        PaperDeliveryFulfillment output = new PaperDeliveryFulfillment();
+        List<PaperDeliveryContract> output = new();
 
         return output;
     }
