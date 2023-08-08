@@ -11,7 +11,7 @@ public class ContentMainMenu : IMenuContent
 
     public string[]? MenuItems { get; set; } =
     {
-        "A - no function, yet                         | D - no function, yet",
+        "A - no function, yet                         | D - PaperDelivery - List Contracts",
         "B - Run FibonacciApp                         | E - no function, yet",
         "C - Open SettingView",
         "",

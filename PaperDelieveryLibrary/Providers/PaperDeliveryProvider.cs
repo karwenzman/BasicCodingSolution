@@ -2,14 +2,14 @@
 
 namespace PaperDeliveryLibrary.Providers;
 
-public class PaperDeliveryProvider
+public class PaperDeliveryProvider : IPaperDeliveryProvider
 {
     /// <summary>
     /// This method returns a list that is hard coded.
     /// It is for testing reasons only.
     /// </summary>
     /// <returns></returns>
-    public List<PaperDeliveryContract> GetContractList()
+    public List<IPaperDeliveryContract> GetContractList()
     {
         return ReadFromContractList();
     }
@@ -18,7 +18,7 @@ public class PaperDeliveryProvider
     /// </summary>
     /// <param name="fileName">The complete path and file name with extension.</param>
     /// <returns></returns>
-    public List<PaperDeliveryContract> GetContractList(string fileName)
+    public List<IPaperDeliveryContract> GetContractList(string fileName)
     {
         return ReadFromContractFile(fileName);
     }
@@ -39,9 +39,9 @@ public class PaperDeliveryProvider
     /// This method is providing a hard coded list for testing.
     /// </summary>
     /// <returns></returns>
-    private List<PaperDeliveryContract> ReadFromContractList()
+    private List<IPaperDeliveryContract> ReadFromContractList()
     {
-        List<PaperDeliveryContract> output = new()
+        List<IPaperDeliveryContract> output = new()
         {
             new PaperDeliveryContract
             {
@@ -82,9 +82,9 @@ public class PaperDeliveryProvider
     /// </summary>
     /// <param name="fileName">The complete path and file name with extension.</param>
     /// <returns></returns>
-    private List<PaperDeliveryContract> ReadFromContractFile(string fileName)
+    private List<IPaperDeliveryContract> ReadFromContractFile(string fileName)
     {
-        List<PaperDeliveryContract> output = new();
+        List<IPaperDeliveryContract> output = new();
 
         return output;
     }

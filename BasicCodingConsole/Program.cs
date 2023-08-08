@@ -1,11 +1,13 @@
 ﻿using BasicCodingConsole.Views;
 using BasicCodingConsole.Views.MainView;
+using BasicCodingConsole.Views.PaperDeliveryContractView;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PaperDeliveryLibrary.Providers;
 using Serilog;
 
 var builder = new ConfigurationBuilder()
@@ -29,7 +31,9 @@ using var host = Host.CreateDefaultBuilder()
         services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<ISettingView, SettingView>();
+        services.AddTransient<IPaperDeliveryContractView, PaperDeliveryContractView>();
         services.AddTransient<IAppSettingProvider, AppSettingProvider>();
+        services.AddTransient<IPaperDeliveryProvider, PaperDeliveryProvider>();
     })
     .UseSerilog()
     .Build();

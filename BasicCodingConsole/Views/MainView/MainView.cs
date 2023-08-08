@@ -15,6 +15,7 @@ public class MainView : ViewBase, IMainView
     private readonly IConfiguration _configuration;
     private readonly ILogger<MainView> _logger;
     private readonly ISettingView _settingView;
+    private readonly IPaperDeliveryContractView _paperDeliveryContractView;
 
     /// <summary>
     /// This property is providing standard method used to manipulate the console.
@@ -37,10 +38,11 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public MainView(IConfiguration configuration, ILogger<MainView> logger, ISettingView settingView)
+    public MainView(IConfiguration configuration, ILogger<MainView> logger, IPaperDeliveryContractView paperDeliveryContractView, ISettingView settingView)
     {
         _configuration = configuration;
         _logger = logger;
+        _paperDeliveryContractView = paperDeliveryContractView;
         _settingView = settingView;
 
         Display = new MainDisplay();
@@ -68,19 +70,19 @@ public class MainView : ViewBase, IMainView
                         exitApp = true;
                         break;
                     case ConsoleKey.A:
-                        Action_A();
+                        Console.WriteLine("No content, yet");
                         break;
                     case ConsoleKey.B:
                         Action_B();
                         break;
                     case ConsoleKey.C:
-                        Action_C();
+                        _settingView.Run();
                         break;
                     case ConsoleKey.D:
-                        Action_D();
+                        _paperDeliveryContractView.Run();
                         break;
                     case ConsoleKey.E:
-                        Action_E();
+                        Console.WriteLine("No content, yet");
                         break;
                     default:
                         Console.Beep();
@@ -94,16 +96,6 @@ public class MainView : ViewBase, IMainView
         }
 
         Message.End(showMessage: true, clearScreen: true);
-    }
-
-    /// <summary>
-    /// This method starts the logic behind this menu item.
-    /// </summary>
-    private void Action_A()
-    {
-        Display.Clear();
-        Console.WriteLine($"\nNo content, yet");
-        Message.Continue();
     }
 
     /// <summary>
@@ -139,33 +131,5 @@ public class MainView : ViewBase, IMainView
         Console.ForegroundColor = foregroundColor;
         Console.BackgroundColor = backgroundColor;
 
-    }
-
-    /// <summary>
-    /// This method starts the logic behind this menu item.
-    /// </summary>
-    private void Action_C()
-    {
-        _settingView.Run();
-    }
-
-    /// <summary>
-    /// This method starts the logic behind this menu item.
-    /// </summary>
-    private void Action_D()
-    {
-        Display.Clear();
-        Console.WriteLine($"\nNo content, yet");
-        Message.Continue();
-    }
-
-    /// <summary>
-    /// This method starts the logic behind this menu item.
-    /// </summary>
-    private void Action_E()
-    {
-        Display.Clear();
-        Console.WriteLine($"\nNo content, yet");
-        Message.Continue();
     }
 }
