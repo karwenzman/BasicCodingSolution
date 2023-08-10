@@ -1,5 +1,4 @@
-﻿using BasicCodingConsole.ConsoleDisplays;
-using BasicCodingConsole.ConsoleMenus;
+﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingLibrary.Models;
 
@@ -19,10 +18,7 @@ public interface ISettingView
     /// A value used to control the message's behavior.
     /// </summary>
     IMessage Message { get; set; }
-    /// <summary>
-    /// A value used to control the display's behavior.
-    /// </summary>
-    IDisplay Display { get; set; }
+
     /// <summary>
     /// A method used to run the view.
     /// </summary>

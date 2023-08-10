@@ -1,5 +1,4 @@
-﻿using BasicCodingConsole.ConsoleDisplays;
-using BasicCodingConsole.ConsoleMenus;
+﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.Providers;
@@ -16,13 +15,6 @@ public class SettingView : ViewBase, ISettingView
     /// This property is providing the information collected from configuration.
     /// </summary>
     public IAppSettingModel AppSettingModel { get; set; }
-    /// <summary>
-    /// This property is providing standard method used to manipulate the console.
-    /// <para></para>
-    /// The method's behavior is implemented in the files <see cref="ClearingView"/> and
-    /// <see cref="ResizingView"/>.
-    /// </summary>
-    public IDisplay Display { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
@@ -45,7 +37,6 @@ public class SettingView : ViewBase, ISettingView
         AppSettingModel = new AppSettingModel();
         AppSettingModel = _appSettingProvider.Get();
 
-        Display = new SettingDisplay();
         Menu = new SettingMenu(AppSettingModel);
         Message = new SettingMessage();
 

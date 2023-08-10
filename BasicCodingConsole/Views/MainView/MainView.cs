@@ -1,9 +1,6 @@
-﻿using BasicCodingConsole.ConsoleDisplays;
-using BasicCodingConsole.ConsoleMenus;
+﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Diagnostics;
@@ -17,13 +14,6 @@ public class MainView : ViewBase, IMainView
     private readonly ISettingView _settingView;
     private readonly IPaperDeliveryContractView _paperDeliveryContractView;
 
-    /// <summary>
-    /// This property is providing standard method used to manipulate the console.
-    /// <para></para>
-    /// The method's behavior is implemented in the files <see cref="ClearingView"/> and
-    /// <see cref="ResizingView"/>.
-    /// </summary>
-    public IDisplay Display { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
@@ -45,7 +35,6 @@ public class MainView : ViewBase, IMainView
         _paperDeliveryContractView = paperDeliveryContractView;
         _settingView = settingView;
 
-        Display = new MainDisplay();
         Menu = new MainMenu();
         Message = new MainMessage();
 
