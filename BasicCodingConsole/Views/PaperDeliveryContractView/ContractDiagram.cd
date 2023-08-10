@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.PaperDeliveryContractMenuBehavior">
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenuBehavior">
     <Position X="2.75" Y="3.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\PaperDeliveryContractMenuBehavior.cs</FileName>
+      <FileName>Views\PaperDeliveryContractView\ContractMenuBehavior.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.PaperDeliveryContractMenuContent">
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenuContent">
     <Position X="8.25" Y="3.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\PaperDeliveryContractMenuContent.cs</FileName>
+      <FileName>Views\PaperDeliveryContractView\ContractMenuContent.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.PaperDeliveryContractMenu">
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenu">
     <Position X="2.75" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAABAAgAACACAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\PaperDeliveryContractMenu.cs</FileName>
+      <FileName>Views\PaperDeliveryContractView\ContractMenu.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.PaperDeliveryContractView">
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractView">
     <Position X="3" Y="10.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAgAAAAAAAAAAAAAAEAAAAAIAAAAAAAAIAAAAAI=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\PaperDeliveryContractView.cs</FileName>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAIIAAAAAI=</HashCode>
+      <FileName>Views\PaperDeliveryContractView\ContractView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -39,11 +39,11 @@
       <FileName>Views\ViewBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.PaperDeliveryMessage">
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMessage">
     <Position X="2.5" Y="6.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAIACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\PaperDeliveryMessage.cs</FileName>
+      <FileName>Views\PaperDeliveryContractView\ContractMessage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -56,7 +56,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BasicCodingConsole.ConsoleMessages.StandardEndMessage">
-    <Position X="7" Y="8.5" Width="1.5" />
+    <Position X="7" Y="8.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\StandardEndMessage.cs</FileName>
@@ -64,7 +64,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BasicCodingConsole.ConsoleMessages.StandardStartMessage">
-    <Position X="10.75" Y="8.5" Width="1.5" />
+    <Position X="11" Y="8.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\StandardStartMessage.cs</FileName>
@@ -111,7 +111,7 @@
   <Interface Name="BasicCodingConsole.Views.IPaperDeliveryContractView">
     <Position X="0.5" Y="10.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAIIAAAAAI=</HashCode>
       <FileName>Views\IPaperDeliveryContractView.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -137,7 +137,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMessages.IStartMessage">
-    <Position X="9" Y="8.5" Width="1.5" />
+    <Position X="9.25" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\IStartMessage.cs</FileName>

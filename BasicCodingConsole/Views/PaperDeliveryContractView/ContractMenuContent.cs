@@ -6,13 +6,12 @@ public class ContractMenuContent : IMenuContent
 {
     public string[]? CaptionItems { get; set; } =
     {
-        "Main/PaperDeliveryContract",
+        "",
+        "Main / PaperDeliveryContract",
+        "",
     };
 
     public string[]? MenuItems { get; set; } = null;
 
-    public string[]? StatusItems { get; set; } =
-    {
-        "ESC to exit.",
-    };
+    public string[]? StatusItems { get; set; } = null;
 }

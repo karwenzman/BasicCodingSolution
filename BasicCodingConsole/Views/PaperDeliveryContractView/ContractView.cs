@@ -13,7 +13,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     /// <summary>
     /// This property is providing a list of contracts.
     /// </summary>
-    public List<IPaperDeliveryContract> PaperDeliveryContracts { get; set; }
+    public List<IPaperDeliveryContract> Contracts { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
@@ -31,7 +31,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     public ContractView(IPaperDeliveryProvider provider)
     {
         _provider = provider;
-        PaperDeliveryContracts = _provider.GetContractList();
+        Contracts = _provider.GetContractList();
 
         Menu = new ContractMenu();
         Message = new ContractMessage();
@@ -39,23 +39,21 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
 
     public void Run()
     {
-        Message.Start();
         WriteMenu(Menu);
         WriteContent();
         Message.Continue();
     }
 
     /// <summary>
-    /// This method is writing the members of <see cref="PaperDeliveryContracts"/> to a console.
+    /// This method is writing the members of <see cref="Contracts"/> to a console.
     /// </summary>
     private void WriteContent()
     {
-        foreach (var item in PaperDeliveryContracts)
+        foreach (var item in Contracts)
         {
-            Console.WriteLine($"\nContractID: {item.ContractID}");
-            Console.WriteLine($"{"Tour",10}: {item.Route} {item.Site} {item.Region} {item.NumberOfPapers}x papers");
-            Console.WriteLine($"{"Schedule",10} {"HourlyWage",12}");
-            Console.WriteLine($"{item.StandardizedWorkingHours,10} {item.HourlyWageRate,8:f2} EUR ==> {item.Wage:f2} EUR");
+            Console.WriteLine($"\nContractID {item.ContractID} - Tour {item.Route} {item.Site} {item.Region}");
+            Console.WriteLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",13}");
+            Console.WriteLine($"{item.NumberOfPapers,10} {item.StandardizedWorkingHours,10} {item.HourlyWageRate,8:f2} EUR ==> {item.Wage:f2} EUR");
         }
     }
 }
