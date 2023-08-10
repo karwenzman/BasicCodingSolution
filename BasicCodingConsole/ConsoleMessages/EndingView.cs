@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class EndingView : IEndMessage
+public class EndingView : IMessageEnd
 {
     public void End(bool showMessage = true, bool clearScreen = true)
     {

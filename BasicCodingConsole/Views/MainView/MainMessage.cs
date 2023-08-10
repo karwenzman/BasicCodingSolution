@@ -1,22 +1,24 @@
-﻿namespace BasicCodingConsole.ConsoleMessages;
+﻿using BasicCodingConsole.ConsoleMessages;
 
-public class SettingMessage : IMessage
+namespace BasicCodingConsole.Views.MainView;
+
+public class MainMessage : IMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = true)
     {
-        IContinueMessage continuing = new StandardContinueMessage();
+        IMessageContinue continuing = new StandardContinueMessage();
         continuing.Continue(showMessage, clearScreen);
     }
 
     public void End(bool showMessage = true, bool clearScreen = true)
     {
-        IEndMessage ending = new EndingView();
+        IMessageEnd ending = new MainMessageEnd();
         ending.End(showMessage, clearScreen);
     }
 
     public void Start(bool showMessage = true, bool clearScreen = true)
     {
-        IStartMessage starting = new StartingView();
+        IMessageStart starting = new MainMessageStart();
         starting.Start(showMessage, clearScreen);
     }
 }

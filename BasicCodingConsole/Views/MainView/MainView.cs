@@ -27,7 +27,7 @@ public class MainView : ViewBase, IMainView
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
-    /// The content is implemented in file <see cref="ContentMainMenu"/>.
+    /// The content is implemented in file <see cref="MainMenuContent"/>.
     /// </summary>
     public IMenu Menu { get; set; }
     /// <summary>

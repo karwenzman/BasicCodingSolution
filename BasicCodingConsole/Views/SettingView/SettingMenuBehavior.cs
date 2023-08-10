@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.SettingView;
 
-public class BehaviorSettingMenu : IMenuBehavior
+public class SettingMenuBehavior : IMenuBehavior
 {
     public int ConsoleHeightMaximum { get; set; } = 40;
     public int ConsoleHeightMinimum { get; set; } = 40;

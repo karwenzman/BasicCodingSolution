@@ -18,12 +18,12 @@ public class MainMenu : IMenu
     /// </summary>
     public MainMenu()
     {
-        IMenuContent content = new ContentMainMenu();
+        IMenuContent content = new MainMenuContent();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new BehaviorMainMenu();
+        IMenuBehavior behavior = new MainMenuBehavior();
         ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
         ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
         ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;

@@ -1,9 +1,9 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
 /// <summary>
-/// This interface is providing members to end a console.
+/// This interface is providing members to start a console.
 /// </summary>
-public interface IEndMessage
+public interface IMessageStart
 {
     /// <summary>
     /// Writing a standard message to the console and awaiting user input.
@@ -11,5 +11,5 @@ public interface IEndMessage
     /// </summary>
     /// <param name="showMessage">true, if message shall be written on the console.</param>
     /// <param name="clearScreen">true, if after user input the console shall be cleard.</param>
-    void End(bool showMessage = true, bool clearScreen = true);
+    void Start(bool showMessage = true, bool clearScreen = true);
 }

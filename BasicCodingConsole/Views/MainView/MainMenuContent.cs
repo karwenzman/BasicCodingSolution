@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.MainView;
 
-public class ContentMainMenu : IMenuContent
+public class MainMenuContent : IMenuContent
 {
     public string[]? CaptionItems { get; set; } =
     {

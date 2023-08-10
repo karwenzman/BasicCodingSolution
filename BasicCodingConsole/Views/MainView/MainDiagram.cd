@@ -1,52 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenuBehavior">
-    <Position X="2.75" Y="3.75" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\ContractMenuBehavior.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenuContent">
-    <Position X="8.25" Y="3.75" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\ContractMenuContent.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenu">
-    <Position X="2.75" Y="0.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAABAAgAACACAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\ContractMenu.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractView">
-    <Position X="3" Y="10.5" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAIIAAAAAI=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\ContractView.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="BasicCodingConsole.Views.ViewBase">
-    <Position X="3" Y="14" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAkIAAAAAAAAAgAAAAgAAAABAAQAAAAAA=</HashCode>
-      <FileName>Views\ViewBase.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMessage">
-    <Position X="2.5" Y="6.25" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAIACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PaperDeliveryContractView\ContractMessage.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="BasicCodingConsole.ConsoleMessages.StandardContinueMessage">
     <Position X="2.5" Y="8.5" Width="2.25" />
     <TypeIdentifier>
@@ -55,21 +8,68 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleMessages.StandardEndMessage">
-    <Position X="7" Y="8.5" Width="1.75" />
+  <Class Name="BasicCodingConsole.Views.MainView.MainMenu">
+    <Position X="2.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\StandardEndMessage.cs</FileName>
+      <HashCode>AAAAAACAAAAAABAAgAACACAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>Views\MainView\MainMenu.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.ConsoleMessages.StandardStartMessage">
-    <Position X="11" Y="8.5" Width="2" />
+  <Class Name="BasicCodingConsole.Views.MainView.MainMenuBehavior">
+    <Position X="2.75" Y="3.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\StandardStartMessage.cs</FileName>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainView\MainMenuBehavior.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.MainView.MainMenuContent">
+    <Position X="7.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>Views\MainView\MainMenuContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.MainView.MainMessage">
+    <Position X="2.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainView\MainMessage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.MainView.MainMessageEnd">
+    <Position X="7" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainView\MainMessageEnd.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.MainView.MainMessageStart">
+    <Position X="11" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainView\MainMessageStart.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.MainView.MainView">
+    <Position X="2.25" Y="10.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAQACIAAIAAAACAEAIAAAAAI=</HashCode>
+      <FileName>Views\MainView\MainView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.ViewBase">
+    <Position X="2.25" Y="14.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAkIAAAAAAAAAgAAAAgAAAABAAQAAAAAA=</HashCode>
+      <FileName>Views\ViewBase.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuBehavior">
     <Position X="0.5" Y="3.75" Width="2" />
@@ -79,7 +79,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuContent">
-    <Position X="6" Y="3.75" Width="2" />
+    <Position X="5.25" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
       <FileName>ConsoleMenus\IMenuContent.cs</FileName>
@@ -90,15 +90,13 @@
     <InheritanceLine Type="BasicCodingConsole.ConsoleMenus.IMenuBehavior" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="1.438" Y="3.75" />
-        <Point X="1.438" Y="2.002" />
-        <Point X="1.438" Y="2.002" />
         <Point X="1.438" Y="1.627" />
       </Path>
     </InheritanceLine>
     <InheritanceLine Type="BasicCodingConsole.ConsoleMenus.IMenuContent" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="7" Y="3.75" />
-        <Point X="7" Y="3.459" />
+        <Point X="6.25" Y="3.75" />
+        <Point X="6.25" Y="3.459" />
         <Point X="1.438" Y="3.459" />
         <Point X="1.438" Y="1.627" />
       </Path>
@@ -106,13 +104,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMenus\IMenu.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="BasicCodingConsole.Views.IPaperDeliveryContractView">
-    <Position X="0.5" Y="10.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAIIAAAAAI=</HashCode>
-      <FileName>Views\IPaperDeliveryContractView.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMessages.IMessage">
@@ -134,6 +125,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleMessages\IMessageStart.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.Views.IMainView">
+    <Position X="0.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAAAAAIAAAAAI=</HashCode>
+      <FileName>Views\IMainView.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMessages.IMessageEnd">

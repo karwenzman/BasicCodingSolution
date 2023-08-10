@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.MainView;
 
-public class BehaviorMainMenu : IMenuBehavior
+public class MainMenuBehavior : IMenuBehavior
 {
     public int ConsoleHeightMaximum { get; set; } = 40;
     public int ConsoleHeightMinimum { get; set; } = 40;

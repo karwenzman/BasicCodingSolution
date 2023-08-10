@@ -17,7 +17,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
-    /// The content is implemented in file <see cref="ContentSettingMenu"/>.
+    /// The content is implemented in file <see cref="SettingMenuContent"/>.
     /// </summary>
     public IMenu Menu { get; set; }
     /// <summary>

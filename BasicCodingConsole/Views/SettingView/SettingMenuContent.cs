@@ -2,11 +2,13 @@
 
 namespace BasicCodingConsole.Views.SettingView;
 
-public class ContentSettingMenu : IMenuContent
+public class SettingMenuContent : IMenuContent
 {
     public string[]? CaptionItems { get; set; } =
     {
-        "Main/Setting",
+        "",
+        "Main / Setting",
+        "",
     };
 
     public string[]? MenuItems { get; set; } = null;

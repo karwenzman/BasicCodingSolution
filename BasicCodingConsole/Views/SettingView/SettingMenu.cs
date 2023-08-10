@@ -19,12 +19,12 @@ public class SettingMenu : IMenu
     /// </summary>
     public SettingMenu()
     {
-        IMenuContent content = new ContentSettingMenu();
+        IMenuContent content = new SettingMenuContent();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new BehaviorSettingMenu();
+        IMenuBehavior behavior = new SettingMenuBehavior();
         ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
         ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
         ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;
@@ -43,12 +43,12 @@ public class SettingMenu : IMenu
     /// <param name="appSettingModel"></param>
     public SettingMenu(IAppSettingModel appSettingModel)
     {
-        IMenuContent content = new ContentSettingMenu();
+        IMenuContent content = new SettingMenuContent();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new BehaviorSettingMenu();
+        IMenuBehavior behavior = new SettingMenuBehavior();
         ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
         ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
         ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;

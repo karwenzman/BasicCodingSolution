@@ -2,10 +2,10 @@
 
 /// <summary>
 /// This interface is putting things together.
-/// <br></br>- implementing <see cref="IContinueMessage"/>
-/// <br></br>- implementing <see cref="IEndMessage"/>
-/// <br></br>- implementing <see cref="IStartMessage"/>
+/// <br></br>- implementing <see cref="IMessageContinue"/>
+/// <br></br>- implementing <see cref="IMessageEnd"/>
+/// <br></br>- implementing <see cref="IMessageStart"/>
 /// </summary>
-public interface IMessage : IContinueMessage, IEndMessage, IStartMessage
+public interface IMessage : IMessageContinue, IMessageEnd, IMessageStart
 {
 }
