@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class ContinueMessage : IContinuing
+public class StandardContinueMessage : IContinueMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = false)
     {

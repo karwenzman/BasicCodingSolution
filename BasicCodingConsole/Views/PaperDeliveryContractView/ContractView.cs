@@ -1,5 +1,4 @@
-﻿using BasicCodingConsole.ConsoleDisplays;
-using BasicCodingConsole.ConsoleMenus;
+﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.SettingView;
 using PaperDeliveryLibrary.Models;
@@ -7,7 +6,7 @@ using PaperDeliveryLibrary.Providers;
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
-public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
+public class ContractView : ViewBase, IPaperDeliveryContractView
 {
     private readonly IPaperDeliveryProvider _provider;
 
@@ -15,13 +14,6 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     /// This property is providing a list of contracts.
     /// </summary>
     public List<IPaperDeliveryContract> PaperDeliveryContracts { get; set; }
-    /// <summary>
-    /// This property is providing standard method used to manipulate the console.
-    /// <para></para>
-    /// The method's behavior is implemented in the files <see cref="ClearingView"/> and
-    /// <see cref="ResizingView"/>.
-    /// </summary>
-    public IDisplay Display { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
@@ -32,25 +24,25 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     /// This property is providing standard messages written to the console.
     /// <para></para>
     /// The content is implemented in the files <see cref="StartingView"/>,
-    /// <see cref="EndingView"/> and <see cref="ContinueMessage"/>
+    /// <see cref="EndingView"/> and <see cref="StandardContinueMessage"/>
     /// </summary>
     public IMessage Message { get; set; }
 
-    public PaperDeliveryContractView(IPaperDeliveryProvider provider)
+    public ContractView(IPaperDeliveryProvider provider)
     {
         _provider = provider;
         PaperDeliveryContracts = _provider.GetContractList();
 
-        Display = new SettingDisplay();
-        Menu = new PaperDeliveryContractMenu();
-        Message = new SettingMessage();
+        Menu = new ContractMenu();
+        Message = new ContractMessage();
     }
 
     public void Run()
     {
+        Message.Start();
         WriteMenu(Menu);
         WriteContent();
-        Console.ReadLine();
+        Message.Continue();
     }
 
     /// <summary>

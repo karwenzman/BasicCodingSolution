@@ -1,6 +1,8 @@
-﻿namespace BasicCodingConsole.ConsoleMessages;
+﻿using BasicCodingConsole.ConsoleMessages;
 
-public class SettingMessage : IMessage
+namespace BasicCodingConsole.Views.PaperDeliveryContractView;
+
+public class ContractMessage : IMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = true)
     {
@@ -10,13 +12,13 @@ public class SettingMessage : IMessage
 
     public void End(bool showMessage = true, bool clearScreen = true)
     {
-        IEndMessage ending = new EndingView();
+        IEndMessage ending = new StandardEndMessage();
         ending.End(showMessage, clearScreen);
     }
 
     public void Start(bool showMessage = true, bool clearScreen = true)
     {
-        IStartMessage starting = new StartingView();
+        IStartMessage starting = new StandardStartMessage();
         starting.Start(showMessage, clearScreen);
     }
 }

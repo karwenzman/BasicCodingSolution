@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
-public class BehaviorPaperDeliveryContractMenu : IMenuBehavior
+public class ContractMenuBehavior : IMenuBehavior
 {
     public int ConsoleHeightMaximum { get; set; } = 40;
     public int ConsoleHeightMinimum { get; set; } = 40;

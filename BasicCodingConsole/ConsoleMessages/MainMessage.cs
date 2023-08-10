@@ -4,19 +4,19 @@ public class MainMessage : IMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = true)
     {
-        IContinuing continuing = new ContinueMessage();
+        IContinueMessage continuing = new StandardContinueMessage();
         continuing.Continue(showMessage, clearScreen);
     }
 
     public void End(bool showMessage = true, bool clearScreen = true)
     {
-        IEnding ending = new EndingApp();
+        IEndMessage ending = new EndingApp();
         ending.End(showMessage, clearScreen);
     }
 
     public void Start(bool showMessage = true, bool clearScreen = true)
     {
-        IStarting starting = new StartingApp();
+        IStartMessage starting = new StartingApp();
         starting.Start(showMessage, clearScreen);
     }
 }

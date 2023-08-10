@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
-public class PaperDeliveryContractMenu : IMenu
+public class ContractMenu : IMenu
 {
     public string[]? CaptionItems { get; set; }
     public string[]? MenuItems { get; set; }
@@ -16,14 +16,14 @@ public class PaperDeliveryContractMenu : IMenu
     /// This parameterless constructor reads the console size values
     /// from a class implementing <see cref="IMenuBehavior"/>.
     /// </summary>
-    public PaperDeliveryContractMenu()
+    public ContractMenu()
     {
-        IMenuContent content = new ContentPaperDeliveryContractMenu();
+        IMenuContent content = new ContractMenuContent();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new BehaviorPaperDeliveryContractMenu();
+        IMenuBehavior behavior = new ContractMenuBehavior();
         ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
         ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
         ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;

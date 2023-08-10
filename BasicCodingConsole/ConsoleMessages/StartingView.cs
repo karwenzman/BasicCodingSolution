@@ -1,6 +1,6 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class StartingView : IStarting
+public class StartingView : IStartMessage
 {
     public void Start(bool showMessage = true, bool clearScreen = true)
     {

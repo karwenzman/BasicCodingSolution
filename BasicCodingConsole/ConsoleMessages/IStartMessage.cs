@@ -3,7 +3,7 @@
 /// <summary>
 /// This interface is providing members to start a console.
 /// </summary>
-public interface IStarting
+public interface IStartMessage
 {
     /// <summary>
     /// Writing a standard message to the console and awaiting user input.
