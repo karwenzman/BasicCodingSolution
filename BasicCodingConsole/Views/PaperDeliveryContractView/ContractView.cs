@@ -24,7 +24,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     /// This property is providing standard messages written to the console.
     /// <para></para>
     /// The content is implemented in the files <see cref="StartingView"/>,
-    /// <see cref="EndingView"/> and <see cref="StandardContinueMessage"/>
+    /// <see cref="EndingView"/> and <see cref="StandardMessageContinue"/>
     /// </summary>
     public IMessage Message { get; set; }
 

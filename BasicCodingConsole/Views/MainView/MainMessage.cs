@@ -6,7 +6,7 @@ public class MainMessage : IMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = true)
     {
-        IMessageContinue continuing = new StandardContinueMessage();
+        IMessageContinue continuing = new StandardMessageContinue();
         continuing.Continue(showMessage, clearScreen);
     }
 

@@ -1,12 +1,12 @@
 ﻿namespace BasicCodingConsole.ConsoleMessages;
 
-public class EndingView : IMessageEnd
+public class StandardMessageContinue : IMessageContinue
 {
-    public void End(bool showMessage = true, bool clearScreen = true)
+    public void Continue(bool showMessage = true, bool clearScreen = false)
     {
         if (showMessage)
         {
-            Console.WriteLine($"\nYou have reached the end of this view. Press ENTER to continue...");
+            Console.WriteLine($"\nPress ENTER to continue...");
             Console.ReadLine();
         }
 
