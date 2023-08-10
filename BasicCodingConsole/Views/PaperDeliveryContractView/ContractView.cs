@@ -1,6 +1,7 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.Views.SettingView;
+using BasicCodingLibrary.Providers;
+using Microsoft.Extensions.Logging;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
 
@@ -8,7 +9,9 @@ namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
 public class ContractView : ViewBase, IPaperDeliveryContractView
 {
-    private readonly IPaperDeliveryProvider _provider;
+    private readonly IAppSettingProvider _appSettingProvider;
+    private readonly ILogger<ContractView> _logger;
+    private readonly IPaperDeliveryProvider _paperDeliveryProvider;
 
     /// <summary>
     /// This property is providing a list of contracts.
@@ -17,24 +20,28 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
-    /// The content is implemented in file <see cref="SettingMenuContent"/>.
+    /// The content is implemented in file <see cref="ContractMenuContent"/>.
     /// </summary>
     public IMenu Menu { get; set; }
     /// <summary>
     /// This property is providing standard messages written to the console.
     /// <para></para>
-    /// The content is implemented in the files <see cref="StartingView"/>,
-    /// <see cref="EndingView"/> and <see cref="StandardMessageContinue"/>
+    /// The content is implemented in the files <see cref="StandardMessageEnd"/>,
+    /// <see cref="StandardMessageStart"/> and <see cref="StandardMessageContinue"/>
     /// </summary>
     public IMessage Message { get; set; }
 
-    public ContractView(IPaperDeliveryProvider provider)
+    public ContractView(IPaperDeliveryProvider provider, IAppSettingProvider appSettingProvider, ILogger<ContractView> logger)
     {
-        _provider = provider;
-        Contracts = _provider.GetContractList();
+        _paperDeliveryProvider = provider;
+        _appSettingProvider = appSettingProvider;
+        _logger = logger;
 
-        Menu = new ContractMenu();
+        Contracts = _paperDeliveryProvider.GetContractList();
+        Menu = new ContractMenu(_appSettingProvider.Get());
         Message = new ContractMessage();
+
+        _logger.LogInformation("* Load: {view}", nameof(ContractView));
     }
 
     public void Run()

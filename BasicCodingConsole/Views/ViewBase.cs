@@ -36,8 +36,8 @@ public abstract class ViewBase
 
         // TODO: sometimes the width is one character to wide;
         // is this depending on debug, production or on the kind of distribution?
-        Console.WriteLine($"ConsoleHeight:{Console.WindowHeight,3}");
-        Console.WriteLine($"ConsoleWidth :{Console.WindowWidth,3}");
+        //Console.WriteLine($"ConsoleHeight:{Console.WindowHeight,3}");
+        //Console.WriteLine($"ConsoleWidth :{Console.WindowWidth,3}");
     }
 
     /// <summary>

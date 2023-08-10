@@ -16,6 +16,9 @@ public class SettingMenu : IMenu
     /// <summary>
     /// This parameterless constructor reads the console size values
     /// from a class implementing <see cref="IMenuBehavior"/>.
+    /// <para></para>
+    /// These values are hard coded and can not be changed from outside the application.
+    /// If you want to override them, use the constructor with parameters.
     /// </summary>
     public SettingMenu()
     {
@@ -37,7 +40,7 @@ public class SettingMenu : IMenu
     /// <para></para>
     /// The fallback values are read from a class implementing <see cref="IMenuBehavior"/>,
     /// <br></br>if:
-    /// <br></br>- the instance of <see cref="AppSettingModel"/> is null
+    /// <br></br>- the instance of <see cref="IAppSettingModel"/> is null
     /// <br></br>- a value of the height or width is &lt;= 0
     /// </summary>
     /// <param name="appSettingModel"></param>

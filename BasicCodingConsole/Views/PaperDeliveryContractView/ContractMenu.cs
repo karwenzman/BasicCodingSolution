@@ -1,4 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
+using BasicCodingLibrary.Models;
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
@@ -15,6 +16,9 @@ public class ContractMenu : IMenu
     /// <summary>
     /// This parameterless constructor reads the console size values
     /// from a class implementing <see cref="IMenuBehavior"/>.
+    /// <para></para>
+    /// These values are hard coded and can not be changed from outside the application.
+    /// If you want to override them, use the constructor with parameters.
     /// </summary>
     public ContractMenu()
     {
@@ -29,4 +33,49 @@ public class ContractMenu : IMenu
         ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;
         ConsoleWidthMinimum = behavior.ConsoleWidthMinimum;
     }
+
+    /// <summary>
+    /// This constructor with parameter reads the console size values
+    /// from a class implementing <see cref="IAppSettingModel"/>.
+    /// <para></para>
+    /// The fallback values are read from a class implementing <see cref="IMenuBehavior"/>,
+    /// <br></br>if:
+    /// <br></br>- the instance of <see cref="IAppSettingModel"/> is null
+    /// <br></br>- a value of the height or width is &lt;= 0
+    /// </summary>
+    /// <param name="appSettingModel"></param>
+    public ContractMenu(IAppSettingModel appSettingModel)
+    {
+        IMenuContent content = new ContractMenuContent();
+        CaptionItems = content.CaptionItems;
+        MenuItems = content.MenuItems;
+        StatusItems = content.StatusItems;
+
+        IMenuBehavior behavior = new ContractMenuBehavior();
+        ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
+        ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
+        ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;
+        ConsoleWidthMinimum = behavior.ConsoleWidthMinimum;
+
+        if (appSettingModel != null)
+        {
+            if (appSettingModel.ApplicationInformation.ConsoleHeightMaximum > 0)
+            {
+                ConsoleHeightMaximum = appSettingModel.ApplicationInformation.ConsoleHeightMaximum;
+            }
+            if (appSettingModel.ApplicationInformation.ConsoleHeightMinimum > 0)
+            {
+                ConsoleHeightMinimum = appSettingModel.ApplicationInformation.ConsoleHeightMinimum;
+            }
+            if (appSettingModel.ApplicationInformation.ConsoleWidthMaximum > 0)
+            {
+                ConsoleWidthMaximum = appSettingModel.ApplicationInformation.ConsoleWidthMaximum;
+            }
+            if (appSettingModel.ApplicationInformation.ConsoleWidthMinimum > 0)
+            {
+                ConsoleWidthMinimum = appSettingModel.ApplicationInformation.ConsoleWidthMinimum;
+            }
+        }
+    }
+
 }

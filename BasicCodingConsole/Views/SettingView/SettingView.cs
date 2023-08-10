@@ -24,8 +24,8 @@ public class SettingView : ViewBase, ISettingView
     /// <summary>
     /// This property is providing standard messages written to the console.
     /// <para></para>
-    /// The content is implemented in the files <see cref="StartingView"/>,
-    /// <see cref="EndingView"/> and <see cref="StandardMessageContinue"/>
+    /// The content is implemented in the files <see cref="StandardMessageEnd"/>,
+    /// <see cref="StandardMessageStart"/> and <see cref="StandardMessageContinue"/>
     /// </summary>
     public IMessage Message { get; set; }
 
@@ -34,9 +34,7 @@ public class SettingView : ViewBase, ISettingView
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
-        AppSettingModel = new AppSettingModel();
         AppSettingModel = _appSettingProvider.Get();
-
         Menu = new SettingMenu(AppSettingModel);
         Message = new SettingMessage();
 

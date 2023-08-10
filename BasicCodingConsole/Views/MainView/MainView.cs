@@ -23,8 +23,8 @@ public class MainView : ViewBase, IMainView
     /// <summary>
     /// This property is providing standard messages written to the console.
     /// <para></para>
-    /// The content is implemented in the files <see cref="StartingView"/>,
-    /// <see cref="EndingView"/> and <see cref="StandardMessageContinue"/>
+    /// The content is implemented in the files <see cref="MainMessageStart"/>,
+    /// <see cref="MainMessageEnd"/> and <see cref="StandardMessageContinue"/>
     /// </summary>
     public IMessage Message { get; set; }
 
@@ -60,6 +60,7 @@ public class MainView : ViewBase, IMainView
                         break;
                     case ConsoleKey.A:
                         Console.WriteLine("No content, yet");
+                        Message.Continue();
                         break;
                     case ConsoleKey.B:
                         Action_B();
@@ -72,6 +73,7 @@ public class MainView : ViewBase, IMainView
                         break;
                     case ConsoleKey.E:
                         Console.WriteLine("No content, yet");
+                        Message.Continue();
                         break;
                     default:
                         Console.Beep();
