@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BasicCodingConsole.ConsoleMessages.StandardContinueMessage">
+  <Class Name="BasicCodingConsole.ConsoleMessages.StandardMessageContinue" Collapsed="true">
     <Position X="2.5" Y="8.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConsoleMessages\StandardContinueMessage.cs</FileName>
+      <FileName>ConsoleMessages\StandardMessageContinue.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -16,7 +16,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.MainView.MainMenuBehavior">
+  <Class Name="BasicCodingConsole.Views.MainView.MainMenuBehavior" Collapsed="true">
     <Position X="2.75" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -24,7 +24,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.MainView.MainMenuContent">
+  <Class Name="BasicCodingConsole.Views.MainView.MainMenuContent" Collapsed="true">
     <Position X="7.5" Y="3.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
@@ -40,7 +40,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.MainView.MainMessageEnd">
+  <Class Name="BasicCodingConsole.Views.MainView.MainMessageEnd" Collapsed="true">
     <Position X="7" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -48,7 +48,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.MainView.MainMessageStart">
+  <Class Name="BasicCodingConsole.Views.MainView.MainMessageStart" Collapsed="true">
     <Position X="11" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -59,7 +59,7 @@
   <Class Name="BasicCodingConsole.Views.MainView.MainView">
     <Position X="2.25" Y="10.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAQACIAAIAAAACAEAIAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAACIAAIAAAACAEAIAAAAAI=</HashCode>
       <FileName>Views\MainView\MainView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -130,7 +130,7 @@
   <Interface Name="BasicCodingConsole.Views.IMainView">
     <Position X="0.5" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAAAAAIAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAI=</HashCode>
       <FileName>Views\IMainView.cs</FileName>
     </TypeIdentifier>
   </Interface>

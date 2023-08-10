@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BasicCodingConsole.ConsoleMenus.StandardMenuBehavior" Collapsed="true">
+    <Position X="2.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMenus\StandardMenuBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.MainView.MainMenuBehavior" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainView\MainMenuBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenuBehavior" Collapsed="true">
+    <Position X="2.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\PaperDeliveryContractView\ContractMenuBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.SettingView.SettingMenuBehavior" Collapsed="true">
+    <Position X="2.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\SettingView\SettingMenuBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.MainView.MainMenuContent" Collapsed="true">
+    <Position X="7.25" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>Views\MainView\MainMenuContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryContractView.ContractMenuContent" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>Views\PaperDeliveryContractView\ContractMenuContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BasicCodingConsole.Views.SettingView.SettingMenuContent" Collapsed="true">
+    <Position X="7.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>Views\SettingView\SettingMenuContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BasicCodingConsole.ConsoleMenus.IMenu">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMenus\IMenu.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuBehavior">
+    <Position X="0.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMenus\IMenuBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuContent">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>ConsoleMenus\IMenuContent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
