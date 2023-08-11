@@ -72,7 +72,97 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 Route = "KA09",
                 Site = "809",
                 StandardizedWorkingHours = new TimeOnly(01, 25, 00),
-            }
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230715KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 52, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230708KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 52, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230701KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 58, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230624KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(02, 19, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230617KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 35, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230610KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 58, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230603KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(02, 39, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230527KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(02, 05, 00),
+            },
+            new PaperDeliveryContract
+            {
+                ContractID = "20230520KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 35, 00),
+            },
         };
 
         return output;
