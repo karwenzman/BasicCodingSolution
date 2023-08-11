@@ -9,7 +9,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// It is for testing reasons only.
     /// </summary>
     /// <returns></returns>
-    public List<IPaperDeliveryContract> GetContractList()
+    public List<PaperDeliveryContract> GetContractList()
     {
         return ReadFromContractList();
     }
@@ -39,9 +39,9 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// This method is providing a hard coded list for testing.
     /// </summary>
     /// <returns></returns>
-    private List<IPaperDeliveryContract> ReadFromContractList()
+    private List<PaperDeliveryContract> ReadFromContractList()
     {
-        List<IPaperDeliveryContract> output = new()
+        List<PaperDeliveryContract> output = new()
         {
             new PaperDeliveryContract
             {
@@ -164,7 +164,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 StandardizedWorkingHours = new TimeOnly(01, 35, 00),
             },
         };
-
+        output.Sort();
         return output;
     }
     /// <summary>

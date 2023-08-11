@@ -16,7 +16,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     /// <summary>
     /// This property is providing a list of contracts.
     /// </summary>
-    public List<IPaperDeliveryContract> Contracts { get; set; }
+    public List<PaperDeliveryContract> Contracts { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>

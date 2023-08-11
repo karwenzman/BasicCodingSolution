@@ -9,7 +9,7 @@ public interface IPaperDeliveryContractView
     /// <summary>
     /// A value to store a list of contracts.
     /// </summary>
-    List<IPaperDeliveryContract> Contracts { get; set; }
+    List<PaperDeliveryContract> Contracts { get; set; }
     /// <summary>
     /// A value used to control the menu's behavior.
     /// </summary>
