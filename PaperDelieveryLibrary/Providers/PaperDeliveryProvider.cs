@@ -18,7 +18,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// </summary>
     /// <param name="fileName">The complete path and file name with extension.</param>
     /// <returns></returns>
-    public List<IPaperDeliveryContract> GetContractList(string fileName)
+    public List<PaperDeliveryContract> GetContractList(string fileName)
     {
         return ReadFromContractFile(fileName);
     }
@@ -164,7 +164,9 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 StandardizedWorkingHours = new TimeOnly(01, 35, 00),
             },
         };
+
         output.Sort();
+
         return output;
     }
     /// <summary>
@@ -172,9 +174,9 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// </summary>
     /// <param name="fileName">The complete path and file name with extension.</param>
     /// <returns></returns>
-    private List<IPaperDeliveryContract> ReadFromContractFile(string fileName)
+    private List<PaperDeliveryContract> ReadFromContractFile(string fileName)
     {
-        List<IPaperDeliveryContract> output = new();
+        List<PaperDeliveryContract> output = new();
 
         return output;
     }

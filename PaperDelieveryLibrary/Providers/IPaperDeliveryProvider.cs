@@ -5,7 +5,7 @@ namespace PaperDeliveryLibrary.Providers;
 public interface IPaperDeliveryProvider
 {
     List<PaperDeliveryContract> GetContractList();
-    List<IPaperDeliveryContract> GetContractList(string fileName);
+    List<PaperDeliveryContract> GetContractList(string fileName);
     PaperDeliveryContractor GetContractorList();
     PaperDeliveryFulfillment GetFulfillmentList();
 }

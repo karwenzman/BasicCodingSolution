@@ -22,7 +22,7 @@ public class PaperDeliveryContract : IPaperDeliveryContract, IComparable<PaperDe
     }
 
     /// <summary>
-    /// This method is providing logic to compare the property <see cref="ContractID"/>.
+    /// This method is providing logic to compare the instance's property <see cref="ContractID"/>.
     /// If comparison based solely on values returns zero, 
     /// indicating that two instances are equal in those fields they have in common, 
     /// only then we break the tie by comparing data types of the two instances.
@@ -41,6 +41,7 @@ public class PaperDeliveryContract : IPaperDeliveryContract, IComparable<PaperDe
         {
             result = CompareToTypes(other);
         }
+
         return result;
     }
 
