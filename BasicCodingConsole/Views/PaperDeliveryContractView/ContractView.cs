@@ -62,5 +62,21 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
             Console.WriteLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",13}");
             Console.WriteLine($"{item.NumberOfPapers,10} {item.StandardizedWorkingHours,10} {item.HourlyWageRate,8:f2} EUR ==> {item.Wage:f2} EUR");
         }
+
+        Console.WriteLine("######################################");
+        string file = "Contracts.csv";
+        string subDirectory = "PaperDeliveryFiles";
+        string fileName = Path.Combine(Directory.GetCurrentDirectory(), subDirectory, file);
+        _paperDeliveryProvider.WriteContractList(fileName, Contracts);
+
+        Console.WriteLine("######################################");
+        List<PaperDeliveryContract> list = new();
+        list = _paperDeliveryProvider.GetContractList(fileName);
+        foreach (var item in list)
+        {
+            Console.WriteLine($"\nContractID {item.ContractID} - Tour {item.Route} {item.Site} {item.Region}");
+            Console.WriteLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",13}");
+            Console.WriteLine($"{item.NumberOfPapers,10} {item.StandardizedWorkingHours,10} {item.HourlyWageRate,8:f2} EUR ==> {item.Wage:f2} EUR");
+        }
     }
 }

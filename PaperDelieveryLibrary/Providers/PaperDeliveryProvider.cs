@@ -1,4 +1,6 @@
 ﻿using PaperDeliveryLibrary.Models;
+using CsvHelper;
+using System.Globalization;
 
 namespace PaperDeliveryLibrary.Providers;
 
@@ -13,6 +15,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     {
         return ReadFromContractList();
     }
+
     /// <summary>
     /// This method returns a list loaded from a csv-file.
     /// </summary>
@@ -22,12 +25,61 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     {
         return ReadFromContractFile(fileName);
     }
+
+    /// <summary>
+    /// This method ...
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="contracts"></param>
+    public void WriteContractList(string fileName, List<PaperDeliveryContract> contracts)
+    {
+        if (contracts == null)
+        {
+            // do something
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            // do something
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+            }
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            using var writer = new StreamWriter(fileName);
+            using var csvOut = new CsvWriter(writer, CultureInfo.InvariantCulture);
+
+            csvOut.WriteRecords(contracts);
+        }
+        else
+        {
+            // do something
+        }
+    }
+
     public PaperDeliveryContractor GetContractorList()
     {
         PaperDeliveryContractor output = new PaperDeliveryContractor();
 
         return output;
     }
+
     public PaperDeliveryFulfillment GetFulfillmentList()
     {
         PaperDeliveryFulfillment output = new PaperDeliveryFulfillment();
@@ -179,6 +231,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         return output;
     }
+
     /// <summary>
     /// This method is actually reading the content from a csv-file.
     /// </summary>
@@ -187,6 +240,20 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     private List<PaperDeliveryContract> ReadFromContractFile(string fileName)
     {
         List<PaperDeliveryContract> output = new();
+
+        if (File.Exists(fileName))
+        {
+            using var reader = new StreamReader(fileName);
+            using var csvIn = new CsvReader(reader, CultureInfo.InvariantCulture);
+            var records = csvIn.GetRecords<PaperDeliveryContract>();
+
+            foreach (var item in records)
+            {
+                output.Add(item);
+            }
+        }
+
+        output.Sort();
 
         return output;
     }
