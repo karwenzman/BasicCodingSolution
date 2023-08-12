@@ -45,6 +45,16 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         {
             new PaperDeliveryContract
             {
+                ContractID = "20230812KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 25, 00),
+            },
+            new PaperDeliveryContract
+            {
                 ContractID = "20230805KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,

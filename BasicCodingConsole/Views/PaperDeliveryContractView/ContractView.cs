@@ -31,9 +31,9 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public ContractView(IPaperDeliveryProvider provider, IAppSettingProvider appSettingProvider, ILogger<ContractView> logger)
+    public ContractView(IPaperDeliveryProvider paperDeliveryProvider, IAppSettingProvider appSettingProvider, ILogger<ContractView> logger)
     {
-        _paperDeliveryProvider = provider;
+        _paperDeliveryProvider = paperDeliveryProvider;
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
