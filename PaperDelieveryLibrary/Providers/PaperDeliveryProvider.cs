@@ -106,7 +106,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         {
             new PaperDeliveryClient
             {
-                Id = 1,
+                Id = 2,
                 Name = "Top Direkt Marktservice GmbH",
                 AdditionalInformation = string.Empty,
                 PostalAddress = new PostalAddress()
@@ -122,6 +122,26 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                     Email = string.Empty,
                     Mobile = string.Empty,
                     Phone = "0561 / 92094-0",
+                },
+            },
+            new PaperDeliveryClient
+            {
+                Id = 1,
+                Name = "Amazon Logistik GmbH",
+                AdditionalInformation = "Site - FRA1",
+                PostalAddress = new PostalAddress()
+                {
+                    Street = "Am Schloss Eichhof 1",
+                    AdditionalInformation = string.Empty,
+                    PostalCode = "36251 ",
+                    City = "Bad Hersfeld",
+                    Country = "Germany",
+                },
+                ContactDetails = new ContactDetails()
+                {
+                    Email = string.Empty,
+                    Mobile = string.Empty,
+                    Phone = "06621 / 956-0",
                 },
             },
         };
