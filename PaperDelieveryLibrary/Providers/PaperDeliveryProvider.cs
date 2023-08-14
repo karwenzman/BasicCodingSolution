@@ -12,6 +12,16 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// It is for testing reasons only.
     /// </summary>
     /// <returns></returns>
+    public List<PaperDeliveryClient> GetClientList()
+    {
+        return ReadFromClientList();
+    }
+
+    /// <summary>
+    /// This method returns a list that is hard coded.
+    /// It is for testing reasons only.
+    /// </summary>
+    /// <returns></returns>
     public List<PaperDeliveryContract> GetContractList()
     {
         return ReadFromContractList();
@@ -81,11 +91,45 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
     public List<PaperDeliveryFulfillment> GetFulfillmentList()
     {
-        List<PaperDeliveryFulfillment> output = new ();
+        List<PaperDeliveryFulfillment> output = new();
 
         return output;
     }
 
+    /// <summary>
+    /// This method is providing a hard coded list for testing.
+    /// </summary>
+    /// <returns></returns>
+    private List<PaperDeliveryClient> ReadFromClientList()
+    {
+        List<PaperDeliveryClient> output = new()
+        {
+            new PaperDeliveryClient
+            {
+                Id = 1,
+                Name = "Top Direkt Marktservice GmbH",
+                AdditionalInformation = string.Empty,
+                PostalAddress = new PostalAddress()
+                {
+                    Street = "Frankfurter Str. 168",
+                    AdditionalInformation = string.Empty,
+                    PostalCode = "34121",
+                    City = "Kassel",
+                    Country = "Germany",
+                },
+                ContactDetails = new ContactDetails()
+                {
+                    Email = string.Empty,
+                    Mobile = string.Empty,
+                    Phone = "0561 / 92094-0",
+                },
+            },
+        };
+
+        output.Sort();
+
+        return output;
+    }
     /// <summary>
     /// This method is providing a hard coded list for testing.
     /// </summary>
