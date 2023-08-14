@@ -6,6 +6,7 @@ public interface IPaperDeliveryContractor
 {
     string City { get; set; }
     string ContractorID { get; set; }
+    string Email { get; set; }
     string FirstName { get; set; }
     Gender Gender { get; set; }
     string LastName { get; set; }

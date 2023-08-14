@@ -1,5 +1,6 @@
-﻿using PaperDeliveryLibrary.Models;
+﻿using BasicCodingLibrary.Enums;
 using CsvHelper;
+using PaperDeliveryLibrary.Models;
 using System.Globalization;
 
 namespace PaperDeliveryLibrary.Providers;
@@ -73,16 +74,14 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         }
     }
 
-    public PaperDeliveryContractor GetContractorList()
+    public List<PaperDeliveryContractor> GetContractorList()
     {
-        PaperDeliveryContractor output = new PaperDeliveryContractor();
-
-        return output;
+        return ReadFromContractorList();
     }
 
-    public PaperDeliveryFulfillment GetFulfillmentList()
+    public List<PaperDeliveryFulfillment> GetFulfillmentList()
     {
-        PaperDeliveryFulfillment output = new PaperDeliveryFulfillment();
+        List<PaperDeliveryFulfillment> output = new ();
 
         return output;
     }
@@ -252,6 +251,56 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 output.Add(item);
             }
         }
+
+        output.Sort();
+
+        return output;
+    }
+
+    private List<PaperDeliveryContractor> ReadFromContractorList()
+    {
+        List<PaperDeliveryContractor> output = new()
+        {
+            new PaperDeliveryContractor()
+            {
+                ContractorID = "0001",
+                FirstName = "Thorsten",
+                LastName = "Jenning",
+                Street = "Breslauer Str. 7",
+                PostalCode = "36251",
+                City = "Bad Hersfeld",
+                Phone = "015730602188",
+                Email = "Jenning.Thorsten@gmx.net",
+                Gender = Gender.male,
+                Site = "Vor der Haustür",
+            },
+            new PaperDeliveryContractor()
+            {
+                ContractorID = "0003",
+                FirstName = "Silvana",
+                LastName = "Hainer",
+                Street = "Breslauer Str. 7",
+                PostalCode = "36251",
+                City = "Bad Hersfeld",
+                Phone = "01741985444",
+                Email = "n/a",
+                Gender = Gender.female,
+                Site = "Vor der Haustür",
+            },
+            new PaperDeliveryContractor()
+            {
+                ContractorID = "0002",
+                FirstName = "Melanie",
+                LastName = "Jenning",
+                Street = "Breslauer Str. 7",
+                PostalCode = "36251",
+                City = "Bad Hersfeld",
+                Phone = "015756465178",
+                Email = "Jenning.Melanie@Outlook.de",
+                Gender = Gender.female,
+                Site = "Vor der Haustür",
+            },
+        };
 
         output.Sort();
 

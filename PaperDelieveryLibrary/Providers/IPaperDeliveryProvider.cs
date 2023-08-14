@@ -7,6 +7,6 @@ public interface IPaperDeliveryProvider
     List<PaperDeliveryContract> GetContractList();
     List<PaperDeliveryContract> GetContractList(string fileName);
     void WriteContractList(string fileName, List<PaperDeliveryContract> contracts);
-    PaperDeliveryContractor GetContractorList();
-    PaperDeliveryFulfillment GetFulfillmentList();
+    List<PaperDeliveryContractor> GetContractorList();
+    List<PaperDeliveryFulfillment> GetFulfillmentList();
 }

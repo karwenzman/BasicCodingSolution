@@ -86,8 +86,8 @@ public class PaperDeliveryContract : IPaperDeliveryContract, IComparable<PaperDe
     }
 
     /// <summary>
-    /// This method returns a string containing the expression
-    /// <b>ContractID</b> followed by the property <see cref="ContractID"/>.
+    /// This method returns the expression <b>ContractID</b>
+    /// followed by the property <see cref="ContractID"/>.
     /// <para></para>
     /// This method is overriding the base functionality of the type <see cref="object"/>.
     /// </summary>
@@ -97,11 +97,24 @@ public class PaperDeliveryContract : IPaperDeliveryContract, IComparable<PaperDe
         return $"ContractID {ContractID}";
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// <para></para>
+    /// This method is overriding the base functionality of the type <see cref="object"/>.
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
     public override bool Equals(object? obj)
     {
         return CompareTo(obj as PaperDeliveryContract) == 0;
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// <para></para>
+    /// This method is overriding the base functionality of the type <see cref="object"/>.
+    /// </summary>
+    /// <returns></returns>
     public override int GetHashCode()
     {
         return ContractID.GetHashCode();

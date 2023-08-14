@@ -68,8 +68,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         string subDirectory = "PaperDeliveryFiles";
         string fileName = Path.Combine(Directory.GetCurrentDirectory(), subDirectory, file);
         _paperDeliveryProvider.WriteContractList(fileName, Contracts);
-
-        Console.WriteLine("######################################");
+        
         List<PaperDeliveryContract> list = new();
         list = _paperDeliveryProvider.GetContractList(fileName);
         foreach (var item in list)
@@ -77,6 +76,18 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
             Console.WriteLine($"\nContractID {item.ContractID} - Tour {item.Route} {item.Site} {item.Region}");
             Console.WriteLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",13}");
             Console.WriteLine($"{item.NumberOfPapers,10} {item.StandardizedWorkingHours,10} {item.HourlyWageRate,8:f2} EUR ==> {item.Wage:f2} EUR");
+        }
+
+        Console.WriteLine("######################################");
+        List<PaperDeliveryContractor> contractors = new List<PaperDeliveryContractor>();
+        contractors = _paperDeliveryProvider.GetContractorList();
+        foreach (var item in contractors)
+        {
+            Console.WriteLine($"\nContractorID {item.ContractorID}");
+            Console.WriteLine($"\t{item.FirstName} {item.LastName}");
+            Console.WriteLine($"\t{item.Street}");
+            Console.WriteLine($"\t{item.PostalCode} {item.City}");
+            Console.WriteLine($"\t{item.Site}");
         }
     }
 }
