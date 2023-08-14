@@ -71,6 +71,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
 
         List<PaperDeliveryContract> list = new();
         list = _paperDeliveryProvider.GetContractList(fileName);
+        list.Reverse();
         foreach (var item in list)
         {
             Console.WriteLine($"\nContractID {item.ContractID} - Tour {item.Route} {item.Site} {item.Region}");
@@ -83,11 +84,31 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         contractors = _paperDeliveryProvider.GetContractorList();
         foreach (var contractor in contractors)
         {
-            Console.WriteLine($"\nContractorID {contractor.ContractorID}");
+            Console.WriteLine($"\nContractorID {contractor.Id}");
             Console.WriteLine($"\t{contractor.FirstName} {contractor.LastName}");
-            Console.WriteLine($"\t{contractor.Street}");
-            Console.WriteLine($"\t{contractor.PostalCode} {contractor.City}");
-            Console.WriteLine($"\t{contractor.Site}");
+            Console.WriteLine($"\t{contractor.PostalAddress.Street}");
+            if (!string.IsNullOrEmpty(contractor.PostalAddress.AdditionalInformation))
+            {
+                Console.WriteLine($"\t{contractor.PostalAddress.AdditionalInformation}");
+            }
+            Console.WriteLine($"\t{contractor.PostalAddress.PostalCode} {contractor.PostalAddress.City}");
+            Console.WriteLine($"\t{contractor.PostalAddress.Country}");
+            if (!string.IsNullOrEmpty(contractor.ContactDetails.Email))
+            {
+                Console.WriteLine($"\tEmail: {contractor.ContactDetails.Email}");
+            }
+            if (!string.IsNullOrEmpty(contractor.ContactDetails.Mobile))
+            {
+                Console.WriteLine($"\tMobile: {contractor.ContactDetails.Mobile}");
+            }
+            if (!string.IsNullOrEmpty(contractor.ContactDetails.Phone))
+            {
+                Console.WriteLine($"\tPhone: {contractor.ContactDetails.Phone}");
+            }
+            if (!string.IsNullOrEmpty(contractor.Site))
+            {
+                Console.WriteLine($"\tSite for unloading: {contractor.Site}");
+            }
         }
 
         Console.WriteLine("######################################");
