@@ -1,8 +1,10 @@
-﻿namespace PaperDeliveryLibrary.Models;
+﻿using System.Text;
+
+namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
 {
-    public string ContractID { get; set; } = "default";
+    public string ID { get; set; } = "default";
     public double HourlyWageRate { get; set; }
     public int NumberOfPapers { get; set; }
     public string Region { get; set; } = "default";
@@ -22,7 +24,7 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
     }
 
     /// <summary>
-    /// This method is providing logic to compare the instance's property <see cref="ContractID"/>.
+    /// This method is providing logic to compare the instance's property <see cref="ID"/>.
     /// If comparison based solely on values returns zero, 
     /// indicating that two instances are equal in those fields they have in common, 
     /// only then we break the tie by comparing data types of the two instances.
@@ -46,19 +48,19 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
     }
 
     /// <summary>
-    /// This method is comparing the property <see cref="ContractID"/>.
+    /// This method is comparing the property <see cref="ID"/>.
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
     protected virtual int CompareToValues(PaperDeliveryContract? other)
     {
-        return other == null ? 1 : ContractID.CompareTo(other.ContractID);
+        return other == null ? 1 : ID.CompareTo(other.ID);
     }
 
     /// <summary>
     /// This method is comparing the type of the base class and its derived class.
     /// Base type is considered less than derived type
-    /// when two instances have the same values of the property <see cref="ContractID"/>.
+    /// when two instances have the same values of the property <see cref="ID"/>.
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
@@ -87,14 +89,14 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
 
     /// <summary>
     /// This method returns the expression <b>ContractID</b>
-    /// followed by the property <see cref="ContractID"/>.
+    /// followed by the property <see cref="ID"/>.
     /// <para></para>
     /// This method is overriding the base functionality of the type <see cref="object"/>.
     /// </summary>
     /// <returns>A nongeneric string.</returns>
     public override string ToString()
     {
-        return $"ContractID {ContractID}";
+        return $"ContractID {ID}";
     }
 
     /// <summary>
@@ -117,6 +119,21 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
     /// <returns></returns>
     public override int GetHashCode()
     {
-        return ContractID.GetHashCode();
+        return ID.GetHashCode();
+    }
+
+    /// <summary>
+    /// This method returns the content of the <see cref="PaperDeliveryContract"/> object.
+    /// The content is formated in a way to be used on a concole application.
+    /// </summary>
+    /// <returns>A nongeneric <see cref="StringBuilder"/>.</returns>
+    public StringBuilder ToConsole()
+    {
+        StringBuilder output = new();
+
+        output.AppendLine($"\nContractID {ID} - Tour {Route} {Site} {Region}");
+        output.AppendLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",11}");
+        output.AppendLine($"{NumberOfPapers,10} {StandardizedWorkingHours,10} {HourlyWageRate,12:c2} ==> {Wage:c2}");
+        return output;
     }
 }

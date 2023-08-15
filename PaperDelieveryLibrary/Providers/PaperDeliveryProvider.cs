@@ -160,7 +160,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         {
             new PaperDeliveryContract
             {
-                ContractID = "20230812KA",
+                ID = "20230812KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -170,7 +170,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230805KA",
+                ID = "20230805KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -180,7 +180,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230729KA",
+                ID = "20230729KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -190,7 +190,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230722KA",
+                ID = "20230722KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -200,7 +200,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230715KA",
+                ID = "20230715KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -210,7 +210,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230708KA",
+                ID = "20230708KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -220,7 +220,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230701KA",
+                ID = "20230701KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -230,7 +230,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230624KA",
+                ID = "20230624KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -240,7 +240,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230617KA",
+                ID = "20230617KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -250,7 +250,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230610KA",
+                ID = "20230610KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -260,7 +260,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230603KA",
+                ID = "20230603KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -270,7 +270,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230527KA",
+                ID = "20230527KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",
@@ -280,7 +280,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             },
             new PaperDeliveryContract
             {
-                ContractID = "20230520KA",
+                ID = "20230520KA",
                 HourlyWageRate = 12.00,
                 NumberOfPapers = 205,
                 Region = "02166",

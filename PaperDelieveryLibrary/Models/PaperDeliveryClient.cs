@@ -1,4 +1,6 @@
-﻿namespace PaperDeliveryLibrary.Models;
+﻿using System.Text;
+
+namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
 {
@@ -39,7 +41,7 @@ public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
     /// <para></para>
     /// This method is overriding the base functionality of the type <see cref="object"/>.
     /// </summary>
-    /// <returns>A nongeneric string.</returns>
+    /// <returns>A nongeneric <see cref="string"/>.</returns>
     public override string ToString()
     {
         return $"ClientID {Id}";
@@ -67,5 +69,43 @@ public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
     public override int GetHashCode()
     {
         return Id.GetHashCode();
+    }
+
+    /// <summary>
+    /// This method returns the content of the <see cref="PaperDeliveryClient"/> object.
+    /// The content is formated in a way to be used on a concole application.
+    /// </summary>
+    /// <returns>A nongeneric <see cref="StringBuilder"/>.</returns>
+    public StringBuilder ToConsole()
+    {
+        StringBuilder output = new();
+
+        output.AppendLine(($"\nClientID {Id}"));
+        output.AppendLine($"\t{Name}");
+        if (!string.IsNullOrEmpty(AdditionalInformation))
+        {
+            output.AppendLine($"\t{AdditionalInformation}");
+        }
+        output.AppendLine($"\t{PostalAddress.Street}");
+        if (!string.IsNullOrEmpty(PostalAddress.AdditionalInformation))
+        {
+            output.AppendLine($"\t{PostalAddress.AdditionalInformation}");
+        }
+        output.AppendLine($"\t{PostalAddress.PostalCode} {PostalAddress.City}");
+        output.AppendLine($"\t{PostalAddress.Country}");
+        if (!string.IsNullOrEmpty(ContactDetails.Email))
+        {
+            output.AppendLine($"\tEmail: {ContactDetails.Email}");
+        }
+        if (!string.IsNullOrEmpty(ContactDetails.Mobile))
+        {
+            output.AppendLine($"\tMobile: {ContactDetails.Mobile}");
+        }
+        if (!string.IsNullOrEmpty(ContactDetails.Phone))
+        {
+            output.AppendLine($"\tPhone: {ContactDetails.Phone}");
+        }
+
+        return output;
     }
 }

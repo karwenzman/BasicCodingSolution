@@ -4,6 +4,7 @@ using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Logging;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
+using System.Globalization;
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
@@ -58,9 +59,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     {
         foreach (var contract in Contracts)
         {
-            Console.WriteLine($"\nContractID {contract.ContractID} - Tour {contract.Route} {contract.Site} {contract.Region}");
-            Console.WriteLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",13}");
-            Console.WriteLine($"{contract.NumberOfPapers,10} {contract.StandardizedWorkingHours,10} {contract.HourlyWageRate,8:f2} EUR ==> {contract.Wage:f2} EUR");
+            Console.Write(contract.ToConsole());
         }
 
         Console.WriteLine("######################################");
@@ -74,9 +73,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         list.Reverse();
         foreach (var item in list)
         {
-            Console.WriteLine($"\nContractID {item.ContractID} - Tour {item.Route} {item.Site} {item.Region}");
-            Console.WriteLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",13}");
-            Console.WriteLine($"{item.NumberOfPapers,10} {item.StandardizedWorkingHours,10} {item.HourlyWageRate,8:f2} EUR ==> {item.Wage:f2} EUR");
+            Console.Write(item.ToConsole());
         }
 
         Console.WriteLine("######################################");
@@ -84,31 +81,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         contractors = _paperDeliveryProvider.GetContractorList();
         foreach (var contractor in contractors)
         {
-            Console.WriteLine($"\nContractorID {contractor.Id}");
-            Console.WriteLine($"\t{contractor.FirstName} {contractor.LastName}");
-            Console.WriteLine($"\t{contractor.PostalAddress.Street}");
-            if (!string.IsNullOrEmpty(contractor.PostalAddress.AdditionalInformation))
-            {
-                Console.WriteLine($"\t{contractor.PostalAddress.AdditionalInformation}");
-            }
-            Console.WriteLine($"\t{contractor.PostalAddress.PostalCode} {contractor.PostalAddress.City}");
-            Console.WriteLine($"\t{contractor.PostalAddress.Country}");
-            if (!string.IsNullOrEmpty(contractor.ContactDetails.Email))
-            {
-                Console.WriteLine($"\tEmail: {contractor.ContactDetails.Email}");
-            }
-            if (!string.IsNullOrEmpty(contractor.ContactDetails.Mobile))
-            {
-                Console.WriteLine($"\tMobile: {contractor.ContactDetails.Mobile}");
-            }
-            if (!string.IsNullOrEmpty(contractor.ContactDetails.Phone))
-            {
-                Console.WriteLine($"\tPhone: {contractor.ContactDetails.Phone}");
-            }
-            if (!string.IsNullOrEmpty(contractor.Site))
-            {
-                Console.WriteLine($"\tSite for unloading: {contractor.Site}");
-            }
+            Console.Write(contractor.ToConsole());
         }
 
         Console.WriteLine("######################################");
@@ -116,31 +89,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         clients = _paperDeliveryProvider.GetClientList();
         foreach (var client in clients)
         {
-            Console.WriteLine($"\nClientID {client.Id}");
-            Console.WriteLine($"\t{client.Name}");
-            if (!string.IsNullOrEmpty(client.AdditionalInformation))
-            {
-                Console.WriteLine($"\t{client.AdditionalInformation}");
-            }
-            Console.WriteLine($"\t{client.PostalAddress.Street}");
-            if (!string.IsNullOrEmpty(client.PostalAddress.AdditionalInformation))
-            {
-                Console.WriteLine($"\t{client.PostalAddress.AdditionalInformation}");
-            }
-            Console.WriteLine($"\t{client.PostalAddress.PostalCode} {client.PostalAddress.City}");
-            Console.WriteLine($"\t{client.PostalAddress.Country}");
-            if (!string.IsNullOrEmpty(client.ContactDetails.Email))
-            {
-                Console.WriteLine($"\tEmail: {client.ContactDetails.Email}");
-            }
-            if (!string.IsNullOrEmpty(client.ContactDetails.Mobile))
-            {
-                Console.WriteLine($"\tMobile: {client.ContactDetails.Mobile}");
-            }
-            if (!string.IsNullOrEmpty(client.ContactDetails.Phone))
-            {
-                Console.WriteLine($"\tPhone: {client.ContactDetails.Phone}");
-            }
+            Console.Write(client.ToConsole());
         }
     }
 }

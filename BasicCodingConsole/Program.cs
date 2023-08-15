@@ -9,6 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PaperDeliveryLibrary.Providers;
 using Serilog;
+using System.Text;
+
+Console.OutputEncoding = Encoding.Default; // this is set to enable the console to print "€" symbol
+Console.OutputEncoding = Encoding.UTF8; // this is set to enable the console to print "€" symbol
 
 var builder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())

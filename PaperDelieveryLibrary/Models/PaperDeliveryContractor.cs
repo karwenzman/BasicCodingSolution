@@ -1,4 +1,8 @@
-﻿namespace PaperDeliveryLibrary.Models;
+﻿using System.Diagnostics.Contracts;
+using System.Text;
+using System.Xml.Linq;
+
+namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryContractor : Person, IComparable<PaperDeliveryContractor>
 {
@@ -51,5 +55,43 @@ public class PaperDeliveryContractor : Person, IComparable<PaperDeliveryContract
     public override int GetHashCode()
     {
         return Id.GetHashCode();
+    }
+
+    /// <summary>
+    /// This method returns the content of the <see cref="PaperDeliveryContractor"/> object.
+    /// The content is formated in a way to be used on a concole application.
+    /// </summary>
+    /// <returns>A nongeneric <see cref="StringBuilder"/>.</returns>
+    public StringBuilder ToConsole()
+    {
+        StringBuilder output = new();
+
+        output.AppendLine($"\nContractorID {Id}");
+        output.AppendLine($"\t{FirstName} {LastName}");
+        output.AppendLine($"\t{PostalAddress.Street}");
+        if (!string.IsNullOrEmpty(PostalAddress.AdditionalInformation))
+        {
+            output.AppendLine($"\t{PostalAddress.AdditionalInformation}");
+        }
+        output.AppendLine($"\t{PostalAddress.PostalCode} {PostalAddress.City}");
+        output.AppendLine($"\t{PostalAddress.Country}");
+        if (!string.IsNullOrEmpty(ContactDetails.Email))
+        {
+            output.AppendLine($"\tEmail: {ContactDetails.Email}");
+        }
+        if (!string.IsNullOrEmpty(ContactDetails.Mobile))
+        {
+            output.AppendLine($"\tMobile: {ContactDetails.Mobile}");
+        }
+        if (!string.IsNullOrEmpty(ContactDetails.Phone))
+        {
+            output.AppendLine($"\tPhone: {ContactDetails.Phone}");
+        }
+        if (!string.IsNullOrEmpty(Site))
+        {
+            output.AppendLine($"\tSite for unloading: {Site}");
+        }
+
+        return output;
     }
 }
