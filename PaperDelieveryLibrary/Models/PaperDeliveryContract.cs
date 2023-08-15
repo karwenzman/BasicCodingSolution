@@ -1,6 +1,6 @@
 ﻿namespace PaperDeliveryLibrary.Models;
 
-public class PaperDeliveryContract : IPaperDeliveryContract, IComparable<PaperDeliveryContract>
+public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
 {
     public string ContractID { get; set; } = "default";
     public double HourlyWageRate { get; set; }

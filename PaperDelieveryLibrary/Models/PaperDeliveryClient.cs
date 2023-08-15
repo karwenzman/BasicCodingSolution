@@ -68,5 +68,4 @@ public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
     {
         return Id.GetHashCode();
     }
-
 }

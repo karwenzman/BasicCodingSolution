@@ -2,10 +2,10 @@
 
 namespace PaperDeliveryLibrary.Models;
 
-public class PaperDeliveryFulfillment : IPaperDeliveryFulfillment
+public class PaperDeliveryFulfillment
 {
-    public IPaperDeliveryContract Contract { get; set; } = new PaperDeliveryContract();
-    public IPaperDeliveryContractor Contractor { get; set; } = new PaperDeliveryContractor();
+    public PaperDeliveryContract Contract { get; set; } = new PaperDeliveryContract();
+    public PaperDeliveryContractor Contractor { get; set; } = new PaperDeliveryContractor();
     public Fulfillment Fulfillment { get; set; } = Fulfillment.None;
     public DateTime WorkingHours { get; set; }
 }

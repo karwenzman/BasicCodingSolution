@@ -1,6 +1,6 @@
 ﻿namespace PaperDeliveryLibrary.Models;
 
-public class PaperDeliveryContractor : Person, IPaperDeliveryContractor, IComparable<PaperDeliveryContractor>
+public class PaperDeliveryContractor : Person, IComparable<PaperDeliveryContractor>
 {
     /// <summary>
     /// The information where the carrier shall drop the papers.

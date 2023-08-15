@@ -56,7 +56,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             // do something
         }
 
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
         {
             try
             {
