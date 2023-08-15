@@ -4,25 +4,10 @@ namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
 {
-    /// <summary>
-    /// The client's additional name information.
-    /// </summary>
     public string AdditionalInformation { get; set; } = "default";
-    /// <summary>
-    /// The client's contact details.
-    /// </summary>
     public ContactDetails ContactDetails { get; set; } = new ContactDetails();
-    /// <summary>
-    /// The client's unique ID.
-    /// </summary>
     public int Id { get; set; }
-    /// <summary>
-    /// The client's name.
-    /// </summary>
-    public string Name { get; set; } = "default";
-    /// <summary>
-    /// The client's postal address.
-    /// </summary>
+    public string ClientName { get; set; } = "default";
     public PostalAddress PostalAddress { get; set; } = new PostalAddress();
 
     /// <summary>
@@ -81,7 +66,7 @@ public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
         StringBuilder output = new();
 
         output.AppendLine(($"\nClientID {Id}"));
-        output.AppendLine($"\t{Name}");
+        output.AppendLine($"\t{ClientName}");
         if (!string.IsNullOrEmpty(AdditionalInformation))
         {
             output.AppendLine($"\t{AdditionalInformation}");

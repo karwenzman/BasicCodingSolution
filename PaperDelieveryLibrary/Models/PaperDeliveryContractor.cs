@@ -1,14 +1,9 @@
-﻿using System.Diagnostics.Contracts;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Text;
 
 namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryContractor : Person, IComparable<PaperDeliveryContractor>
 {
-    /// <summary>
-    /// The information where the carrier shall drop the papers.
-    /// </summary>
     public string Site { get; set; } = "default";
 
     /// <summary>

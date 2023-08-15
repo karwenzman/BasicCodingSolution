@@ -1,5 +1,5 @@
-﻿using BasicCodingLibrary.Enums;
-using CsvHelper;
+﻿using CsvHelper;
+using PaperDeliveryLibrary.Enums;
 using PaperDeliveryLibrary.Models;
 using System.Globalization;
 
@@ -107,7 +107,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             new PaperDeliveryClient
             {
                 Id = 2,
-                Name = "Top Direkt Marktservice GmbH",
+                ClientName = "Top Direkt Marktservice GmbH",
                 AdditionalInformation = string.Empty,
                 PostalAddress = new PostalAddress()
                 {
@@ -127,7 +127,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             new PaperDeliveryClient
             {
                 Id = 1,
-                Name = "Amazon Logistik GmbH",
+                ClientName = "Amazon Logistik GmbH",
                 AdditionalInformation = "Site - FRA1",
                 PostalAddress = new PostalAddress()
                 {
