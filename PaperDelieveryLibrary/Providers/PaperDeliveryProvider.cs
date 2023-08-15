@@ -18,6 +18,53 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     }
 
     /// <summary>
+    /// This method ...
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="clients"></param>
+    public void WriteClientList(string fileName, List<PaperDeliveryClient> clients)
+    {
+        if (clients == null)
+        {
+            // do something
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            // do something
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+            }
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            using var writer = new StreamWriter(fileName);
+            using var csvOut = new CsvWriter(writer, CultureInfo.InvariantCulture);
+
+            csvOut.WriteRecords(clients);
+        }
+        else
+        {
+            // do something
+        }
+    }
+
+    /// <summary>
     /// This method returns a list that is hard coded.
     /// It is for testing reasons only.
     /// </summary>
@@ -87,6 +134,53 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     public List<PaperDeliveryContractor> GetContractorList()
     {
         return ReadFromContractorList();
+    }
+
+    /// <summary>
+    /// This method ...
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="contractors"></param>
+    public void WriteContractorList(string fileName, List<PaperDeliveryContractor> contractors)
+    {
+        if (contractors == null)
+        {
+            // do something
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            // do something
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+            }
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            using var writer = new StreamWriter(fileName);
+            using var csvOut = new CsvWriter(writer, CultureInfo.InvariantCulture);
+
+            csvOut.WriteRecords(contractors);
+        }
+        else
+        {
+            // do something
+        }
     }
 
     public List<PaperDeliveryFulfillment> GetFulfillmentList()

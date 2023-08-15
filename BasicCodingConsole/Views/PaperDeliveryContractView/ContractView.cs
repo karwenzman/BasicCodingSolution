@@ -4,7 +4,6 @@ using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Logging;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
-using System.Globalization;
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
@@ -57,39 +56,47 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     /// </summary>
     private void WriteContent()
     {
+        string contractFile = "Contracts.csv";
+        string contractorFile = "Contractors.csv";
+        string clientFile = "Clients.csv";
+        string fulfillmentFile = "Fulfillments.csv";
+        string paperDeliveryDirectory = "PaperDeliveryFiles";
+        string fileName = "";
+
+        Console.WriteLine("##### List Contracts and Save to File #################################");
         foreach (var contract in Contracts)
         {
             Console.Write(contract.ToConsole());
         }
-
-        Console.WriteLine("######################################");
-        string file = "Contracts.csv";
-        string subDirectory = "PaperDeliveryFiles";
-        string fileName = Path.Combine(Directory.GetCurrentDirectory(), subDirectory, file);
+        fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
         _paperDeliveryProvider.WriteContractList(fileName, Contracts);
 
-        List<PaperDeliveryContract> list = new();
-        list = _paperDeliveryProvider.GetContractList(fileName);
-        list.Reverse();
-        foreach (var item in list)
-        {
-            Console.Write(item.ToConsole());
-        }
+        //List<PaperDeliveryContract> list = new();
+        //list = _paperDeliveryProvider.GetContractList(fileName);
+        //list.Reverse();
+        //foreach (var item in list)
+        //{
+        //    Console.Write(item.ToConsole());
+        //}
 
-        Console.WriteLine("######################################");
+        Console.WriteLine("##### List Contractors and Save to File #################################");
         List<PaperDeliveryContractor> contractors = new List<PaperDeliveryContractor>();
         contractors = _paperDeliveryProvider.GetContractorList();
         foreach (var contractor in contractors)
         {
             Console.Write(contractor.ToConsole());
         }
+        fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractorFile);
+        _paperDeliveryProvider.WriteContractorList(fileName, contractors);
 
-        Console.WriteLine("######################################");
+        Console.WriteLine("##### List Clients and Save to File #################################");
         List<PaperDeliveryClient> clients = new List<PaperDeliveryClient>();
         clients = _paperDeliveryProvider.GetClientList();
         foreach (var client in clients)
         {
             Console.Write(client.ToConsole());
         }
+        fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, clientFile);
+        _paperDeliveryProvider.WriteClientList(fileName, clients);
     }
 }
