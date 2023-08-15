@@ -4,27 +4,17 @@ namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
 {
-    public string ID { get; set; } = "default";
+    public string Id { get; set; } = "default";
     public double HourlyWageRate { get; set; }
     public int NumberOfPapers { get; set; }
     public string Region { get; set; } = "default";
     public string Route { get; set; } = "default";
     public string Site { get; set; } = "default";
     public TimeOnly StandardizedWorkingHours { get; set; }
-    public double Wage
-    {
-        get
-        {
-            var resultWageHour = HourlyWageRate * StandardizedWorkingHours.Hour;
-            var resultWageMinute = HourlyWageRate * StandardizedWorkingHours.Minute * 1 / 60;
-            var resultWageSecond = HourlyWageRate * StandardizedWorkingHours.Second * 1 / 3600;
-            var output = resultWageHour + resultWageMinute + resultWageSecond;
-            return output;
-        }
-    }
+
 
     /// <summary>
-    /// This method is providing logic to compare the instance's property <see cref="ID"/>.
+    /// This method is providing logic to compare the instance's property <see cref="Id"/>.
     /// If comparison based solely on values returns zero, 
     /// indicating that two instances are equal in those fields they have in common, 
     /// only then we break the tie by comparing data types of the two instances.
@@ -48,19 +38,19 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
     }
 
     /// <summary>
-    /// This method is comparing the property <see cref="ID"/>.
+    /// This method is comparing the property <see cref="Id"/>.
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
     protected virtual int CompareToValues(PaperDeliveryContract? other)
     {
-        return other == null ? 1 : ID.CompareTo(other.ID);
+        return other == null ? 1 : Id.CompareTo(other.Id);
     }
 
     /// <summary>
     /// This method is comparing the type of the base class and its derived class.
     /// Base type is considered less than derived type
-    /// when two instances have the same values of the property <see cref="ID"/>.
+    /// when two instances have the same values of the property <see cref="Id"/>.
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
@@ -89,14 +79,14 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
 
     /// <summary>
     /// This method returns the expression <b>ContractID</b>
-    /// followed by the property <see cref="ID"/>.
+    /// followed by the property <see cref="Id"/>.
     /// <para></para>
     /// This method is overriding the base functionality of the type <see cref="object"/>.
     /// </summary>
     /// <returns>A nongeneric string.</returns>
     public override string ToString()
     {
-        return $"ContractID {ID}";
+        return $"ContractID {Id}";
     }
 
     /// <summary>
@@ -119,7 +109,7 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
     /// <returns></returns>
     public override int GetHashCode()
     {
-        return ID.GetHashCode();
+        return Id.GetHashCode();
     }
 
     /// <summary>
@@ -131,9 +121,9 @@ public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
     {
         StringBuilder output = new();
 
-        output.AppendLine($"\nContractID {ID} - Tour {Route} {Site} {Region}");
-        output.AppendLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12} {"Wage",11}");
-        output.AppendLine($"{NumberOfPapers,10} {StandardizedWorkingHours,10} {HourlyWageRate,12:c2} ==> {Wage:c2}");
+        output.AppendLine($"\nContractID {Id} - Tour {Route} {Site} {Region}");
+        output.AppendLine($"{"Workload",10} {"Schedule",10} {"HourlyWage",12}");
+        output.AppendLine($"{NumberOfPapers,10} {StandardizedWorkingHours,10} {HourlyWageRate,12:c2}");
         return output;
     }
 }
