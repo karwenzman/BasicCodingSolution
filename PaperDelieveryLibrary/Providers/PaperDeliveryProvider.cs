@@ -49,9 +49,18 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         return output;
     }
 
-    public void WriteToFile<T>(string fileName, List<T> listToSave)
+    /// <summary>
+    /// This generic method is writing a <see cref="List{T}"/> to a csv file.
+    /// Right now it is calling the method <see cref="WriteRecordsToFileAsync{T}(string, List{T})"/>
+    /// and passing the parameters to it. This might change, if I understand to add the async method to the interface.
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="recordsToSave"></param>
+    public void WriteRecordsToFile<T>(string fileName, List<T> recordsToSave)
     {
-        WriteToFileAsync(fileName, listToSave).Wait();
+        WriteRecordsToFileAsync(fileName, recordsToSave).Wait();
     }
 
     /// <summary>
@@ -357,17 +366,17 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     }
 
     /// <summary>
-    /// This method ...
+    /// This generic method is writing a <see cref="List{T}"/> to a csv file.
     /// <para></para>
     /// This method is using the NuGet package <see cref="CsvHelper"/>.
     /// </summary>
     /// <param name="fileName"></param>
-    /// <param name="listToSave"></param>
-    private static async Task WriteToFileAsync<T>(string fileName, List<T> listToSave)
+    /// <param name="recordsToSave"></param>
+    private static async Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave)
     {
-        if (listToSave == null)
+        if (recordsToSave == null)
         {
-            throw new ArgumentNullException(nameof(listToSave), "Collection cannot be null!");
+            throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");
         }
 
         if (string.IsNullOrEmpty(fileName))
@@ -395,7 +404,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         {
             await using var writer = new StreamWriter(fileName);
             await using var csvOut = new CsvWriter(writer, CultureInfo.CurrentCulture);
-            await csvOut.WriteRecordsAsync<T>(listToSave);
+            await csvOut.WriteRecordsAsync<T>(recordsToSave);
         }
         else
         {
