@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using PaperDeliveryLibrary.Enums;
 using PaperDeliveryLibrary.Models;
 using System.Globalization;
@@ -86,15 +87,68 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (Directory.Exists(Path.GetDirectoryName(fileName)))
         {
+            var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+            {
+                HasHeaderRecord = true,
+            };
+
             using var writer = new StreamWriter(fileName);
-            using var csvOut = new CsvWriter(writer, CultureInfo.CurrentCulture);
-            csvOut.WriteRecordsAsync<T>(recordsToSave);
+            using var csvOut = new CsvWriter(writer, config);
+            csvOut.Context.RegisterClassMap<PaperDeliveryContractorMap>();
+            csvOut.WriteRecords<T>(recordsToSave);
         }
         else
         {
             throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
         }
 
+    }
+
+    /// <summary>
+    /// This generic method is writing a <see cref="List{T}"/> to a csv file.
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="recordsToSave"></param>
+    public async Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave)
+    {
+        if (recordsToSave == null)
+        {
+            throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            await using var writer = new StreamWriter(fileName);
+            await using var csvOut = new CsvWriter(writer, CultureInfo.CurrentCulture);
+            await csvOut.WriteRecordsAsync<T>(recordsToSave);
+        }
+        else
+        {
+            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+        }
     }
 
     /// <summary>
@@ -399,50 +453,4 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         return output;
     }
 
-    /// <summary>
-    /// This generic method is writing a <see cref="List{T}"/> to a csv file.
-    /// <para></para>
-    /// This method is using the NuGet package <see cref="CsvHelper"/>.
-    /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="recordsToSave"></param>
-    public async Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave)
-    {
-        if (recordsToSave == null)
-        {
-            throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");
-        }
-
-        if (string.IsNullOrEmpty(fileName))
-        {
-            throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
-        }
-
-        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
-        }
-
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            await using var writer = new StreamWriter(fileName);
-            await using var csvOut = new CsvWriter(writer, CultureInfo.CurrentCulture);
-            await csvOut.WriteRecordsAsync<T>(recordsToSave);
-        }
-        else
-        {
-            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
-        }
-    }
 }
