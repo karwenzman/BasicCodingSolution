@@ -59,7 +59,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         string contractFile = "Contracts.csv";
         string contractorFile = "Contractors.csv";
         string clientFile = "Clients.csv";
-        string fulfillmentFile = "Fulfillments.csv";
+        //string fulfillmentFile = "Fulfillments.csv";
         string paperDeliveryDirectory = "PaperDeliveryFiles";
         string fileName = "";
 
@@ -68,8 +68,20 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         {
             Console.Write(contract.ToConsole());
         }
-        fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
-        _paperDeliveryProvider.WriteContractList(fileName, Contracts);
+
+        try
+        {
+            fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
+            _paperDeliveryProvider.WriteToFile(fileName, Contracts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Unexpected Exception!");
+            Console.WriteLine(e);
+            Console.WriteLine($"\n***** Press ENTER To Continue *****");
+            Console.ReadLine();
+            throw;
+        }
 
         //List<PaperDeliveryContract> list = new();
         //list = _paperDeliveryProvider.GetContractList(fileName);
@@ -80,23 +92,45 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         //}
 
         Console.WriteLine("##### List Contractors and Save to File #################################");
-        List<PaperDeliveryContractor> contractors = new List<PaperDeliveryContractor>();
-        contractors = _paperDeliveryProvider.GetContractorList();
+        List<PaperDeliveryContractor> contractors = _paperDeliveryProvider.GetContractorList();
         foreach (var contractor in contractors)
         {
             Console.Write(contractor.ToConsole());
         }
-        fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractorFile);
-        _paperDeliveryProvider.WriteContractorList(fileName, contractors);
+
+        try
+        {
+            fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractorFile);
+            _paperDeliveryProvider.WriteToFile(fileName, contractors);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Unexpected Exception!");
+            Console.WriteLine(e);
+            Console.WriteLine($"\n***** Press ENTER To Continue *****");
+            Console.ReadLine();
+            throw;
+        }
 
         Console.WriteLine("##### List Clients and Save to File #################################");
-        List<PaperDeliveryClient> clients = new List<PaperDeliveryClient>();
-        clients = _paperDeliveryProvider.GetClientList();
+        List<PaperDeliveryClient> clients = _paperDeliveryProvider.GetClientList();
         foreach (var client in clients)
         {
             Console.Write(client.ToConsole());
         }
-        fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, clientFile);
-        _paperDeliveryProvider.WriteClientList(fileName, clients);
+
+        try
+        {
+            fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, clientFile);
+            _paperDeliveryProvider.WriteToFile(fileName, clients);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Unexpected Exception!");
+            Console.WriteLine(e);
+            Console.WriteLine($"\n***** Press ENTER To Continue *****");
+            Console.ReadLine();
+            throw;
+        }
     }
 }

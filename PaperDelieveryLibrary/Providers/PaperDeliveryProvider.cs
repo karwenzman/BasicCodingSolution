@@ -18,53 +18,6 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     }
 
     /// <summary>
-    /// This method ...
-    /// <para></para>
-    /// This method is using the NuGet package <see cref="CsvHelper"/>.
-    /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="clients"></param>
-    public void WriteClientList(string fileName, List<PaperDeliveryClient> clients)
-    {
-        if (clients == null)
-        {
-            // do something
-        }
-
-        if (string.IsNullOrEmpty(fileName))
-        {
-            // do something
-        }
-
-        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-            }
-        }
-
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            using var writer = new StreamWriter(fileName);
-            using var csvOut = new CsvWriter(writer, CultureInfo.InvariantCulture);
-
-            csvOut.WriteRecords(clients);
-        }
-        else
-        {
-            // do something
-        }
-    }
-
-    /// <summary>
     /// This method returns a list that is hard coded.
     /// It is for testing reasons only.
     /// </summary>
@@ -84,103 +37,9 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         return ReadFromContractFile(fileName);
     }
 
-    /// <summary>
-    /// This method ...
-    /// <para></para>
-    /// This method is using the NuGet package <see cref="CsvHelper"/>.
-    /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="contracts"></param>
-    public void WriteContractList(string fileName, List<PaperDeliveryContract> contracts)
-    {
-        if (contracts == null)
-        {
-            // do something
-        }
-
-        if (string.IsNullOrEmpty(fileName))
-        {
-            // do something
-        }
-
-        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-            }
-        }
-
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            using var writer = new StreamWriter(fileName);
-            using var csvOut = new CsvWriter(writer, CultureInfo.InvariantCulture);
-
-            csvOut.WriteRecords(contracts);
-        }
-        else
-        {
-            // do something
-        }
-    }
-
     public List<PaperDeliveryContractor> GetContractorList()
     {
         return ReadFromContractorList();
-    }
-
-    /// <summary>
-    /// This method ...
-    /// <para></para>
-    /// This method is using the NuGet package <see cref="CsvHelper"/>.
-    /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="contractors"></param>
-    public void WriteContractorList(string fileName, List<PaperDeliveryContractor> contractors)
-    {
-        if (contractors == null)
-        {
-            // do something
-        }
-
-        if (string.IsNullOrEmpty(fileName))
-        {
-            // do something
-        }
-
-        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-            }
-        }
-
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
-        {
-            using var writer = new StreamWriter(fileName);
-            using var csvOut = new CsvWriter(writer, CultureInfo.InvariantCulture);
-
-            csvOut.WriteRecords(contractors);
-        }
-        else
-        {
-            // do something
-        }
     }
 
     public List<PaperDeliveryFulfillment> GetFulfillmentList()
@@ -188,6 +47,11 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         List<PaperDeliveryFulfillment> output = new();
 
         return output;
+    }
+
+    public void WriteToFile<T>(string fileName, List<T> listToSave)
+    {
+        WriteToFileAsync(fileName, listToSave).Wait();
     }
 
     /// <summary>
@@ -201,7 +65,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             new PaperDeliveryClient
             {
                 Id = 2,
-                ClientName = "Top Direkt Marktservice GmbH",
+                TradeName = "Top Direkt Marktservice GmbH",
                 AdditionalInformation = string.Empty,
                 PostalAddress = new PostalAddress()
                 {
@@ -221,7 +85,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             new PaperDeliveryClient
             {
                 Id = 1,
-                ClientName = "Amazon Logistik GmbH",
+                TradeName = "Amazon Logistik GmbH",
                 AdditionalInformation = "Site - FRA1",
                 PostalAddress = new PostalAddress()
                 {
@@ -490,5 +354,52 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         output.Sort();
 
         return output;
+    }
+
+    /// <summary>
+    /// This method ...
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="listToSave"></param>
+    private static async Task WriteToFileAsync<T>(string fileName, List<T> listToSave)
+    {
+        if (listToSave == null)
+        {
+            throw new ArgumentNullException(nameof(listToSave), "Collection cannot be null!");
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            await using var writer = new StreamWriter(fileName);
+            await using var csvOut = new CsvWriter(writer, CultureInfo.CurrentCulture);
+            await csvOut.WriteRecordsAsync<T>(listToSave);
+        }
+        else
+        {
+            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+        }
     }
 }

@@ -9,7 +9,5 @@ public interface IPaperDeliveryProvider
     List<PaperDeliveryContract> GetContractList(string fileName);
     List<PaperDeliveryContractor> GetContractorList();
     List<PaperDeliveryFulfillment> GetFulfillmentList();
-    void WriteClientList(string fileName, List<PaperDeliveryClient> contracts);
-    void WriteContractList(string fileName, List<PaperDeliveryContract> contracts);
-    void WriteContractorList(string fileName, List<PaperDeliveryContractor> contracts);
+    void WriteToFile<T>(string fileName, List<T> listToSave);
 }

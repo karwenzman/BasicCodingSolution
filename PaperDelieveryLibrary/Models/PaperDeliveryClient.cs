@@ -7,7 +7,7 @@ public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
     public string AdditionalInformation { get; set; } = "default";
     public ContactDetails ContactDetails { get; set; } = new ContactDetails();
     public int Id { get; set; }
-    public string ClientName { get; set; } = "default";
+    public string TradeName { get; set; } = "default";
     public PostalAddress PostalAddress { get; set; } = new PostalAddress();
 
     /// <summary>
@@ -66,7 +66,7 @@ public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
         StringBuilder output = new();
 
         output.AppendLine(($"\nClientID {Id}"));
-        output.AppendLine($"\t{ClientName}");
+        output.AppendLine($"\t{TradeName}");
         if (!string.IsNullOrEmpty(AdditionalInformation))
         {
             output.AppendLine($"\t{AdditionalInformation}");
