@@ -72,7 +72,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         try
         {
             fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
-            _paperDeliveryProvider.WriteRecordsToFile(fileName, Contracts);
+            _paperDeliveryProvider.WriteRecordsToFileAsync(fileName, Contracts);
         }
         catch (Exception e)
         {
@@ -101,7 +101,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         try
         {
             fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractorFile);
-            _paperDeliveryProvider.WriteRecordsToFile(fileName, contractors);
+            _paperDeliveryProvider.WriteRecordsToFileAsync(fileName, contractors);
         }
         catch (Exception e)
         {
@@ -122,7 +122,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         try
         {
             fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, clientFile);
-            _paperDeliveryProvider.WriteRecordsToFile(fileName, clients);
+            _paperDeliveryProvider.WriteRecordsToFileAsync(fileName, clients);
         }
         catch (Exception e)
         {

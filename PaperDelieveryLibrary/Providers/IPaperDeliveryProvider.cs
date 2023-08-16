@@ -10,4 +10,5 @@ public interface IPaperDeliveryProvider
     List<PaperDeliveryContractor> GetContractorList();
     List<PaperDeliveryFulfillment> GetFulfillmentList();
     void WriteRecordsToFile<T>(string fileName, List<T> listToSave);
+    Task WriteRecordsToFileAsync<T>(string fileName, List<T> listToSave);
 }

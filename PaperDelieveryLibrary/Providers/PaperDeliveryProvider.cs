@@ -51,8 +51,6 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
     /// <summary>
     /// This generic method is writing a <see cref="List{T}"/> to a csv file.
-    /// Right now it is calling the method <see cref="WriteRecordsToFileAsync{T}(string, List{T})"/>
-    /// and passing the parameters to it. This might change, if I understand to add the async method to the interface.
     /// <para></para>
     /// This method is using the NuGet package <see cref="CsvHelper"/>.
     /// </summary>
@@ -60,7 +58,43 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// <param name="recordsToSave"></param>
     public void WriteRecordsToFile<T>(string fileName, List<T> recordsToSave)
     {
-        WriteRecordsToFileAsync(fileName, recordsToSave).Wait();
+        if (recordsToSave == null)
+        {
+            throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            using var writer = new StreamWriter(fileName);
+            using var csvOut = new CsvWriter(writer, CultureInfo.CurrentCulture);
+            csvOut.WriteRecordsAsync<T>(recordsToSave);
+        }
+        else
+        {
+            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+        }
+
     }
 
     /// <summary>
@@ -372,7 +406,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="recordsToSave"></param>
-    private static async Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave)
+    public async Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave)
     {
         if (recordsToSave == null)
         {
