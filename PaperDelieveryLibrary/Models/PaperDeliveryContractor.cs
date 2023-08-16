@@ -64,9 +64,9 @@ public class PaperDeliveryContractor : Person, IComparable<PaperDeliveryContract
         output.AppendLine($"\nContractorID {Id}");
         output.AppendLine($"\t{FirstName} {LastName}");
         output.AppendLine($"\t{PostalAddress.Street}");
-        if (!string.IsNullOrEmpty(PostalAddress.AdditionalInformation))
+        if (!string.IsNullOrEmpty(PostalAddress.StreetAdditionalInformation))
         {
-            output.AppendLine($"\t{PostalAddress.AdditionalInformation}");
+            output.AppendLine($"\t{PostalAddress.StreetAdditionalInformation}");
         }
         output.AppendLine($"\t{PostalAddress.PostalCode} {PostalAddress.City}");
         output.AppendLine($"\t{PostalAddress.Country}");

@@ -57,7 +57,11 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="recordsToSave"></param>
-    public void WriteRecordsToFile<T>(string fileName, List<T> recordsToSave)
+    /// <param name="classMap">
+    /// A helper class to specify the column's order. 
+    /// If null, then the class map will be handled automatically.
+    /// </param>
+    public void WriteRecordsToFile<T>(string fileName, List<T> recordsToSave, ClassMap? classMap = null)
     {
         if (recordsToSave == null)
         {
@@ -94,14 +98,16 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
             using var writer = new StreamWriter(fileName);
             using var csvOut = new CsvWriter(writer, config);
-            csvOut.Context.RegisterClassMap<PaperDeliveryContractorMap>();
+            if (classMap != null)
+            {
+                csvOut.Context.RegisterClassMap(classMap);
+            }
             csvOut.WriteRecords<T>(recordsToSave);
         }
         else
         {
             throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
         }
-
     }
 
     /// <summary>
@@ -111,7 +117,11 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="recordsToSave"></param>
-    public async Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave)
+    /// <param name="classMap">
+    /// A helper class to specify the column's order. 
+    /// If null, then the class map will be handled automatically.
+    /// </param>
+    public async Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave, ClassMap? classMap = null)
     {
         if (recordsToSave == null)
         {
@@ -141,8 +151,18 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (Directory.Exists(Path.GetDirectoryName(fileName)))
         {
+            var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+            {
+                HasHeaderRecord = true,
+                Delimiter = ",",
+            };
+
             await using var writer = new StreamWriter(fileName);
-            await using var csvOut = new CsvWriter(writer, CultureInfo.CurrentCulture);
+            await using var csvOut = new CsvWriter(writer, config);
+            if (classMap != null)
+            {
+                csvOut.Context.RegisterClassMap(classMap);
+            }
             await csvOut.WriteRecordsAsync<T>(recordsToSave);
         }
         else
@@ -163,11 +183,11 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             {
                 Id = 2,
                 TradeName = "Top Direkt Marktservice GmbH",
-                AdditionalInformation = string.Empty,
+                TradeNameAdditionalInformation = string.Empty,
                 PostalAddress = new PostalAddress()
                 {
                     Street = "Frankfurter Str. 168",
-                    AdditionalInformation = string.Empty,
+                    StreetAdditionalInformation = string.Empty,
                     PostalCode = "34121",
                     City = "Kassel",
                     Country = "Germany",
@@ -183,11 +203,11 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             {
                 Id = 1,
                 TradeName = "Amazon Logistik GmbH",
-                AdditionalInformation = "Site - FRA1",
+                TradeNameAdditionalInformation = "Site - FRA1",
                 PostalAddress = new PostalAddress()
                 {
                     Street = "Am Schloss Eichhof 1",
-                    AdditionalInformation = string.Empty,
+                    StreetAdditionalInformation = string.Empty,
                     PostalCode = "36251 ",
                     City = "Bad Hersfeld",
                     Country = "Germany",
@@ -396,7 +416,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 PostalAddress = new PostalAddress()
                 {
                     Street = "Breslauer Str. 7",
-                    AdditionalInformation = string.Empty,
+                    StreetAdditionalInformation = string.Empty,
                     PostalCode = "36251 ",
                     City = "Bad Hersfeld",
                     Country = "Germany",
@@ -418,7 +438,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 PostalAddress = new PostalAddress()
                 {
                     Street = "Breslauer Str. 7",
-                    AdditionalInformation = string.Empty,
+                    StreetAdditionalInformation = string.Empty,
                     PostalCode = "36251 ",
                     City = "Bad Hersfeld",
                     Country = "Germany",
@@ -440,7 +460,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 PostalAddress = new PostalAddress()
                 {
                     Street = "Breslauer Str. 7",
-                    AdditionalInformation = string.Empty,
+                    StreetAdditionalInformation = string.Empty,
                     PostalCode = "36251 ",
                     City = "Bad Hersfeld",
                     Country = "Germany",

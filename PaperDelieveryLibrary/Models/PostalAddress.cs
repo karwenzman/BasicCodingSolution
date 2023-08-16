@@ -4,7 +4,7 @@ public class PostalAddress
 {
     public string Street { get; set; } = "default";
 
-    public string AdditionalInformation { get; set; } = "default";
+    public string StreetAdditionalInformation { get; set; } = "default";
 
     public string PostalCode { get; set; } = "default";
 

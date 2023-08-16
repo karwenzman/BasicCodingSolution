@@ -4,10 +4,14 @@ namespace PaperDeliveryLibrary.Models;
 
 public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
 {
-    public string AdditionalInformation { get; set; } = "default";
-    public ContactDetails ContactDetails { get; set; } = new ContactDetails();
     public int Id { get; set; }
+
     public string TradeName { get; set; } = "default";
+
+    public string TradeNameAdditionalInformation { get; set; } = "default";
+
+    public ContactDetails ContactDetails { get; set; } = new ContactDetails();
+
     public PostalAddress PostalAddress { get; set; } = new PostalAddress();
 
     /// <summary>
@@ -67,14 +71,14 @@ public class PaperDeliveryClient : IComparable<PaperDeliveryClient>
 
         output.AppendLine(($"\nClientID {Id}"));
         output.AppendLine($"\t{TradeName}");
-        if (!string.IsNullOrEmpty(AdditionalInformation))
+        if (!string.IsNullOrEmpty(TradeNameAdditionalInformation))
         {
-            output.AppendLine($"\t{AdditionalInformation}");
+            output.AppendLine($"\t{TradeNameAdditionalInformation}");
         }
         output.AppendLine($"\t{PostalAddress.Street}");
-        if (!string.IsNullOrEmpty(PostalAddress.AdditionalInformation))
+        if (!string.IsNullOrEmpty(PostalAddress.StreetAdditionalInformation))
         {
-            output.AppendLine($"\t{PostalAddress.AdditionalInformation}");
+            output.AppendLine($"\t{PostalAddress.StreetAdditionalInformation}");
         }
         output.AppendLine($"\t{PostalAddress.PostalCode} {PostalAddress.City}");
         output.AppendLine($"\t{PostalAddress.Country}");
