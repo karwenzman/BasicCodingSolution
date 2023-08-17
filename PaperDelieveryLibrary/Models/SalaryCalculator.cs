@@ -1,6 +1,6 @@
 ﻿namespace PaperDeliveryLibrary.Models;
 
-public class SalaryCalculator
+public class SalaryCalculator : AccountingBase
 {
     public double GrossSalary { get; set; }
     public double Salary { get; set; }

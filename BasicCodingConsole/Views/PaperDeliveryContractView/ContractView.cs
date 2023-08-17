@@ -134,14 +134,18 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         }
 
         Console.WriteLine("##### Berechnung Lohn #################################");
-        SalaryCalculator taxCalculator = new(102.20);
-        Console.WriteLine();
-        SalaryCalculator taxCalculator1 = new(109);
-        Console.WriteLine();
         SalaryCalculator taxCalculator2 = new(150);
+        Console.WriteLine($"Abgaben: {BusinessMiniJob.CalculateEmployeeStatutoryPensionContribution(150),8:c2}");
+        Console.WriteLine($"Netto:   {BusinessMiniJob.CalculateEmployeeSalary(150),8:c2}");
         Console.WriteLine();
         SalaryCalculator taxCalculator3 = new(25);
+        Console.WriteLine($"Abgaben: {BusinessMiniJob.CalculateEmployeeStatutoryPensionContribution(25),8:c2}");
+        Console.WriteLine($"Netto:   {BusinessMiniJob.CalculateEmployeeSalary(25),8:c2}");
         Console.WriteLine();
         SalaryCalculator taxCalculator4 = new(520);
+        Console.WriteLine($"Abgaben: {BusinessMiniJob.CalculateEmployeeStatutoryPensionContribution(520),8:c2}");
+        Console.WriteLine($"Netto:   {BusinessMiniJob.CalculateEmployeeSalary(520),8:c2}");
+        Console.WriteLine();
+        BusinessMiniJob.Settings();
     }
 }
