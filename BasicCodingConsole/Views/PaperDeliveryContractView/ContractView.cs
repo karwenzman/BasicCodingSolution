@@ -132,5 +132,16 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
             Console.ReadLine();
             throw;
         }
+
+        Console.WriteLine("##### Berechnung Lohn #################################");
+        SalaryCalculator taxCalculator = new(102.20);
+        Console.WriteLine();
+        SalaryCalculator taxCalculator1 = new(109);
+        Console.WriteLine();
+        SalaryCalculator taxCalculator2 = new(150);
+        Console.WriteLine();
+        SalaryCalculator taxCalculator3 = new(25);
+        Console.WriteLine();
+        SalaryCalculator taxCalculator4 = new(520);
     }
 }
