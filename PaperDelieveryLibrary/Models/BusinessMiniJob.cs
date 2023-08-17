@@ -29,7 +29,7 @@ public class BusinessMiniJob : AccountingBase
     {
         if (grossSalary <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(grossSalary), "The parameter must have a positive value!");
+            throw new ArgumentOutOfRangeException(nameof(grossSalary), "The argument must have a positive value!");
         }
 
         return grossSalary * RentenversichungArbeitgeberPflichtanteil;
@@ -39,7 +39,7 @@ public class BusinessMiniJob : AccountingBase
     {
         if (grossSalary <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(grossSalary), "The parameter must have a positive value!");
+            throw new ArgumentOutOfRangeException(nameof(grossSalary), "The argument must have a positive value!");
         }
 
         double contributionEmployee = grossSalary * RentenversichungArbeitnehmerPflichtanteil;
