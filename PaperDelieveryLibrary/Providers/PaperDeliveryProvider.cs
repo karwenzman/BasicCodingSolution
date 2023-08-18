@@ -6,6 +6,12 @@ using System.Globalization;
 
 namespace PaperDeliveryLibrary.Providers;
 
+/// <summary>
+/// This class is providing read/write members.
+/// <para></para>
+/// This class is using the NuGet package <see cref="CsvHelper"/>.
+/// Homepage: https://joshclose.github.io/CsvHelper/
+/// </summary>
 public class PaperDeliveryProvider : IPaperDeliveryProvider
 {
     /// <summary>
