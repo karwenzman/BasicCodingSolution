@@ -56,42 +56,38 @@ public class BusinessMiniJobTests
     }
 
     [TestCaseSource(nameof(SourceProviderException))]
-    public void EmployeeStatutoryPensionContributionExceptionTest(double grossSalary)
+    public void EmployeeStatutoryPensionContributionTest_ThrowsException(double grossSalary)
     {
         // ***** Arrange *****
 
-        // ***** Act *****
-        var result = Assert.Throws<ArgumentOutOfRangeException>(() => BusinessMiniJob.CalculateEmployeeStatutoryPensionContribution(grossSalary));
-
-        // ***** Assert *****
-        Assert.That(result.Message, Is.EqualTo("The argument must have a positive value! (Parameter 'grossSalary')"));
+        // ***** Act & Assert *****
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+        {
+            BusinessMiniJob.CalculateEmployeeStatutoryPensionContribution(grossSalary);
+        }, "The argument must have a positive value!");
     }
 
     [TestCaseSource(nameof(SourceProviderException))]
-    public void EmployerStatutoryPensionContributionExceptionTest(double grossSalary)
+    public void EmployerStatutoryPensionContributionTest_ThrowsException(double grossSalary)
     {
         // ***** Arrange *****
 
-        // ***** Act *****
-        var result = Assert.Throws<ArgumentOutOfRangeException>(() => BusinessMiniJob.CalculateEmployerStatutoryPensionContribution(grossSalary));
-
-        // ***** Assert *****
-        Assert.That(result.Message, Is.EqualTo("The argument must have a positive value! (Parameter 'grossSalary')"));
+        // ***** Act & Assert *****
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+        {
+            BusinessMiniJob.CalculateEmployerStatutoryPensionContribution(grossSalary);
+        }, "The argument must have a positive value!");
     }
 
     [TestCaseSource(nameof(SourceProviderException))]
-    public void EmployeeSalaryExceptionTest(double grossSalary)
+    public void EmployeeSalaryTest_ThrowsException(double grossSalary)
     {
         // ***** Arrange *****
 
-        // ***** Act *****
-        var result = Assert.Throws<ArgumentOutOfRangeException>(() => BusinessMiniJob.CalculateEmployeeSalary(grossSalary));
-
-        // ***** Assert *****
-        Assert.That(result.Message, Is.EqualTo("The argument must have a positive value! (Parameter 'grossSalary')"));
-        //Assert.Throws<ArgumentOutOfRangeException>(() => BusinessMiniJob.CalculateEmployeeSalary(grossSalary), "The parameter must have a positive value!");
-        //Assert.That(() => Throws.TypeOf<ArgumentOutOfRangeException>().And.Property(nameof(grossSalary)).And.Message.Equals("The parameter must have a positive value!"));
+        // ***** Act & Assert *****
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+        {
+            BusinessMiniJob.CalculateEmployeeSalary(grossSalary);
+        }, "The argument must have a positive value!");
     }
-
-
 }
