@@ -100,6 +100,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             var config = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
                 HasHeaderRecord = true,
+                Delimiter = ",",
             };
 
             using var writer = new StreamWriter(fileName);
