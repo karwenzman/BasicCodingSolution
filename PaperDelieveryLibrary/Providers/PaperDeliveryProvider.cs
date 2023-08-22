@@ -369,6 +369,16 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 Site = "809",
                 StandardizedWorkingHours = new TimeOnly(01, 35, 00),
             },
+            new PaperDeliveryContract
+            {
+                Id = "20230819KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 25, 00),
+            },
         };
 
         output.Sort();
@@ -478,5 +488,4 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         return output;
     }
-
 }
