@@ -226,19 +226,30 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (Directory.Exists(Path.GetDirectoryName(fileName)))
         {
-            var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+            try
             {
-                HasHeaderRecord = true,
-                Delimiter = ",",
-            };
+                var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+                {
+                    HasHeaderRecord = true,
+                    Delimiter = ",",
+                };
 
-            using var writer = new StreamWriter(fileName);
-            using var csvOut = new CsvWriter(writer, config);
-            if (classMap != null)
-            {
-                csvOut.Context.RegisterClassMap(classMap);
+                using var writer = new StreamWriter(fileName);
+                using var csvOut = new CsvWriter(writer, config);
+                if (classMap != null)
+                {
+                    csvOut.Context.RegisterClassMap(classMap);
+                }
+                csvOut.WriteRecords<T>(recordsToSave);
             }
-            csvOut.WriteRecords<T>(recordsToSave);
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
         }
         else
         {
