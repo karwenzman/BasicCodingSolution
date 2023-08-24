@@ -2,6 +2,7 @@
 using CsvHelper.Configuration;
 using PaperDeliveryLibrary.Enums;
 using PaperDeliveryLibrary.Models;
+using Serilog.Parsing;
 using System.Globalization;
 
 namespace PaperDeliveryLibrary.Providers;
@@ -57,10 +58,138 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     }
 
     /// <summary>
+    /// This generic method is reading a csv file.
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="fileName"></param>
+    /// <param name="classMap">
+    /// A helper class to specify the column's order. 
+    /// If null, then the class map will be handled automatically.
+    /// </param>
+    /// <returns>A <see cref="List{T}"/> object.</returns>
+    public List<T> ReadRecordsFromFile<T>(string fileName, ClassMap? classMap = null)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
+        }
+
+        List<T> output = new();
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+            {
+                HasHeaderRecord = true,
+                Delimiter = ",",
+            };
+
+            using var reader = new StreamReader(fileName);
+            using var csv = new CsvReader(reader, config);
+            if (classMap != null)
+            {
+                csv.Context.RegisterClassMap(classMap);
+            }
+            var records = csv.GetRecords<T>();
+            output = records.ToList<T>();
+        }
+        else
+        {
+            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+        }
+
+        return output;
+    }
+
+    /// <summary>
+    /// This generic method is reading a csv file.
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="fileName"></param>
+    /// <param name="classMap">
+    /// A helper class to specify the column's order. 
+    /// If null, then the class map will be handled automatically.
+    /// </param>
+    /// <returns>A <see cref="IAsyncEnumerable{T}"/> object.</returns>
+    public async IAsyncEnumerable<T> ReadRecordsFromFileAsync<T>(string fileName, ClassMap? classMap = null)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
+        }
+        
+        List<T> output = new();
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+            {
+                HasHeaderRecord = true,
+                Delimiter = ",",
+            };
+
+            using var reader = new StreamReader(fileName);
+            using var csv = new CsvReader(reader, config);
+            if (classMap != null)
+            {
+                csv.Context.RegisterClassMap(classMap);
+            }
+            await foreach (var record in csv.GetRecordsAsync<T>())
+            {
+                //output.Add(record);
+                yield return record;
+            }
+        }
+        else
+        {
+            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+        }
+
+        //yield return output;
+    }
+
+    /// <summary>
     /// This generic method is writing a <see cref="List{T}"/> to a csv file.
     /// <para></para>
     /// This method is using the NuGet package <see cref="CsvHelper"/>.
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     /// <param name="fileName"></param>
     /// <param name="recordsToSave"></param>
     /// <param name="classMap">
@@ -165,12 +294,12 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             };
 
             await using var writer = new StreamWriter(fileName);
-            await using var csvOut = new CsvWriter(writer, config);
+            await using var csv = new CsvWriter(writer, config);
             if (classMap != null)
             {
-                csvOut.Context.RegisterClassMap(classMap);
+                csv.Context.RegisterClassMap(classMap);
             }
-            await csvOut.WriteRecordsAsync<T>(recordsToSave);
+            await csv.WriteRecordsAsync<T>(recordsToSave);
         }
         else
         {

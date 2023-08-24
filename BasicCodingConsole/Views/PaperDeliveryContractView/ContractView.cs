@@ -63,32 +63,24 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         string paperDeliveryDirectory = "PaperDeliveryFiles";
         string fileName = "";
 
-        Console.WriteLine("##### List Contracts and Save to File #################################");
-        foreach (var contract in Contracts)
-        {
-            Console.Write(contract.ToConsole());
-        }
-
-        try
-        {
-            fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
-            _paperDeliveryProvider.WriteRecordsToFileAsync(fileName, Contracts);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Unexpected Exception!");
-            Console.WriteLine(e);
-            Console.WriteLine($"\n***** Press ENTER To Continue *****");
-            Console.ReadLine();
-            throw;
-        }
-
-        //List<PaperDeliveryContract> list = new();
-        //list = _paperDeliveryProvider.GetContractList(fileName);
-        //list.Reverse();
-        //foreach (var item in list)
+        //Console.WriteLine("##### List Contracts and Save to File #################################");
+        //foreach (var contract in Contracts)
         //{
-        //    Console.Write(item.ToConsole());
+        //    Console.Write(contract.ToConsole());
+        //}
+
+        //try
+        //{
+        //    fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
+        //    _paperDeliveryProvider.WriteRecordsToFileAsync(fileName, Contracts);
+        //}
+        //catch (Exception e)
+        //{
+        //    Console.WriteLine("Unexpected Exception!");
+        //    Console.WriteLine(e);
+        //    Console.WriteLine($"\n***** Press ENTER To Continue *****");
+        //    Console.ReadLine();
+        //    throw;
         //}
 
         Console.WriteLine("##### List Contractors and Save to File #################################");
@@ -133,7 +125,42 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
             throw;
         }
 
-        Console.WriteLine("##### Berechnung Lohn #################################");
+        Console.WriteLine("##### Sync - Load Contracts and List #################################");
+        try
+        {
+            fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
+            var receivedList = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(fileName, new  PaperDeliveryClientMap());
+            foreach (var contract in receivedList)
+            {
+                Console.Write(contract.ToConsole());
+            }
+        }
+        catch (Exception)
+        {
+            Console.ReadLine();
+            throw;
+        }
+
+        Console.WriteLine("##### Async - Load Contracts and List #################################");
+        try
+        {
+            fileName = Path.Combine(Directory.GetCurrentDirectory(), paperDeliveryDirectory, contractFile);
+            var receivedListAsync = _paperDeliveryProvider.ReadRecordsFromFileAsync<PaperDeliveryContract>(fileName, new PaperDeliveryClientMap());
+            List<PaperDeliveryContract> list = new List<PaperDeliveryContract>();
+            list = receivedListAsync.ToBlockingEnumerable<PaperDeliveryContract>().ToList();
+            foreach (var contract in list)
+            {
+                Console.Write(contract.ToConsole());
+            }
+        }
+        catch (Exception)
+        {
+            Console.ReadLine();
+            throw;
+        }
+
+
+        Console.WriteLine("##### Berechnung Abgaben und Lohn #################################");
         Console.WriteLine($"Brutto:  {150,8:c2}");
         Console.WriteLine($"Abgaben: {BusinessMiniJob.CalculateEmployeeStatutoryPensionContribution(150),8:c2}");
         Console.WriteLine($"Netto:   {BusinessMiniJob.CalculateEmployeeSalary(150),8:c2}");
