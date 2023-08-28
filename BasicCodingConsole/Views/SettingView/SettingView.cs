@@ -53,22 +53,22 @@ public class SettingView : ViewBase, ISettingView
     /// </summary>
     private void WriteContent()
     {
-        Console.WriteLine($"\nInformation about user <{AppSettingModel.UserInformation.NickName}>");
+        Console.WriteLine($"\nInformation about user <{AppSettingModel.UserSetting.NickName}>");
         Console.WriteLine($"\tName  : " +
-            $"{AppSettingModel.UserInformation.Person.FirstName} " +
-            $"{AppSettingModel.UserInformation.Person.LastName}");
+            $"{AppSettingModel.UserSetting.Person.FirstName} " +
+            $"{AppSettingModel.UserSetting.Person.LastName}");
         Console.WriteLine($"\tGender: " +
-            $"{AppSettingModel.UserInformation.Person.Gender}");
+            $"{AppSettingModel.UserSetting.Person.Gender}");
         Console.WriteLine($"\tID    : " +
-            $"{AppSettingModel.UserInformation.Person.Id,4:0000}");
+            $"{AppSettingModel.UserSetting.Person.Id,4:0000}");
 
         Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
-        Console.WriteLine($"\tLanguage : {AppSettingModel.ApplicationInformation.Language}");
-        Console.WriteLine($"\tLastLogin: {AppSettingModel.ApplicationInformation.LastLogin}");
-        Console.WriteLine($"\tMaxHeight: {AppSettingModel.ApplicationInformation.ConsoleHeightMaximum}");
-        Console.WriteLine($"\tMinHeight: {AppSettingModel.ApplicationInformation.ConsoleHeightMinimum}");
-        Console.WriteLine($"\tMaxWidth : {AppSettingModel.ApplicationInformation.ConsoleWidthMaximum}");
-        Console.WriteLine($"\tMinWidth : {AppSettingModel.ApplicationInformation.ConsoleWidthMinimum}");
+        Console.WriteLine($"\tLanguage : {AppSettingModel.ApplicationSetting.Language}");
+        Console.WriteLine($"\tLastLogin: {AppSettingModel.ApplicationSetting.LastLogin}");
+        Console.WriteLine($"\tMaxHeight: {AppSettingModel.ApplicationSetting.ConsoleHeightMaximum}");
+        Console.WriteLine($"\tMinHeight: {AppSettingModel.ApplicationSetting.ConsoleHeightMinimum}");
+        Console.WriteLine($"\tMaxWidth : {AppSettingModel.ApplicationSetting.ConsoleWidthMaximum}");
+        Console.WriteLine($"\tMinWidth : {AppSettingModel.ApplicationSetting.ConsoleWidthMinimum}");
         Console.WriteLine($"\nInformation about command line arguments");
         Console.WriteLine($"\tArguments: {AppSettingModel.CommandLineArgument}");
         Console.WriteLine($"\nInformation about connection strings");

@@ -5,9 +5,9 @@
 /// </summary>
 public interface IAppSettingModel
 {
-    public ApplicationInformation ApplicationInformation { get; set; }
+    public ApplicationSetting ApplicationSetting { get; set; }
     public PaperDeliverySetting PaperDeliverySetting { get; set; }
-    public UserInformation UserInformation { get; set; }
+    public UserSetting UserSetting { get; set; }
     public string CommandLineArgument { get; set; }
     public string ConnectionString { get; set; }
 }

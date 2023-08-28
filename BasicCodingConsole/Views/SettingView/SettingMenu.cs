@@ -59,21 +59,21 @@ public class SettingMenu : IMenu
 
         if (appSettingModel != null)
         {
-            if (appSettingModel.ApplicationInformation.ConsoleHeightMaximum > 0)
+            if (appSettingModel.ApplicationSetting.ConsoleHeightMaximum > 0)
             {
-                ConsoleHeightMaximum = appSettingModel.ApplicationInformation.ConsoleHeightMaximum;
+                ConsoleHeightMaximum = appSettingModel.ApplicationSetting.ConsoleHeightMaximum;
             }
-            if (appSettingModel.ApplicationInformation.ConsoleHeightMinimum > 0)
+            if (appSettingModel.ApplicationSetting.ConsoleHeightMinimum > 0)
             {
-                ConsoleHeightMinimum = appSettingModel.ApplicationInformation.ConsoleHeightMinimum;
+                ConsoleHeightMinimum = appSettingModel.ApplicationSetting.ConsoleHeightMinimum;
             }
-            if (appSettingModel.ApplicationInformation.ConsoleWidthMaximum > 0)
+            if (appSettingModel.ApplicationSetting.ConsoleWidthMaximum > 0)
             {
-                ConsoleWidthMaximum = appSettingModel.ApplicationInformation.ConsoleWidthMaximum;
+                ConsoleWidthMaximum = appSettingModel.ApplicationSetting.ConsoleWidthMaximum;
             }
-            if (appSettingModel.ApplicationInformation.ConsoleWidthMinimum > 0)
+            if (appSettingModel.ApplicationSetting.ConsoleWidthMinimum > 0)
             {
-                ConsoleWidthMinimum = appSettingModel.ApplicationInformation.ConsoleWidthMinimum;
+                ConsoleWidthMinimum = appSettingModel.ApplicationSetting.ConsoleWidthMinimum;
             }
         }
     }

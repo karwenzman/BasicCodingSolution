@@ -3,7 +3,7 @@
 /// <summary>
 /// This class is providing a section of the <b>appsettings.json</b> file.
 /// </summary>
-public class ApplicationInformation
+public class ApplicationSetting
 {
     /// <summary>
     /// Not used, yet. Testing only.

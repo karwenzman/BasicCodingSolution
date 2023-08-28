@@ -3,7 +3,7 @@
 /// <summary>
 /// This class is providing a section of the <b>appsettings.json</b> file.
 /// </summary>
-public class UserInformation
+public class UserSetting
 {
     /// <summary>
     /// The user's nickname.

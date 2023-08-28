@@ -31,9 +31,9 @@ using var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
-        services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
+        services.Configure<ApplicationSetting>(builder.Build().GetSection("ApplicationSetting"));
         services.Configure<PaperDeliverySetting>(builder.Build().GetSection("PaperDeliverySetting"));
-        services.Configure<UserInformation>(builder.Build().GetSection("UserInformation"));
+        services.Configure<UserSetting>(builder.Build().GetSection("UserSetting"));
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryContractView, ContractView>();
@@ -100,15 +100,15 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
 
     // appSetting
     var appSetting = new AppSettingModel();
-    if (configuration.GetSection("UserInformation").Get<UserInformation>() == null)
+    if (configuration.GetSection("UserSetting").Get<UserSetting>() == null)
     {
-        appSetting.UserInformation = new UserInformation
+        appSetting.UserSetting = new UserSetting
         {
-            NickName = "none - UserInformationIsNullOrEmpty",
+            NickName = "none - UserSettingIsNullOrEmpty",
             Person = new Person
             {
-                FirstName = "none - UserInformationIsNullOrEmpty",
-                LastName = "none - UserInformationIsNullOrEmpty",
+                FirstName = "none - UserSettingIsNullOrEmpty",
+                LastName = "none - UserSettingIsNullOrEmpty",
                 Gender = 0,
                 Id = 0,
             }
@@ -116,15 +116,15 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
     }
     else
     {
-        appSetting.UserInformation = configuration.GetSection("UserInformation").Get<UserInformation>()!;
+        appSetting.UserSetting = configuration.GetSection("UserSetting").Get<UserSetting>()!;
     }
 
-    if (configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>() == null)
+    if (configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>() == null)
     {
-        appSetting.ApplicationInformation = new ApplicationInformation
+        appSetting.ApplicationSetting = new ApplicationSetting
         {
-            Language = "none - ApplicationInformationIsNullOrEmpty",
-            LastLogin = "none - ApplicationInformationIsNullOrEmpty",
+            Language = "none - ApplicationSettingIsNullOrEmpty",
+            LastLogin = "none - ApplicationSettingIsNullOrEmpty",
             ConsoleHeightMaximum = 0,
             ConsoleWidthMaximum = 0,
             ConsoleHeightMinimum = 0,
@@ -133,13 +133,13 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
     }
     else
     {
-        appSetting.ApplicationInformation = configuration.GetSection("ApplicationInformation").Get<ApplicationInformation>()!;
+        appSetting.ApplicationSetting = configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>()!;
     }
 
-    Console.WriteLine($"MaxHeight: {appSetting.ApplicationInformation.ConsoleHeightMaximum}");
-    Console.WriteLine($"MinHeight: {appSetting.ApplicationInformation.ConsoleHeightMinimum}");
-    Console.WriteLine($"MaxWidth : {appSetting.ApplicationInformation.ConsoleWidthMaximum}");
-    Console.WriteLine($"MinWidth : {appSetting.ApplicationInformation.ConsoleWidthMinimum}");
+    Console.WriteLine($"MaxHeight: {appSetting.ApplicationSetting.ConsoleHeightMaximum}");
+    Console.WriteLine($"MinHeight: {appSetting.ApplicationSetting.ConsoleHeightMinimum}");
+    Console.WriteLine($"MaxWidth : {appSetting.ApplicationSetting.ConsoleWidthMaximum}");
+    Console.WriteLine($"MinWidth : {appSetting.ApplicationSetting.ConsoleWidthMinimum}");
 
     Console.ReadLine();
 }

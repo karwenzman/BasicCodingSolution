@@ -14,18 +14,18 @@
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BasicCodingLibrary.Models.UserInformation">
+  <Class Name="BasicCodingLibrary.Models.UserSetting">
     <Position X="5.25" Y="2.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\UserInformation.cs</FileName>
+      <FileName>Models\UserSetting.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BasicCodingLibrary.Models.ApplicationInformation">
+  <Class Name="BasicCodingLibrary.Models.ApplicationSetting">
     <Position X="5.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAACACAACAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\ApplicationInformation.cs</FileName>
+      <FileName>Models\ApplicationSetting.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BasicCodingLibrary.Providers.AppSettingProvider">
