@@ -5,6 +5,11 @@ namespace PaperDeliveryLibrary.Providers;
 
 public interface IPaperDeliveryProvider
 {
+    /// <summary>
+    /// This method returns a list that is hard coded.
+    /// It is for testing reasons only.
+    /// </summary>
+    /// <returns></returns>
     List<PaperDeliveryClient> GetClientList();
 
     /// <summary>
@@ -15,15 +20,12 @@ public interface IPaperDeliveryProvider
     List<PaperDeliveryContract> GetContractList();
 
     /// <summary>
-    /// This method returns a list loaded from a csv-file.
+    /// This method returns a list that is hard coded.
+    /// It is for testing reasons only.
     /// </summary>
-    /// <param name="fileName">The complete path and file name with extension.</param>
     /// <returns></returns>
-    List<PaperDeliveryContract> GetContractList(string fileName);
-
     List<PaperDeliveryContractor> GetContractorList();
 
-    List<PaperDeliveryFulfillment> GetFulfillmentList();
     /// <summary>
     /// This generic method is reading a csv file.
     /// <para></para>

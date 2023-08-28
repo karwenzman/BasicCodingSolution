@@ -1,19 +1,15 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using PaperDeliveryLibrary.Models;
 
 namespace BasicCodingConsole.Views;
 
 public interface IPaperDeliveryContractView
 {
     /// <summary>
-    /// A value to store a list of contracts.
-    /// </summary>
-    List<PaperDeliveryContract> Contracts { get; set; }
-    /// <summary>
     /// A value used to control the menu's behavior.
     /// </summary>
     IMenu Menu { get; set; }
+
     /// <summary>
     /// A value used to control the message's behavior.
     /// </summary>

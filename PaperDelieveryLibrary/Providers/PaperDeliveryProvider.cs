@@ -14,46 +14,19 @@ namespace PaperDeliveryLibrary.Providers;
 /// </summary>
 public class PaperDeliveryProvider : IPaperDeliveryProvider
 {
-    /// <summary>
-    /// This method returns a list that is hard coded.
-    /// It is for testing reasons only.
-    /// </summary>
-    /// <returns></returns>
     public List<PaperDeliveryClient> GetClientList()
     {
         return ReadFromClientList();
     }
 
-    /// <summary>
-    /// This method returns a list that is hard coded.
-    /// It is for testing reasons only.
-    /// </summary>
-    /// <returns></returns>
     public List<PaperDeliveryContract> GetContractList()
     {
         return ReadFromContractList();
     }
 
-    /// <summary>
-    /// This method returns a list loaded from a csv-file.
-    /// </summary>
-    /// <param name="fileName">The complete path and file name with extension.</param>
-    /// <returns></returns>
-    public List<PaperDeliveryContract> GetContractList(string fileName)
-    {
-        return ReadFromContractFile(fileName);
-    }
-
     public List<PaperDeliveryContractor> GetContractorList()
     {
         return ReadFromContractorList();
-    }
-
-    public List<PaperDeliveryFulfillment> GetFulfillmentList()
-    {
-        List<PaperDeliveryFulfillment> output = new();
-
-        return output;
     }
 
     /// <summary>
@@ -264,6 +237,8 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     /// </param>
     public void WriteRecordsToFile<T>(string fileName, List<T> recordsToSave, ClassMap? classMap = null)
     {
+        throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");
+
         if (recordsToSave == null)
         {
             throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");

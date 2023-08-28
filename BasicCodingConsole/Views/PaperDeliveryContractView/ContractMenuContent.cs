@@ -13,8 +13,8 @@ public class ContractMenuContent : IMenuContent
 
     public string[]? MenuItems { get; set; } =
     {
-        "A - Add Contract                      | L - List all Contracts",
-        "D - Delete Contract                   | Z - Load Hardcoded Contracts and save to file",
+        "A - Add Contract                      | L - List all contracts",
+        "D - Delete Contract                   | Z - Load hardcoded contract list and save to a new file",
         "E - Edit Contract",
         "",
         "",
