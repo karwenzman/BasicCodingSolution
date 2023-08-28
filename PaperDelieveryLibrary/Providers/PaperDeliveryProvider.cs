@@ -2,7 +2,6 @@
 using CsvHelper.Configuration;
 using PaperDeliveryLibrary.Enums;
 using PaperDeliveryLibrary.Models;
-using Serilog.Parsing;
 using System.Globalization;
 
 namespace PaperDeliveryLibrary.Providers;
@@ -153,7 +152,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 throw;
             }
         }
-        
+
         List<T> output = new();
 
         if (Directory.Exists(Path.GetDirectoryName(fileName)))
@@ -172,7 +171,6 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             }
             await foreach (var record in csv.GetRecordsAsync<T>())
             {
-                //output.Add(record);
                 yield return record;
             }
         }
@@ -180,8 +178,76 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         {
             throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
         }
+    }
 
-        //yield return output;
+    public void WriteRecordToFile<T>(string fileName, T recordToSave, ClassMap? classMap = null)
+    {
+        if (recordToSave == null)
+        {
+            throw new ArgumentNullException(nameof(recordToSave), "Object to save cannot be null!");
+        }
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
+        }
+
+        if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
+        }
+
+        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        {
+            try
+            {
+                var config = new CsvConfiguration(CultureInfo.CurrentCulture)
+                {
+                    Delimiter = ",",
+                };
+
+                if (File.Exists(fileName))
+                {
+                    config.HasHeaderRecord = false;
+                }
+                else
+                {
+                    config.HasHeaderRecord = true;
+                }
+
+                using var writer = new StreamWriter(fileName, true);
+                using var csv = new CsvWriter(writer, config);
+                if (classMap != null)
+                {
+                    csv.Context.RegisterClassMap(classMap);
+                }
+                csv.WriteRecord<T>(recordToSave);
+                csv.NextRecord();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected Exception!");
+                Console.WriteLine(e);
+                Console.WriteLine($"\n***** Press ENTER To Continue *****");
+                Console.ReadLine();
+                throw;
+            }
+        }
+        else
+        {
+            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+        }
     }
 
     /// <summary>
@@ -235,12 +301,12 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 };
 
                 using var writer = new StreamWriter(fileName);
-                using var csvOut = new CsvWriter(writer, config);
+                using var csv = new CsvWriter(writer, config);
                 if (classMap != null)
                 {
-                    csvOut.Context.RegisterClassMap(classMap);
+                    csv.Context.RegisterClassMap(classMap);
                 }
-                csvOut.WriteRecords<T>(recordsToSave);
+                csv.WriteRecords<T>(recordsToSave);
             }
             catch (Exception e)
             {
@@ -372,6 +438,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         return output;
     }
+
     /// <summary>
     /// This method is providing a hard coded list for testing.
     /// </summary>
@@ -519,6 +586,16 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 Route = "KA09",
                 Site = "809",
                 StandardizedWorkingHours = new TimeOnly(01, 25, 00),
+            },
+            new PaperDeliveryContract
+            {
+                Id = "20230826KA",
+                HourlyWageRate = 12.00,
+                NumberOfPapers = 205,
+                Region = "02166",
+                Route = "KA09",
+                Site = "809",
+                StandardizedWorkingHours = new TimeOnly(01, 52, 00),
             },
         };
 

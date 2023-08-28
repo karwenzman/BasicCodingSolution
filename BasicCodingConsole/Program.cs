@@ -31,8 +31,9 @@ using var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
-        services.Configure<UserInformation>(builder.Build().GetSection("UserInformation"));
         services.Configure<ApplicationInformation>(builder.Build().GetSection("ApplicationInformation"));
+        services.Configure<PaperDeliverySetting>(builder.Build().GetSection("PaperDeliverySetting"));
+        services.Configure<UserInformation>(builder.Build().GetSection("UserInformation"));
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryContractView, ContractView>();
