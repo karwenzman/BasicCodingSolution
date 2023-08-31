@@ -5,11 +5,11 @@ namespace PaperDeliveryLibrary.Models;
 public class PaperDeliveryContract : IComparable<PaperDeliveryContract>
 {
     public string Id { get; set; } = "default";
-    public double HourlyWageRate { get; set; }
-    public int NumberOfPapers { get; set; }
-    public string Region { get; set; } = "default";
-    public string Route { get; set; } = "default";
-    public string Site { get; set; } = "default";
+    public double HourlyWageRate { get; set; } = 12.00;
+    public int NumberOfPapers { get; set; } = 205;
+    public string Region { get; set; } = "02166";
+    public string Route { get; set; } = "KA09";
+    public string Site { get; set; } = "809";
     public TimeOnly StandardizedWorkingHours { get; set; }
 
 

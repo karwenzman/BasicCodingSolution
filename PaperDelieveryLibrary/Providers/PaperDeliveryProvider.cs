@@ -29,20 +29,10 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         return ReadFromContractorList();
     }
 
-    /// <summary>
-    /// This generic method is reading a csv file.
-    /// <para></para>
-    /// This method is using the NuGet package <see cref="CsvHelper"/>.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="fileName"></param>
-    /// <param name="classMap">
-    /// A helper class to specify the column's order. 
-    /// If null, then the class map will be handled automatically.
-    /// </param>
-    /// <returns>A <see cref="List{T}"/> object.</returns>
     public List<T> ReadRecordsFromFile<T>(string fileName, ClassMap? classMap = null)
     {
+        //throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
+
         if (string.IsNullOrEmpty(fileName))
         {
             throw new ArgumentNullException(nameof(fileName), "String cannot be null or empty!");
@@ -50,45 +40,22 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (!Directory.Exists(Path.GetDirectoryName(fileName)))
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
         }
 
-        List<T> output = new();
-
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        var config = new CsvConfiguration(CultureInfo.CurrentCulture)
         {
-            var config = new CsvConfiguration(CultureInfo.CurrentCulture)
-            {
-                HasHeaderRecord = true,
-                Delimiter = ",",
-            };
-
-            using var reader = new StreamReader(fileName);
-            using var csv = new CsvReader(reader, config);
-            if (classMap != null)
-            {
-                csv.Context.RegisterClassMap(classMap);
-            }
-            var records = csv.GetRecords<T>();
-            output = records.ToList<T>();
-        }
-        else
+            HasHeaderRecord = true,
+            Delimiter = ",",
+        };
+        using var reader = new StreamReader(fileName);
+        using var csv = new CsvReader(reader, config);
+        if (classMap != null)
         {
-            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+            csv.Context.RegisterClassMap(classMap);
         }
 
-        return output;
+        return csv.GetRecords<T>().ToList<T>();
     }
 
     /// <summary>
@@ -112,21 +79,10 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (!Directory.Exists(Path.GetDirectoryName(fileName)))
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
         }
 
-        List<T> output = new();
+        //List<T> output = new();
 
         if (Directory.Exists(Path.GetDirectoryName(fileName)))
         {
@@ -157,7 +113,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
     {
         if (recordToSave == null)
         {
-            throw new ArgumentNullException(nameof(recordToSave), "Object to save cannot be null!");
+            throw new ArgumentNullException(nameof(recordToSave), "Object cannot be null!");
         }
 
         if (string.IsNullOrEmpty(fileName))
@@ -167,78 +123,35 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (!Directory.Exists(Path.GetDirectoryName(fileName)))
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
         }
 
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        var config = new CsvConfiguration(CultureInfo.CurrentCulture)
         {
-            try
-            {
-                var config = new CsvConfiguration(CultureInfo.CurrentCulture)
-                {
-                    Delimiter = ",",
-                };
+            Delimiter = ",",
+        };
 
-                if (File.Exists(fileName))
-                {
-                    config.HasHeaderRecord = false;
-                }
-                else
-                {
-                    config.HasHeaderRecord = true;
-                }
-
-                using var writer = new StreamWriter(fileName, true);
-                using var csv = new CsvWriter(writer, config);
-                if (classMap != null)
-                {
-                    csv.Context.RegisterClassMap(classMap);
-                }
-                csv.WriteRecord<T>(recordToSave);
-                csv.NextRecord();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
+        if (File.Exists(fileName))
+        {
+            config.HasHeaderRecord = false;
         }
         else
         {
-            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+            config.HasHeaderRecord = true;
         }
+
+        using var writer = new StreamWriter(fileName, true);
+        using var csv = new CsvWriter(writer, config);
+        if (classMap != null)
+        {
+            csv.Context.RegisterClassMap(classMap);
+        }
+        csv.WriteRecord<T>(recordToSave);
+        csv.NextRecord();
     }
 
-    /// <summary>
-    /// This generic method is writing a <see cref="List{T}"/> to a csv file.
-    /// <para></para>
-    /// This method is using the NuGet package <see cref="CsvHelper"/>.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="fileName"></param>
-    /// <param name="recordsToSave"></param>
-    /// <param name="classMap">
-    /// A helper class to specify the column's order. 
-    /// If null, then the class map will be handled automatically.
-    /// </param>
     public void WriteRecordsToFile<T>(string fileName, List<T> recordsToSave, ClassMap? classMap = null)
     {
-        throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");
-
         if (recordsToSave == null)
         {
             throw new ArgumentNullException(nameof(recordsToSave), "Collection cannot be null!");
@@ -251,51 +164,22 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (!Directory.Exists(Path.GetDirectoryName(fileName)))
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
         }
 
-        if (Directory.Exists(Path.GetDirectoryName(fileName)))
+        var config = new CsvConfiguration(CultureInfo.CurrentCulture)
         {
-            try
-            {
-                var config = new CsvConfiguration(CultureInfo.CurrentCulture)
-                {
-                    HasHeaderRecord = true,
-                    Delimiter = ",",
-                };
+            HasHeaderRecord = true,
+            Delimiter = ",",
+        };
 
-                using var writer = new StreamWriter(fileName);
-                using var csv = new CsvWriter(writer, config);
-                if (classMap != null)
-                {
-                    csv.Context.RegisterClassMap(classMap);
-                }
-                csv.WriteRecords<T>(recordsToSave);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
-        }
-        else
+        using var writer = new StreamWriter(fileName);
+        using var csv = new CsvWriter(writer, config);
+        if (classMap != null)
         {
-            throw new Exception(nameof(fileName) + ": File or Directory does not exist!");
+            csv.Context.RegisterClassMap(classMap);
         }
+        csv.WriteRecords<T>(recordsToSave);
     }
 
     /// <summary>
@@ -323,18 +207,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
 
         if (!Directory.Exists(Path.GetDirectoryName(fileName)))
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected Exception!");
-                Console.WriteLine(e);
-                Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                Console.ReadLine();
-                throw;
-            }
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
         }
 
         if (Directory.Exists(Path.GetDirectoryName(fileName)))
@@ -680,5 +553,15 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
         output.Sort();
 
         return output;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="test"></param>
+    /// <exception cref="NotImplementedException"></exception>
+    public void Test(string test)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -39,13 +39,40 @@ public interface IPaperDeliveryProvider
     /// A helper class to specify the column's order. 
     /// If null, then the class map will be handled automatically.
     /// </param>
+    /// <exception cref="ArgumentNullException"></exception>
     /// <returns>A <see cref="List{T}"/> object.</returns>
     List<T> ReadRecordsFromFile<T>(string fileName, ClassMap? classMap = null);
 
     IAsyncEnumerable<T> ReadRecordsFromFileAsync<T>(string fileName, ClassMap? classMap = null);
 
+    /// <summary>
+    /// This generic method is writing a <see cref="PaperDeliveryContract"/> object to a csv file.
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="fileName"></param>
+    /// <param name="recordToSave"></param>
+    /// <param name="classMap">
+    /// A helper class to specify the column's order. 
+    /// If null, then the class map will be handled automatically.
+    /// </param>
+    /// <exception cref="ArgumentNullException"></exception>
     void WriteRecordToFile<T>(string fileName, T recordToSave, ClassMap? classMap = null);
 
+    /// <summary>
+    /// This generic method is writing a <see cref="List{T}"/> to a csv file.
+    /// <para></para>
+    /// This method is using the NuGet package <see cref="CsvHelper"/>.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="fileName"></param>
+    /// <param name="recordsToSave"></param>
+    /// <param name="classMap">
+    /// A helper class to specify the column's order. 
+    /// If null, then the class map will be handled automatically.
+    /// </param>
+    /// <exception cref="ArgumentNullException"></exception>
     void WriteRecordsToFile<T>(string fileName, List<T> recordsToSave, ClassMap? classMap = null);
 
     Task WriteRecordsToFileAsync<T>(string fileName, List<T> recordsToSave, ClassMap? classMap = null);

@@ -2,7 +2,6 @@
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingLibrary.Models;
 using BasicCodingLibrary.Providers;
-using CsvHelper.Configuration;
 using Microsoft.Extensions.Logging;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
@@ -11,59 +10,33 @@ namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
 public class ContractView : ViewBase, IPaperDeliveryContractView
 {
-    private readonly IAppSettingProvider _appSettingProvider;
     private readonly ILogger<ContractView> _logger;
+    private readonly IAppSettingProvider _appSettingProvider;
     private readonly IPaperDeliveryProvider _paperDeliveryProvider;
 
-    private readonly string fileName = "";
-    private readonly List<PaperDeliveryContract> contracts = new();
-    private readonly PaperDeliveryContract contract = new();
-
-    /// <summary>
-    /// This property is providing a list of contracts. //Should I provide a property?
-    /// </summary>
-    //public List<PaperDeliveryContract> Contracts { get; set; }
-
-    /// <summary>
-    /// This property is providing the settings used by <see cref="PaperDeliveryLibrary"/>.
-    /// <para></para>
-    /// The content is provided by <see cref="AppSettingProvider.Get()"/>.
-    /// </summary>
+    public PaperDeliveryContract Contract { get; set; }
+    public List<PaperDeliveryContract> Contracts { get; set; }
     public PaperDeliverySetting PaperDeliverySetting { get; set; }
-
-    /// <summary>
-    /// This property is providing the menu's content written to the console.
-    /// <para></para>
-    /// The content is implemented in file <see cref="ContractMenuContent"/>.
-    /// </summary>
     public IMenu Menu { get; set; }
-
-    /// <summary>
-    /// This property is providing standard messages written to the console.
-    /// <para></para>
-    /// The content is implemented in the files <see cref="StandardMessageEnd"/>,
-    /// <see cref="StandardMessageStart"/> and <see cref="StandardMessageContinue"/>
-    /// </summary>
     public IMessage Message { get; set; }
 
-    public ContractView(IPaperDeliveryProvider paperDeliveryProvider, IAppSettingProvider appSettingProvider, ILogger<ContractView> logger)
+    public ContractView(ILogger<ContractView> logger, IAppSettingProvider appSettingProvider, IPaperDeliveryProvider paperDeliveryProvider)
     {
         _paperDeliveryProvider = paperDeliveryProvider;
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
-        PaperDeliverySetting = new PaperDeliverySetting(_appSettingProvider.Get());
         Menu = new ContractMenu(_appSettingProvider.Get());
         Message = new ContractMessage();
-
-        fileName = Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile);
+        PaperDeliverySetting = new PaperDeliverySetting(_appSettingProvider.Get());
+        Contract = new();
+        Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));
 
         _logger.LogInformation("* Load: {view}", nameof(ContractView));
     }
 
     public void Run()
     {
-
         try
         {
             bool exitApp = false;
@@ -78,18 +51,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                         exitApp = true;
                         break;
                     case ConsoleKey.A:
-                        try
-                        {
-                            WriteContractToFile<PaperDeliveryContract>(fileName, new PaperDeliveryContract() { Id = "DummyYummy" });
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine($"Unexpected Exception while running {nameof(WriteContractToFile)}!");
-                            Console.WriteLine(e);
-                            Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                            Console.ReadLine();
-                            throw;
-                        }
+                        KeystrokeA();
                         Message.Continue();
                         break;
                     case ConsoleKey.D:
@@ -101,35 +63,12 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                         Message.Continue();
                         break;
                     case ConsoleKey.L:
-                        try
-                        {
-                            WriteContractsToConsole(_paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(fileName));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine($"Unexpected Exception while running {nameof(WriteContractsToConsole)}!");
-                            Console.WriteLine(e);
-                            Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                            Console.ReadLine();
-                            throw;
-                        }
+                        KeystrokeL();
                         Message.Continue();
                         break;
                     case ConsoleKey.Z:
-                        try
-                        {
-                            WriteContractsToConsole(_paperDeliveryProvider.GetContractList());
-                            WriteContractsToFile(fileName, _paperDeliveryProvider.GetContractList());
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine($"Unexpected Exception while running {nameof(WriteContractsToConsole) + " and " + nameof(WriteContractsToFile)}!");
-                            Console.WriteLine(e);
-                            Console.WriteLine($"\n***** Press ENTER To Continue *****");
-                            Console.ReadLine();
-                            throw;
-                        }
-
+                        KeystrokeL();
+                        KeystrokeZ();
                         Message.Continue();
                         break;
                     default:
@@ -142,8 +81,6 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         {
             _logger.LogError("Unexpected Exception!", e);
         }
-
-        Message.End(showMessage: true, clearScreen: true);
     }
 
     /// <summary>
@@ -298,40 +235,134 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     }
 
     /// <summary>
-    /// This method is writing the members of <see cref="PaperDeliveryContract"/> to a console.
+    /// This method is performing the logic when calling menu key 'A'.
     /// </summary>
-    /// <param name="contracts">A <see cref="List{T}"/> of <see cref="PaperDeliveryContract"/>.</param>
-    private void WriteContractsToConsole(List<PaperDeliveryContract> contracts)
+    private void KeystrokeA()
     {
-        foreach (var contract in contracts)
+        // contract erstellen...
+        Contract = new();
+        bool isValidated;
+
+        Console.WriteLine("Adding a new contract");
+        Console.WriteLine("=====================");
+        Console.WriteLine("ContractID - enter date of contract (yyyymmdd): ");
+        isValidated = false;
+        do
         {
-            Console.Write(contract.ToConsole());
-        }
+            var input = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                if (input.Length == 8)
+                {
+                    Contract.Id = input + "KA";
+                    isValidated = true;
+                    continue;
+                }
+            }
+            Console.WriteLine("Incorrect Value!");
+        } while (!isValidated);
+
+        Console.WriteLine("Standardized Working Hours - enter time (hh:mm): ");
+        isValidated = false;
+        do
+        {
+            var input = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                if (input.Length == 5)
+                {
+                    if (input.Contains(':'))
+                    {
+                        var splittedInput = input.Split(':');
+                        int hours = Convert.ToInt32(splittedInput[0]);
+                        int minutes = Convert.ToInt32(splittedInput[1]);
+                        Contract.StandardizedWorkingHours = new TimeOnly(hours, minutes, 00);
+                        isValidated = true;
+                        continue;
+                    }
+                }
+            }
+            Console.WriteLine("Incorrect Value!");
+        } while (!isValidated);
+
+        Console.WriteLine("Summary");
+        Console.WriteLine("=======");
+        Console.WriteLine(Contract.ToConsole());
+
+        Console.WriteLine("Do you want to save this contract? (y/n)");
+        isValidated = false;
+        do
+        {
+            var input = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                if (input.ToLower() == "y")
+                {
+                    Console.WriteLine("Saving record to file!");
+                    try
+                    {
+                        _paperDeliveryProvider.WriteRecordToFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile), Contract);
+                        isValidated = true;
+                        continue;
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeA), e);
+                        Console.WriteLine($"Exception while running {nameof(KeystrokeA)}! Refer to log file for details.");
+                        isValidated = true;
+                        continue;
+                    }
+                }
+                else if (input.ToLower() == "n")
+                {
+                    Console.WriteLine("Cancelling the process!");
+                    isValidated = true;
+                    continue;
+                }
+                Console.WriteLine("Incorrect Value!");
+            }
+        } while (!isValidated);
     }
 
-    private void WriteContractsToFile<T>(string fileName, List<T> recordsToSave, ClassMap? classMap = null)
+    /// <summary>
+    /// This method is performing the logic when calling menu key 'L'.
+    /// </summary>
+    private void KeystrokeL()
     {
         try
         {
-            _paperDeliveryProvider.WriteRecordsToFile<T>(fileName, recordsToSave);
+            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));
         }
         catch (Exception e)
         {
-            _logger.LogError("Unexpected Exception!", e);
-            throw;
+            _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeL), e);
+            Console.WriteLine($"Exception while running {nameof(KeystrokeL)}! Refer to log file for details.");
+        }
+
+        foreach (var item in Contracts)
+        {
+            Console.Write(item.ToConsole());
         }
     }
 
-    private void WriteContractToFile<T>(string fileName, T recordToSave, ClassMap? classMap = null)
+    /// <summary>
+    /// This method is performing the logic when calling menu key 'Z'.
+    /// </summary>
+    private void KeystrokeZ()
     {
+        Contracts = _paperDeliveryProvider.GetContractList();
+
         try
         {
-            _paperDeliveryProvider.WriteRecordToFile<T>(fileName, recordToSave);
+            _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile), Contracts);
         }
         catch (Exception e)
         {
-            _logger.LogError("Unexpected Exception!", e);
-            throw;
+            _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeZ), e);
+            Console.WriteLine($"Exception while running {nameof(KeystrokeZ)}! Refer to log file for details.");
         }
     }
 }
