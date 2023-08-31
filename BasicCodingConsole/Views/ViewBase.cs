@@ -1,10 +1,11 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace BasicCodingConsole.Views;
 
-public abstract class ViewBase
+public abstract class ViewBase : IDisposable
 {
     /// <summary>
     /// This const stores the padding character needed to write the menu items.
@@ -158,4 +159,71 @@ public abstract class ViewBase
 
         WriteHorizontalFrame();
     }
+
+    #region ***** Finalazing (Destruktor and IDisposable) *****
+    /// <summary>
+    /// A field inherited by interface 'IDisposable'.
+    /// Standard value is false. It is preventing redundant calls to clean up the object.
+    /// </summary>
+    private bool disposedValue;
+
+    /// <summary>
+    /// Method inherited by Interface 'IDisposable'
+    /// If the garbage collector handles the destruction of an object on its own, the destructor method '~ClassName()' is called.
+    /// The destructor is doing nothing but calling the method 'Dispose(false)'.
+    /// This happens e.g. in this situation: ObjectName = null.
+    /// If the 'Dispose()' method is called within the code the object is disposed right away.
+    /// That is implemented by calling 'Dispose(true)' and suppressing the finalization by the garbage collector.
+    /// This happens e.g. in this situation: ObjectName.Dispose().
+    /// </summary>
+    /// <param name="disposing">
+    /// If 'true' this method was called by 'Dispose()'.
+    /// If 'false' this method was called by '~ClassName()'.
+    /// </param>
+    protected virtual void Dispose(bool disposing)
+    {
+        Debug.WriteLine($"*** entering <{nameof(ViewBase)}.Dispose(bool disposing)> ***");
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                // TODO: Verwalteten Zustand (verwaltete Objekte) bereinigen
+            }
+
+            // TODO: Nicht verwaltete Ressourcen (nicht verwaltete Objekte) freigeben und Finalizer überschreiben
+            // TODO: Große Felder auf NULL setzen
+            disposedValue = true;
+        }
+    }
+
+    /// <summary>
+    /// Method inherited by Interface 'IDisposable'
+    /// If the 'Dispose()' method is called within the code the object is disposed right away.
+    /// That is implemented by calling 'Dispose(true)' and suppressing the finalization by the garbage collector.
+    /// This happens e.g. in this situation: ObjectName.Dispose().
+    /// <para></para>
+    /// Ändern Sie diesen Code nicht.
+    /// Fügen Sie Bereinigungscode in der Methode "Dispose(bool disposing)" ein.
+    /// </summary>
+    public void Dispose()
+    {
+        Debug.WriteLine($"*** entering <{nameof(ViewBase)}.Dispose()> ***");
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+    /// <summary>
+    /// Method inherited by Interface 'IDisposable'
+    /// If the garbage collector handles the destruction of an object on its own,
+    /// the destructor method '~ClassName()' is called.
+    /// The destructor is doing nothing but calling the method 'Dispose(false)'.
+    /// This happens e.g. in this situation: ObjectName = null.
+    /// <para></para>
+    /// Ändern Sie diesen Code nicht.
+    /// </summary>
+    ~ViewBase()
+    {
+        Debug.WriteLine($"*** entering destructor <{nameof(ViewBase)}>***");
+        Dispose(false);
+    }
+    #endregion
 }

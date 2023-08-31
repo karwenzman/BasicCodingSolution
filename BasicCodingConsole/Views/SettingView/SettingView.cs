@@ -34,15 +34,17 @@ public class SettingView : ViewBase, ISettingView
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
+        _logger.LogInformation("* Add: {class}", nameof(SettingView));
+
         AppSettingModel = _appSettingProvider.Get();
         Menu = new SettingMenu(AppSettingModel);
         Message = new SettingMessage();
-
-        _logger.LogInformation("* Load: {view}", nameof(SettingView));
     }
 
     public void Run()
     {
+        _logger.LogInformation("** {class}.{method}()", nameof(SettingView), nameof(Run));
+
         WriteMenu(Menu);
         WriteContent();
         Message.Continue(showMessage: true, clearScreen: true);

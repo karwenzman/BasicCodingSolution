@@ -35,14 +35,16 @@ public class MainView : ViewBase, IMainView
         _paperDeliveryContractView = paperDeliveryContractView;
         _settingView = settingView;
 
+        _logger.LogInformation("* Add: {class}", nameof(MainView));
+
         Menu = new MainMenu();
         Message = new MainMessage();
-
-        _logger.LogInformation("* Load: {view}", nameof(MainView));
     }
 
     public void Run()
     {
+        _logger.LogInformation("** {class}.{method}()", nameof(MainView), nameof(Run));
+
         Message.Start(showMessage: false, clearScreen: true);
 
         try

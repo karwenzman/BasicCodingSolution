@@ -26,17 +26,20 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
+        _logger.LogInformation("* Add: {class}", nameof(ContractView));
+
         Menu = new ContractMenu(_appSettingProvider.Get());
         Message = new ContractMessage();
         PaperDeliverySetting = new PaperDeliverySetting(_appSettingProvider.Get());
         Contract = new();
         Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));
 
-        _logger.LogInformation("* Load: {view}", nameof(ContractView));
     }
 
     public void Run()
     {
+        _logger.LogInformation("** {class}.{method}()", nameof(ContractView), nameof(Run));
+
         try
         {
             bool exitApp = false;
