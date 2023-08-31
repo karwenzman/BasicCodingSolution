@@ -1,12 +1,14 @@
-﻿using BasicCodingConsole.Views;
+﻿using BasicCodingConsole.Models;
+using BasicCodingConsole.Providers;
+using BasicCodingConsole.Views;
 using BasicCodingConsole.Views.MainView;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
-using BasicCodingLibrary.Providers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
 using Serilog;
 using System.Text;
@@ -105,7 +107,7 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
         appSetting.UserSetting = new UserSetting
         {
             NickName = "none - UserSettingIsNullOrEmpty",
-            Person = new Person
+            UserInformation = new UserInformation
             {
                 FirstName = "none - UserSettingIsNullOrEmpty",
                 LastName = "none - UserSettingIsNullOrEmpty",

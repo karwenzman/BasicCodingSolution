@@ -1,7 +1,7 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingLibrary.Models;
-using BasicCodingLibrary.Providers;
+using BasicCodingConsole.Models;
+using BasicCodingConsole.Providers;
 using Microsoft.Extensions.Logging;
 
 namespace BasicCodingConsole.Views.SettingView;
@@ -34,7 +34,7 @@ public class SettingView : ViewBase, ISettingView
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
-        _logger.LogInformation("* Add: {class}", nameof(SettingView));
+        _logger.LogInformation("* Dependendy Injection: {class}", nameof(SettingView));
 
         AppSettingModel = _appSettingProvider.Get();
         Menu = new SettingMenu(AppSettingModel);
@@ -57,12 +57,12 @@ public class SettingView : ViewBase, ISettingView
     {
         Console.WriteLine($"\nInformation about user <{AppSettingModel.UserSetting.NickName}>");
         Console.WriteLine($"\tName  : " +
-            $"{AppSettingModel.UserSetting.Person.FirstName} " +
-            $"{AppSettingModel.UserSetting.Person.LastName}");
+            $"{AppSettingModel.UserSetting.UserInformation.FirstName} " +
+            $"{AppSettingModel.UserSetting.UserInformation.LastName}");
         Console.WriteLine($"\tGender: " +
-            $"{AppSettingModel.UserSetting.Person.Gender}");
+            $"{AppSettingModel.UserSetting.UserInformation.Gender}");
         Console.WriteLine($"\tID    : " +
-            $"{AppSettingModel.UserSetting.Person.Id,4:0000}");
+            $"{AppSettingModel.UserSetting.UserInformation.Id,4:0000}");
 
         Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
         Console.WriteLine($"\tLanguage : {AppSettingModel.ApplicationSetting.Language}");
@@ -75,6 +75,5 @@ public class SettingView : ViewBase, ISettingView
         Console.WriteLine($"\tArguments: {AppSettingModel.CommandLineArgument}");
         Console.WriteLine($"\nInformation about connection strings");
         Console.WriteLine($"\tDefault: {AppSettingModel.ConnectionString}");
-
     }
 }

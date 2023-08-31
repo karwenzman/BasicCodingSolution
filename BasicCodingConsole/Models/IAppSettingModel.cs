@@ -1,4 +1,7 @@
-﻿namespace BasicCodingLibrary.Models;
+﻿using BasicCodingLibrary.Models;
+using PaperDeliveryLibrary.Models;
+
+namespace BasicCodingConsole.Models;
 
 /// <summary>
 /// This interface is providing members to setup the class <see cref="AppSettingModel"/>.

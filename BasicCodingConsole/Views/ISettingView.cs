@@ -1,6 +1,6 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingLibrary.Models;
+using BasicCodingConsole.Models;
 
 namespace BasicCodingConsole.Views;
 

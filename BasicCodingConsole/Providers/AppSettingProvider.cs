@@ -1,7 +1,9 @@
-﻿using BasicCodingLibrary.Models;
+﻿using BasicCodingConsole.Models;
+using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Configuration;
+using PaperDeliveryLibrary.Models;
 
-namespace BasicCodingLibrary.Providers;
+namespace BasicCodingConsole.Providers;
 
 /// <summary>
 /// This class is providing services for instances of <see cref="AppSettingModel"/>.
@@ -15,10 +17,6 @@ public class AppSettingProvider : IAppSettingProvider
         _configuration = configuration;
     }
 
-    /// <summary>
-    /// This method is getting the current values from the configuration files.
-    /// </summary>
-    /// <returns>An instance of class <see cref="AppSettingModel"/> is returned.</returns>
     public AppSettingModel Get()
     {
         AppSettingModel output = new()
@@ -32,4 +30,10 @@ public class AppSettingProvider : IAppSettingProvider
 
         return output;
     }
+
+    public PaperDeliverySetting GetPaperDeliverySetting()
+    {
+        return _configuration.GetSection("PaperDeliverySetting").Get<PaperDeliverySetting>()!;
+    }
 }
+

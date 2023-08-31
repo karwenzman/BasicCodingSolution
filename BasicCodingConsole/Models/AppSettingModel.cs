@@ -1,4 +1,7 @@
-﻿namespace BasicCodingLibrary.Models;
+﻿using BasicCodingLibrary.Models;
+using PaperDeliveryLibrary.Models;
+
+namespace BasicCodingConsole.Models;
 
 /// <summary>
 /// This class is providing members to access the <b>appsettings.json</b> file.

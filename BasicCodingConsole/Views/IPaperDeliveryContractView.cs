@@ -1,6 +1,6 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingLibrary.Models;
+using BasicCodingConsole.Providers;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
 

@@ -35,7 +35,7 @@ public class MainView : ViewBase, IMainView
         _paperDeliveryContractView = paperDeliveryContractView;
         _settingView = settingView;
 
-        _logger.LogInformation("* Add: {class}", nameof(MainView));
+        _logger.LogInformation("* Dependendy Injection: {class}", nameof(MainView));
 
         Menu = new MainMenu();
         Message = new MainMessage();

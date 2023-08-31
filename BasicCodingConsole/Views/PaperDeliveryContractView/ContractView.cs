@@ -1,7 +1,6 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingLibrary.Models;
-using BasicCodingLibrary.Providers;
+using BasicCodingConsole.Providers;
 using Microsoft.Extensions.Logging;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
@@ -26,14 +25,14 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         _appSettingProvider = appSettingProvider;
         _logger = logger;
 
-        _logger.LogInformation("* Add: {class}", nameof(ContractView));
+        _logger.LogInformation("* Dependendy Injection: {class}", nameof(ContractView));
 
         Menu = new ContractMenu(_appSettingProvider.Get());
         Message = new ContractMessage();
-        PaperDeliverySetting = new PaperDeliverySetting(_appSettingProvider.Get());
+        PaperDeliverySetting = _appSettingProvider.GetPaperDeliverySetting();
+
         Contract = new();
         Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));
-
     }
 
     public void Run()
@@ -338,6 +337,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         try
         {
             Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));
+            Contracts.Sort();
         }
         catch (Exception e)
         {
@@ -357,6 +357,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     private void KeystrokeZ()
     {
         Contracts = _paperDeliveryProvider.GetContractList();
+        Contracts.Sort();
 
         try
         {

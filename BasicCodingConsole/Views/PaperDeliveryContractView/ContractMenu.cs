@@ -1,5 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
-using BasicCodingLibrary.Models;
+using BasicCodingConsole.Models;
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
