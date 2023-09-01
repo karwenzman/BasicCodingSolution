@@ -57,12 +57,12 @@ public class SettingView : ViewBase, ISettingView
     {
         Console.WriteLine($"\nInformation about user <{AppSettingModel.UserSetting.NickName}>");
         Console.WriteLine($"\tName  : " +
-            $"{AppSettingModel.UserSetting.UserInformation.FirstName} " +
-            $"{AppSettingModel.UserSetting.UserInformation.LastName}");
+            $"{AppSettingModel.UserSetting.UserDetails.FirstName} " +
+            $"{AppSettingModel.UserSetting.UserDetails.LastName}");
         Console.WriteLine($"\tGender: " +
-            $"{AppSettingModel.UserSetting.UserInformation.Gender}");
+            $"{AppSettingModel.UserSetting.UserDetails.Gender}");
         Console.WriteLine($"\tID    : " +
-            $"{AppSettingModel.UserSetting.UserInformation.Id,4:0000}");
+            $"{AppSettingModel.UserSetting.UserDetails.Id,4:0000}");
 
         Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
         Console.WriteLine($"\tLanguage : {AppSettingModel.ApplicationSetting.Language}");

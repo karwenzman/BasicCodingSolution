@@ -3,9 +3,9 @@
 namespace BasicCodingLibrary.Models;
 
 /// <summary>
-/// This class is providing members to describe a <see cref="UserInformation"/>.
+/// This class is providing members to describe a <see cref="UserDetails"/>.
 /// </summary>
-public class UserInformation
+public class UserDetails
 {
     /// <summary>
     /// The person's unique ID.

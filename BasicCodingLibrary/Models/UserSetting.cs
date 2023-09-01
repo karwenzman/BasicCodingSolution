@@ -12,5 +12,5 @@ public class UserSetting
     /// <summary>
     /// The user's personal information.
     /// </summary>
-    public UserInformation UserInformation { get; set; } = new UserInformation();
+    public UserDetails UserDetails { get; set; } = new UserDetails();
 }

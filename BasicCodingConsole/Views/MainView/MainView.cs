@@ -1,5 +1,7 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
+using BasicCodingConsole.Views.PaperDeliveryContractView;
+using BasicCodingConsole.Views.SettingView;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Serilog;

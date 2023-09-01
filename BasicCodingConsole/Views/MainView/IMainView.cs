@@ -1,15 +1,10 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.Models;
 
-namespace BasicCodingConsole.Views;
+namespace BasicCodingConsole.Views.MainView;
 
-public interface ISettingView
+public interface IMainView
 {
-    /// <summary>
-    /// A value used to store the configuration information.
-    /// </summary>
-    IAppSettingModel AppSettingModel { get; set; }
     /// <summary>
     /// A value used to control the menu's behavior.
     /// </summary>

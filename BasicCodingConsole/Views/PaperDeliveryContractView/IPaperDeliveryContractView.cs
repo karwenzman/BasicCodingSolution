@@ -4,7 +4,7 @@ using BasicCodingConsole.Providers;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
 
-namespace BasicCodingConsole.Views;
+namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
 public interface IPaperDeliveryContractView
 {

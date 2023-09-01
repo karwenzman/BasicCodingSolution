@@ -1,6 +1,5 @@
 ﻿using BasicCodingConsole.Models;
 using BasicCodingConsole.Providers;
-using BasicCodingConsole.Views;
 using BasicCodingConsole.Views.MainView;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
 using BasicCodingConsole.Views.SettingView;
@@ -107,7 +106,7 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
         appSetting.UserSetting = new UserSetting
         {
             NickName = "none - UserSettingIsNullOrEmpty",
-            UserInformation = new UserInformation
+            UserDetails = new UserDetails
             {
                 FirstName = "none - UserSettingIsNullOrEmpty",
                 LastName = "none - UserSettingIsNullOrEmpty",
