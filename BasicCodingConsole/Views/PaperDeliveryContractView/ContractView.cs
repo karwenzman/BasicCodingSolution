@@ -61,7 +61,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                         Message.Continue();
                         break;
                     case ConsoleKey.E:
-                        Console.WriteLine("No content, yet");
+                        KeystrokeE();
                         Message.Continue();
                         break;
                     case ConsoleKey.L:
@@ -69,8 +69,8 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                         Message.Continue();
                         break;
                     case ConsoleKey.Z:
-                        KeystrokeL();
                         KeystrokeZ();
+                        KeystrokeL();
                         Message.Continue();
                         break;
                     default:
@@ -407,6 +407,145 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                     try
                     {
                         Contracts.Remove(Contract);
+                        _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile), Contracts);
+                        isValidated = true;
+                        continue;
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeD), e);
+                        Console.WriteLine($"Exception while running {nameof(KeystrokeD)}! Refer to log file for details.");
+                        isValidated = true;
+                        continue;
+                    }
+                }
+                else if (input.ToLower() == "n")
+                {
+                    Console.WriteLine("Cancelling the process!");
+                    isValidated = true;
+                    continue;
+                }
+                Console.WriteLine("Incorrect Value!");
+            }
+        } while (!isValidated);
+    }
+
+    /// <summary>
+    /// This method is performing the logic when calling menu key 'E'.
+    /// </summary>
+    private void KeystrokeE()
+    {
+
+        Contract = new();
+        bool isValidated;
+        bool isRecordFound;
+        string searchId = "";
+        PaperDeliveryContract updatedContract = new();
+
+        Console.WriteLine("Editing a contract");
+        Console.WriteLine("==================");
+        Console.WriteLine("ContractID - enter date of contract (yyyymmdd): ");
+        isValidated = false;
+        do
+        {
+            var input = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                if (input.Length == 8)
+                {
+                    searchId = input + "KA";
+                    isValidated = true;
+                    continue;
+                }
+            }
+            Console.WriteLine("Incorrect Value!");
+        } while (!isValidated);
+
+        //show values
+        isRecordFound = false;
+        try
+        {
+            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));
+            Contracts.Sort();
+            foreach (var item in Contracts)
+            {
+                if (item.Id == searchId)
+                {
+                    Contract = item;
+                    isRecordFound = true;
+                    break;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeD), e);
+            Console.WriteLine($"Exception while running {nameof(KeystrokeD)}! Refer to log file for details.");
+        }
+
+        if (isRecordFound)
+        {
+            Console.WriteLine("current Contract");
+            Console.WriteLine(Contract.ToConsole());
+        }
+        else
+        {
+            Console.WriteLine("Record not found!");
+            return;
+        }
+
+        //moving current values to new object - except the properties that are going to be updated
+        updatedContract.Id = Contract.Id;
+        updatedContract.HourlyWageRate = Contract.HourlyWageRate;
+        updatedContract.Region = Contract.Region;
+        updatedContract.Site = Contract.Site;
+        updatedContract.Route = Contract.Route;
+        updatedContract.NumberOfPapers = Contract.NumberOfPapers;
+
+        Console.WriteLine($"Standardized Working Hours: {Contract.StandardizedWorkingHours}");
+        Console.WriteLine("Standardized Working Hours - enter new time (hh:mm): ");
+        isValidated = false;
+        do
+        {
+            var input = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                if (input.Length == 5)
+                {
+                    if (input.Contains(':'))
+                    {
+                        var splittedInput = input.Split(':');
+                        int hours = Convert.ToInt32(splittedInput[0]);
+                        int minutes = Convert.ToInt32(splittedInput[1]);
+                        updatedContract.StandardizedWorkingHours = new TimeOnly(hours, minutes, 00);
+                        isValidated = true;
+                        continue;
+                    }
+                }
+            }
+            Console.WriteLine("Incorrect Value!");
+        } while (!isValidated);
+
+        Console.WriteLine("updated Contract");
+        Console.WriteLine(updatedContract.ToConsole());
+
+        Console.WriteLine("Do you want to save this edited contract? (y/n)");
+        isValidated = false;
+        do
+        {
+            var input = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                if (input.ToLower() == "y")
+                {
+                    Console.WriteLine("Updating contract and save!");
+                    try
+                    {
+                        Contracts.Remove(Contract);
+                        Contracts.Add(updatedContract);
                         _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile), Contracts);
                         isValidated = true;
                         continue;
