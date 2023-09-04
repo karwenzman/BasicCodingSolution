@@ -12,8 +12,8 @@ using PaperDeliveryLibrary.Providers;
 using Serilog;
 using System.Text;
 
-Console.OutputEncoding = Encoding.Default; // this is set to enable the console to print "€" symbol
-Console.OutputEncoding = Encoding.UTF8; // this is set to enable the console to print "€" symbol
+Console.OutputEncoding = Encoding.Default; // this is needed to enable the console to print "€" symbol
+Console.OutputEncoding = Encoding.UTF8; // this is needed to enable the console to print "€" symbol
 
 var builder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -48,12 +48,10 @@ using var host = Host.CreateDefaultBuilder()
 using var scope = host.Services.CreateScope();
 var services = scope.ServiceProvider;
 
-//var configurations = scope.ServiceProvider.GetRequiredService<IConfiguration>(); // for testing only
-//ShowEnvironmentValues(args, builder, configurations); // for testing only
-
 try
 {
     Log.Logger.Information("***** Run Application *****");
+    Log.Logger.Information($"EnvironmentVariable: if there is no value, then the app is in production mode!");
     Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
     Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
     services.GetRequiredService<IStartup>().WriteAppSettingToConsole();
@@ -78,29 +76,3 @@ Console.Clear();
 Console.WriteLine($"\n***** End Of Debug Mode - Press ENTER To Close The Window *****");
 Console.ReadLine();
 #endif
-
-
-
-
-static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, IConfiguration configuration)
-{
-    // other values
-    Console.WriteLine($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
-    Console.WriteLine($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
-
-    // args
-    if (args.Length > 0)
-    {
-        foreach (var item in args)
-        {
-            Log.Logger.Information($"Args: {item}");
-            Console.WriteLine($"Args: {item}");
-        }
-    }
-    else
-    {
-        Console.WriteLine("No Args provided.");
-    }
-
-    Console.ReadLine();
-}
