@@ -56,11 +56,13 @@ try
     Log.Logger.Information("***** Run Application *****");
     Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
     Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
+    services.GetRequiredService<IStartup>().WriteAppSettingToConsole();
     services.GetRequiredService<IStartup>().Run();
 }
 catch (Exception e)
 {
-    Log.Logger.Error("Unexpected Exception!", e);
+    Log.Logger.Error("Unexpected Exception: {error}", e);
+
     Console.WriteLine("Unexpected Exception!");
     Console.WriteLine(e);
     Console.WriteLine($"\n***** Press ENTER To Continue *****");
@@ -99,49 +101,6 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
     {
         Console.WriteLine("No Args provided.");
     }
-
-    // appSetting
-    var appSetting = new AppSetting();
-    if (configuration.GetSection("UserSetting").Get<UserSetting>() == null)
-    {
-        appSetting.UserSetting = new UserSetting
-        {
-            NickName = "none - UserSettingIsNullOrEmpty",
-            UserDetails = new UserDetails
-            {
-                FirstName = "none - UserSettingIsNullOrEmpty",
-                LastName = "none - UserSettingIsNullOrEmpty",
-                Gender = 0,
-                Id = 0,
-            }
-        };
-    }
-    else
-    {
-        appSetting.UserSetting = configuration.GetSection("UserSetting").Get<UserSetting>()!;
-    }
-
-    if (configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>() == null)
-    {
-        appSetting.ApplicationSetting = new ApplicationSetting
-        {
-            Language = "none - ApplicationSettingIsNullOrEmpty",
-            LastLogin = "none - ApplicationSettingIsNullOrEmpty",
-            ConsoleHeightMaximum = 0,
-            ConsoleWidthMaximum = 0,
-            ConsoleHeightMinimum = 0,
-            ConsoleWidthMinimum = 0,
-        };
-    }
-    else
-    {
-        appSetting.ApplicationSetting = configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>()!;
-    }
-
-    Console.WriteLine($"MaxHeight: {appSetting.ApplicationSetting.ConsoleHeightMaximum}");
-    Console.WriteLine($"MinHeight: {appSetting.ApplicationSetting.ConsoleHeightMinimum}");
-    Console.WriteLine($"MaxWidth : {appSetting.ApplicationSetting.ConsoleWidthMaximum}");
-    Console.WriteLine($"MinWidth : {appSetting.ApplicationSetting.ConsoleWidthMinimum}");
 
     Console.ReadLine();
 }
