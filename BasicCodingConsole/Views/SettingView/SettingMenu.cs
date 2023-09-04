@@ -36,15 +36,15 @@ public class SettingMenu : IMenu
 
     /// <summary>
     /// This constructor with parameter reads the console size values
-    /// from a class implementing <see cref="IAppSettingModel"/>.
+    /// from a class implementing <see cref="IAppSetting"/>.
     /// <para></para>
     /// The fallback values are read from a class implementing <see cref="IMenuBehavior"/>,
     /// <br></br>if:
-    /// <br></br>- the instance of <see cref="IAppSettingModel"/> is null
+    /// <br></br>- the instance of <see cref="IAppSetting"/> is null
     /// <br></br>- a value of the height or width is &lt;= 0
     /// </summary>
     /// <param name="appSettingModel"></param>
-    public SettingMenu(IAppSettingModel appSettingModel)
+    public SettingMenu(IAppSetting appSettingModel)
     {
         IMenuContent content = new SettingMenuContent();
         CaptionItems = content.CaptionItems;

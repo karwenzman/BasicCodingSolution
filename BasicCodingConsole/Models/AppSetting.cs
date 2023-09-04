@@ -6,7 +6,7 @@ namespace BasicCodingConsole.Models;
 /// <summary>
 /// This class is providing members to access the <b>appsettings.json</b> file.
 /// </summary>
-public class AppSettingModel : IAppSettingModel
+public class AppSetting : IAppSetting
 {
     public ApplicationSetting ApplicationSetting { get; set; } = new ApplicationSetting();
     public PaperDeliverySetting PaperDeliverySetting { get; set; } = new PaperDeliverySetting();

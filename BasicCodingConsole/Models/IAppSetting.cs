@@ -4,9 +4,9 @@ using PaperDeliveryLibrary.Models;
 namespace BasicCodingConsole.Models;
 
 /// <summary>
-/// This interface is providing members to setup the class <see cref="AppSettingModel"/>.
+/// This interface is providing members to setup the class <see cref="AppSetting"/>.
 /// </summary>
-public interface IAppSettingModel
+public interface IAppSetting
 {
     public ApplicationSetting ApplicationSetting { get; set; }
     public PaperDeliverySetting PaperDeliverySetting { get; set; }

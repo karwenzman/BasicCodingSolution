@@ -14,7 +14,7 @@ public class SettingView : ViewBase, ISettingView
     /// <summary>
     /// This property is providing the information collected from configuration.
     /// </summary>
-    public IAppSettingModel AppSettingModel { get; set; }
+    public IAppSetting AppSettingModel { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
@@ -36,7 +36,7 @@ public class SettingView : ViewBase, ISettingView
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(SettingView));
 
-        AppSettingModel = _appSettingProvider.Get();
+        AppSettingModel = _appSettingProvider.GetAppSetting();
         Menu = new SettingMenu(AppSettingModel);
         Message = new SettingMessage();
     }

@@ -9,7 +9,7 @@ public interface ISettingView
     /// <summary>
     /// A value used to store the configuration information.
     /// </summary>
-    IAppSettingModel AppSettingModel { get; set; }
+    IAppSetting AppSettingModel { get; set; }
     /// <summary>
     /// A value used to control the menu's behavior.
     /// </summary>

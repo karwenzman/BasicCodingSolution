@@ -35,6 +35,7 @@ using var host = Host.CreateDefaultBuilder()
         services.Configure<ApplicationSetting>(builder.Build().GetSection("ApplicationSetting"));
         services.Configure<PaperDeliverySetting>(builder.Build().GetSection("PaperDeliverySetting"));
         services.Configure<UserSetting>(builder.Build().GetSection("UserSetting"));
+        services.AddTransient<IStartup, Startup>();
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryContractView, ContractView>();
@@ -55,7 +56,7 @@ try
     Log.Logger.Information("***** Run Application *****");
     Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
     Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
-    services.GetRequiredService<IMainView>().Run();
+    services.GetRequiredService<IStartup>().Run();
 }
 catch (Exception e)
 {
@@ -100,7 +101,7 @@ static void ShowEnvironmentValues(string[] args, IConfigurationBuilder builder, 
     }
 
     // appSetting
-    var appSetting = new AppSettingModel();
+    var appSetting = new AppSetting();
     if (configuration.GetSection("UserSetting").Get<UserSetting>() == null)
     {
         appSetting.UserSetting = new UserSetting

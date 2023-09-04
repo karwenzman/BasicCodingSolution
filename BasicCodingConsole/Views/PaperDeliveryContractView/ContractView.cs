@@ -27,7 +27,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(ContractView));
 
-        Menu = new ContractMenu(_appSettingProvider.Get());
+        Menu = new ContractMenu(_appSettingProvider.GetAppSetting());
         Message = new ContractMessage();
         PaperDeliverySetting = _appSettingProvider.GetPaperDeliverySetting();
 

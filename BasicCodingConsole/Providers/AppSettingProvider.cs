@@ -6,7 +6,7 @@ using PaperDeliveryLibrary.Models;
 namespace BasicCodingConsole.Providers;
 
 /// <summary>
-/// This class is providing services for instances of <see cref="AppSettingModel"/>.
+/// This class is providing services for instances of <see cref="AppSetting"/>.
 /// </summary>
 public class AppSettingProvider : IAppSettingProvider
 {
@@ -17,9 +17,9 @@ public class AppSettingProvider : IAppSettingProvider
         _configuration = configuration;
     }
 
-    public AppSettingModel Get()
+    public AppSetting GetAppSetting()
     {
-        AppSettingModel output = new()
+        AppSetting output = new()
         {
             CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!,
             ConnectionString = _configuration.GetConnectionString("Default")!,
