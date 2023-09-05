@@ -2,16 +2,13 @@
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
 using BasicCodingConsole.Views.SettingView;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Serilog;
 using System.Diagnostics;
 
 namespace BasicCodingConsole.Views.MainView;
 
 public class MainView : ViewBase, IMainView
 {
-    private readonly IConfiguration _configuration;
     private readonly ILogger<MainView> _logger;
     private readonly ISettingView _settingView;
     private readonly IPaperDeliveryContractView _paperDeliveryContractView;
@@ -30,9 +27,8 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public MainView(IConfiguration configuration, ILogger<MainView> logger, IPaperDeliveryContractView paperDeliveryContractView, ISettingView settingView)
+    public MainView(ILogger<MainView> logger, IPaperDeliveryContractView paperDeliveryContractView, ISettingView settingView)
     {
-        _configuration = configuration;
         _logger = logger;
         _paperDeliveryContractView = paperDeliveryContractView;
         _settingView = settingView;
@@ -87,7 +83,7 @@ public class MainView : ViewBase, IMainView
         }
         catch (Exception e)
         {
-            Log.Logger.Error("Unexpected Exception!", e);
+            _logger.LogError("Exception while running {method}(): {error}", nameof(Run), e);
         }
 
         Message.End(showMessage: true, clearScreen: true);

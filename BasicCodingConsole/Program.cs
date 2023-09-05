@@ -12,6 +12,13 @@ using PaperDeliveryLibrary.Providers;
 using Serilog;
 using System.Text;
 
+/// Information about this application's configuration:
+/// - using appsettings.json
+/// - using appsettings.Production.json
+/// - using launchSettings.json
+/// - using secrets.json
+/// - using command line
+
 Console.OutputEncoding = Encoding.Default; // this is needed to enable the console to print "€" symbol
 Console.OutputEncoding = Encoding.UTF8; // this is needed to enable the console to print "€" symbol
 

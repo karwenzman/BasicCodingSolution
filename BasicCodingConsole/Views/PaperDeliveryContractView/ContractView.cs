@@ -81,7 +81,8 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         }
         catch (Exception e)
         {
-            _logger.LogError("Unexpected Exception!", e);
+            _logger.LogError("Exception while running {method}(): {error}", nameof(Run), e);
+
         }
     }
 
@@ -311,7 +312,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                     }
                     catch (Exception e)
                     {
-                        _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeA), e);
+                        _logger.LogError("Exception while running {method}(): {error}", nameof(KeystrokeA), e);
                         Console.WriteLine($"Exception while running {nameof(KeystrokeA)}! Refer to log file for details.");
                         isValidated = true;
                         continue;
@@ -377,7 +378,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeD), e);
+            _logger.LogError("Exception while running {method}(): {error}", nameof(KeystrokeD), e);
             Console.WriteLine($"Exception while running {nameof(KeystrokeD)}! Refer to log file for details.");
         }
 
@@ -413,7 +414,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                     }
                     catch (Exception e)
                     {
-                        _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeD), e);
+                        _logger.LogError("Exception while running {method}(): {error}", nameof(KeystrokeD), e);
                         Console.WriteLine($"Exception while running {nameof(KeystrokeD)}! Refer to log file for details.");
                         isValidated = true;
                         continue;
@@ -480,7 +481,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeD), e);
+            _logger.LogError("Exception while running {method}(): {error}", nameof(KeystrokeD), e);
             Console.WriteLine($"Exception while running {nameof(KeystrokeD)}! Refer to log file for details.");
         }
 
@@ -552,8 +553,8 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
                     }
                     catch (Exception e)
                     {
-                        _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeD), e);
-                        Console.WriteLine($"Exception while running {nameof(KeystrokeD)}! Refer to log file for details.");
+                        _logger.LogError("Exception while running {method}(): {error}", nameof(KeystrokeE), e);
+                        Console.WriteLine($"Exception while running {nameof(KeystrokeE)}! Refer to log file for details.");
                         isValidated = true;
                         continue;
                     }
@@ -584,7 +585,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeL), e);
+            _logger.LogError("Exception while running {method}(): {error}", nameof(KeystrokeL), e);
             Console.WriteLine($"Exception while running {nameof(KeystrokeL)}! Refer to log file for details.");
         }
 
@@ -608,7 +609,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception while running {method}: {error}", nameof(KeystrokeZ), e);
+            _logger.LogError("Exception while running {method}(): {error}", nameof(KeystrokeZ), e);
             Console.WriteLine($"Exception while running {nameof(KeystrokeZ)}! Refer to log file for details.");
         }
     }
