@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BasicCodingConsole.ConsoleMenus;
 
 namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 
-public class StandingDataMenuBehavior
+public class StandingDataMenuBehavior : IMenuBehavior
 {
+    public int ConsoleHeightMaximum { get; set; } = 40;
+    public int ConsoleHeightMinimum { get; set; } = 40;
+    public int ConsoleWidthMaximum { get; set; } = 120;
+    public int ConsoleWidthMinimum { get; set; } = 120;
 }

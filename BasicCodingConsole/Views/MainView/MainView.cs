@@ -1,6 +1,7 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
+using BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 using BasicCodingConsole.Views.SettingView;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -12,6 +13,7 @@ public class MainView : ViewBase, IMainView
     private readonly ILogger<MainView> _logger;
     private readonly ISettingView _settingView;
     private readonly IPaperDeliveryContractView _paperDeliveryContractView;
+    private readonly IPaperDeliveryStandingDataView _paperDeliveryStandingDataView;
 
     /// <summary>
     /// This property is providing the menu's content written to the console.
@@ -27,9 +29,11 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public MainView(ILogger<MainView> logger, IPaperDeliveryContractView paperDeliveryContractView, ISettingView settingView)
+    public MainView(ILogger<MainView> logger, IPaperDeliveryStandingDataView paperDeliveryStandingDataView, IPaperDeliveryContractView paperDeliveryContractView, ISettingView settingView)
     {
         _logger = logger;
+
+        _paperDeliveryStandingDataView = paperDeliveryStandingDataView;
         _paperDeliveryContractView = paperDeliveryContractView;
         _settingView = settingView;
 
@@ -69,7 +73,7 @@ public class MainView : ViewBase, IMainView
                         _settingView.Run();
                         break;
                     case ConsoleKey.D:
-                        _paperDeliveryContractView.Run();
+                        _paperDeliveryStandingDataView.Run();
                         break;
                     case ConsoleKey.E:
                         Console.WriteLine("No content, yet");
