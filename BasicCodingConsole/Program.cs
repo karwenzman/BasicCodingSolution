@@ -40,6 +40,7 @@ using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
+        // the way I am reading appsettings.json, these three configurations are not needed
         services.Configure<ApplicationSetting>(builder.Build().GetSection("ApplicationSetting"));
         services.Configure<PaperDeliverySetting>(builder.Build().GetSection("PaperDeliverySetting"));
         services.Configure<UserSetting>(builder.Build().GetSection("UserSetting"));
@@ -60,9 +61,6 @@ var services = scope.ServiceProvider;
 try
 {
     Log.Logger.Information("***** Run Application *****");
-    Log.Logger.Information($"EnvironmentVariable: if there is no value, then the app is in production mode!");
-    Log.Logger.Information($"EnvironmentVariable: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}");
-    Log.Logger.Information($"CommandLineArgument: {builder.Build().GetValue<string>("CommandLineArgument")}");
     services.GetRequiredService<IStartup>().WriteAppSettingToConsole();
     services.GetRequiredService<IStartup>().Run();
 }

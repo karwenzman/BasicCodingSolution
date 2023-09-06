@@ -46,11 +46,11 @@ public class StandingDataView : ViewBase, IPaperDeliveryStandingDataView
                         Message.Continue();
                         break;
                     case ConsoleKey.B:
-                        Console.WriteLine("No content, yet");
-                        Message.Continue();
+                        _paperDeliveryContractView.Run();
                         break;
                     case ConsoleKey.C:
-                        _paperDeliveryContractView.Run();
+                        Console.WriteLine("No content, yet");
+                        Message.Continue();
                         break;
                     default:
                         Console.Beep();

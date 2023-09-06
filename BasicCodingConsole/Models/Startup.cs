@@ -46,6 +46,7 @@ public class Startup : IStartup
         Console.WriteLine($"Content of '{nameof(AppSetting)}' reflecting the app's configuration.");
         Console.WriteLine("".PadLeft(80, '*'));
 
+        Console.WriteLine($"DOTNET_ENVIRONMENT's value: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}\n");
         Console.WriteLine(GetUserSetting());
         Console.WriteLine(GetPaperDeliverySetting());
         Console.WriteLine(GetCommandlineArgument());
