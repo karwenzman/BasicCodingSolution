@@ -36,7 +36,7 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("LogFiles/apploggings.txt")
     .CreateLogger();
 
-using var host = Host.CreateDefaultBuilder()
+using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
