@@ -2,6 +2,7 @@
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Providers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using PaperDeliveryLibrary.Models;
 using PaperDeliveryLibrary.Providers;
 
@@ -12,6 +13,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     private readonly ILogger<ContractView> _logger;
     private readonly IAppSettingProvider _appSettingProvider;
     private readonly IPaperDeliveryProvider _paperDeliveryProvider;
+    private readonly IOptions<PaperDeliverySetting> _options;
 
     public PaperDeliveryContract Contract { get; set; }
     public List<PaperDeliveryContract> Contracts { get; set; }
@@ -19,17 +21,18 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public ContractView(ILogger<ContractView> logger, IAppSettingProvider appSettingProvider, IPaperDeliveryProvider paperDeliveryProvider)
+    public ContractView(ILogger<ContractView> logger, IOptions<PaperDeliverySetting> options, IAppSettingProvider appSettingProvider, IPaperDeliveryProvider paperDeliveryProvider)
     {
         _paperDeliveryProvider = paperDeliveryProvider;
         _appSettingProvider = appSettingProvider;
         _logger = logger;
+        _options = options;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(ContractView));
 
         Menu = new ContractMenu(_appSettingProvider.GetAppSetting());
         Message = new ContractMessage();
-        PaperDeliverySetting = _appSettingProvider.GetPaperDeliverySetting();
+        PaperDeliverySetting = _options.Value;
 
         Contract = new();
         Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));

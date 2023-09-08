@@ -13,10 +13,4 @@ public interface IAppSettingProvider
     /// </summary>
     /// <returns>An instance of class <see cref="AppSetting"/> is returned.</returns>
     AppSetting GetAppSetting();
-
-    /// <summary>
-    /// This method is getting the current values from the configuration files.
-    /// </summary>
-    /// <returns>An instance of class <see cref="PaperDeliverySetting"/> is returned.</returns>
-    PaperDeliverySetting GetPaperDeliverySetting();
 }

@@ -30,10 +30,5 @@ public class AppSettingProvider : IAppSettingProvider
 
         return output;
     }
-
-    public PaperDeliverySetting GetPaperDeliverySetting()
-    {
-        return _configuration.GetSection("PaperDeliverySetting").Get<PaperDeliverySetting>()!;
-    }
 }
 

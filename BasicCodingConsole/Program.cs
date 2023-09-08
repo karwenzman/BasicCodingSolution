@@ -41,9 +41,12 @@ using var host = Host.CreateDefaultBuilder(args)
     {
         services.AddLogging();
         // the way I am reading appsettings.json, these three configurations are not needed
-        services.Configure<ApplicationSetting>(builder.Build().GetSection("ApplicationSetting"));
-        services.Configure<PaperDeliverySetting>(builder.Build().GetSection("PaperDeliverySetting"));
-        services.Configure<UserSetting>(builder.Build().GetSection("UserSetting"));
+        //services.Configure<ApplicationSetting>(builder.Build().GetSection("ApplicationSetting"));
+        //services.Configure<PaperDeliverySetting>(builder.Build().GetSection("PaperDeliverySetting"));
+        //services.Configure<UserSetting>(builder.Build().GetSection("UserSetting"));
+        services.AddOptions<ApplicationSetting>().Bind(context.Configuration.GetSection(nameof(ApplicationSetting)));
+        services.AddOptions<PaperDeliverySetting>().Bind(context.Configuration.GetSection(nameof(PaperDeliverySetting)));
+        services.AddOptions<UserSetting>().Bind(context.Configuration.GetSection(nameof(UserSetting)));
         services.AddTransient<IStartup, Startup>();
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<ISettingView, SettingView>();
