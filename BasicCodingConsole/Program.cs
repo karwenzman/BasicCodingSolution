@@ -23,27 +23,27 @@ using System.Text;
 Console.OutputEncoding = Encoding.Default; // this is needed to enable the console to print "€" symbol
 Console.OutputEncoding = Encoding.UTF8; // this is needed to enable the console to print "€" symbol
 
-var builder = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", true)
-    .AddEnvironmentVariables()
-    .AddCommandLine(args);
+//var builder = new ConfigurationBuilder()
+//    .SetBasePath(Directory.GetCurrentDirectory())
+//    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", true)
+//    .AddEnvironmentVariables()
+//    .AddCommandLine(args);
 
 Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Build())
     .Enrich.FromLogContext()
     .WriteTo.File("LogFiles/apploggings.txt")
     .CreateLogger();
+//Log.Logger = new LoggerConfiguration()
+//    .ReadFrom.Configuration(builder.Build())
+//    .Enrich.FromLogContext()
+//    .WriteTo.File("LogFiles/apploggings.txt")
+//    .CreateLogger();
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
-        // the way I am reading appsettings.json, these three configurations are not needed
-        //services.Configure<ApplicationSetting>(builder.Build().GetSection("ApplicationSetting"));
-        //services.Configure<PaperDeliverySetting>(builder.Build().GetSection("PaperDeliverySetting"));
-        //services.Configure<UserSetting>(builder.Build().GetSection("UserSetting"));
         services.AddOptions<ApplicationSetting>().Bind(context.Configuration.GetSection(nameof(ApplicationSetting)));
         services.AddOptions<PaperDeliverySetting>().Bind(context.Configuration.GetSection(nameof(PaperDeliverySetting)));
         services.AddOptions<UserSetting>().Bind(context.Configuration.GetSection(nameof(UserSetting)));
