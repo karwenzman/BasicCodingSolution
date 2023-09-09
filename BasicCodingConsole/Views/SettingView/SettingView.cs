@@ -1,20 +1,16 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Models;
-using BasicCodingConsole.Providers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace BasicCodingConsole.Views.SettingView;
 
 public class SettingView : ViewBase, ISettingView
 {
-    private readonly IAppSettingProvider _appSettingProvider;
     private readonly ILogger<SettingView> _logger;
+    private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
 
-    /// <summary>
-    /// This property is providing the information collected from configuration.
-    /// </summary>
-    public IAppSetting AppSettingModel { get; set; }
     /// <summary>
     /// This property is providing the menu's content written to the console.
     /// <para></para>
@@ -29,15 +25,14 @@ public class SettingView : ViewBase, ISettingView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public SettingView(IAppSettingProvider appSettingProvider, ILogger<SettingView> logger)
+    public SettingView(ILogger<SettingView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting)
     {
-        _appSettingProvider = appSettingProvider;
         _logger = logger;
+        _optionsOfConsoleSetting = optionsOfConsoleSetting;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(SettingView));
 
-        AppSettingModel = _appSettingProvider.GetAppSetting();
-        Menu = new SettingMenu(AppSettingModel);
+        Menu = new SettingMenu(_optionsOfConsoleSetting.Value);
         Message = new SettingMessage();
     }
 
@@ -55,25 +50,6 @@ public class SettingView : ViewBase, ISettingView
     /// </summary>
     private void WriteContent()
     {
-        Console.WriteLine($"\nInformation about user <{AppSettingModel.UserSetting.NickName}>");
-        Console.WriteLine($"\tName  : " +
-            $"{AppSettingModel.UserSetting.UserDetails.FirstName} " +
-            $"{AppSettingModel.UserSetting.UserDetails.LastName}");
-        Console.WriteLine($"\tGender: " +
-            $"{AppSettingModel.UserSetting.UserDetails.Gender}");
-        Console.WriteLine($"\tID    : " +
-            $"{AppSettingModel.UserSetting.UserDetails.Id,4:0000}");
-
-        Console.WriteLine($"\nInformation about app <{nameof(BasicCodingConsole)}>");
-        Console.WriteLine($"\tLanguage : {AppSettingModel.ApplicationSetting.Language}");
-        Console.WriteLine($"\tLastLogin: {AppSettingModel.ApplicationSetting.LastLogin}");
-        Console.WriteLine($"\tMaxHeight: {AppSettingModel.ApplicationSetting.ConsoleHeightMaximum}");
-        Console.WriteLine($"\tMinHeight: {AppSettingModel.ApplicationSetting.ConsoleHeightMinimum}");
-        Console.WriteLine($"\tMaxWidth : {AppSettingModel.ApplicationSetting.ConsoleWidthMaximum}");
-        Console.WriteLine($"\tMinWidth : {AppSettingModel.ApplicationSetting.ConsoleWidthMinimum}");
-        Console.WriteLine($"\nInformation about command line arguments");
-        Console.WriteLine($"\tArguments: {AppSettingModel.CommandLineArgument}");
-        Console.WriteLine($"\nInformation about connection strings");
-        Console.WriteLine($"\tDefault: {AppSettingModel.ConnectionString}");
+        Console.WriteLine($"\nInformation about user is not available, yet.");
     }
 }

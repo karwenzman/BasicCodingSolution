@@ -1,4 +1,5 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
+using BasicCodingConsole.Models;
 
 namespace BasicCodingConsole.Views.MainView;
 
@@ -15,8 +16,24 @@ public class MainMenu : IMenu
     /// <summary>
     /// This parameterless constructor reads the console size values
     /// from a class implementing <see cref="IMenuBehavior"/>.
+    /// <para></para>
+    /// These values are hard coded and can not be changed from outside the application.
+    /// If you want to override them, use the constructor with parameters.
     /// </summary>
-    public MainMenu()
+    public MainMenu() : this(new ConsoleSetting())
+    {
+
+    }
+
+    /// <summary>
+    /// This constructor with parameter reads the console size values
+    /// from a class implementing <see cref="IConsoleSetting"/>.
+    /// <para></para>
+    /// The fallback values are read from a class implementing <see cref="IMenuBehavior"/>, if:
+    /// <br></br>- a value of the height or width is &lt;= 0
+    /// </summary>
+    /// <param name="consoleSetting">A class implementing <see cref="IConsoleSetting"/>.</param>
+    public MainMenu(IConsoleSetting consoleSetting)
     {
         IMenuContent content = new MainMenuContent();
         CaptionItems = content.CaptionItems;
@@ -24,9 +41,26 @@ public class MainMenu : IMenu
         StatusItems = content.StatusItems;
 
         IMenuBehavior behavior = new MainMenuBehavior();
-        ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
-        ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
-        ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;
-        ConsoleWidthMinimum = behavior.ConsoleWidthMinimum;
+        if (consoleSetting.HeightMaximum > 0 && consoleSetting.HeightMinimum > 0)
+        {
+            ConsoleHeightMaximum = consoleSetting.HeightMaximum;
+            ConsoleHeightMinimum = consoleSetting.HeightMinimum;
+        }
+        else
+        {
+            ConsoleHeightMaximum = behavior.ConsoleHeightMaximum;
+            ConsoleHeightMinimum = behavior.ConsoleHeightMinimum;
+        }
+
+        if (consoleSetting.WidthMaximum > 0 && consoleSetting.WidthMinimum > 0)
+        {
+            ConsoleWidthMaximum = consoleSetting.WidthMaximum;
+            ConsoleWidthMinimum = consoleSetting.WidthMinimum;
+        }
+        else
+        {
+            ConsoleWidthMaximum = behavior.ConsoleWidthMaximum;
+            ConsoleWidthMinimum = behavior.ConsoleWidthMinimum;
+        }
     }
 }

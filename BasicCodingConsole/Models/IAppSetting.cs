@@ -12,5 +12,5 @@ public interface IAppSetting
     public PaperDeliverySetting PaperDeliverySetting { get; set; }
     public UserSetting UserSetting { get; set; }
     public string CommandLineArgument { get; set; }
-    public string ConnectionString { get; set; }
+    public ConnectionStrings ConnectionStrings { get; set; }
 }

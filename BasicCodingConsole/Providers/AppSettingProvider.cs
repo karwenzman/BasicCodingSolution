@@ -22,7 +22,6 @@ public class AppSettingProvider : IAppSettingProvider
         AppSetting output = new()
         {
             CommandLineArgument = _configuration.GetValue<string>("CommandLineArgument")!,
-            ConnectionString = _configuration.GetConnectionString("Default")!,
             ApplicationSetting = _configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>()!,
             PaperDeliverySetting = _configuration.GetSection("PaperDeliverySetting").Get<PaperDeliverySetting>()!,
             UserSetting = _configuration.GetSection("UserSetting").Get<UserSetting>()!,

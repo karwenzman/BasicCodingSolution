@@ -23,29 +23,20 @@ using System.Text;
 Console.OutputEncoding = Encoding.Default; // this is needed to enable the console to print "€" symbol
 Console.OutputEncoding = Encoding.UTF8; // this is needed to enable the console to print "€" symbol
 
-//var builder = new ConfigurationBuilder()
-//    .SetBasePath(Directory.GetCurrentDirectory())
-//    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-//    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", true)
-//    .AddEnvironmentVariables()
-//    .AddCommandLine(args);
-
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .WriteTo.File("LogFiles/apploggings.txt")
     .CreateLogger();
-//Log.Logger = new LoggerConfiguration()
-//    .ReadFrom.Configuration(builder.Build())
-//    .Enrich.FromLogContext()
-//    .WriteTo.File("LogFiles/apploggings.txt")
-//    .CreateLogger();
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         services.AddLogging();
+        services.AddOptions<AppSetting>().Bind(context.Configuration.GetSection(nameof(AppSetting)));
+        services.AddOptions<ConnectionStrings>().Bind(context.Configuration.GetSection(nameof(ConnectionStrings)));
         services.AddOptions<ApplicationSetting>().Bind(context.Configuration.GetSection(nameof(ApplicationSetting)));
         services.AddOptions<PaperDeliverySetting>().Bind(context.Configuration.GetSection(nameof(PaperDeliverySetting)));
+        services.AddOptions<ConsoleSetting>().Bind(context.Configuration.GetSection(nameof(ConsoleSetting)));
         services.AddOptions<UserSetting>().Bind(context.Configuration.GetSection(nameof(UserSetting)));
         services.AddTransient<IStartup, Startup>();
         services.AddTransient<IMainView, MainView>();

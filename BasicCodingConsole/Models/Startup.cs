@@ -1,6 +1,9 @@
 ﻿using BasicCodingConsole.Providers;
 using BasicCodingConsole.Views.MainView;
+using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using PaperDeliveryLibrary.Models;
 using System.Text;
 
 namespace BasicCodingConsole.Models;
@@ -11,20 +14,49 @@ namespace BasicCodingConsole.Models;
 public class Startup : IStartup
 {
     private readonly ILogger<Startup> _logger;
+    private readonly IOptions<AppSetting> _optionsOfAppSetting;
+    private readonly IOptions<ConnectionStrings> _optionsOfConnectionStrings;
+    private readonly IOptions<ApplicationSetting> _optionsOfApplicationSetting;
+    private readonly IOptions<PaperDeliverySetting> _optionsOfPaperDeliverySetting;
+    private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
+    private readonly IOptions<UserSetting> _optionsOfUserSetting;
     private readonly IAppSettingProvider _appSettingProvider;
     private readonly IMainView _mainView;
 
     public AppSetting AppSetting { get; set; }
 
-    public Startup(ILogger<Startup> logger, IAppSettingProvider appSettingProvider, IMainView mainView)
+    public Startup(
+        ILogger<Startup> logger,
+        IOptions<AppSetting> optionsOfAppSetting,
+        IOptions<ConnectionStrings> optionsOfConnectionStrings,
+        IOptions<ApplicationSetting> optionsOfApplicationSetting,
+        IOptions<PaperDeliverySetting> optionsOfPaperDeliverySetting,
+        IOptions<ConsoleSetting> optionsOfConsoleSetting,
+        IOptions<UserSetting> optionsOfUserSetting,
+        IAppSettingProvider appSettingProvider, IMainView mainView)
     {
         _logger = logger;
+        _optionsOfAppSetting = optionsOfAppSetting;
+        _optionsOfConnectionStrings = optionsOfConnectionStrings;
+        _optionsOfApplicationSetting = optionsOfApplicationSetting;
+        _optionsOfPaperDeliverySetting = optionsOfPaperDeliverySetting;
+        _optionsOfConsoleSetting = optionsOfConsoleSetting;
+        _optionsOfUserSetting = optionsOfUserSetting;
+
         _appSettingProvider = appSettingProvider;
         _mainView = mainView;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(Startup));
+        AppSetting = new()
+        {
+            CommandLineArgument = _optionsOfAppSetting.Value.CommandLineArgument,
+            ConnectionStrings = _optionsOfConnectionStrings.Value,
+            ApplicationSetting = _optionsOfApplicationSetting.Value,
+            PaperDeliverySetting = _optionsOfPaperDeliverySetting.Value,
+            UserSetting = _optionsOfUserSetting.Value,
+        };
 
-        AppSetting = new();
+        //AppSetting = _optionsOfAppSetting.Value;
     }
 
     public void Run()
@@ -40,8 +72,6 @@ public class Startup : IStartup
     {
         _logger.LogInformation("** {class}.{method}()", nameof(Startup), nameof(WriteAppSettingToConsole));
 
-        AppSetting = _appSettingProvider.GetAppSetting();
-
         Console.WriteLine("".PadLeft(80, '*'));
         Console.WriteLine($"Content of '{nameof(AppSetting)}' reflecting the app's configuration.");
         Console.WriteLine("".PadLeft(80, '*'));
@@ -51,6 +81,7 @@ public class Startup : IStartup
         Console.WriteLine(GetPaperDeliverySetting());
         Console.WriteLine(GetCommandlineArgument());
         Console.WriteLine(GetConnectionString());
+        Console.WriteLine(GetConsoleSetting());
 
         Console.WriteLine($"\nPress ENTER to continue...");
         Console.ReadLine();
@@ -92,8 +123,22 @@ public class Startup : IStartup
     private StringBuilder GetConnectionString()
     {
         var builder = new StringBuilder();
-        builder.AppendLine($"*** {nameof(AppSetting.ConnectionString)} ***");
-        builder.AppendLine($"\tValue: {AppSetting.ConnectionString}");
+        builder.AppendLine($"*** {nameof(AppSetting.ConnectionStrings)} ***");
+        builder.AppendLine($"\tValue: {AppSetting.ConnectionStrings.Default}");
+        return builder;
+    }
+
+    private StringBuilder GetConsoleSetting()
+    {
+        var settings = _optionsOfConsoleSetting.Value;
+        var builder = new StringBuilder();
+        builder.AppendLine($"*** {nameof(ConsoleSetting)} ***");
+        builder.AppendLine($"\t{nameof(settings.BackgroundColor)}: {settings.BackgroundColor}");
+        builder.AppendLine($"\t{nameof(settings.ForegroundColor)}: {settings.ForegroundColor}");
+        builder.AppendLine($"\t{nameof(settings.HeightMaximum)}: {settings.HeightMaximum}");
+        builder.AppendLine($"\t{nameof(settings.HeightMinimum)}: {settings.HeightMinimum}");
+        builder.AppendLine($"\t{nameof(settings.WidthMaximum)}: {settings.WidthMaximum}");
+        builder.AppendLine($"\t{nameof(settings.WidthMinimum)}: {settings.WidthMinimum}");
         return builder;
     }
 }

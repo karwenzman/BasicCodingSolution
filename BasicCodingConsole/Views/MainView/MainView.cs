@@ -1,9 +1,10 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
-using BasicCodingConsole.Views.PaperDeliveryContractView;
+using BasicCodingConsole.Models;
 using BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 using BasicCodingConsole.Views.SettingView;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
 namespace BasicCodingConsole.Views.MainView;
@@ -11,8 +12,8 @@ namespace BasicCodingConsole.Views.MainView;
 public class MainView : ViewBase, IMainView
 {
     private readonly ILogger<MainView> _logger;
+    private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
     private readonly ISettingView _settingView;
-    private readonly IPaperDeliveryContractView _paperDeliveryContractView;
     private readonly IPaperDeliveryStandingDataView _paperDeliveryStandingDataView;
 
     /// <summary>
@@ -29,17 +30,17 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public MainView(ILogger<MainView> logger, IPaperDeliveryStandingDataView paperDeliveryStandingDataView, IPaperDeliveryContractView paperDeliveryContractView, ISettingView settingView)
+    public MainView(ILogger<MainView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryStandingDataView paperDeliveryStandingDataView, ISettingView settingView)
     {
         _logger = logger;
+        _optionsOfConsoleSetting = optionsOfConsoleSetting;
 
         _paperDeliveryStandingDataView = paperDeliveryStandingDataView;
-        _paperDeliveryContractView = paperDeliveryContractView;
         _settingView = settingView;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(MainView));
 
-        Menu = new MainMenu();
+        Menu = new MainMenu(_optionsOfConsoleSetting.Value);
         Message = new MainMessage();
     }
 
@@ -106,6 +107,8 @@ public class MainView : ViewBase, IMainView
         // get current console state
         ConsoleColor foregroundColor = Console.ForegroundColor;
         ConsoleColor backgroundColor = Console.BackgroundColor;
+        Console.WriteLine($"{foregroundColor} {backgroundColor}");
+        Console.ReadLine();
 
         ProcessStartInfo startinfo = new ProcessStartInfo(processName, processArgs);
 

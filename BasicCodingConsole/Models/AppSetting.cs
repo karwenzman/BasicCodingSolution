@@ -12,5 +12,5 @@ public class AppSetting : IAppSetting
     public PaperDeliverySetting PaperDeliverySetting { get; set; } = new PaperDeliverySetting();
     public UserSetting UserSetting { get; set; } = new UserSetting();
     public string CommandLineArgument { get; set; } = "default";
-    public string ConnectionString { get; set; } = "default";
+    public ConnectionStrings ConnectionStrings { get; set; } = new ConnectionStrings();
 }
