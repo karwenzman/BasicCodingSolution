@@ -1,5 +1,4 @@
 ﻿using BasicCodingConsole.Models;
-using BasicCodingConsole.Providers;
 using BasicCodingConsole.Views.MainView;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
 using BasicCodingConsole.Views.PaperDeliveryStandingDataView;
@@ -43,7 +42,6 @@ using var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryStandingDataView, StandingDataView>();
         services.AddTransient<IPaperDeliveryContractView, ContractView>();
-        services.AddTransient<IAppSettingProvider, AppSettingProvider>();
         services.AddTransient<IPaperDeliveryProvider, PaperDeliveryProvider>();
     })
     .UseSerilog()

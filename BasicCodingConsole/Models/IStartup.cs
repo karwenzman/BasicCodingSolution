@@ -1,6 +1,4 @@
-﻿using BasicCodingConsole.Providers;
-
-namespace BasicCodingConsole.Models;
+﻿namespace BasicCodingConsole.Models;
 
 /// <summary>
 /// This interface is providing members to start an application.

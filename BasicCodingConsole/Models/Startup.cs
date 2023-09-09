@@ -1,5 +1,4 @@
-﻿using BasicCodingConsole.Providers;
-using BasicCodingConsole.Views.MainView;
+﻿using BasicCodingConsole.Views.MainView;
 using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -20,7 +19,6 @@ public class Startup : IStartup
     private readonly IOptions<PaperDeliverySetting> _optionsOfPaperDeliverySetting;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
     private readonly IOptions<UserSetting> _optionsOfUserSetting;
-    private readonly IAppSettingProvider _appSettingProvider;
     private readonly IMainView _mainView;
 
     public AppSetting AppSetting { get; set; }
@@ -33,7 +31,7 @@ public class Startup : IStartup
         IOptions<PaperDeliverySetting> optionsOfPaperDeliverySetting,
         IOptions<ConsoleSetting> optionsOfConsoleSetting,
         IOptions<UserSetting> optionsOfUserSetting,
-        IAppSettingProvider appSettingProvider, IMainView mainView)
+        IMainView mainView)
     {
         _logger = logger;
         _optionsOfAppSetting = optionsOfAppSetting;
@@ -43,7 +41,6 @@ public class Startup : IStartup
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
         _optionsOfUserSetting = optionsOfUserSetting;
 
-        _appSettingProvider = appSettingProvider;
         _mainView = mainView;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(Startup));
@@ -56,14 +53,12 @@ public class Startup : IStartup
             UserSetting = _optionsOfUserSetting.Value,
         };
 
-        //AppSetting = _optionsOfAppSetting.Value;
+        //AppSetting = _optionsOfAppSetting.Value; // why is this not working?
     }
 
     public void Run()
     {
         _logger.LogInformation("** {class}.{method}()", nameof(Startup), nameof(Run));
-
-        AppSetting = _appSettingProvider.GetAppSetting();
 
         _mainView.Run();
     }

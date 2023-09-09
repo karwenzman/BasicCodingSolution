@@ -1,7 +1,6 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Models;
-using BasicCodingConsole.Providers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PaperDeliveryLibrary.Models;
@@ -13,7 +12,6 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
 {
     private readonly ILogger<ContractView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
-    private readonly IAppSettingProvider _appSettingProvider;
     private readonly IPaperDeliveryProvider _paperDeliveryProvider;
     private readonly IOptions<PaperDeliverySetting> _options;
 
@@ -23,10 +21,9 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public ContractView(ILogger<ContractView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> options, IAppSettingProvider appSettingProvider, IPaperDeliveryProvider paperDeliveryProvider)
+    public ContractView(ILogger<ContractView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> options, IPaperDeliveryProvider paperDeliveryProvider)
     {
         _paperDeliveryProvider = paperDeliveryProvider;
-        _appSettingProvider = appSettingProvider;
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
         _options = options;
