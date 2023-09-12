@@ -20,5 +20,5 @@ public interface IStartup
     /// <summary>
     /// A method used to write the content of <see cref="AppSetting"/> to a console.
     /// </summary>
-    void WriteAppSettingToConsole();
+    void WriteSettingsToConsole();
 }

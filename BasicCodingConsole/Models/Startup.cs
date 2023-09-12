@@ -63,12 +63,12 @@ public class Startup : IStartup
         _mainView.Run();
     }
 
-    public void WriteAppSettingToConsole()
+    public void WriteSettingsToConsole()
     {
-        _logger.LogInformation("** {class}.{method}()", nameof(Startup), nameof(WriteAppSettingToConsole));
+        _logger.LogInformation("** {class}.{method}()", nameof(Startup), nameof(WriteSettingsToConsole));
 
         Console.WriteLine("".PadLeft(80, '*'));
-        Console.WriteLine($"Content of '{nameof(AppSetting)}' reflecting the app's configuration.");
+        Console.WriteLine($"Content of 'appsettings.json' reflecting the app's configuration.");
         Console.WriteLine("".PadLeft(80, '*'));
 
         Console.WriteLine($"DOTNET_ENVIRONMENT's value: {Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")}\n");
@@ -130,10 +130,10 @@ public class Startup : IStartup
         builder.AppendLine($"*** {nameof(ConsoleSetting)} ***");
         builder.AppendLine($"\t{nameof(settings.BackgroundColor)}: {settings.BackgroundColor}");
         builder.AppendLine($"\t{nameof(settings.ForegroundColor)}: {settings.ForegroundColor}");
-        builder.AppendLine($"\t{nameof(settings.HeightMaximum)}: {settings.HeightMaximum}");
-        builder.AppendLine($"\t{nameof(settings.HeightMinimum)}: {settings.HeightMinimum}");
-        builder.AppendLine($"\t{nameof(settings.WidthMaximum)}: {settings.WidthMaximum}");
-        builder.AppendLine($"\t{nameof(settings.WidthMinimum)}: {settings.WidthMinimum}");
+        builder.AppendLine($"\t{nameof(settings.HeightMaximum)}..: {settings.HeightMaximum}");
+        builder.AppendLine($"\t{nameof(settings.HeightMinimum)}..: {settings.HeightMinimum}");
+        builder.AppendLine($"\t{nameof(settings.WidthMaximum)}...: {settings.WidthMaximum}");
+        builder.AppendLine($"\t{nameof(settings.WidthMinimum)}...: {settings.WidthMinimum}");
         return builder;
     }
 }
