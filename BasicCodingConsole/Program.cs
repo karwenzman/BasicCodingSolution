@@ -2,6 +2,7 @@
 using BasicCodingConsole.Views.MainView;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
 using BasicCodingConsole.Views.PaperDeliveryStandingDataView;
+using BasicCodingConsole.Views.PaperDeliveryView;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +41,7 @@ using var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<IStartup, Startup>();
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<ISettingView, SettingView>();
+        services.AddTransient<IPaperDeliveryView, PaperDeliveryView>();
         services.AddTransient<IPaperDeliveryStandingDataView, StandingDataView>();
         services.AddTransient<IPaperDeliveryContractView, ContractView>();
         services.AddTransient<IPaperDeliveryProvider, PaperDeliveryProvider>();

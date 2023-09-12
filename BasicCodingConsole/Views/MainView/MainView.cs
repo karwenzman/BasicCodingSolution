@@ -1,7 +1,7 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Models;
-using BasicCodingConsole.Views.PaperDeliveryStandingDataView;
+using BasicCodingConsole.Views.PaperDeliveryView;
 using BasicCodingConsole.Views.SettingView;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -14,7 +14,7 @@ public class MainView : ViewBase, IMainView
     private readonly ILogger<MainView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
     private readonly ISettingView _settingView;
-    private readonly IPaperDeliveryStandingDataView _paperDeliveryStandingDataView;
+    private readonly IPaperDeliveryView _paperDeliveryView;
 
     /// <summary>
     /// This property is providing the menu's content written to the console.
@@ -30,12 +30,12 @@ public class MainView : ViewBase, IMainView
     /// </summary>
     public IMessage Message { get; set; }
 
-    public MainView(ILogger<MainView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryStandingDataView paperDeliveryStandingDataView, ISettingView settingView)
+    public MainView(ILogger<MainView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryView paperDeliveryView, ISettingView settingView)
     {
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
 
-        _paperDeliveryStandingDataView = paperDeliveryStandingDataView;
+        _paperDeliveryView = paperDeliveryView;
         _settingView = settingView;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(MainView));
@@ -74,7 +74,7 @@ public class MainView : ViewBase, IMainView
                         _settingView.Run();
                         break;
                     case ConsoleKey.D:
-                        _paperDeliveryStandingDataView.Run();
+                        _paperDeliveryView.Run();
                         break;
                     case ConsoleKey.E:
                         Console.WriteLine("No content, yet");
