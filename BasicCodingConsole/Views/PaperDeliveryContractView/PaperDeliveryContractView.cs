@@ -13,7 +13,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     private readonly ILogger<PaperDeliveryContractView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
     private readonly IPaperDeliveryProvider _paperDeliveryProvider;
-    private readonly IOptions<PaperDeliverySetting> _options;
+    private readonly IOptions<PaperDeliverySetting> _optionsOfPaperDeliverySetting;
 
     public PaperDeliveryContract Contract { get; set; }
     public List<PaperDeliveryContract> Contracts { get; set; }
@@ -21,18 +21,18 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public PaperDeliveryContractView(ILogger<PaperDeliveryContractView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> options, IPaperDeliveryProvider paperDeliveryProvider)
+    public PaperDeliveryContractView(ILogger<PaperDeliveryContractView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> optionsOfPaperDeliverySetting, IPaperDeliveryProvider paperDeliveryProvider)
     {
         _paperDeliveryProvider = paperDeliveryProvider;
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
-        _options = options;
+        _optionsOfPaperDeliverySetting = optionsOfPaperDeliverySetting;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(PaperDeliveryContractView));
 
         Menu = new PaperDeliveryContractMenu(_optionsOfConsoleSetting.Value);
         Message = new PaperDeliveryContractMessage();
-        PaperDeliverySetting = _options.Value;
+        PaperDeliverySetting = _optionsOfPaperDeliverySetting.Value;
 
         Contract = new();
         Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(Directory.GetCurrentDirectory(), PaperDeliverySetting.PaperDeliveryDirectory, PaperDeliverySetting.ContractFile));

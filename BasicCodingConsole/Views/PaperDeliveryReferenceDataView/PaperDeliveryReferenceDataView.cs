@@ -5,7 +5,7 @@ using BasicCodingConsole.Views.PaperDeliveryContractView;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
+namespace BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
 
 public class PaperDeliveryReferenceDataView : ViewBase, IPaperDeliveryReferenceDataView
 {

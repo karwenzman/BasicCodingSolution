@@ -1,8 +1,8 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 
-namespace BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
+namespace BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
 
-public class PaperDeliveryReferenceDataMenuBehavior : IMenuBehavior
+public class PaperDeliveryOperationalDataMenuBehavior : IMenuBehavior
 {
     public int ConsoleHeightMaximum { get; set; } = 40;
     public int ConsoleHeightMinimum { get; set; } = 40;

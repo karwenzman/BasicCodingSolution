@@ -1,7 +1,8 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Models;
-using BasicCodingConsole.Views.PaperDeliveryStandingDataView;
+using BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
+using BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -11,16 +12,18 @@ public class PaperDeliveryView : ViewBase, IPaperDeliveryView
 {
     private readonly ILogger<PaperDeliveryView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
-    private readonly IPaperDeliveryReferenceDataView _paperDeliveryStandingDataView;
+    private readonly IPaperDeliveryOperationalDataView _paperDeliveryOperationalDataView;
+    private readonly IPaperDeliveryReferenceDataView _paperDeliveryReferenceDataView;
 
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public PaperDeliveryView(ILogger<PaperDeliveryView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryReferenceDataView paperDeliveryStandingDataView)
+    public PaperDeliveryView(ILogger<PaperDeliveryView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryOperationalDataView paperDeliveryOperationalDataView, IPaperDeliveryReferenceDataView paperDeliveryReferenceDataView)
     {
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
-        _paperDeliveryStandingDataView = paperDeliveryStandingDataView;
+        _paperDeliveryOperationalDataView = paperDeliveryOperationalDataView;
+        _paperDeliveryReferenceDataView = paperDeliveryReferenceDataView;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(PaperDeliveryView));
 
@@ -46,7 +49,10 @@ public class PaperDeliveryView : ViewBase, IPaperDeliveryView
                         exitApp = true;
                         break;
                     case ConsoleKey.A:
-                        _paperDeliveryStandingDataView.Run();
+                        _paperDeliveryReferenceDataView.Run();
+                        break;
+                    case ConsoleKey.B:
+                        _paperDeliveryOperationalDataView.Run();
                         break;
                     default:
                         Console.Beep();

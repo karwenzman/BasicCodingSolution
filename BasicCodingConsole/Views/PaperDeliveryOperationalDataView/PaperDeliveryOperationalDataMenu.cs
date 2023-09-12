@@ -1,9 +1,9 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.Models;
 
-namespace BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
+namespace BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
 
-public class PaperDeliveryReferenceDataMenu : IMenu
+public class PaperDeliveryOperationalDataMenu : IMenu
 {
     public string[]? CaptionItems { get; set; }
     public string[]? MenuItems { get; set; }
@@ -20,7 +20,7 @@ public class PaperDeliveryReferenceDataMenu : IMenu
     /// These values are hard coded and can not be changed from outside the application.
     /// If you want to override them, use the constructor with parameters.
     /// </summary>
-    public PaperDeliveryReferenceDataMenu() : this(new ConsoleSetting())
+    public PaperDeliveryOperationalDataMenu() : this(new ConsoleSetting())
     {
 
     }
@@ -33,14 +33,14 @@ public class PaperDeliveryReferenceDataMenu : IMenu
     /// <br></br>- a value of the height or width is &lt;= 0
     /// </summary>
     /// <param name="consoleSetting">A class implementing <see cref="IConsoleSetting"/>.</param>
-    public PaperDeliveryReferenceDataMenu(IConsoleSetting consoleSetting)
+    public PaperDeliveryOperationalDataMenu(IConsoleSetting consoleSetting)
     {
-        IMenuContent content = new PaperDeliveryReferenceDataMenuContent();
+        IMenuContent content = new PaperDeliveryOperationalDataMenuContent();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new PaperDeliveryReferenceDataMenuBehavior();
+        IMenuBehavior behavior = new PaperDeliveryOperationalDataMenuBehavior();
         if (consoleSetting.HeightMaximum > 0 && consoleSetting.HeightMinimum > 0)
         {
             ConsoleHeightMaximum = consoleSetting.HeightMaximum;

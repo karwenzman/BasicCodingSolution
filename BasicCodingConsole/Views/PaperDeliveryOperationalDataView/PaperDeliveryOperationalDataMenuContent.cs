@@ -1,20 +1,19 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 
-namespace BasicCodingConsole.Views.PaperDeliveryView;
+namespace BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
 
-public class PaperDeliveryMenuContent : IMenuContent
+public class PaperDeliveryOperationalDataMenuContent : IMenuContent
 {
     public string[]? CaptionItems { get; set; } =
     {
         "",
-        "Main / PaperDelivery",
+        "Main / PaperDelivery / Operational Data",
         "",
     };
 
     public string[]? MenuItems { get; set; } =
     {
-        "A - Reference Data",
-        "B - Operational Data",
+        "no content, yet",
         "",
         "",
     };

@@ -1,8 +1,8 @@
 ﻿using BasicCodingConsole.ConsoleMessages;
 
-namespace BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
+namespace BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
 
-public class PaperDeliveryReferenceDataMessage : IMessage
+public class PaperDeliveryOperationalDataMessage : IMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = true)
     {

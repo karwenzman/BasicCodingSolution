@@ -1,6 +1,6 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 
-namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
+namespace BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
 
 public class PaperDeliveryReferenceDataMenuContent : IMenuContent
 {

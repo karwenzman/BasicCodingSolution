@@ -1,9 +1,9 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 
-namespace BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
+namespace BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
 
-public interface IPaperDeliveryReferenceDataView
+public interface IPaperDeliveryOperationalDataView
 {
     /// <summary>
     /// A value used to control the menu's behavior.

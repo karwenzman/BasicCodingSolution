@@ -1,7 +1,8 @@
 ﻿using BasicCodingConsole.Models;
 using BasicCodingConsole.Views.MainView;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
-using BasicCodingConsole.Views.PaperDeliveryStandingDataView;
+using BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
+using BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
 using BasicCodingConsole.Views.PaperDeliveryView;
 using BasicCodingConsole.Views.SettingView;
 using BasicCodingLibrary.Models;
@@ -43,6 +44,7 @@ using var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryView, PaperDeliveryView>();
         services.AddTransient<IPaperDeliveryReferenceDataView, PaperDeliveryReferenceDataView>();
+        services.AddTransient<IPaperDeliveryOperationalDataView, PaperDeliveryOperationalDataView>();
         services.AddTransient<IPaperDeliveryContractView, PaperDeliveryContractView>();
         services.AddTransient<IPaperDeliveryProvider, PaperDeliveryProvider>();
     })
