@@ -2,12 +2,12 @@
 
 namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 
-public class StandingDataMenuContent : IMenuContent
+public class PaperDeliveryReferenceDataMenuContent : IMenuContent
 {
     public string[]? CaptionItems { get; set; } =
     {
         "",
-        "Main / PaperDelivery / StandingData",
+        "Main / PaperDelivery / Reference Data",
         "",
     };
 
@@ -16,6 +16,7 @@ public class StandingDataMenuContent : IMenuContent
         "A - Client",
         "B - Contract",
         "C - Contractor",
+        "",
         "",
     };
 

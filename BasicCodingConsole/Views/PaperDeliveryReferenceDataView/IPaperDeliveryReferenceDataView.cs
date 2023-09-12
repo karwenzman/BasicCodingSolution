@@ -3,7 +3,7 @@ using BasicCodingConsole.ConsoleMessages;
 
 namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 
-public interface IPaperDeliveryStandingDataView
+public interface IPaperDeliveryReferenceDataView
 {
     /// <summary>
     /// A value used to control the menu's behavior.

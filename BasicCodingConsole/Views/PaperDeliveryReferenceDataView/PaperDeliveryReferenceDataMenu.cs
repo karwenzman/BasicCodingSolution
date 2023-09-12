@@ -3,7 +3,7 @@ using BasicCodingConsole.Models;
 
 namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 
-public class StandingDataMenu : IMenu
+public class PaperDeliveryReferenceDataMenu : IMenu
 {
     public string[]? CaptionItems { get; set; }
     public string[]? MenuItems { get; set; }
@@ -20,7 +20,7 @@ public class StandingDataMenu : IMenu
     /// These values are hard coded and can not be changed from outside the application.
     /// If you want to override them, use the constructor with parameters.
     /// </summary>
-    public StandingDataMenu() : this(new ConsoleSetting())
+    public PaperDeliveryReferenceDataMenu() : this(new ConsoleSetting())
     {
 
     }
@@ -33,14 +33,14 @@ public class StandingDataMenu : IMenu
     /// <br></br>- a value of the height or width is &lt;= 0
     /// </summary>
     /// <param name="consoleSetting">A class implementing <see cref="IConsoleSetting"/>.</param>
-    public StandingDataMenu(IConsoleSetting consoleSetting)
+    public PaperDeliveryReferenceDataMenu(IConsoleSetting consoleSetting)
     {
-        IMenuContent content = new StandingDataMenuContent();
+        IMenuContent content = new PaperDeliveryReferenceDataMenuContent();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new StandingDataMenuBehavior();
+        IMenuBehavior behavior = new PaperDeliveryReferenceDataMenuBehavior();
         if (consoleSetting.HeightMaximum > 0 && consoleSetting.HeightMinimum > 0)
         {
             ConsoleHeightMaximum = consoleSetting.HeightMaximum;

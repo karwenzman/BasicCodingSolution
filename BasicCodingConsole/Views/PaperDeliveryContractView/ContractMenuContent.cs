@@ -7,7 +7,7 @@ public class ContractMenuContent : IMenuContent
     public string[]? CaptionItems { get; set; } =
     {
         "",
-        "Main / PaperDelivery / StandingData / Contract",
+        "Main / PaperDelivery / Reference Data / Contract",
         "",
     };
 

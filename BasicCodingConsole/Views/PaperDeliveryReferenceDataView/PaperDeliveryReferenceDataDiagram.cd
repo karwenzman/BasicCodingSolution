@@ -24,35 +24,35 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.StandingDataMenu">
-    <Position X="2.75" Y="0.5" Width="2.75" />
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.PaperDeliveryReferenceDataMenu">
+    <Position X="2.75" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAABAAgAACACAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Views\PaperDeliveryStandingDataView\StandingDataMenu.cs</FileName>
+      <FileName>Views\PaperDeliveryReferenceDataView\PaperDeliveryReferenceDataMenu.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.StandingDataMenuBehavior">
-    <Position X="2.75" Y="3.75" Width="2.25" />
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.PaperDeliveryReferenceDataMenuBehavior">
+    <Position X="2.75" Y="3.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAgAACACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PaperDeliveryStandingDataView\StandingDataMenuBehavior.cs</FileName>
+      <FileName>Views\PaperDeliveryReferenceDataView\PaperDeliveryReferenceDataMenuBehavior.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.StandingDataMenuContent">
-    <Position X="7" Y="3.75" Width="2.25" />
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.PaperDeliveryReferenceDataMenuContent">
+    <Position X="8" Y="3.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Views\PaperDeliveryStandingDataView\StandingDataMenuContent.cs</FileName>
+      <FileName>Views\PaperDeliveryReferenceDataView\PaperDeliveryReferenceDataMenuContent.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.StandingDataMessage">
-    <Position X="2.75" Y="6.25" Width="2.25" />
+  <Class Name="BasicCodingConsole.Views.PaperDeliveryStandingDataView.PaperDeliveryReferenceDataMessage">
+    <Position X="2.75" Y="6.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AAIACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PaperDeliveryStandingDataView\StandingDataMessage.cs</FileName>
+      <FileName>Views\PaperDeliveryReferenceDataView\PaperDeliveryReferenceDataMessage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -64,7 +64,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="BasicCodingConsole.ConsoleMenus.IMenuContent">
-    <Position X="5.25" Y="3.75" Width="1.5" />
+    <Position X="6.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
       <FileName>ConsoleMenus\IMenuContent.cs</FileName>
@@ -80,8 +80,8 @@
     </InheritanceLine>
     <InheritanceLine Type="BasicCodingConsole.ConsoleMenus.IMenuContent" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6" Y="3.75" />
-        <Point X="6" Y="3.459" />
+        <Point X="7" Y="3.75" />
+        <Point X="7" Y="3.459" />
         <Point X="1.438" Y="3.459" />
         <Point X="1.438" Y="1.627" />
       </Path>

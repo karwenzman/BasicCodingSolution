@@ -42,7 +42,7 @@ using var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<IMainView, MainView>();
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryView, PaperDeliveryView>();
-        services.AddTransient<IPaperDeliveryStandingDataView, StandingDataView>();
+        services.AddTransient<IPaperDeliveryReferenceDataView, PaperDeliveryReferenceDataView>();
         services.AddTransient<IPaperDeliveryContractView, ContractView>();
         services.AddTransient<IPaperDeliveryProvider, PaperDeliveryProvider>();
     })

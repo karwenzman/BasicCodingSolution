@@ -13,7 +13,8 @@ public class PaperDeliveryMenuContent : IMenuContent
 
     public string[]? MenuItems { get; set; } =
     {
-        "A - Standing Data (Stammdaten)",
+        "A - Reference Data",
+        "B - Operational Data",
         "",
         "",
     };

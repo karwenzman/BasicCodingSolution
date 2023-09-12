@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 
-public class StandingDataMessage : IMessage
+public class PaperDeliveryReferenceDataMessage : IMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = true)
     {

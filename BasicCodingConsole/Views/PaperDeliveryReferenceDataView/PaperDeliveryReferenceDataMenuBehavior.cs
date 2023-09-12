@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 
-public class StandingDataMenuBehavior : IMenuBehavior
+public class PaperDeliveryReferenceDataMenuBehavior : IMenuBehavior
 {
     public int ConsoleHeightMaximum { get; set; } = 40;
     public int ConsoleHeightMinimum { get; set; } = 40;

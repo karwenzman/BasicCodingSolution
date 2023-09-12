@@ -11,12 +11,12 @@ public class PaperDeliveryView : ViewBase, IPaperDeliveryView
 {
     private readonly ILogger<PaperDeliveryView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
-    private readonly IPaperDeliveryStandingDataView _paperDeliveryStandingDataView;
+    private readonly IPaperDeliveryReferenceDataView _paperDeliveryStandingDataView;
 
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public PaperDeliveryView(ILogger<PaperDeliveryView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryStandingDataView paperDeliveryStandingDataView)
+    public PaperDeliveryView(ILogger<PaperDeliveryView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryReferenceDataView paperDeliveryStandingDataView)
     {
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;

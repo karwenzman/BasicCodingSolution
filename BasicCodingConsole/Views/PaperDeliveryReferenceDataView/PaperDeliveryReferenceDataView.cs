@@ -7,30 +7,30 @@ using Microsoft.Extensions.Options;
 
 namespace BasicCodingConsole.Views.PaperDeliveryStandingDataView;
 
-public class StandingDataView : ViewBase, IPaperDeliveryStandingDataView
+public class PaperDeliveryReferenceDataView : ViewBase, IPaperDeliveryReferenceDataView
 {
-    private readonly ILogger<StandingDataView> _logger;
+    private readonly ILogger<PaperDeliveryReferenceDataView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
     private readonly IPaperDeliveryContractView _paperDeliveryContractView;
 
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public StandingDataView(ILogger<StandingDataView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryContractView paperDeliveryContractView)
+    public PaperDeliveryReferenceDataView(ILogger<PaperDeliveryReferenceDataView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryContractView paperDeliveryContractView)
     {
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
         _paperDeliveryContractView = paperDeliveryContractView;
 
-        _logger.LogInformation("* Dependendy Injection: {class}", nameof(StandingDataView));
+        _logger.LogInformation("* Dependendy Injection: {class}", nameof(PaperDeliveryReferenceDataView));
 
-        Menu = new StandingDataMenu(_optionsOfConsoleSetting.Value);
-        Message = new StandingDataMessage();
+        Menu = new PaperDeliveryReferenceDataMenu(_optionsOfConsoleSetting.Value);
+        Message = new PaperDeliveryReferenceDataMessage();
     }
 
     public void Run()
     {
-        _logger.LogInformation("** {class}.{method}()", nameof(StandingDataView), nameof(Run));
+        _logger.LogInformation("** {class}.{method}()", nameof(PaperDeliveryReferenceDataView), nameof(Run));
 
         try
         {
