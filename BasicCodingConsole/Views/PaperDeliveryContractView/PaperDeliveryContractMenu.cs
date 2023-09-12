@@ -3,7 +3,7 @@ using BasicCodingConsole.Models;
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
-public class ContractMenu : IMenu
+public class PaperDeliveryContractMenu : IMenu
 {
     public string[]? CaptionItems { get; set; }
     public string[]? MenuItems { get; set; }
@@ -20,7 +20,7 @@ public class ContractMenu : IMenu
     /// These values are hard coded and can not be changed from outside the application.
     /// If you want to override them, use the constructor with parameters.
     /// </summary>
-    public ContractMenu() : this(new ConsoleSetting())
+    public PaperDeliveryContractMenu() : this(new ConsoleSetting())
     {
 
     }
@@ -33,14 +33,14 @@ public class ContractMenu : IMenu
     /// <br></br>- a value of the height or width is &lt;= 0
     /// </summary>
     /// <param name="consoleSetting">A class implementing <see cref="IConsoleSetting"/>.</param>
-    public ContractMenu(IConsoleSetting consoleSetting)
+    public PaperDeliveryContractMenu(IConsoleSetting consoleSetting)
     {
-        IMenuContent content = new ContractMenuContent();
+        IMenuContent content = new PaperDeliveryContractMenuContent();
         CaptionItems = content.CaptionItems;
         MenuItems = content.MenuItems;
         StatusItems = content.StatusItems;
 
-        IMenuBehavior behavior = new ContractMenuBehavior();
+        IMenuBehavior behavior = new PaperDeliveryContractMenuBehavior();
         if (consoleSetting.HeightMaximum > 0 && consoleSetting.HeightMinimum > 0)
         {
             ConsoleHeightMaximum = consoleSetting.HeightMaximum;

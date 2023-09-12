@@ -29,14 +29,14 @@ public interface IPaperDeliveryContractView
     /// <summary>
     /// A value used to control the menu's behavior.
     /// <para></para>
-    /// The content is provided by <see cref="ContractMenu"/>.
+    /// The content is provided by <see cref="PaperDeliveryContractMenu"/>.
     /// </summary>
     IMenu Menu { get; set; }
 
     /// <summary>
     /// A value used to control the message's behavior.
     /// <para></para>
-    /// The content is provided by <see cref="ContractMessage"/>.
+    /// The content is provided by <see cref="PaperDeliveryContractMessage"/>.
     /// </summary>
     IMessage Message { get; set; }
 

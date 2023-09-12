@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
-public class ContractMenuContent : IMenuContent
+public class PaperDeliveryContractMenuContent : IMenuContent
 {
     public string[]? CaptionItems { get; set; } =
     {

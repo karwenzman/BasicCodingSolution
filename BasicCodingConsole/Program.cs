@@ -43,7 +43,7 @@ using var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryView, PaperDeliveryView>();
         services.AddTransient<IPaperDeliveryReferenceDataView, PaperDeliveryReferenceDataView>();
-        services.AddTransient<IPaperDeliveryContractView, ContractView>();
+        services.AddTransient<IPaperDeliveryContractView, PaperDeliveryContractView>();
         services.AddTransient<IPaperDeliveryProvider, PaperDeliveryProvider>();
     })
     .UseSerilog()

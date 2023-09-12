@@ -2,7 +2,7 @@
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
-public class ContractMessage : IMessage
+public class PaperDeliveryContractMessage : IMessage
 {
     public void Continue(bool showMessage = true, bool clearScreen = true)
     {

@@ -8,9 +8,9 @@ using PaperDeliveryLibrary.Providers;
 
 namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 
-public class ContractView : ViewBase, IPaperDeliveryContractView
+public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
 {
-    private readonly ILogger<ContractView> _logger;
+    private readonly ILogger<PaperDeliveryContractView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
     private readonly IPaperDeliveryProvider _paperDeliveryProvider;
     private readonly IOptions<PaperDeliverySetting> _options;
@@ -21,17 +21,17 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public ContractView(ILogger<ContractView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> options, IPaperDeliveryProvider paperDeliveryProvider)
+    public PaperDeliveryContractView(ILogger<PaperDeliveryContractView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> options, IPaperDeliveryProvider paperDeliveryProvider)
     {
         _paperDeliveryProvider = paperDeliveryProvider;
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
         _options = options;
 
-        _logger.LogInformation("* Dependendy Injection: {class}", nameof(ContractView));
+        _logger.LogInformation("* Dependendy Injection: {class}", nameof(PaperDeliveryContractView));
 
-        Menu = new ContractMenu(_optionsOfConsoleSetting.Value);
-        Message = new ContractMessage();
+        Menu = new PaperDeliveryContractMenu(_optionsOfConsoleSetting.Value);
+        Message = new PaperDeliveryContractMessage();
         PaperDeliverySetting = _options.Value;
 
         Contract = new();
@@ -40,7 +40,7 @@ public class ContractView : ViewBase, IPaperDeliveryContractView
 
     public void Run()
     {
-        _logger.LogInformation("** {class}.{method}()", nameof(ContractView), nameof(Run));
+        _logger.LogInformation("** {class}.{method}()", nameof(PaperDeliveryContractView), nameof(Run));
 
         try
         {
