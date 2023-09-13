@@ -90,6 +90,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     }
 
     /// <summary>
+    /// // todo or to erase
     /// This method is writing the members of <see cref="PaperDeliveryContract"/> to a console.
     /// </summary>
     private void WriteContent()
@@ -362,8 +363,6 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
             Console.WriteLine("Incorrect Value!");
         } while (!isValidated);
 
-
-        // load contracts and filter contract
         isRecordFound = false;
         try
         {
@@ -385,7 +384,6 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
             Console.WriteLine($"Exception while running {nameof(KeystrokeD)}! Refer to log file for details.");
         }
 
-        // display contract
         if (isRecordFound)
         {
             Console.WriteLine(Contract.ToConsole());
@@ -396,7 +394,6 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
             return;
         }
 
-        // confirm delete
         Console.WriteLine("Do you want to delete this contract? (y/n)");
         isValidated = false;
         do
@@ -466,7 +463,6 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
             Console.WriteLine("Incorrect Value!");
         } while (!isValidated);
 
-        //show values
         isRecordFound = false;
         try
         {
