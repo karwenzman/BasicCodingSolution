@@ -43,6 +43,11 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
             Directory.CreateDirectory(Path.GetDirectoryName(fileName)!);
         }
 
+        if (!File.Exists(fileName))
+        {
+            return new List<T>();
+        }
+
         var config = new CsvConfiguration(CultureInfo.CurrentCulture)
         {
             HasHeaderRecord = true,
@@ -446,32 +451,6 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 StandardizedWorkingHours = new TimeOnly(01, 52, 00),
             },
         };
-
-        output.Sort();
-
-        return output;
-    }
-
-    /// <summary>
-    /// This method is actually reading the content from a csv-file.
-    /// </summary>
-    /// <param name="fileName">The complete path and file name with extension.</param>
-    /// <returns></returns>
-    private List<PaperDeliveryContract> ReadFromContractFile(string fileName)
-    {
-        List<PaperDeliveryContract> output = new();
-
-        if (File.Exists(fileName))
-        {
-            using var reader = new StreamReader(fileName);
-            using var csvIn = new CsvReader(reader, CultureInfo.InvariantCulture);
-            var records = csvIn.GetRecords<PaperDeliveryContract>();
-
-            foreach (var item in records)
-            {
-                output.Add(item);
-            }
-        }
 
         output.Sort();
 

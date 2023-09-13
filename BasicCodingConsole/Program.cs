@@ -57,7 +57,7 @@ var services = scope.ServiceProvider;
 try
 {
     Log.Logger.Information("***** Run Application *****");
-    services.GetRequiredService<IStartup>().WriteSettingsToConsole();
+    //services.GetRequiredService<IStartup>().WriteSettingsToConsole();
     services.GetRequiredService<IStartup>().Run();
 }
 catch (Exception e)
