@@ -1,5 +1,7 @@
 ﻿using BasicCodingConsole.Models;
 using BasicCodingConsole.Views.MainView;
+using BasicCodingConsole.Views.PaperDeliveryClientView;
+using BasicCodingConsole.Views.PaperDeliveryContractorView;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
 using BasicCodingConsole.Views.PaperDeliveryOperationalDataView;
 using BasicCodingConsole.Views.PaperDeliveryReferenceDataView;
@@ -44,8 +46,10 @@ using var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<ISettingView, SettingView>();
         services.AddTransient<IPaperDeliveryView, PaperDeliveryView>();
         services.AddTransient<IPaperDeliveryReferenceDataView, PaperDeliveryReferenceDataView>();
-        services.AddTransient<IPaperDeliveryOperationalDataView, PaperDeliveryOperationalDataView>();
+        services.AddTransient<IPaperDeliveryClientView, PaperDeliveryClientView>();
         services.AddTransient<IPaperDeliveryContractView, PaperDeliveryContractView>();
+        services.AddTransient<IPaperDeliveryContractorView, PaperDeliveryContractorView>();
+        services.AddTransient<IPaperDeliveryOperationalDataView, PaperDeliveryOperationalDataView>();
         services.AddTransient<IPaperDeliveryProvider, PaperDeliveryProvider>();
     })
     .UseSerilog()

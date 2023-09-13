@@ -1,6 +1,8 @@
 ﻿using BasicCodingConsole.ConsoleMenus;
 using BasicCodingConsole.ConsoleMessages;
 using BasicCodingConsole.Models;
+using BasicCodingConsole.Views.PaperDeliveryClientView;
+using BasicCodingConsole.Views.PaperDeliveryContractorView;
 using BasicCodingConsole.Views.PaperDeliveryContractView;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -11,16 +13,20 @@ public class PaperDeliveryReferenceDataView : ViewBase, IPaperDeliveryReferenceD
 {
     private readonly ILogger<PaperDeliveryReferenceDataView> _logger;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
+    private readonly IPaperDeliveryClientView _paperDeliveryClientView;
     private readonly IPaperDeliveryContractView _paperDeliveryContractView;
+    private readonly IPaperDeliveryContractorView _paperDeliveryContractorView;
 
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public PaperDeliveryReferenceDataView(ILogger<PaperDeliveryReferenceDataView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryContractView paperDeliveryContractView)
+    public PaperDeliveryReferenceDataView(ILogger<PaperDeliveryReferenceDataView> logger, IOptions<ConsoleSetting> optionsOfConsoleSetting, IPaperDeliveryClientView paperDeliveryClientView, IPaperDeliveryContractView paperDeliveryContractView, IPaperDeliveryContractorView paperDeliveryContractorView)
     {
         _logger = logger;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
+        _paperDeliveryClientView = paperDeliveryClientView;
         _paperDeliveryContractView = paperDeliveryContractView;
+        _paperDeliveryContractorView = paperDeliveryContractorView;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(PaperDeliveryReferenceDataView));
 
@@ -46,15 +52,13 @@ public class PaperDeliveryReferenceDataView : ViewBase, IPaperDeliveryReferenceD
                         exitApp = true;
                         break;
                     case ConsoleKey.A:
-                        Console.WriteLine("No content, yet");
-                        Message.Continue();
+                        _paperDeliveryClientView.Run();
                         break;
                     case ConsoleKey.B:
                         _paperDeliveryContractView.Run();
                         break;
                     case ConsoleKey.C:
-                        Console.WriteLine("No content, yet");
-                        Message.Continue();
+                        _paperDeliveryContractorView.Run();
                         break;
                     default:
                         Console.Beep();
