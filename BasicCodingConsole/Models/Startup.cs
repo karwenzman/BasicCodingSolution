@@ -118,8 +118,11 @@ public class Startup : IStartup
     private StringBuilder GetConnectionString()
     {
         var builder = new StringBuilder();
-        builder.AppendLine($"*** {nameof(AppSetting.ConnectionStrings)} ***");
-        builder.AppendLine($"\tValue: {AppSetting.ConnectionStrings.Default}");
+        builder.AppendLine($"*** {nameof(ConnectionStrings)} ***");
+        builder.AppendLine($"\tValue: {_optionsOfConnectionStrings.Value.Default}");
+        builder.AppendLine($"\tValue: {(string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory)
+            ? new ConnectionStrings().RootDirectory
+            : _optionsOfConnectionStrings.Value.RootDirectory)}");
         return builder;
     }
 
