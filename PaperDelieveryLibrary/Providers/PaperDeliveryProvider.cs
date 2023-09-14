@@ -492,7 +492,7 @@ public class PaperDeliveryProvider : IPaperDeliveryProvider
                 Site = "Vor der Haustür",
                 ContactDetails = new ContactDetails()
                 {
-                    Email = string.Empty,
+                    Email = "s.hainer@icloud.com",
                     Mobile = "0174 / 19 85 444",
                     Phone = string.Empty,
                 },
