@@ -17,8 +17,6 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     private readonly IPaperDeliveryProvider _paperDeliveryProvider;
     private readonly IOptions<PaperDeliverySetting> _optionsOfPaperDeliverySetting;
 
-    private readonly string contractPath;
-
     public PaperDeliveryContract Contract { get; set; }
     public List<PaperDeliveryContract> Contracts { get; set; }
     public PaperDeliverySetting PaperDeliverySetting { get; set; }
@@ -39,9 +37,8 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
         Message = new PaperDeliveryContractMessage();
         PaperDeliverySetting = _optionsOfPaperDeliverySetting.Value;
 
-        contractPath = Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory);
         Contract = new();
-        Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile));
+        Contracts = new();
     }
 
     public void Run()
@@ -91,7 +88,6 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
         catch (Exception e)
         {
             _logger.LogError("Exception while running {method}(): {error}", nameof(Run), e);
-
         }
     }
 
@@ -316,7 +312,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
                     Console.WriteLine("Saving record to file!");
                     try
                     {
-                        _paperDeliveryProvider.WriteRecordToFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile), Contract);
+                        _paperDeliveryProvider.WriteRecordToFile<PaperDeliveryContract>(Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile), Contract);
                         isValidated = true;
                         continue;
                     }
@@ -372,7 +368,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
         isRecordFound = false;
         try
         {
-            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile));
+            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile));
             Contracts.Sort();
             foreach (var item in Contracts)
             {
@@ -414,7 +410,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
                     try
                     {
                         Contracts.Remove(Contract);
-                        _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile), Contracts);
+                        _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile), Contracts);
                         isValidated = true;
                         continue;
                     }
@@ -472,7 +468,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
         isRecordFound = false;
         try
         {
-            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile));
+            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile));
             Contracts.Sort();
             foreach (var item in Contracts)
             {
@@ -552,7 +548,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
                     {
                         Contracts.Remove(Contract);
                         Contracts.Add(updatedContract);
-                        _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile), Contracts);
+                        _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile), Contracts);
                         isValidated = true;
                         continue;
                     }
@@ -585,7 +581,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
 
         try
         {
-            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile));
+            Contracts = _paperDeliveryProvider.ReadRecordsFromFile<PaperDeliveryContract>(Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile));
             Contracts.Sort();
         }
         catch (Exception e)
@@ -610,7 +606,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
 
         try
         {
-            _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine(contractPath, PaperDeliverySetting.ContractFile), Contracts);
+            _paperDeliveryProvider.WriteRecordsToFile<PaperDeliveryContract>(Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile), Contracts);
         }
         catch (Exception e)
         {
