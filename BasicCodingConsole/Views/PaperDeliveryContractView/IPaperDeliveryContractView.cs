@@ -20,13 +20,6 @@ public interface IPaperDeliveryContractView
     List<PaperDeliveryContract> Contracts { get; set; }
 
     /// <summary>
-    /// A value used to store the setting loaded from 'appsettings.json'.
-    /// <para></para>
-    /// The content is provided by <see cref="AppSettingProvider.GetPaperDeliverySetting()"/>.
-    /// </summary>
-    PaperDeliverySetting PaperDeliverySetting { get; set; }
-
-    /// <summary>
     /// A value used to control the menu's behavior.
     /// <para></para>
     /// The content is provided by <see cref="PaperDeliveryContractMenu"/>.

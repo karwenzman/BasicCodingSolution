@@ -14,29 +14,26 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     private readonly ILogger<PaperDeliveryContractView> _logger;
     private readonly IOptions<ConnectionStrings> _optionsOfConnectionStrings;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
-    private readonly IPaperDeliveryProvider _paperDeliveryProvider;
     private readonly IOptions<PaperDeliverySetting> _optionsOfPaperDeliverySetting;
+    private readonly IPaperDeliveryProvider _paperDeliveryProvider;
 
     public PaperDeliveryContract Contract { get; set; }
     public List<PaperDeliveryContract> Contracts { get; set; }
-    public PaperDeliverySetting PaperDeliverySetting { get; set; }
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
     public PaperDeliveryContractView(ILogger<PaperDeliveryContractView> logger, IOptions<ConnectionStrings> optionsOfConnectionStrings, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> optionsOfPaperDeliverySetting, IPaperDeliveryProvider paperDeliveryProvider)
     {
-        _paperDeliveryProvider = paperDeliveryProvider;
         _logger = logger;
         _optionsOfConnectionStrings = optionsOfConnectionStrings;
         _optionsOfConsoleSetting = optionsOfConsoleSetting;
         _optionsOfPaperDeliverySetting = optionsOfPaperDeliverySetting;
+        _paperDeliveryProvider = paperDeliveryProvider;
 
         _logger.LogInformation("* Dependendy Injection: {class}", nameof(PaperDeliveryContractView));
 
         Menu = new PaperDeliveryContractMenu(_optionsOfConsoleSetting.Value);
         Message = new PaperDeliveryContractMessage();
-        PaperDeliverySetting = _optionsOfPaperDeliverySetting.Value;
-
         Contract = new();
         Contracts = new();
     }
@@ -576,7 +573,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     /// </summary>
     private void KeystrokeL()
     {
-        Console.WriteLine("Listing contracts (sorted by Contract-ID)");
+        Console.WriteLine($"Listing contracts (sorted by Contract-ID) => {Path.Combine((string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory) ? new ConnectionStrings().RootDirectory : _optionsOfConnectionStrings.Value.RootDirectory), _optionsOfPaperDeliverySetting.Value.PaperDeliveryDirectory, _optionsOfPaperDeliverySetting.Value.ContractFile)}");
         Console.WriteLine("=========================================");
 
         try
