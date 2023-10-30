@@ -16,12 +16,14 @@ using PaperDeliveryLibrary.Providers;
 using Serilog;
 using System.Text;
 
+#region ##### ReadMe #####
 /// Information about this application's configuration:
 /// - using appsettings.json
 /// - using appsettings.Production.json
 /// - using launchSettings.json
 /// - using secrets.json
 /// - using command line
+#endregion
 
 Console.OutputEncoding = Encoding.Default; // this is needed to enable the console to print "€" symbol
 Console.OutputEncoding = Encoding.UTF8; // this is needed to enable the console to print "€" symbol
@@ -62,6 +64,14 @@ try
 {
     Log.Logger.Information("***** Run Application *****");
     services.GetRequiredService<IStartup>().WriteSettingsToConsole();
+    #region ====> for testing IOptionsSnapshot<> when calling GetRequiredService<> a second time
+    // without IOptionsSnapshot, the changed data will not be loaded
+    // this is leading to the question, how to call my services properly
+    // only GetRequiredService<> is calling the constructor and loading the options
+    // calling Run() will use the injected data from constructor
+    // if both Startup and ContractView are using IOptionsSnapshot, then the changed data will not be loaded ?????
+    Console.ReadLine();
+    #endregion
     services.GetRequiredService<IStartup>().Run();
 }
 catch (Exception e)

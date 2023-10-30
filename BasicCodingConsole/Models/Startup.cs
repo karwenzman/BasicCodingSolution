@@ -75,7 +75,7 @@ public class Startup : IStartup
         Console.WriteLine(GetUserSetting());
         Console.WriteLine(GetPaperDeliverySetting());
         Console.WriteLine(GetCommandlineArgument());
-        Console.WriteLine(GetConnectionString());
+        Console.WriteLine(GetConnectionStrings());
         Console.WriteLine(GetConsoleSetting());
 
         Console.WriteLine($"\nPress ENTER to continue...");
@@ -115,17 +115,34 @@ public class Startup : IStartup
         return builder;
     }
 
-    private StringBuilder GetConnectionString()
+    /// <summary>
+    /// This method is using <see cref="IOptions{}"/> to get the data from configuration files.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="StringBuilder"/> object that contains all properties of <see cref="ConnectionStrings"/>.
+    /// The output is formated and can be used by <see cref="Console.WriteLine()"/>.
+    /// </returns>
+    private StringBuilder GetConnectionStrings()
     {
-        StringBuilder builder = new();
+        var settings = _optionsOfConnectionStrings.Value;
+        var builder = new StringBuilder();
         builder.AppendLine($"*** {nameof(ConnectionStrings)} ***");
-        builder.AppendLine($"\tValue: {_optionsOfConnectionStrings.Value.Default}");
-        builder.AppendLine($"\tValue: {(string.IsNullOrEmpty(_optionsOfConnectionStrings.Value.RootDirectory)
+        builder.AppendLine($"\t{nameof(settings.Default)}: {(string.IsNullOrEmpty(settings.Default)
+            ? new ConnectionStrings().Default
+            : settings.Default)}");
+        builder.AppendLine($"\t{nameof(settings.RootDirectory)}: {(string.IsNullOrEmpty(settings.RootDirectory)
             ? new ConnectionStrings().RootDirectory
-            : _optionsOfConnectionStrings.Value.RootDirectory)}");
+            : settings.RootDirectory)}");
         return builder;
     }
 
+    /// <summary>
+    /// This method is using <see cref="IOptions{}"/> to get the data from configuration files.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="StringBuilder"/> object that contains all properties of <see cref="ConsoleSetting"/>.
+    /// The output is formated and can be used by <see cref="Console.WriteLine()"/>.
+    /// </returns>
     private StringBuilder GetConsoleSetting()
     {
         var settings = _optionsOfConsoleSetting.Value;

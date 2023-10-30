@@ -1,10 +1,26 @@
-﻿namespace PaperDeliveryLibrary.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class PaperDeliverySetting
+namespace PaperDeliveryLibrary.Models;
+
+public partial class PaperDeliverySetting : ModelBase
 {
-    public string ContractFile { get; set; } = "default";
-    public string ContractorFile { get; set; } = "default";
-    public string ClientFile { get; set; } = "default";
-    public string FulfillmentFile { get; set; } = "default";
-    public string PaperDeliveryDirectory { get; set; } = "default";
+    [ObservableProperty]
+    private string _ContractFile;
+    [ObservableProperty]
+    private string _ContractorFile;
+    [ObservableProperty]
+    private string _ClientFile;
+    [ObservableProperty]
+    private string _FulfillmentFile;
+    [ObservableProperty]
+    private string _PaperDeliveryDirectory;
+
+    public PaperDeliverySetting()
+    {
+        ContractFile = "default";
+        ContractorFile = "default";
+        ClientFile = "default";
+        FulfillmentFile = "default";
+        PaperDeliveryDirectory = "default";
+    }
 }

@@ -12,7 +12,7 @@ namespace BasicCodingConsole.Views.PaperDeliveryContractView;
 public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
 {
     private readonly ILogger<PaperDeliveryContractView> _logger;
-    private readonly IOptions<ConnectionStrings> _optionsOfConnectionStrings;
+    private readonly IOptionsSnapshot<ConnectionStrings> _optionsOfConnectionStrings;
     private readonly IOptions<ConsoleSetting> _optionsOfConsoleSetting;
     private readonly IOptions<PaperDeliverySetting> _optionsOfPaperDeliverySetting;
     private readonly IPaperDeliveryProvider _paperDeliveryProvider;
@@ -22,7 +22,7 @@ public class PaperDeliveryContractView : ViewBase, IPaperDeliveryContractView
     public IMenu Menu { get; set; }
     public IMessage Message { get; set; }
 
-    public PaperDeliveryContractView(ILogger<PaperDeliveryContractView> logger, IOptions<ConnectionStrings> optionsOfConnectionStrings, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> optionsOfPaperDeliverySetting, IPaperDeliveryProvider paperDeliveryProvider)
+    public PaperDeliveryContractView(ILogger<PaperDeliveryContractView> logger, IOptionsSnapshot<ConnectionStrings> optionsOfConnectionStrings, IOptions<ConsoleSetting> optionsOfConsoleSetting, IOptions<PaperDeliverySetting> optionsOfPaperDeliverySetting, IPaperDeliveryProvider paperDeliveryProvider)
     {
         _logger = logger;
         _optionsOfConnectionStrings = optionsOfConnectionStrings;
