@@ -12,16 +12,16 @@ namespace BasicCodingWpf;
 
 public partial class App : Application
 {
-    protected override void OnStartup(StartupEventArgs e)
-    {
-        base.OnStartup(e); // nötig???
+    public static IHost? AppHost { get; private set; }
 
+    public App()
+    {
         Log.Logger = new LoggerConfiguration()
             .Enrich.FromLogContext()
             .WriteTo.File("LogFiles/apploggings.txt")
             .CreateLogger();
 
-        using var host = Host.CreateDefaultBuilder()
+        AppHost = Host.CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {
                 services.AddLogging();
@@ -29,29 +29,36 @@ public partial class App : Application
                 services.AddOptions<ApplicationSetting>().Bind(context.Configuration.GetSection(nameof(ApplicationSetting)));
                 services.AddOptions<PaperDeliverySetting>().Bind(context.Configuration.GetSection(nameof(PaperDeliverySetting)));
                 services.AddOptions<UserSetting>().Bind(context.Configuration.GetSection(nameof(UserSetting)));
-                services.AddTransient<PaperDeliveryStartupView>();
+                services.AddSingleton<PaperDeliveryStartupView>();
                 services.AddTransient<IPaperDeliveryStartupViewModel, PaperDeliveryStartupViewModel>();
             })
             .UseSerilog()
             .Build();
 
-        using var scope = host.Services.CreateScope();
-        var services = scope.ServiceProvider;
+        Log.Logger.Information("***** {namespace} *****", nameof(BasicCodingWpf));
+    }
+
+    protected override async void OnStartup(StartupEventArgs e)
+    {
+        await AppHost!.StartAsync();
 
         try
         {
-            Log.Logger.Information("***** Application {namespace} starting *****", nameof(BasicCodingWpf));
-            var paperDeliveryStartupView = services.GetRequiredService<PaperDeliveryStartupView>();
-            paperDeliveryStartupView.Show();
+            var startupForm = AppHost.Services.GetRequiredService<PaperDeliveryStartupView>();
+            startupForm.Show();
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error has occurred: {ex.Message}");
             Log.Logger.Error("Unexpected Exception: {error}", ex);
         }
-        finally
-        {
-            Log.Logger.Information("***** Application {namespace} ending *****", nameof(BasicCodingWpf));
-        }
+
+        base.OnStartup(e);
+    }
+
+    protected override async void OnExit(ExitEventArgs e)
+    {
+        await AppHost!.StopAsync();
+
+        base.OnExit(e);
     }
 }
