@@ -1,16 +1,20 @@
-﻿namespace BasicCodingLibrary.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace BasicCodingLibrary.Models;
 
 /// <summary>
 /// This class is providing a section of the <b>appsettings.json</b> file.
 /// </summary>
-public class UserSetting
+public partial class UserSetting : ModelBase
 {
-    /// <summary>
-    /// The user's nickname.
-    /// </summary>
-    public string NickName { get; set; } = "default";
-    /// <summary>
-    /// The user's personal information.
-    /// </summary>
-    public UserDetails UserDetails { get; set; } = new UserDetails();
+    [ObservableProperty]
+    private string _NickName;
+    [ObservableProperty]
+    private UserDetails _UserDetails;
+
+    public UserSetting()
+    {
+        NickName = "default";
+        UserDetails = new UserDetails();
+    }
 }

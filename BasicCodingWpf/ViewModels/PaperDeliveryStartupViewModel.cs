@@ -1,10 +1,11 @@
-﻿using BasicCodingWpf.Commands;
+﻿using BasicCodingLibrary.Models;
+using BasicCodingWpf.Commands;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PaperDeliveryLibrary.Models;
+using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,22 +17,40 @@ public partial class PaperDeliveryStartupViewModel : ViewModelBase, IPaperDelive
     public ICommand RelayCommand_ModifyProperty { get; set; }
 
     int counter = 0;
-    
+
+    [ObservableProperty]
+    private string? _EnvironmentVariable;
     [ObservableProperty]
     private string _DeveloperName;
     [ObservableProperty]
     private PaperDeliverySetting _PaperDeliverySetting;
+    [ObservableProperty]
+    private UserSetting _UserSetting;
+    [ObservableProperty]
+    private ApplicationSetting _ApplicationSetting;
+    [ObservableProperty]
+    private ConnectionStrings _ConnectionStrings;
 
-    public PaperDeliveryStartupViewModel(ILogger<PaperDeliveryStartupViewModel> logger, IOptionsSnapshot<PaperDeliverySetting> optionsOfPaperDeliverySetting)
+    public PaperDeliveryStartupViewModel(
+        ILogger<PaperDeliveryStartupViewModel> logger,
+        IOptionsSnapshot<PaperDeliverySetting> optionsOfPaperDeliverySetting,
+        IOptionsSnapshot<ApplicationSetting> optionsOfApplicationSetting,
+        IOptionsSnapshot<ConnectionStrings> optionsOfConnectionStrings,
+        IOptionsSnapshot<UserSetting> optionsOfUserSetting)
     {
         logger.LogInformation("* Loading: {class}", nameof(PaperDeliveryStartupViewModel));
 
         PaperDeliverySetting = optionsOfPaperDeliverySetting.Value;
+        ApplicationSetting = optionsOfApplicationSetting.Value;
+        ConnectionStrings = optionsOfConnectionStrings.Value;
+        UserSetting = optionsOfUserSetting.Value;
 
         CommandBinding_Stop = new CommandBinding(ApplicationCommands.Stop, Stop_Executed, Stop_CanExecute);
         RelayCommand_ModifyProperty = new RelayCommand(ModifyProperty_Execute, ModifyProperty_CanExecute);
 
         DeveloperName = "Thorsten";
+        EnvironmentVariable = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
+
     }
 
     private void Stop_Executed(object sender, ExecutedRoutedEventArgs e)

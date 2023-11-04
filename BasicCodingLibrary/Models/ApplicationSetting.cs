@@ -1,16 +1,20 @@
-﻿namespace BasicCodingLibrary.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace BasicCodingLibrary.Models;
 
 /// <summary>
 /// This class is providing a section of the <b>appsettings.json</b> file.
 /// </summary>
-public class ApplicationSetting
+public partial class ApplicationSetting : ModelBase
 {
-    /// <summary>
-    /// Not used, yet. Testing only.
-    /// </summary>
-    public string LastLogin { get; set; } = "default";
-    /// <summary>
-    /// Not used, yet. Testing only.
-    /// </summary>
-    public string Language { get; set; } = "default";
+    [ObservableProperty]
+    private string _LastLogin;
+    [ObservableProperty]
+    private string _Language;
+
+    public ApplicationSetting()
+    {
+        LastLogin = "default";
+        Language = "default";
+    }
 }

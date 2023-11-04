@@ -31,30 +31,87 @@
         <DockPanel Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <DockPanel>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Label Content="ContractFile"></Label>
-                            <Label Content="{Binding PaperDeliverySetting.ContractFile}"></Label>
+                    <DockPanel DockPanel.Dock="Top">
+                        <GroupBox Header="UserSetting">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="NickName:"></Label>
+                                    <Label Content="{Binding UserSetting.NickName}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Name:"></Label>
+                                    <Label Content="{Binding UserSetting.UserDetails.FirstName}"></Label>
+                                    <Label Content="{Binding UserSetting.UserDetails.LastName}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="ID:"></Label>
+                                    <Label Content="{Binding UserSetting.UserDetails.Id}"></Label>
+                                    <Label Content="Gender:"></Label>
+                                    <Label Content="{Binding UserSetting.UserDetails.Gender}"></Label>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="ApplicationSetting">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Environment:"></Label>
+                                    <Label Content="{Binding EnvironmentVariable}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Language:"></Label>
+                                    <Label Content="{Binding ApplicationSetting.Language}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="LastLogin:"></Label>
+                                    <Label Content="{Binding ApplicationSetting.LastLogin}"></Label>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="PaperDeliverySetting">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Label Content="ContractFile"></Label>
+                                    <Label Content="{Binding PaperDeliverySetting.ContractFile}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Label Content="ContractorFile"></Label>
+                                    <Label Content="{Binding PaperDeliverySetting.ContractorFile}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Label Content="ClientFile"></Label>
+                                    <Label Content="{Binding PaperDeliverySetting.ClientFile}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Label Content="FulfillmentFile"></Label>
+                                    <Label Content="{Binding PaperDeliverySetting.FulfillmentFile}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Label Content="PaperDeliveryDirectory"></Label>
+                                    <Label Content="{Binding PaperDeliverySetting.PaperDeliveryDirectory}"></Label>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="ConnectionStrings">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Default:"></Label>
+                                    <Label Content="{Binding ConnectionStrings.Default}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="RootDirectory:"></Label>
+                                    <Label Content="{Binding ConnectionStrings.RootDirectory}"></Label>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <DockPanel DockPanel.Dock="Right"></DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top"></DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                            <Label Content="{Binding DeveloperName}" HorizontalAlignment="Left"></Label>
+                            <Button Command="{Binding RelayCommand_ModifyProperty}" Content="Test Button" Width="200" HorizontalAlignment="Left"></Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Label Content="ContractorFile"></Label>
-                            <Label Content="{Binding PaperDeliverySetting.ContractorFile}"></Label>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Label Content="ClientFile"></Label>
-                            <Label Content="{Binding PaperDeliverySetting.ClientFile}"></Label>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Label Content="FulfillmentFile"></Label>
-                            <Label Content="{Binding PaperDeliverySetting.FulfillmentFile}"></Label>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Label Content="PaperDeliveryDirectory"></Label>
-                            <Label Content="{Binding PaperDeliverySetting.PaperDeliveryDirectory}"></Label>
-                        </StackPanel>
-                        <Label Content="{Binding DeveloperName}" HorizontalAlignment="Left"></Label>
-                        <Button Command="{Binding RelayCommand_ModifyProperty}" Content="Test Button" Width="200" HorizontalAlignment="Left"></Button>
-                    </StackPanel>
+                    </DockPanel>
                 </DockPanel>
             </ScrollViewer>
         </DockPanel>

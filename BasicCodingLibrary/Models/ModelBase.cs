@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace PaperDeliveryLibrary.Models;
+namespace BasicCodingLibrary.Models;
 
 public abstract partial class ModelBase : ObservableObject
 {
