@@ -11,7 +11,7 @@ public partial class PaperDeliveryStartupView : Window
         logger.LogInformation("* Loading: {class}", nameof(PaperDeliveryStartupView));
 
         DataContext = paperDeliveryStartupViewModel;
-        CommandBindings.Add(paperDeliveryStartupViewModel.CommandBinding_Stop);
+        CommandBindings.Add(paperDeliveryStartupViewModel.StopCommand);
         Closing += paperDeliveryStartupViewModel.PaperDeliveryStartupView_Closing;
         InitializeComponent();
     }

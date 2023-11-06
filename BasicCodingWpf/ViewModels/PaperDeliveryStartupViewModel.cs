@@ -1,6 +1,7 @@
 ﻿using BasicCodingLibrary.Models;
 using BasicCodingWpf.Commands;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PaperDeliveryLibrary.Models;
@@ -11,10 +12,10 @@ using System.Windows.Input;
 
 namespace BasicCodingWpf.ViewModels;
 
+[ObservableObject]
 public partial class PaperDeliveryStartupViewModel : ViewModelBase, IPaperDeliveryStartupViewModel
 {
-    public CommandBinding CommandBinding_Stop { get; set; }
-    public ICommand RelayCommand_ModifyProperty { get; set; }
+    public CommandBinding StopCommand { get; set; }
 
     int counter = 0;
 
@@ -45,30 +46,30 @@ public partial class PaperDeliveryStartupViewModel : ViewModelBase, IPaperDelive
         ConnectionStrings = optionsOfConnectionStrings.Value;
         UserSetting = optionsOfUserSetting.Value;
 
-        CommandBinding_Stop = new CommandBinding(ApplicationCommands.Stop, Stop_Executed, Stop_CanExecute);
-        RelayCommand_ModifyProperty = new RelayCommand(ModifyProperty_Execute, ModifyProperty_CanExecute);
+        StopCommand = new CommandBinding(ApplicationCommands.Stop, Stop, CanStop);
 
         DeveloperName = "Thorsten";
         EnvironmentVariable = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
 
     }
 
-    private void Stop_Executed(object sender, ExecutedRoutedEventArgs e)
+    private void Stop(object sender, ExecutedRoutedEventArgs e)
     {
         Application.Current.MainWindow.Close();
     }
-    private void Stop_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    private void CanStop(object sender, CanExecuteRoutedEventArgs e)
     {
         e.CanExecute = true;
     }
 
-    private void ModifyProperty_Execute(object? parameter)
+    [RelayCommand(CanExecute = nameof(CanModifyProperty))]
+    private void ModifyProperty(object? parameter)
     {
         // do something
         counter++;
         DeveloperName = "T.W. Jenning - " + counter;
     }
-    private bool ModifyProperty_CanExecute(object? parameter)
+    private bool CanModifyProperty(object? parameter)
     {
         return true;
     }

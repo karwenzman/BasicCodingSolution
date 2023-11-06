@@ -109,7 +109,7 @@
                     <DockPanel DockPanel.Dock="Bottom">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                             <Label Content="{Binding DeveloperName}" HorizontalAlignment="Left"></Label>
-                            <Button Command="{Binding RelayCommand_ModifyProperty}" Content="Test Button" Width="200" HorizontalAlignment="Left"></Button>
+                            <Button Command="{Binding ModifyPropertyCommand}" Content="Test Button" Width="200" HorizontalAlignment="Left"></Button>
                         </StackPanel>
                     </DockPanel>
                 </DockPanel>

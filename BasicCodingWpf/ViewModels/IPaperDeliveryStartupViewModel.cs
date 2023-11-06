@@ -6,7 +6,7 @@ namespace BasicCodingWpf.ViewModels
 {
     public interface IPaperDeliveryStartupViewModel
     {
-        CommandBinding CommandBinding_Stop { get; set; }
+        CommandBinding StopCommand { get; set; }
 
         PaperDeliverySetting PaperDeliverySetting { get; set; }
         string DeveloperName { get; set; }
