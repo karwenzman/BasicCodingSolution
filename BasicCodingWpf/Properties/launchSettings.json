@@ -3,7 +3,7 @@
     "BasicCodingWpf": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development can not be set here."
+        "DOTNET_ENVIRONMENT": "Staging"
       }
     }
   }
