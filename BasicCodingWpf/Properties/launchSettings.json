@@ -3,7 +3,7 @@
     "BasicCodingWpf": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Staging"
+        "DOTNET_ENVIRONMENT": "Development"
       }
     }
   }

@@ -34,10 +34,10 @@ public partial class PaperDeliveryStartupViewModel : ViewModelBase, IPaperDelive
 
     public PaperDeliveryStartupViewModel(
         ILogger<PaperDeliveryStartupViewModel> logger,
-        IOptionsSnapshot<PaperDeliverySetting> optionsOfPaperDeliverySetting,
-        IOptionsSnapshot<ApplicationSetting> optionsOfApplicationSetting,
-        IOptionsSnapshot<ConnectionStrings> optionsOfConnectionStrings,
-        IOptionsSnapshot<UserSetting> optionsOfUserSetting)
+        IOptions<PaperDeliverySetting> optionsOfPaperDeliverySetting,
+        IOptions<ApplicationSetting> optionsOfApplicationSetting,
+        IOptions<ConnectionStrings> optionsOfConnectionStrings,
+        IOptions<UserSetting> optionsOfUserSetting)
     {
         logger.LogInformation("* Loading: {class}", nameof(PaperDeliveryStartupViewModel));
 
